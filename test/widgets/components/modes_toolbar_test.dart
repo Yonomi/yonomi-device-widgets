@@ -1,23 +1,20 @@
+import 'package:device_widgets/components/modes_toolbar.dart';
 import 'package:device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';
 
-import '../../../../lib/components/modes_toolbar.dart';
-
 class MockThermostatProvider extends Mock implements ThermostatProvider {}
 
 MockThermostatProvider mockProvider = MockThermostatProvider();
-
-ThermostatProvider realProvider = ThermostatProvider("", "");
 
 Widget createModesToolbar() {
   return MaterialApp(
     home: Column(children: [
       ModesToolbar(
         deviceId: "",
-        thermostatProvider: realProvider,
+        thermostatProvider: mockProvider,
       ),
     ]),
   );
