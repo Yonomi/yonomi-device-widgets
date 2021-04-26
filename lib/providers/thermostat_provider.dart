@@ -5,28 +5,28 @@ import 'package:yonomi_platform_sdk/repository/devices/thermostat_repository.dar
 import 'package:yonomi_platform_sdk/request/request.dart';
 
 class ThermostatProvider extends ChangeNotifier {
-  ThermostatProvider(String deviceId, String userId) {
-    _userId = userId;
-    getDeviceDetail(deviceId);
-    // _request = YoRequest.request(_userId);
+  ThermostatProvider(Future<Request> request, String deviceId) {
+    request.then((result) {
+      _request = result;
+      getDeviceDetail(deviceId);
+    });
   }
 
-  String _userId;
+  Request _request;
   Device _deviceDetail;
-  Future<Request> _request;
 
   Future<void> setPointAction(String deviceId, double temperature) async {
-    final request = await _request;
+    final request = _request;
     ThermostatRepository.setPointThermostat(request, deviceId, temperature);
   }
 
   Future<void> setThermostatMode(String deviceId, ThermostatMode mode) async {
-    final request = await _request;
+    final request = _request;
     ThermostatRepository.setMode(request, deviceId, mode);
   }
 
   Future<void> getDeviceDetail(String deviceId) async {
-    final request = await _request;
+    final request = _request;
     _deviceDetail =
         await DevicesRepository.getThermostatDetails(request, deviceId);
     notifyListeners();
