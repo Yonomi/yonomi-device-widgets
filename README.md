@@ -1,4 +1,5 @@
 [![Yonomi Device Widgets: Flutter][device-widgets-shield]][yonomi]
+[![codecov](https://codecov.io/gh/Yonomi/yonomi-device-widgets/branch/main/graph/badge.svg?token=52WBYAD9H9)](https://codecov.io/gh/Yonomi/yonomi-device-widgets)
 
 # Yonomi Device Widgets - Flutter
 
