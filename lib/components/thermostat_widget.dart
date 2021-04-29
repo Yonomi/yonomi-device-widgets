@@ -3,19 +3,14 @@ import 'package:device_widgets/components/device_control.dart';
 import 'package:device_widgets/components/modes_toolbar.dart';
 import 'package:device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:yonomi_platform_sdk/request/request.dart';
+import 'package:provider/provider.dart';
 
 class ThermostatWidget extends StatelessWidget {
-  const ThermostatWidget({
-    Key key,
-    @required this.thermostatProvider,
-    @required this.deviceId,
-  }) : super(key: key);
-
-  final ThermostatProvider thermostatProvider;
-  final String deviceId;
-
   @override
   Widget build(BuildContext context) {
+    final thermostatProvider =
+        Provider.of<ThermostatProvider>(context, listen: true);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -30,7 +25,8 @@ class ThermostatWidget extends StatelessWidget {
         Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: ModesToolbar(
-                deviceId: deviceId, thermostatProvider: thermostatProvider)),
+                deviceId: thermostatProvider.deviceDetail.id,
+                thermostatProvider: thermostatProvider)),
         SizedBox(
           height: 60,
         ),

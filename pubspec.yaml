@@ -9,6 +9,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  provider: ^4.3.3
   flutter:
     sdk: flutter
   yonomi_platform_sdk:

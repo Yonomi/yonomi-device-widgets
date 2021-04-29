@@ -2,17 +2,18 @@ import 'package:device_widgets/providers/thermostat_provider.dart';
 import 'package:device_widgets/ui/color_constants.dart';
 import 'package:device_widgets/ui/ring_border.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';
 
 class ModesToolbar extends StatelessWidget {
-  String deviceId;
+  final String deviceId;
 
-  ThermostatProvider thermostatProvider;
-
-  ModesToolbar({this.deviceId, this.thermostatProvider});
+  ModesToolbar({this.deviceId});
 
   @override
   Widget build(BuildContext context) {
+    final ThermostatProvider thermostatProvider =
+        Provider.of<ThermostatProvider>(context, listen: false);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
