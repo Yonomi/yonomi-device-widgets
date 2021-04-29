@@ -12,10 +12,7 @@ MockThermostatProvider mockProvider = MockThermostatProvider();
 Widget createModesToolbar() {
   return MaterialApp(
     home: Column(children: [
-      ModesToolbar(
-        deviceId: "",
-        thermostatProvider: mockProvider,
-      ),
+      ModesToolbar(deviceId: ""),
     ]),
   );
 }
