@@ -23,7 +23,8 @@ class ThermostatWidget extends StatelessWidget {
         ),
         Padding(
             padding: const EdgeInsets.only(top: 16.0),
-            child: ModesToolbar(deviceId: thermostatProvider.deviceDetail.id)),
+            child:
+                ModesToolbar(deviceId: thermostatProvider?.deviceDetail?.id)),
         SizedBox(
           height: 60,
         ),
