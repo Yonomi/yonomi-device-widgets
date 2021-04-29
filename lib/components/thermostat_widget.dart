@@ -3,7 +3,6 @@ import 'package:device_widgets/components/device_control.dart';
 import 'package:device_widgets/components/modes_toolbar.dart';
 import 'package:device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:yonomi_platform_sdk/request/request.dart';
 import 'package:provider/provider.dart';
 
 class ThermostatWidget extends StatelessWidget {
@@ -24,9 +23,7 @@ class ThermostatWidget extends StatelessWidget {
         ),
         Padding(
             padding: const EdgeInsets.only(top: 16.0),
-            child: ModesToolbar(
-                deviceId: thermostatProvider.deviceDetail.id,
-                thermostatProvider: thermostatProvider)),
+            child: ModesToolbar(deviceId: thermostatProvider.deviceDetail.id)),
         SizedBox(
           height: 60,
         ),
