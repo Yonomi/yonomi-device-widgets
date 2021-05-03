@@ -1,0 +1,24 @@
+name: device_widgets
+description: Yonomi Device Widgets
+version: 0.1.0
+author: Yonomi
+homepage: https://www.yonomi.co
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  provider: ^4.3.3
+  flutter:
+    sdk: flutter
+  yonomi_platform_sdk:
+    git:
+      url: ssh://git@github.com/Yonomi/yonomi-sdk-dart.git
+
+dev_dependencies:
+  mockito: ^4.1.4
+  flutter_test:
+    sdk: flutter
+
+flutter:
