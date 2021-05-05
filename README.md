@@ -8,21 +8,22 @@
 
 # Table of contents
 
-1. [Installing](#install)
+1. [Setup](#install)
 1. [Running tests](#run-tests)
 
-## Getting Started
+## Setup <a name="install"></a>
 
-### Cloning the repo <a name="clone-repo"></a>
+### Cloning the repo
+
 Clone the repo into your local machine:
 
 ```
 git clone https://github.com/Yonomi/yonomi-device-widgets.git
 ```
 
-### Installing the package <a name="install"></a>
+### Installing the package
 
-Open your `pubspec.yaml` file and add the following entry under the `dependencies` section:
+In your Flutter app, open your `pubspec.yaml` file and add the following entry under the `dependencies` section:
 
 
 ```
