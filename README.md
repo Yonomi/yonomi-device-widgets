@@ -1,10 +1,8 @@
 # Yonomi Device Widgets - Flutter
 
 [![Yonomi Device Widgets: Flutter][device-widgets-shield]][yonomi]
+[![CircleCI][circle-shield]][circle-pipeline]
 [![codecov](https://codecov.io/gh/Yonomi/yonomi-device-widgets/branch/main/graph/badge.svg?token=52WBYAD9H9)](https://codecov.io/gh/Yonomi/yonomi-device-widgets)
-[device-widgets-shield]: https://img.shields.io/badge/Yonomi-Device_Widgets:_Flutter-lightgrey.svg?colorA=ffd500&colorB=5c5c5c
-[yonomi]: https://www.yonomi.co/
-
 
 # Table of contents
 
@@ -52,3 +50,8 @@ open coverage/html/index.html
 This application is released under the [Apache license v2.0](LICENSE)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+[circle-shield]: https://circleci.com/gh/Yonomi/yonomi-device-widgets/tree/main.svg?style=shield&circle-token=fdd9d9b47626dbcace0c6bc927805c73f2233d25
+[circle-pipeline]: https://app.circleci.com/pipelines/github/Yonomi/yonomi-device-widgets
+[device-widgets-shield]: https://img.shields.io/badge/Yonomi-Device_Widgets:_Flutter-lightgrey.svg?colorA=ffd500&colorB=5c5c5c
+[yonomi]: https://www.yonomi.co/
