@@ -19,7 +19,6 @@ commands:
       - run:
           name: Setup Environment Variables
           command: echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
-      - run: echo $PATH
       - run:
           name: command to run unit tests
           command: flutter test --reporter json | tojunit --output test-results/dart-tests/device_widgets_unit_tests-report.xml
