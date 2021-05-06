@@ -12,6 +12,11 @@ orbs:
 aliases:
   - &project_dir "~/project"
 
+executors:
+  default-executor:
+    docker:
+      - image: cirrusci/flutter:stable
+
 commands:
   tests:
     description: "Run local unit tests"
@@ -30,6 +35,23 @@ commands:
           command: flutter test --coverage
       - codecov/upload:
           file: coverage/lcov.info
+  run-semantic-versioning:
+    description: "Tag and create changelog"
+    steps:
+      - run:
+          name: Git Setup
+          command: |
+            mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+            git config --global user.email "developer@yonomi.co"
+            git config --global user.name "CircleCI"
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install npm
+      - run: |
+          npm init -y
+          npm i -D @semantic-release/changelog
+          npm i -D @semantic-release/git
+          npm i -D semantic-release-dart
+          npx semantic-release --branches main
   dependencies:
     description: "Download dependencies and setup global packages"
     parameters:
@@ -46,25 +68,13 @@ commands:
           name: Get junitreporter
           shell: << parameters.shell >>
           command: pub global activate junitreport
-     
-      
-
-######################
-# Workflow Definition
-######################
-workflows:
-  version: 2.1
-  test-and-build:
-    jobs:
-      - test
 
 ##################
 # Job Definitions
 ##################
 jobs:
   test:
-    docker:
-      - image: cirrusci/flutter:stable
+    executor: default-executor
     steps:
       - dependencies:
           shell: "/bin/bash -eo pipefail"
@@ -75,3 +85,39 @@ jobs:
       - run-test-coverage
       - store_test_results:
           path: test-results
+  semantic-versioning:
+    executor: default-executor
+    steps:
+      - dependencies:
+          shell: "/bin/bash -eo pipefail"
+      - run-semantic-versioning
+      
+
+######################
+# Workflow Definition
+######################
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - main
+  test-changelog-tag:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - main
+      - semantic-versioning:
+          context:
+            - org-global
+          requires:
+              - test
+          filters:
+            branches:
+              only:
+                - main
