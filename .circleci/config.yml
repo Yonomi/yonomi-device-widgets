@@ -16,10 +16,9 @@ commands:
   tests:
     description: "Run local unit tests"
     steps:
-      -run:
+      - run:
         name: Setup Environment Variables
-        command: |
-          echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
+        command: echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
       - run: echo $PATH
       - run:
           name: command to run unit tests
