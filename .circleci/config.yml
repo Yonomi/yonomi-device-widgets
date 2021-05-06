@@ -13,18 +13,12 @@ aliases:
   - &project_dir "~/project"
 
 commands:
-  unit-tests:
+  tests:
     description: "Run local unit tests"
     steps:
       - run:
           name: command to run unit tests
-          command: flutter test test/unit --reporter json | tojunit --output test-results/dart-tests/device_widgets_unit_tests-report.xml
-  e2e-tests:
-    description: "Run end-to-end tests"
-    steps:
-      - run:
-          name: command to run e2e tests
-          command: flutter test test/e2e --reporter json | tojunit --output test-results/dart-tests/device_widgets_e2e_tests-report.xml
+          command: flutter test --reporter json | tojunit --output test-results/dart-tests/device_widgets_unit_tests-report.xml
   run-test-coverage:
     description: "Run all tests"
     steps:
@@ -49,6 +43,7 @@ commands:
           name: Get junitreporter
           shell: << parameters.shell >>
           command: pub global activate junitreport
+      - run: export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 ######################
 # Workflow Definition
