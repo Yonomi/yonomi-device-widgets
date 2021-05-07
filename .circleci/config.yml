@@ -44,14 +44,19 @@ commands:
             mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             git config --global user.email "developer@yonomi.co"
             git config --global user.name "CircleCI"
-      - run: sudo apt-get update
-      - run: sudo apt-get -y install npm
-      - run: |
-          npm init -y
-          npm i -D @semantic-release/changelog
-          npm i -D @semantic-release/git
-          npm i -D semantic-release-dart
-          npx semantic-release --branches main
+      - run:
+          name: Install npm 
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install npm
+      - run: 
+          name: Download Semantic Release
+          command: |
+            npm init -y
+            npm i -D @semantic-release/changelog
+            npm i -D @semantic-release/git
+            npm i -D semantic-release-dart
+            npx semantic-release --branches main
   dependencies:
     description: "Download dependencies and setup global packages"
     parameters:
