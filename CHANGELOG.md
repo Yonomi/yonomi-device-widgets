@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Yonomi/yonomi-device-widgets-private/compare/v1.0.0...v1.0.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* **semver:** clear naming circleci ([d375361](https://github.com/Yonomi/yonomi-device-widgets-private/commit/d375361cffe007cc4dc33fcf23b8b01dd85b709d))
+
 # 1.0.0 (2021-05-07)
 
 
