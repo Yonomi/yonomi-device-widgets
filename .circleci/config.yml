@@ -6,27 +6,28 @@ version: 2.1
 
 # Orb declarations
 orbs:
-  win: circleci/windows@2.4.0
   codecov: codecov/codecov@1.0.2
 
 # Simple YAML anchors
 aliases:
   - &project_dir "~/project"
 
+executors:
+  default-executor:
+    docker:
+      - image: cirrusci/flutter:stable
+
 commands:
-  unit-tests:
+  tests:
     description: "Run local unit tests"
     steps:
       - run:
-          name: command to run unit tests
-          command: pub run test test/unit --reporter json | tojunit --output test-results/dart-tests/device_widgets_unit_tests-report.xml
-  e2e-tests:
-    description: "Run end-to-end tests"
-    steps:
+          name: Setup Environment Variables
+          command: echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
       - run:
-          name: command to run e2e tests
-          command: pub run test test/e2e --reporter json | tojunit --output test-results/dart-tests/device_widgets_e2e_tests-report.xml
-  all-tests:
+          name: command to run unit tests
+          command: flutter test --reporter json | tojunit --output test-results/dart-tests/device_widgets_unit_tests-report.xml
+  run-test-coverage:
     description: "Run all tests"
     steps:
       - run:
@@ -34,21 +35,31 @@ commands:
           command: flutter test --coverage
       - codecov/upload:
           file: coverage/lcov.info
+  run-semantic-versioning:
+    description: "Tag and create changelog"
+    steps:
+      - run:
+          name: Git Setup
+          command: |
+            mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+            git config --global user.email "developer@yonomi.co"
+            git config --global user.name "CircleCI"
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install npm
+      - run: |
+          npm init -y
+          npm i -D @semantic-release/changelog
+          npm i -D @semantic-release/git
+          npm i -D semantic-release-dart
+          npx semantic-release --branches main
   dependencies:
     description: "Download dependencies and setup global packages"
     parameters:
       shell:
         type: string
         default: "/bin/bash --login -eo pipefail"
-      pub-cache:
-        type: string
-        default: "~/.pub-cache"
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1.4-dependencies-{{ arch }}-{{ checksum "pubspec.lock" }}
-            - v1.4-dependencies-{{ arch }}-
       - run:
           name: Download deps
           shell: << parameters.shell >>
@@ -57,34 +68,56 @@ commands:
           name: Get junitreporter
           shell: << parameters.shell >>
           command: pub global activate junitreport
-      - save_cache:
-          key: v1.4-dependencies-{{ arch }}-{{ checksum "pubspec.lock" }}
-          paths:
-            - .dart_tool
-            - << parameters.pub-cache >>
-
-######################
-# Workflow Definition
-######################
-workflows:
-  version: 2.1
-  test-and-build:
-    jobs:
-      - test
 
 ##################
 # Job Definitions
 ##################
 jobs:
   test:
-    docker:
-      - image: cirrusci/flutter:stable
+    executor: default-executor
     steps:
       - dependencies:
           shell: "/bin/bash -eo pipefail"
       - run:
           name: Make folder for test results
           command: mkdir -p test-results/dart-tests
-      - all-tests
+      - tests
+      - run-test-coverage
       - store_test_results:
           path: test-results
+  semantic-versioning:
+    executor: default-executor
+    steps:
+      - dependencies:
+          shell: "/bin/bash -eo pipefail"
+      - run-semantic-versioning
+      
+
+######################
+# Workflow Definition
+######################
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - main
+  test-changelog-tag:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - main
+      - semantic-versioning:
+          context:
+            - org-global
+          requires:
+              - test
+          filters:
+            branches:
+              only:
+                - main
