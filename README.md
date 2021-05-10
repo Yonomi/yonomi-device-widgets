@@ -32,6 +32,9 @@ dependencies:
   yonomi_device_widgets: ^1.0.0
 ```
 # Contribution Guide
+
+Please submit a ticket with details before creating a pull request and link the details with the PR.
+
 ## Running tests<a name="run-tests"></a>
 ### Prerequisites
 
