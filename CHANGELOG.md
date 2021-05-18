@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/Yonomi/yonomi-device-widgets/compare/v1.0.4...v1.0.5) (2021-05-18)
+
+
+### Bug Fixes
+
+* **cicd:** test steps cleanup ([ba370f6](https://github.com/Yonomi/yonomi-device-widgets/commit/ba370f60d3f763aed0c858ef2632d8f2e674c6cc))
+
 ## [1.0.4](https://github.com/Yonomi/yonomi-device-widgets/compare/v1.0.3...v1.0.4) (2021-05-18)
 
 
