@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/Yonomi/yonomi-device-widgets/compare/v1.0.5...v1.0.6) (2021-05-18)
+
+
+### Bug Fixes
+
+* **package:** Changed name ([7d1f0a4](https://github.com/Yonomi/yonomi-device-widgets/commit/7d1f0a439a35ae2932a7948367341b8280b90348))
+* **package:** Name changed ([9ad0f66](https://github.com/Yonomi/yonomi-device-widgets/commit/9ad0f66ab0a074b058091e97049f331a64e68c02))
+
 ## [1.0.5](https://github.com/Yonomi/yonomi-device-widgets/compare/v1.0.4...v1.0.5) (2021-05-18)
 
 
