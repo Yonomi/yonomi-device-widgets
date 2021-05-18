@@ -15,6 +15,7 @@ dependencies:
   yonomi_platform_sdk:
     git:
       url: ssh://git@github.com/Yonomi/yonomi-sdk-dart.git
+      ref: dx-130/locks
 
 dev_dependencies:
   mockito: ^4.1.4
