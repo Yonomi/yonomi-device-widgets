@@ -1,6 +1,6 @@
-import 'package:device_widgets/providers/thermostat_provider.dart';
-import 'package:device_widgets/ui/color_constants.dart';
-import 'package:device_widgets/ui/ring_border.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
+import 'package:yonomi_device_widgets/ui/color_constants.dart';
+import 'package:yonomi_device_widgets/ui/ring_border.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';

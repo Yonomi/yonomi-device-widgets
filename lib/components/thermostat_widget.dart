@@ -1,7 +1,7 @@
-import 'package:device_widgets/components/arc.dart';
-import 'package:device_widgets/components/device_control.dart';
-import 'package:device_widgets/components/modes_toolbar.dart';
-import 'package:device_widgets/providers/thermostat_provider.dart';
+import 'package:yonomi_device_widgets/components/arc.dart';
+import 'package:yonomi_device_widgets/components/device_control.dart';
+import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
