@@ -1,7 +1,6 @@
 name: device_widgets
 description: Yonomi Device Widgets
 version: 1.0.2
-author: Yonomi
 homepage: https://www.yonomi.co
 
 environment:
