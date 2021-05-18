@@ -164,12 +164,12 @@ class OpenPainter extends CustomPainter {
   OpenPainter(this.color, this.width, this.height, this.thumbx, this.thumby);
   @override
   void paint(Canvas canvas, Size size) {
-    var paint1 = Paint()
+    var arcPaint = Paint()
       ..color = color ?? Color(0xff63aa65)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8;
-    var paint2 = Paint()
+    var thumbPaint = Paint()
       ..color = Colors.red[400]
       ..style = PaintingStyle.fill;
     //draw arc
@@ -179,8 +179,8 @@ class OpenPainter extends CustomPainter {
         pi / 2 + pi / 10, //radians
         2 * pi - pi / 5, //radians
         false,
-        paint1);
-    canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, paint2);
+        arcPaint);
+    canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, thumbPaint);
   }
 
   @override
