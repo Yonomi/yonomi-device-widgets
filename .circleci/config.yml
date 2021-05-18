@@ -41,6 +41,7 @@ commands:
             pub install
             pub global activate junitreport
             echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
+            mkdir -p test-results/dart-tests
       - run:
           name: command to run unit tests
           command: flutter test --reporter json | tojunit --output test-results/dart-tests/device_widgets_unit_tests-report.xml
@@ -98,9 +99,6 @@ jobs:
     steps:
       - dependencies:
           shell: "/bin/bash -eo pipefail"
-      - run:
-          name: Make folder for test results
-          command: mkdir -p test-results/dart-tests
       - run-tests
       - run-test-coverage
       - store_test_results:
