@@ -8,9 +8,21 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.2
 
-# Simple YAML anchors
-aliases:
-  - &project_dir "~/project"
+anchors: 
+  - &main_only
+    filters:
+      branches:
+        only: main
+  - &release-tag-filter
+    filters:
+      tags:
+        only: /^v.*/
+      branches:
+        ignore: /.*/
+  - &feature-branch-filter
+    filters:
+      branches:
+        only: /^(?!main$).*/
 
 executors:
   default-executor:
@@ -18,7 +30,7 @@ executors:
       - image: cirrusci/flutter:stable
 
 commands:
-  tests:
+  run-tests:
     description: "Run local unit tests"
     steps:
       - run:
@@ -57,6 +69,13 @@ commands:
             npm i -D @semantic-release/git
             npm i -D semantic-release-dart
             npx semantic-release --branches main
+  run-publish:
+    description: "Publishes to pub.dev"
+    steps:
+      - run:
+          name: Publishing to pub.dev
+          command: dart pub publish
+  
   dependencies:
     description: "Download dependencies and setup global packages"
     parameters:
@@ -86,7 +105,7 @@ jobs:
       - run:
           name: Make folder for test results
           command: mkdir -p test-results/dart-tests
-      - tests
+      - run-tests
       - run-test-coverage
       - store_test_results:
           path: test-results
@@ -96,33 +115,44 @@ jobs:
       - dependencies:
           shell: "/bin/bash -eo pipefail"
       - run-semantic-versioning
-      
+  publish:
+    executor: default-executor
+    steps:
+      - dependencies:
+          shell: "bin/bash -eo pipefail"
+      - run-publish
 
 ######################
 # Workflow Definition
 ######################
 workflows:
   version: 2.1
-  test:
+  feature:
     jobs:
       - test:
-          filters:
-            branches:
-              ignore:
-                - main
-  test-changelog-tag:
+          <<: *feature-branch-filter
+  main:
     jobs:
       - test:
-          filters:
-            branches:
-              only:
-                - main
+          <<: *main_only
       - semantic-versioning:
           context:
             - org-global
           requires:
-              - test
-          filters:
-            branches:
-              only:
-                - main
+              - test  
+  production:
+    when:
+      and:
+        - equal: [ https://github.com/Yonomi/yonomi-device-widgets.git, << pipeline.project.git_url >> ]
+    jobs:
+      - test:
+          <<: *release-tag-filter
+      - hold:
+          type: approval
+          requires:
+            - test
+          <<: *release-tag-filter
+      - publish:
+          requires:
+            - hold
+          <<: *release-tag-filter
