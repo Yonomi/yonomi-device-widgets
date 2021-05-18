@@ -9,6 +9,7 @@ orbs:
   codecov: codecov/codecov@1.0.2
 
 anchors: 
+  - workspace-root: &workspace-root ~/project
   - &main_only
     filters:
       branches:
@@ -28,6 +29,7 @@ executors:
   default-executor:
     docker:
       - image: cirrusci/flutter:stable
+    working_directory: *workspace-root
 
 commands:
   run-tests:
