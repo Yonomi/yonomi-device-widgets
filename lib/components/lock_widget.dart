@@ -9,32 +9,34 @@ class LockWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final lockProvider = Provider.of<LockProvider>(context, listen: true);
 
-    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-      Row(
-        children: <Widget>[
-          Text(
-            lockProvider?.deviceDetail?.displayName ?? '',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 80,
-      ),
-      Center(
-        child: Arc(
-          centerWidget: (lockProvider.isLocked)
-              ? DeviceItemIcon.getLockIcon(100)
-              : DeviceItemIcon.getUnlockIcon(100),
-          initialValue: 0.0,
-          onFinalSetPoint: (double value) {
-            bool setLock = value != 0;
-            lockProvider.setLockUnlockAction(
-                lockProvider?.deviceDetail?.id, setLock);
-          },
-          maxValue: 1.0,
-        ),
-      ),
-    ]);
+    return lockProvider.loading
+        ? Center(child: CircularProgressIndicator())
+        : Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Row(
+              children: <Widget>[
+                Text(
+                  lockProvider?.deviceDetail?.displayName ?? '',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 80,
+            ),
+            Center(
+              child: Arc(
+                centerWidget: (lockProvider.isLocked)
+                    ? DeviceItemIcon.getLockIcon(100)
+                    : DeviceItemIcon.getUnlockIcon(100),
+                initialValue: 0.0,
+                onFinalSetPoint: (double value) {
+                  bool setLock = value != 0;
+                  lockProvider.setLockUnlockAction(
+                      lockProvider?.deviceDetail?.id, setLock);
+                },
+                maxValue: 1.0,
+              ),
+            ),
+          ]);
   }
 }
