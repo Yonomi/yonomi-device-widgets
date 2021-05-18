@@ -1,4 +1,4 @@
-import 'package:device_widgets/components/device_control.dart';
+import 'package:yonomi_device_widgets/components/device_control.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
