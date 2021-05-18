@@ -1,3 +1,4 @@
+import 'package:device_widgets/assets/traits/device_item_icon.dart';
 import 'package:device_widgets/components/arc.dart';
 import 'package:device_widgets/providers/lock_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,17 +23,16 @@ class LockWidget extends StatelessWidget {
       ),
       Center(
         child: Arc(
-          centerWidget: Text(
-            lockProvider.isLocked ? "Locked" : "Unlocked",
-            style: Theme.of(context).textTheme.headline2,
-          ),
+          centerWidget: (lockProvider.isLocked)
+              ? DeviceItemIcon.getLockIcon(100)
+              : DeviceItemIcon.getUnlockIcon(100),
           initialValue: 0.0,
           onFinalSetPoint: (double value) {
             bool setLock = value != 0;
             lockProvider.setLockUnlockAction(
                 lockProvider?.deviceDetail?.id, setLock);
           },
-          maxValue: 1,
+          maxValue: 1.0,
         ),
       ),
     ]);
