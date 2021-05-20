@@ -26,14 +26,20 @@ class LockWidget extends StatelessWidget {
             ),
             Center(
               child: Arc(
-                centerWidget: InkWell(
-                  child: getLockStateIcon(lockProvider),
-                  onTap: () {
-                    bool setLock = !lockProvider.isLocked;
-                    lockProvider.setLockUnlockAction(
-                        lockProvider?.deviceDetail?.id, setLock);
-                  },
-                ),
+                centerWidget: SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: InkWell(
+                      child: getLockStateIcon(lockProvider),
+                      onTap: () {
+                        bool setLock = !lockProvider.isLocked;
+                        lockProvider.setLockUnlockAction(
+                            lockProvider?.deviceDetail?.id, setLock);
+                      },
+                    )),
+                color: lockProvider.isLocked
+                    ? WidgetStyleConstants.deviceDetailIconColorActive
+                    : WidgetStyleConstants.deviceDetailIconColorInactive,
                 initialValue: 0.0,
                 maxValue: 1.0,
                 onFinalSetPoint: (double value) {},
