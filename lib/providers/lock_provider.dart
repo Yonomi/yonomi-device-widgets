@@ -32,23 +32,25 @@ class LockProvider extends ChangeNotifier {
   }
 
   Future<void> setLockUnlockAction(String deviceId, bool setLock) async {
-    loadingAction = true;
+    if (!loadingAction) {
+      loadingAction = true;
 
-    notifyListeners();
+      notifyListeners();
 
-    await LockRepository.sendLockUnlockAction(_request, deviceId, setLock);
+      await LockRepository.sendLockUnlockAction(_request, deviceId, setLock);
 
-    var maxRetries = 0;
-    while (_deviceDetail?.traits?.first?.state?.value != setLock &&
-        maxRetries < 10) {
-      // Wait more time
-      _deviceDetail =
-          await DevicesRepository.getLockDetails(_request, deviceId);
-      await Future.delayed(Duration(milliseconds: 750));
-      maxRetries++;
+      var maxRetries = 0;
+      while (_deviceDetail?.traits?.first?.state?.value != setLock &&
+          maxRetries < 10) {
+        // Wait more time
+        _deviceDetail =
+            await DevicesRepository.getLockDetails(_request, deviceId);
+        await Future.delayed(Duration(milliseconds: 750));
+        maxRetries++;
+      }
+      loadingAction = false;
+
+      notifyListeners();
     }
-    loadingAction = false;
-
-    notifyListeners();
   }
 }
