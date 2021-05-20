@@ -27,9 +27,9 @@ class LockWidget extends StatelessWidget {
             Center(
               child: Arc(
                 centerWidget: SizedBox(
-                    width: 200,
-                    height: 200,
-                    child: InkWell(
+                    width: 175,
+                    height: 175,
+                    child: GestureDetector(
                       child: getLockStateIcon(lockProvider),
                       onTap: () {
                         bool setLock = !lockProvider.isLocked;
