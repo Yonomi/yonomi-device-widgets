@@ -36,14 +36,16 @@ class DeviceItemIcon {
     );
   }
 
-  static Widget getThermostatIcon(double lockState) {
+  static Widget getThermostatIcon(double thermostatState) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           border: Border.all(width: 3, color: Colors.black)),
       child: Center(
         child: Text(
-          (lockState != null) ? lockState.round().toString() : 'N/A',
+          (thermostatState != null)
+              ? thermostatState.round().toString()
+              : 'N/A',
           style: WidgetStyleConstants.deviceItemTextPrimaryState,
         ),
       ),
