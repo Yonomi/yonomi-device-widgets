@@ -10,7 +10,7 @@ class LockWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final lockProvider = Provider.of<LockProvider>(context, listen: true);
 
-    return lockProvider.loading
+    return lockProvider.loadingDetail
         ? Center(child: CircularProgressIndicator())
         : Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             Row(
@@ -27,11 +27,7 @@ class LockWidget extends StatelessWidget {
             Center(
               child: Arc(
                 centerWidget: InkWell(
-                  child: (lockProvider.isLocked)
-                      ? DeviceItemIcon.getLockIcon(
-                          175, WidgetStyleConstants.deviceDetailIconColorActive)
-                      : DeviceItemIcon.getUnlockIcon(175,
-                          WidgetStyleConstants.deviceDetailIconColorInactive),
+                  child: getLockStateIcon(lockProvider),
                   onTap: () {
                     bool setLock = !lockProvider.isLocked;
                     lockProvider.setLockUnlockAction(
@@ -44,5 +40,15 @@ class LockWidget extends StatelessWidget {
               ),
             ),
           ]);
+  }
+
+  Widget getLockStateIcon(LockProvider lockProvider) {
+    return (lockProvider.loadingDetail || lockProvider.loadingAction)
+        ? Center(child: CircularProgressIndicator())
+        : (lockProvider.isLocked)
+            ? DeviceItemIcon.getLockIcon(
+                175, WidgetStyleConstants.deviceDetailIconColorActive)
+            : DeviceItemIcon.getUnlockIcon(
+                175, WidgetStyleConstants.deviceDetailIconColorInactive);
   }
 }
