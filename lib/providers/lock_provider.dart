@@ -17,7 +17,11 @@ class LockProvider extends ChangeNotifier {
 
   Device get deviceDetail => _deviceDetail;
 
-  bool get isLocked => _deviceDetail?.traits?.first?.state?.value ?? false;
+  bool get isLocked => getLockTrait()?.state?.value ?? false;
+
+  LockUnlockTrait getLockTrait() {
+    return _deviceDetail?.traits?.first;
+  }
 
   Future<void> getDeviceDetail(String deviceId) async {
     loadingDetail = true;
@@ -40,8 +44,7 @@ class LockProvider extends ChangeNotifier {
       await LockRepository.sendLockUnlockAction(_request, deviceId, setLock);
 
       var maxRetries = 0;
-      while (_deviceDetail?.traits?.first?.state?.value != setLock &&
-          maxRetries < 10) {
+      while (getLockTrait()?.state?.value != setLock && maxRetries < 10) {
         // Wait more time
         _deviceDetail =
             await DevicesRepository.getLockDetails(_request, deviceId);

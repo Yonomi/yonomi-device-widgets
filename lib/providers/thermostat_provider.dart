@@ -13,6 +13,10 @@ class ThermostatProvider extends ChangeNotifier {
   Request _request;
   Device _deviceDetail;
 
+  ThermostatTrait getThermostatTrait() {
+    return _deviceDetail?.traits?.first;
+  }
+
   Future<void> setPointAction(String deviceId, double temperature) async {
     ThermostatRepository.setPointThermostat(_request, deviceId, temperature);
   }
@@ -30,5 +34,5 @@ class ThermostatProvider extends ChangeNotifier {
   Device get deviceDetail => _deviceDetail;
 
   double get thermostatTargetTemperature =>
-      _deviceDetail?.traits?.first?.state?.value ?? 0;
+      getThermostatTrait()?.state?.value ?? 0;
 }
