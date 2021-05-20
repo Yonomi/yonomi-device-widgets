@@ -6,9 +6,7 @@ class DeviceItemIcon {
   static Widget getIcon(List<Trait> traits) {
     Trait determiningTrait = traits[0];
     if (determiningTrait is LockUnlockTrait) {
-      return (determiningTrait.state.value)
-          ? getLockIcon(60)
-          : getUnlockIcon(60);
+      return (determiningTrait.state.value) ? getLockIcon() : getUnlockIcon();
     }
     if (determiningTrait is ThermostatTrait) {
       return getThermostatIcon(determiningTrait.state.value);
@@ -20,19 +18,21 @@ class DeviceItemIcon {
     );
   }
 
-  static Widget getLockIcon(double size) {
+  static Widget getLockIcon(
+      [double size = 60, Color color = WidgetStyleConstants.deviceIconColor]) {
     return Icon(
       Icons.lock,
       size: size,
-      color: WidgetStyleConstants.deviceIconColor,
+      color: color,
     );
   }
 
-  static Widget getUnlockIcon(double size) {
+  static Widget getUnlockIcon(
+      [double size = 60, Color color = WidgetStyleConstants.deviceIconColor]) {
     return Icon(
       Icons.lock_open,
       size: size,
-      color: WidgetStyleConstants.deviceIconColor,
+      color: color,
     );
   }
 

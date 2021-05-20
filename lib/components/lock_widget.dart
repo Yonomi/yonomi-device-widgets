@@ -1,6 +1,7 @@
 import 'package:device_widgets/assets/traits/device_item_icon.dart';
 import 'package:device_widgets/components/arc.dart';
 import 'package:device_widgets/providers/lock_provider.dart';
+import 'package:device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,16 +26,21 @@ class LockWidget extends StatelessWidget {
             ),
             Center(
               child: Arc(
-                centerWidget: (lockProvider.isLocked)
-                    ? DeviceItemIcon.getLockIcon(100)
-                    : DeviceItemIcon.getUnlockIcon(100),
+                centerWidget: InkWell(
+                  child: (lockProvider.isLocked)
+                      ? DeviceItemIcon.getLockIcon(
+                          175, WidgetStyleConstants.deviceDetailIconColorActive)
+                      : DeviceItemIcon.getUnlockIcon(175,
+                          WidgetStyleConstants.deviceDetailIconColorInactive),
+                  onTap: () {
+                    bool setLock = !lockProvider.isLocked;
+                    lockProvider.setLockUnlockAction(
+                        lockProvider?.deviceDetail?.id, setLock);
+                  },
+                ),
                 initialValue: 0.0,
-                onFinalSetPoint: (double value) {
-                  bool setLock = value != 0;
-                  lockProvider.setLockUnlockAction(
-                      lockProvider?.deviceDetail?.id, setLock);
-                },
                 maxValue: 1.0,
+                onFinalSetPoint: (double value) {},
               ),
             ),
           ]);
