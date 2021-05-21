@@ -93,52 +93,49 @@ class _ArcState extends State<Arc> {
   Widget build(BuildContext context) {
     final width = 300.0;
     final height = 300.0;
+
+    CustomPaint arcComponentPainter = CustomPaint(
+      painter: ArcPainter(widget.color, width, height),
+      foregroundPainter: (widget.arcMode != ArcMode.displayOnly)
+          ? ThumbPainter(_thumbx, _thumby)
+          : null,
+    );
+
     return Stack(
       alignment: Alignment.center,
       children: [
         Container(
           width: width,
           height: height,
-          child: GestureDetector(
-            onTapDown: (TapDownDetails details) {
-              if (widget.arcMode != ArcMode.displayOnly) {
-                final x = details.localPosition.dx;
-                final y = details.localPosition.dy;
-                updateXYAndSetValue(x, y, width);
-              }
-            },
-            onPanEnd: (DragEndDetails details) {
-              if (widget.arcMode != ArcMode.displayOnly) {
-                final _value = calculateMagnitude();
-                setState(() {
-                  value = _value;
-                });
-                widget.onFinalSetPoint(value);
-              }
-            },
-            onPanUpdate: (DragUpdateDetails details) {
-              if (widget.arcMode != ArcMode.displayOnly) {
-                final x = details.localPosition.dx;
-                final y = details.localPosition.dy;
-                updateXYAndSetValue(x, y, width);
-              }
-            },
-            onTapUp: (TapUpDetails details) {
-              if (widget.arcMode != ArcMode.displayOnly) {
-                final _value = calculateMagnitude();
-                setState(() {
-                  value = _value;
-                });
-                widget.onFinalSetPoint(value);
-              }
-            },
-            child: CustomPaint(
-              painter: ArcPainter(widget.color, width, height),
-              foregroundPainter: (widget.arcMode != ArcMode.displayOnly)
-                  ? ThumbPainter(_thumbx, _thumby)
-                  : null,
-            ),
-          ),
+          child: (widget.arcMode != ArcMode.displayOnly)
+              ? GestureDetector(
+                  onTapDown: (TapDownDetails details) {
+                    final x = details.localPosition.dx;
+                    final y = details.localPosition.dy;
+                    updateXYAndSetValue(x, y, width);
+                  },
+                  onPanEnd: (DragEndDetails details) {
+                    final _value = calculateMagnitude();
+                    setState(() {
+                      value = _value;
+                    });
+                    widget.onFinalSetPoint(value);
+                  },
+                  onPanUpdate: (DragUpdateDetails details) {
+                    final x = details.localPosition.dx;
+                    final y = details.localPosition.dy;
+                    updateXYAndSetValue(x, y, width);
+                  },
+                  onTapUp: (TapUpDetails details) {
+                    final _value = calculateMagnitude();
+                    setState(() {
+                      value = _value;
+                    });
+                    widget.onFinalSetPoint(value);
+                  },
+                  child: arcComponentPainter,
+                )
+              : arcComponentPainter,
         ),
         Align(
             alignment: Alignment.center,
