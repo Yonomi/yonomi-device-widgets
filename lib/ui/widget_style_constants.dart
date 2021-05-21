@@ -19,4 +19,6 @@ class WidgetStyleConstants {
       fontWeight: FontWeight.w900,
       color: WidgetStyleConstants.textColorState,
       fontSize: 19.0);
+
+  static const Color defaultArcColor = Color(0xff63aa65);
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 
 enum ArcMode { displayOnly, singleSelection, doubleSelection }
@@ -132,8 +133,10 @@ class _ArcState extends State<Arc> {
               }
             },
             child: CustomPaint(
-              painter:
-                  OpenPainter(widget.color, width, height, _thumbx, _thumby),
+              painter: ArcPainter(widget.color, width, height),
+              foregroundPainter: (widget.arcMode != ArcMode.displayOnly)
+                  ? ThumbPainter(_thumbx, _thumby)
+                  : null,
             ),
           ),
         ),
@@ -167,24 +170,20 @@ class _ArcState extends State<Arc> {
   }
 }
 
-class OpenPainter extends CustomPainter {
+class ArcPainter extends CustomPainter {
   final Color color;
   final double width;
   final double height;
-  final double thumbx;
-  final double thumby;
 
-  OpenPainter(this.color, this.width, this.height, this.thumbx, this.thumby);
+  ArcPainter(this.color, this.width, this.height);
   @override
   void paint(Canvas canvas, Size size) {
     var arcPaint = Paint()
-      ..color = color ?? Color(0xff63aa65)
+      ..color = color ?? WidgetStyleConstants.defaultArcColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8;
-    var thumbPaint = Paint()
-      ..color = Colors.red[400]
-      ..style = PaintingStyle.fill;
+
     //draw arc
     canvas.drawArc(
         Rect.fromCircle(
@@ -193,6 +192,23 @@ class OpenPainter extends CustomPainter {
         2 * pi - pi / 5, //radians
         false,
         arcPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class ThumbPainter extends CustomPainter {
+  final double thumbx;
+  final double thumby;
+
+  ThumbPainter(this.thumbx, this.thumby);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var thumbPaint = Paint()
+      ..color = Colors.red[400]
+      ..style = PaintingStyle.fill;
     canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, thumbPaint);
   }
 
