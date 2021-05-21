@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+enum ArcMode { displayOnly, singleSelection, doubleSelection }
+
 class Arc extends StatefulWidget {
   final Widget centerWidget;
   final Color color;
@@ -10,14 +12,17 @@ class Arc extends StatefulWidget {
 
   final double initialValue;
 
-  Arc(
-      {Key key,
-      @required this.centerWidget,
-      this.color,
-      @required this.initialValue,
-      @required this.onFinalSetPoint,
-      @required this.maxValue})
-      : super(key: key);
+  final ArcMode arcMode;
+
+  Arc({
+    Key key,
+    this.arcMode = ArcMode.singleSelection,
+    @required this.centerWidget,
+    @required this.initialValue,
+    @required this.maxValue,
+    @required this.onFinalSetPoint,
+    this.color,
+  }) : super(key: key);
 
   @override
   _ArcState createState() => _ArcState();
@@ -95,28 +100,36 @@ class _ArcState extends State<Arc> {
           height: height,
           child: GestureDetector(
             onTapDown: (TapDownDetails details) {
-              final x = details.localPosition.dx;
-              final y = details.localPosition.dy;
-              updateXYAndSetValue(x, y, width);
+              if (widget.arcMode != ArcMode.displayOnly) {
+                final x = details.localPosition.dx;
+                final y = details.localPosition.dy;
+                updateXYAndSetValue(x, y, width);
+              }
             },
             onPanEnd: (DragEndDetails details) {
-              final _value = calculateMagnitude();
-              setState(() {
-                value = _value;
-              });
-              widget.onFinalSetPoint(value);
+              if (widget.arcMode != ArcMode.displayOnly) {
+                final _value = calculateMagnitude();
+                setState(() {
+                  value = _value;
+                });
+                widget.onFinalSetPoint(value);
+              }
             },
             onPanUpdate: (DragUpdateDetails details) {
-              final x = details.localPosition.dx;
-              final y = details.localPosition.dy;
-              updateXYAndSetValue(x, y, width);
+              if (widget.arcMode != ArcMode.displayOnly) {
+                final x = details.localPosition.dx;
+                final y = details.localPosition.dy;
+                updateXYAndSetValue(x, y, width);
+              }
             },
             onTapUp: (TapUpDetails details) {
-              final _value = calculateMagnitude();
-              setState(() {
-                value = _value;
-              });
-              widget.onFinalSetPoint(value);
+              if (widget.arcMode != ArcMode.displayOnly) {
+                final _value = calculateMagnitude();
+                setState(() {
+                  value = _value;
+                });
+                widget.onFinalSetPoint(value);
+              }
             },
             child: CustomPaint(
               painter:
