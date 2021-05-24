@@ -25,13 +25,11 @@ class LockProvider extends ChangeNotifier {
 
   Future<void> getDeviceDetail(String deviceId) async {
     loadingDetail = true;
-
     notifyListeners();
 
     _deviceDetail = await DevicesRepository.getLockDetails(_request, deviceId);
 
     loadingDetail = false;
-
     notifyListeners();
   }
 

@@ -26,7 +26,7 @@ class LockWidget extends StatelessWidget {
             ),
             Center(
               child: Arc(
-                arcMode: ArcMode.displayOnly,
+                showThumb: false,
                 centerWidget: SizedBox(
                     width: 175,
                     height: 175,

@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 
-enum ArcMode { displayOnly, singleSelection, doubleSelection }
-
 class Arc extends StatefulWidget {
   final Widget centerWidget;
   final Color color;
@@ -13,11 +11,11 @@ class Arc extends StatefulWidget {
 
   final double initialValue;
 
-  final ArcMode arcMode;
+  final bool showThumb;
 
   Arc({
     Key key,
-    this.arcMode = ArcMode.singleSelection,
+    this.showThumb = true,
     @required this.centerWidget,
     @required this.initialValue,
     @required this.maxValue,
@@ -96,9 +94,8 @@ class _ArcState extends State<Arc> {
 
     CustomPaint arcComponentPainter = CustomPaint(
       painter: ArcPainter(widget.color, width, height),
-      foregroundPainter: (widget.arcMode != ArcMode.displayOnly)
-          ? ThumbPainter(_thumbx, _thumby)
-          : null,
+      foregroundPainter:
+          (widget.showThumb) ? ThumbPainter(_thumbx, _thumby) : null,
     );
 
     return Stack(
@@ -107,7 +104,7 @@ class _ArcState extends State<Arc> {
         Container(
           width: width,
           height: height,
-          child: (widget.arcMode != ArcMode.displayOnly)
+          child: (widget.showThumb)
               ? GestureDetector(
                   onTapDown: (TapDownDetails details) {
                     final x = details.localPosition.dx;
