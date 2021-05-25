@@ -1,6 +1,6 @@
 name: device_widgets
 description: Yonomi Device Widgets
-version: 1.0.1
+version: 1.0.2
 author: Yonomi
 homepage: https://www.yonomi.co
 
@@ -12,9 +12,7 @@ dependencies:
   provider: ^4.3.3
   flutter:
     sdk: flutter
-  yonomi_platform_sdk:
-    git:
-      url: ssh://git@github.com/Yonomi/yonomi-sdk-dart-private.git
+  yonomi_platform_sdk: ^1.0.2
 
 dev_dependencies:
   mockito: ^4.1.4

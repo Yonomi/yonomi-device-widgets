@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Yonomi/yonomi-device-widgets-private/compare/v1.0.1...v1.0.2) (2021-05-18)
+
+
+### Bug Fixes
+
+* **cicd:** Publish step added ([50e3f21](https://github.com/Yonomi/yonomi-device-widgets-private/commit/50e3f211b4690c7e606a79d05a8ac2efdaa0b728))
+
 ## [1.0.1](https://github.com/Yonomi/yonomi-device-widgets-private/compare/v1.0.0...v1.0.1) (2021-05-07)
 
 
