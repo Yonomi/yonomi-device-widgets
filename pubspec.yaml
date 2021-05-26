@@ -12,7 +12,9 @@ dependencies:
   provider: ^4.3.3
   flutter:
     sdk: flutter
-  yonomi_platform_sdk: ^1.0.2
+  yonomi_platform_sdk:
+    git:
+      url: ssh://git@github.com/Yonomi/yonomi-sdk-dart-private.git
 
 dev_dependencies:
   mockito: ^4.1.4
