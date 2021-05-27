@@ -1,5 +1,5 @@
-import 'package:device_widgets/components/modes_toolbar.dart';
-import 'package:device_widgets/providers/thermostat_provider.dart';
+import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

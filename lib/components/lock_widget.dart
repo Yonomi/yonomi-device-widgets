@@ -1,7 +1,7 @@
-import 'package:device_widgets/assets/traits/device_item_icon.dart';
-import 'package:device_widgets/components/arc.dart';
-import 'package:device_widgets/providers/lock_provider.dart';
-import 'package:device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
+import 'package:yonomi_device_widgets/components/arc.dart';
+import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

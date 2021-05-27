@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 
 class Arc extends StatefulWidget {
