@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_sdk_dart/graphql/devices/thermostat/thermostat_queries.graphql.dart';
+import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';
 
 class MockThermostatProvider extends Mock implements ThermostatProvider {}
 

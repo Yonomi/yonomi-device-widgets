@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:yonomi_sdk_dart/repository/devices/devices_repository.dart';
-import 'package:yonomi_sdk_dart/repository/devices/lock_repository.dart';
-import 'package:yonomi_sdk_dart/request/request.dart';
+import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
+import 'package:yonomi_platform_sdk/repository/devices/lock_repository.dart';
+import 'package:yonomi_platform_sdk/request/request.dart';
 
 class LockProvider extends ChangeNotifier {
   bool loadingDetail = false;

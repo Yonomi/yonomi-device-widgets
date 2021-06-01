@@ -3,7 +3,7 @@ import 'package:yonomi_device_widgets/ui/ring_border.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_sdk_dart/graphql/devices/thermostat/thermostat_queries.dart';
+import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.dart';
 
 class ModesToolbar extends StatelessWidget {
   final String deviceId;
