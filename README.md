@@ -4,7 +4,7 @@
 [![CircleCI][circle-shield]][circle-pipeline]
 [![codecov](https://codecov.io/gh/Yonomi/yonomi-device-widgets/branch/main/graph/badge.svg?token=52WBYAD9H9)](https://codecov.io/gh/Yonomi/yonomi-device-widgets)
 
-Device Widgets are rich UI components that represent traits supported by our platform (such as Lights, Locks, Thermostats etc.).  They are composable and infinitely customizable.  They are open-source, and allow developers to build their own device UIs that are intuitive and inherently tied to the traits and actions featured in our platform's Graph API.
+Device Widgets are rich UI components that represent traits supported by our platform (such as Lights, Locks, Thermostats).  They are composable and infinitely customizable.  They are open-source, and allow developers to build their own device UIs that are intuitive and inherently tied to the traits and actions featured in our platform's Graph API.
 
 # Table of contents
 
@@ -31,9 +31,6 @@ dependencies:
   ...    
   yonomi_device_widgets: ^1.0.0
 ```
-# Contribution Guide
-
-Please submit a ticket with details before creating a pull request and link the details with the PR.
 
 ## Running tests<a name="run-tests"></a>
 ### Prerequisites

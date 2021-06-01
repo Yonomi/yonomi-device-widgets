@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 
 class Arc extends StatefulWidget {
@@ -10,14 +11,17 @@ class Arc extends StatefulWidget {
 
   final double initialValue;
 
-  Arc(
-      {Key key,
-      @required this.centerWidget,
-      this.color,
-      @required this.initialValue,
-      @required this.onFinalSetPoint,
-      @required this.maxValue})
-      : super(key: key);
+  final bool showThumb;
+
+  Arc({
+    Key key,
+    this.showThumb = true,
+    @required this.centerWidget,
+    @required this.initialValue,
+    @required this.maxValue,
+    @required this.onFinalSetPoint,
+    this.color,
+  }) : super(key: key);
 
   @override
   _ArcState createState() => _ArcState();
@@ -87,42 +91,48 @@ class _ArcState extends State<Arc> {
   Widget build(BuildContext context) {
     final width = 300.0;
     final height = 300.0;
+
+    CustomPaint arcComponentPainter = CustomPaint(
+      painter: ArcPainter(widget.color, width, height),
+      foregroundPainter:
+          (widget.showThumb) ? ThumbPainter(_thumbx, _thumby) : null,
+    );
+
     return Stack(
       alignment: Alignment.center,
       children: [
         Container(
           width: width,
           height: height,
-          child: GestureDetector(
-            onTapDown: (TapDownDetails details) {
-              final x = details.localPosition.dx;
-              final y = details.localPosition.dy;
-              updateXYAndSetValue(x, y, width);
-            },
-            onPanEnd: (DragEndDetails details) {
-              final _value = calculateMagnitude();
-              setState(() {
-                value = _value;
-              });
-              widget.onFinalSetPoint(value);
-            },
-            onPanUpdate: (DragUpdateDetails details) {
-              final x = details.localPosition.dx;
-              final y = details.localPosition.dy;
-              updateXYAndSetValue(x, y, width);
-            },
-            onTapUp: (TapUpDetails details) {
-              final _value = calculateMagnitude();
-              setState(() {
-                value = _value;
-              });
-              widget.onFinalSetPoint(value);
-            },
-            child: CustomPaint(
-              painter:
-                  OpenPainter(widget.color, width, height, _thumbx, _thumby),
-            ),
-          ),
+          child: (widget.showThumb)
+              ? GestureDetector(
+                  onTapDown: (TapDownDetails details) {
+                    final x = details.localPosition.dx;
+                    final y = details.localPosition.dy;
+                    updateXYAndSetValue(x, y, width);
+                  },
+                  onPanEnd: (DragEndDetails details) {
+                    final _value = calculateMagnitude();
+                    setState(() {
+                      value = _value;
+                    });
+                    widget.onFinalSetPoint(value);
+                  },
+                  onPanUpdate: (DragUpdateDetails details) {
+                    final x = details.localPosition.dx;
+                    final y = details.localPosition.dy;
+                    updateXYAndSetValue(x, y, width);
+                  },
+                  onTapUp: (TapUpDetails details) {
+                    final _value = calculateMagnitude();
+                    setState(() {
+                      value = _value;
+                    });
+                    widget.onFinalSetPoint(value);
+                  },
+                  child: arcComponentPainter,
+                )
+              : arcComponentPainter,
         ),
         Align(
             alignment: Alignment.center,
@@ -154,24 +164,20 @@ class _ArcState extends State<Arc> {
   }
 }
 
-class OpenPainter extends CustomPainter {
+class ArcPainter extends CustomPainter {
   final Color color;
   final double width;
   final double height;
-  final double thumbx;
-  final double thumby;
 
-  OpenPainter(this.color, this.width, this.height, this.thumbx, this.thumby);
+  ArcPainter(this.color, this.width, this.height);
   @override
   void paint(Canvas canvas, Size size) {
-    var paint1 = Paint()
-      ..color = color ?? Color(0xff63aa65)
+    var arcPaint = Paint()
+      ..color = color ?? WidgetStyleConstants.defaultArcColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8;
-    var paint2 = Paint()
-      ..color = Colors.red[400]
-      ..style = PaintingStyle.fill;
+
     //draw arc
     canvas.drawArc(
         Rect.fromCircle(
@@ -179,8 +185,25 @@ class OpenPainter extends CustomPainter {
         pi / 2 + pi / 10, //radians
         2 * pi - pi / 5, //radians
         false,
-        paint1);
-    canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, paint2);
+        arcPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class ThumbPainter extends CustomPainter {
+  final double thumbx;
+  final double thumby;
+
+  ThumbPainter(this.thumbx, this.thumby);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var thumbPaint = Paint()
+      ..color = Colors.red[400]
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, thumbPaint);
   }
 
   @override
