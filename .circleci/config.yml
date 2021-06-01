@@ -27,7 +27,7 @@ anchors:
 executors:
   default-executor:
     docker:
-      - image: cirrusci/flutter:stable
+      - image: cirrusci/flutter:2.0.6
 
 commands:
   run-tests:
