@@ -1,9 +1,9 @@
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
-import 'package:yonomi_device_widgets/ui/color_constants.dart';
 import 'package:yonomi_device_widgets/ui/ring_border.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';
+import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.dart';
 
 class ModesToolbar extends StatelessWidget {
   final String deviceId;
@@ -74,9 +74,9 @@ class ModeIconButton extends ElevatedButton {
               (Set<MaterialState> states) {
                 if (states.contains(MaterialState.focused) ||
                     states.contains(MaterialState.pressed)) {
-                  return ColorConstants.modesButtonPressedColor;
+                  return WidgetStyleConstants.modesButtonPressedColor;
                 }
-                return ColorConstants.modesButtonUnpressedColor;
+                return WidgetStyleConstants.modesButtonUnpressedColor;
               },
             ),
             shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
@@ -85,7 +85,7 @@ class ModeIconButton extends ElevatedButton {
                   states.contains(MaterialState.pressed)) {
                 return RingBorder(
                   side: BorderSide(
-                      color: ColorConstants.modesButtonUnpressedColor,
+                      color: WidgetStyleConstants.modesButtonUnpressedColor,
                       width: 2.0),
                 );
               }
