@@ -14,12 +14,7 @@ class Lock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) {
-        LockProvider lockProvider = LockProvider(request, deviceId);
-        lockProvider.deviceRepo = DevicesRepositoryWrapper();
-        lockProvider.lockRepo = LockRepositoryWrapper();
-        return lockProvider;
-      },
+      create: (_) => LockProvider(request, deviceId),
       child: LockWidget(),
     );
   }

@@ -4,59 +4,63 @@ import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
 import 'package:yonomi_platform_sdk/request/request.dart';
 
-class MockDevicesRepo extends Mock implements DevicesRepositoryWrapper {}
+class MockGetLockDetailsFunction extends Mock {
+  Future<Device> call(Request request, String id);
+}
 
-class MockLockRepo extends Mock implements LockRepositoryWrapper {}
+class MockSendLockUnlockFunction extends Mock {
+  Future<void> call(Request request, String id, bool lockUnlock);
+}
 
 void main() {
   test('Calling setLockUnlockAction calls repository method', () async {
     Request request = Request("", {});
-    DevicesRepositoryWrapper mockDevicesRepo = MockDevicesRepo();
-    LockRepositoryWrapper mockLockRepo = MockLockRepo();
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
+    SendLockUnlockFunction mockSendLockUnlockMethod =
+        MockSendLockUnlockFunction();
     LockProvider lockProvider = LockProvider(request, "deviceId");
-    lockProvider.lockRepo = mockLockRepo;
-    lockProvider.deviceRepo = mockDevicesRepo;
 
-    await lockProvider.setLockUnlockAction("deviceId", true);
+    await lockProvider.setLockUnlockAction("deviceId", true,
+        injectLockDetailsMethod: mockLockDetailsMethod,
+        injectSendLockUnlockMethod: mockSendLockUnlockMethod);
 
-    verify(mockLockRepo.sendLockUnlockAction(any, any, any)).called(1);
+    verify(mockSendLockUnlockMethod(any, any, any)).called(1);
   });
 
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
-    DevicesRepositoryWrapper mockDevicesRepo = MockDevicesRepo();
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
     LockProvider lockProvider = LockProvider(request, "deviceId");
-    lockProvider.deviceRepo = mockDevicesRepo;
 
-    await lockProvider.getDeviceDetail(deviceId: "test");
+    await lockProvider.getDeviceDetail(
+        deviceId: "test", injectLockDetailsMethod: mockLockDetailsMethod);
 
-    verify(mockDevicesRepo.getLockDetails(any, any)).called(1);
+    verify(mockLockDetailsMethod(any, any)).called(1);
   });
 
-  test('Calling getDeviceDetail calls repository method', () async {
+  test('Device data is set using DeviceRepository\'s return values', () async {
     Request request = Request("", {});
 
-    DevicesRepositoryWrapper mockDevicesRepo = MockDevicesRepo();
-    when(mockDevicesRepo.getLockDetails(any, any))
-        .thenAnswer((_) => Future.value(
-              Device(
-                "someId",
-                "someDisplayName",
-                "someDescription",
-                "someManufacturerName",
-                "someModel",
-                "someFirmwareV",
-                "someSoftwareV",
-                "someSerialNumber",
-                DateTime.now(),
-                DateTime.now(),
-                [],
-              ),
-            ));
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
+    when(mockLockDetailsMethod(any, any)).thenAnswer((_) => Future.value(
+          Device(
+            "someId",
+            "someDisplayName",
+            "someDescription",
+            "someManufacturerName",
+            "someModel",
+            "someFirmwareV",
+            "someSoftwareV",
+            "someSerialNumber",
+            DateTime.now(),
+            DateTime.now(),
+            [],
+          ),
+        ));
     LockProvider lockProvider = LockProvider(request, "deviceId");
-    lockProvider.deviceRepo = mockDevicesRepo;
 
-    await lockProvider.getDeviceDetail(deviceId: "test");
+    await lockProvider.getDeviceDetail(
+        deviceId: "test", injectLockDetailsMethod: mockLockDetailsMethod);
 
     expect(lockProvider.deviceDetail.displayName, "someDisplayName");
   });
