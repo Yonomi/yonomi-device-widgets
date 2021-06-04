@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:yonomi_device_widgets/components/arc.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lockProvider = Provider.of<LockProvider>(context, listen: true);
-    lockProvider.getDeviceDetail();
 
     return lockProvider.loadingDetail
         ? Center(child: CircularProgressIndicator())

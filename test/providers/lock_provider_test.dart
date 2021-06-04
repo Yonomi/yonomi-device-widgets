@@ -18,7 +18,8 @@ void main() {
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
     SendLockUnlockFunction mockSendLockUnlockMethod =
         MockSendLockUnlockFunction();
-    LockProvider lockProvider = LockProvider(request, "deviceId");
+    LockProvider lockProvider = LockProvider(request, "deviceId",
+        injectLockDetailsMethod: mockLockDetailsMethod);
 
     await lockProvider.setLockUnlockAction("deviceId", true,
         injectLockDetailsMethod: mockLockDetailsMethod,
@@ -30,12 +31,13 @@ void main() {
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
-    LockProvider lockProvider = LockProvider(request, "deviceId");
+    LockProvider lockProvider = LockProvider(request, "deviceId",
+        injectLockDetailsMethod: mockLockDetailsMethod);
 
-    await lockProvider.getDeviceDetail(
-        deviceId: "test", injectLockDetailsMethod: mockLockDetailsMethod);
+    await lockProvider.getDeviceDetail("test",
+        injectLockDetailsMethod: mockLockDetailsMethod);
 
-    verify(mockLockDetailsMethod(any, any)).called(1);
+    verify(mockLockDetailsMethod(any, any)).called(2);
   });
 
   test('Device data is set using DeviceRepository\'s return values', () async {
@@ -57,10 +59,11 @@ void main() {
             [],
           ),
         ));
-    LockProvider lockProvider = LockProvider(request, "deviceId");
+    LockProvider lockProvider = LockProvider(request, "deviceId",
+        injectLockDetailsMethod: mockLockDetailsMethod);
 
-    await lockProvider.getDeviceDetail(
-        deviceId: "test", injectLockDetailsMethod: mockLockDetailsMethod);
+    await lockProvider.getDeviceDetail("test",
+        injectLockDetailsMethod: mockLockDetailsMethod);
 
     expect(lockProvider.deviceDetail.displayName, "someDisplayName");
   });

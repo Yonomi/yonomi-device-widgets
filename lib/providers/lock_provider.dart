@@ -13,17 +13,14 @@ class LockProvider extends ChangeNotifier {
   bool loadingDetail = false;
   bool loadingAction = false;
 
-  LockProvider(Request request, String deviceId) {
+  LockProvider(Request request, String deviceId,
+      {GetLockDetailsFunction injectLockDetailsMethod}) {
     _request = request;
-    _deviceId = deviceId;
+    getDeviceDetail(deviceId, injectLockDetailsMethod: injectLockDetailsMethod);
   }
 
   Request _request;
-  String _deviceId;
-
   Device _deviceDetail;
-
-  String get deviceId => _deviceId;
 
   Device get deviceDetail => _deviceDetail;
 
@@ -33,15 +30,15 @@ class LockProvider extends ChangeNotifier {
     return _deviceDetail?.traits?.first;
   }
 
-  Future<void> getDeviceDetail(
-      {String deviceId, GetLockDetailsFunction injectLockDetailsMethod}) async {
+  Future<void> getDeviceDetail(String deviceId,
+      {GetLockDetailsFunction injectLockDetailsMethod}) async {
     final getLockDetailsMethod =
         injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
 
     loadingDetail = true;
     notifyListeners();
 
-    _deviceDetail = await getLockDetailsMethod(_request, deviceId ?? _deviceId);
+    _deviceDetail = await getLockDetailsMethod(_request, deviceId);
 
     loadingDetail = false;
     notifyListeners();
