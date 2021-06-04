@@ -1,9 +1,10 @@
-import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
-import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
+import 'package:yonomi_device_widgets/ui/ring_border.dart';
 import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';
 
 class MockThermostatProvider extends Mock implements ThermostatProvider {}
@@ -59,13 +60,37 @@ void main() {
     verify(mockProvider.setThermostatMode(any, ThermostatMode.heat)).called(1);
   });
 
-  testWidgets('ModesToolbar - button should set mode to eco when pressed',
+  testWidgets(
+      'ModesToolbar - ModeIconButton should have a RingBorder shape when pressed',
       (WidgetTester tester) async {
-    await tester.pumpWidget(createModesToolbar());
+    const Set<MaterialState> pressed = <MaterialState>{MaterialState.pressed};
 
-    await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.eco));
+    var toolbar = createModesToolbar();
+    await tester.pumpWidget(toolbar);
 
-    verify(mockProvider.setThermostatMode(any, ThermostatMode.airflow))
-        .called(1);
+    final Finder modeIconButtonFinder =
+        find.widgetWithIcon(ModeIconButton, Icons.eco);
+    await tester.press(modeIconButtonFinder);
+
+    final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
+
+    expect(modeButton.style.shape.resolve(pressed), isA<RingBorder>());
+  });
+
+  testWidgets(
+      'ModesToolbar - ModeIconButton should have a RingBorder shape when focused',
+      (WidgetTester tester) async {
+    const Set<MaterialState> focused = <MaterialState>{MaterialState.focused};
+
+    var toolbar = createModesToolbar();
+    await tester.pumpWidget(toolbar);
+
+    final Finder modeIconButtonFinder =
+        find.widgetWithIcon(ModeIconButton, Icons.eco);
+    await tester.press(modeIconButtonFinder);
+
+    final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
+
+    expect(modeButton.style.shape.resolve(focused), isA<RingBorder>());
   });
 }

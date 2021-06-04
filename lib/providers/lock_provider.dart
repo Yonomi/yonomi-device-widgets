@@ -52,7 +52,7 @@ class LockProvider extends ChangeNotifier {
       SendLockUnlockFunction injectSendLockUnlockMethod}) async {
     final getLockDetailsMethod =
         injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
-    final sendLockUnlock =
+    final sendLockUnlockMethod =
         injectSendLockUnlockMethod ?? LockRepository.sendLockUnlockAction;
 
     if (!loadingAction) {
@@ -60,7 +60,7 @@ class LockProvider extends ChangeNotifier {
 
       notifyListeners();
 
-      await sendLockUnlock(_request, deviceId, setLock);
+      await sendLockUnlockMethod(_request, deviceId, setLock);
 
       var maxRetries = 0;
       while (getLockTrait()?.state?.value != setLock && maxRetries < 10) {
