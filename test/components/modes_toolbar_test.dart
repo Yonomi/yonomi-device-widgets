@@ -60,6 +60,16 @@ void main() {
     verify(mockProvider.setThermostatMode(any, ThermostatMode.heat)).called(1);
   });
 
+  testWidgets('ModesToolbar - button should set mode to eco when pressed',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(createModesToolbar());
+
+    await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.eco));
+
+    verify(mockProvider.setThermostatMode(any, ThermostatMode.airflow))
+        .called(1);
+  });
+
   testWidgets(
       'ModesToolbar - ModeIconButton should have a RingBorder shape when pressed',
       (WidgetTester tester) async {
@@ -71,6 +81,8 @@ void main() {
     final Finder modeIconButtonFinder =
         find.widgetWithIcon(ModeIconButton, Icons.eco);
     await tester.press(modeIconButtonFinder);
+
+    await tester.pumpAndSettle();
 
     final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
 
@@ -88,6 +100,8 @@ void main() {
     final Finder modeIconButtonFinder =
         find.widgetWithIcon(ModeIconButton, Icons.eco);
     await tester.press(modeIconButtonFinder);
+
+    await tester.pumpAndSettle();
 
     final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
 
