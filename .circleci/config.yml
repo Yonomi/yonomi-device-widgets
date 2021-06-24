@@ -28,6 +28,7 @@ executors:
   default-executor:
     docker:
       - image: cirrusci/flutter:2.0.6
+    shell: "/bin/bash -eo pipefail"
 
 commands:
   run-tests:
@@ -78,19 +79,13 @@ commands:
   
   dependencies:
     description: "Download dependencies and setup global packages"
-    parameters:
-      shell:
-        type: string
-        default: "/bin/bash --login -eo pipefail"
     steps:
       - checkout
       - run:
           name: Download deps
-          shell: << parameters.shell >>
           command: pub get
       - run:
           name: Get junitreporter
-          shell: << parameters.shell >>
           command: pub global activate junitreport
 
 ##################
@@ -100,8 +95,7 @@ jobs:
   test:
     executor: default-executor
     steps:
-      - dependencies:
-          shell: "/bin/bash -eo pipefail"
+      - dependencies
       - run:
           name: Make folder for test results
           command: mkdir -p test-results/dart-tests
@@ -112,14 +106,12 @@ jobs:
   semantic-versioning:
     executor: default-executor
     steps:
-      - dependencies:
-          shell: "/bin/bash -eo pipefail"
+      - dependencies
       - run-semantic-versioning
   publish:
     executor: default-executor
     steps:
-      - dependencies:
-          shell: "bin/bash -eo pipefail"
+      - dependencies
       - run-publish
 
 ######################
