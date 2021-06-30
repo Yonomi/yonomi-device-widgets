@@ -87,6 +87,14 @@ commands:
       - run:
           name: Get junitreporter
           command: pub global activate junitreport
+  dartdoc:
+    description: "Prepare and generate dartdocs"
+    steps:
+      - run:
+          name: Prepare Dartdoc
+          command: |
+            pub global activate dartdoc
+            dartdoc --format md
 
 ##################
 # Job Definitions
@@ -113,6 +121,20 @@ jobs:
     steps:
       - dependencies
       - run-publish
+  dartdoc_verify:
+    executor: default-executor
+    steps:
+      - dartdoc
+      - run:
+          name: Check if changes made to documentation were not checked in
+          command: |
+            DIFF=$(git diff doc/api )
+            if [ "$DIFF" != "" ]
+            then
+              echo "Documentation changes were not checked in"
+              echo "Run dartdoc locally and check in any changes under \'doc\' folder"
+              exit 1
+            fi
 
 ######################
 # Workflow Definition
@@ -123,6 +145,9 @@ workflows:
     jobs:
       - test:
           <<: *feature-branch-filter
+      - dartdoc_verify:
+          requires:
+            - test
   main:
     jobs:
       - test:
@@ -131,7 +156,7 @@ workflows:
           context:
             - org-global
           requires:
-              - test  
+              - test
   production:
     when:
       and:
