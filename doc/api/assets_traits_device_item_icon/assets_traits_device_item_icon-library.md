@@ -19,7 +19,7 @@
 
 
 
-This is a paragraph of regular text. [...](../assets_traits_device_item_icon/DeviceItemIcon-class.md)
+ 
 
 
 
