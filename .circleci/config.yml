@@ -79,14 +79,29 @@ commands:
   
   dependencies:
     description: "Download dependencies and setup global packages"
+    parameters:
+      pub-cache:
+        type: string
+        default: "~/.pub-cache"
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.lock" }}
+            - v1.0-dependencies-{{ arch }}-
       - run:
           name: Download deps
           command: pub get
       - run:
           name: Get junitreporter
-          command: pub global activate junitreport
+          command: |
+            echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
+            pub global activate junitreport
+      - save_cache:
+          key: v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.lock" }}
+          paths:
+            - .dart_tool
+            - << parameters.pub-cache >>
   dartdoc:
     description: "Prepare and generate dartdocs"
     steps:
@@ -125,6 +140,9 @@ jobs:
     executor: default-executor
     steps:
       - dependencies
+      - run:
+          name: Update flutter SDK
+          command: flutter upgrade
       - dartdoc
       - run:
           name: Check if changes made to documentation were not checked in
