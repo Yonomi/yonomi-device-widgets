@@ -1,0 +1,24 @@
+
+
+
+# ThermostatWidget constructor
+
+
+
+
+
+
+
+ThermostatWidget()
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+
+
+
+# Lock constructor
+
+
+
+
+
+
+const
+Lock({Key key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Request](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/request_request/Request-class.html) request, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId})
+
+
+
+
+
+## Implementation
+
+```dart
+const Lock({Key key, @required this.request, @required this.deviceId})
+    : super(key: key);
+```
+
+
+
+
+
+
+
