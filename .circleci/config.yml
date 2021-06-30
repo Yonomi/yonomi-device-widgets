@@ -124,6 +124,7 @@ jobs:
   dartdoc_verify:
     executor: default-executor
     steps:
+      - dependencies
       - dartdoc
       - run:
           name: Check if changes made to documentation were not checked in
