@@ -140,16 +140,6 @@ jobs:
     executor: default-executor
     steps:
       - dependencies
-      - run:
-          name: Update flutter SDK
-          command: |
-            cd /sdks/flutter
-            git remote update
-            git remote set-branches --add origin stable
-            git fetch --all
-            git fetch origin refs/heads/stable:refs/remotes/origin/stable
-            git checkout --track origin/stable
-            flutter upgrade
       - dartdoc
       - run:
           name: Check if changes made to documentation were not checked in
