@@ -140,6 +140,13 @@ jobs:
     executor: default-executor
     steps:
       - dependencies
+      - run:
+          name: Check if changes made to documentation were not checked in
+          command: |
+            cd "$(dirname "$(which flutter)")"
+            git fetch --tags
+            git checkout 2.2.2
+            flutter --version
       - dartdoc
       - run:
           name: Check if changes made to documentation were not checked in
