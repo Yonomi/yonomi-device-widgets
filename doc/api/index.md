@@ -48,10 +48,6 @@ open coverage/html/index.html
  
 
 
-##### [base_arc_painter](components_slider_component_base_arc_painter/components_slider_component_base_arc_painter-library.md)
- 
-
-
 ##### [device_control](components_device_control/components_device_control-library.md)
  
 
@@ -77,14 +73,6 @@ open coverage/html/index.html
 
 
 ##### [ring_border](ui_ring_border/ui_ring_border-library.md)
- 
-
-
-##### [slider_component](components_slider_component_slider_component/components_slider_component_slider_component-library.md)
- 
-
-
-##### [slider_utils](components_slider_component_slider_utils/components_slider_component_slider_utils-library.md)
  
 
 

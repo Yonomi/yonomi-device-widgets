@@ -75,7 +75,6 @@ abbreviated for readability.</p>
 </ul>
 </li>
 <li><code>minimumSize</code> - Size(64, 36)</li>
-<li><code>fixedSize</code> - null</li>
 <li><code>side</code> - null</li>
 <li><code>shape</code> - RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))</li>
 <li><code>mouseCursor</code>
@@ -89,7 +88,6 @@ abbreviated for readability.</p>
 <li><code>animationDuration</code> - kThemeChangeDuration</li>
 <li><code>enableFeedback</code> - true</li>
 <li><code>alignment</code> - Alignment.center</li>
-<li><code>splashFactory</code> - InkRipple.splashFactory</li>
 </ul>
 <p>The default padding values for the <code>ElevatedButton.icon</code> factory are slightly different:</p>
 <ul>
