@@ -13,17 +13,29 @@
 
 
 
+**Inheritance**
+
+- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
+- [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
+- [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+- [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)
+- Arc
+
+
+
+
+
 
 ## Constructors
 
-[Arc](../components_arc/Arc/Arc.md) ({Key key, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) showThumb = true, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) Widget centerWidget, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [double](https://api.flutter.dev/flutter/dart-core/double-class.html) initialValue, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [double](https://api.flutter.dev/flutter/dart-core/double-class.html) maxValue, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) ValueChanged&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)> onFinalSetPoint, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color})
+[Arc](../components_arc/Arc/Arc.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html) key, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) showThumb = true, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) centerWidget, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [double](https://api.flutter.dev/flutter/dart-core/double-class.html) initialValue, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [double](https://api.flutter.dev/flutter/dart-core/double-class.html) maxValue, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)> onFinalSetPoint, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color})
 
     
 
 
 ## Properties
 
-##### [centerWidget](../components_arc/Arc/centerWidget.md) &#8594; Widget
+##### [centerWidget](../components_arc/Arc/centerWidget.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -41,11 +53,11 @@ _final_
 
 
 
-##### [hashCode](../components_arc/Arc/hashCode.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
 
-The hash code for this object. [...](../components_arc/Arc/hashCode.md)  
+The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), read-only, inherited_
 
 
@@ -59,11 +71,11 @@ _final_
 
 
 
-##### [key](../components_arc/Arc/key.md) &#8594; Key
+##### [key](https://api.flutter.dev/flutter/widgets/Widget/key.html) &#8594; [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)
 
 
 
-Controls how one widget replaces another widget in the tree. [...](../components_arc/Arc/key.md)  
+Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
 
 
@@ -77,7 +89,7 @@ _final_
 
 
 
-##### [onFinalSetPoint](../components_arc/Arc/onFinalSetPoint.md) &#8594; ValueChanged&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)>
+##### [onFinalSetPoint](../components_arc/Arc/onFinalSetPoint.md) &#8594; [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)>
 
 
 
@@ -107,11 +119,11 @@ _final_
 
 ## Methods
 
-##### [createElement](../components_arc/Arc/createElement.md)() StatefulElement
+##### [createElement](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)() [StatefulElement](https://api.flutter.dev/flutter/widgets/StatefulElement-class.html)
 
 
 
-Creates a <code>StatefulElement</code> to manage this widget's location in the tree. [...](../components_arc/Arc/createElement.md)  
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)  
 _inherited_
 
 
@@ -121,25 +133,25 @@ _inherited_
 
 
 Creates the mutable state for this widget at a given location in the tree. [...](../components_arc/Arc/createState.md)  
+_override_
 
 
 
-
-##### [debugDescribeChildren](../components_arc/Arc/debugDescribeChildren.md)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;DiagnosticsNode>
+##### [debugDescribeChildren](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)>
 
 
 
 Returns a list of <code>DiagnosticsNode</code> objects describing this node's
-children. [...](../components_arc/Arc/debugDescribeChildren.md)  
+children. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)  
 _@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), inherited_
 
 
 
-##### [debugFillProperties](../components_arc/Arc/debugFillProperties.md)(DiagnosticPropertiesBuilder properties) void
+##### [debugFillProperties](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
 
 
 
-Add additional properties associated with the node. [...](../components_arc/Arc/debugFillProperties.md)  
+Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
 _inherited_
 
 
@@ -153,44 +165,44 @@ _inherited_
 
 
 
-##### [toDiagnosticsNode](../components_arc/Arc/toDiagnosticsNode.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, DiagnosticsTreeStyle style}) DiagnosticsNode
+##### [toDiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, [DiagnosticsTreeStyle](https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle-class.html) style}) [DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)
 
 
 
 Returns a debug representation of the object that is used by debugging
-tools and by <code>DiagnosticsNode.toStringDeep</code>. [...](../components_arc/Arc/toDiagnosticsNode.md)  
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)  
 _inherited_
 
 
 
-##### [toString](../components_arc/Arc/toString.md)({DiagnosticLevel minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toString](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)({[DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-A string representation of this object. [...](../components_arc/Arc/toString.md)  
+A string representation of this object. [...](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)  
 _inherited_
 
 
 
-##### [toStringDeep](../components_arc/Arc/toStringDeep.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, DiagnosticLevel minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringDeep](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-Returns a string representation of this node and its descendants. [...](../components_arc/Arc/toStringDeep.md)  
+Returns a string representation of this node and its descendants. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)  
 _inherited_
 
 
 
-##### [toStringShallow](../components_arc/Arc/toStringShallow.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', DiagnosticLevel minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShallow](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-Returns a one-line detailed description of the object. [...](../components_arc/Arc/toStringShallow.md)  
+Returns a one-line detailed description of the object. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)  
 _inherited_
 
 
 
-##### [toStringShort](../components_arc/Arc/toStringShort.md)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShort](https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
@@ -202,11 +214,11 @@ _inherited_
 
 ## Operators
 
-##### [operator ==](../components_arc/Arc/operator_equals.md)([Object](https://api.flutter.dev/flutter/dart-core/Object-class.html) other) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [operator ==](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)([Object](https://api.flutter.dev/flutter/dart-core/Object-class.html) other) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-The equality operator. [...](../components_arc/Arc/operator_equals.md)  
+The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), inherited_
 
 

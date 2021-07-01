@@ -8,7 +8,7 @@
 
 
 
-Widget icon
+[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon
   
 _final_
 

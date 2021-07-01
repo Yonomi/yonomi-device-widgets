@@ -10,7 +10,7 @@
 
 
 
-Widget buildThermostatIcon
+[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) buildThermostatIcon
 ([double](https://api.flutter.dev/flutter/dart-core/double-class.html) thermostatState)
 
 

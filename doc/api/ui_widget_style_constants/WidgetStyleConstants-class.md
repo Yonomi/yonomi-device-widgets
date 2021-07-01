@@ -77,7 +77,7 @@ _inherited_
 
 ## Static Properties
 
-##### [deviceItemTextPrimaryState](../ui_widget_style_constants/WidgetStyleConstants/deviceItemTextPrimaryState.md) &#8596; TextStyle
+##### [deviceItemTextPrimaryState](../ui_widget_style_constants/WidgetStyleConstants/deviceItemTextPrimaryState.md) &#8596; [TextStyle](https://api.flutter.dev/flutter/painting/TextStyle-class.html)
 
 
 

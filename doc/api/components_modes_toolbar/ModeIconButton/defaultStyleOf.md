@@ -11,23 +11,23 @@
 
 - @[override](https://api.flutter.dev/flutter/dart-core/override-constant.html)
 
-ButtonStyle defaultStyleOf
-(BuildContext context)
+[ButtonStyle](https://api.flutter.dev/flutter/material/ButtonStyle-class.html) defaultStyleOf
+([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context)
 
-
+_override_
 
 
 
 <p>Defines the button's default appearance.</p>
-<p>The button <a href="../../components_modes_toolbar/ModeIconButton/child.md">child</a>'s <code>Text</code> and <code>Icon</code> widgets are rendered with
-the <code>ButtonStyle</code>'s foreground color. The button's <code>InkWell</code> adds
+<p>The button <a href="https://api.flutter.dev/flutter/material/ButtonStyleButton/child.html">child</a>'s <a href="https://api.flutter.dev/flutter/widgets/Text-class.html">Text</a> and <a href="https://api.flutter.dev/flutter/widgets/Icon-class.html">Icon</a> widgets are rendered with
+the <a href="https://api.flutter.dev/flutter/material/ButtonStyle-class.html">ButtonStyle</a>'s foreground color. The button's <a href="https://api.flutter.dev/flutter/material/InkWell-class.html">InkWell</a> adds
 the style's overlay color when the button is focused, hovered
-or pressed. The button's background color becomes its <code>Material</code>
+or pressed. The button's background color becomes its <a href="https://api.flutter.dev/flutter/material/Material-class.html">Material</a>
 color.</p>
 <p>All of the ButtonStyle's defaults appear below. In this list
 "Theme.foo" is shorthand for <code>Theme.of(context).foo</code>. Color
 scheme values like "onSurface(0.38)" are shorthand for
-<code>onSurface.withOpacity(0.38)</code>. <code>MaterialStateProperty</code> valued
+<code>onSurface.withOpacity(0.38)</code>. <a href="https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html">MaterialStateProperty</a> valued
 properties that are not followed by by a sublist have the same
 value for all states, otherwise the values are as specified for
 each state, and "others" means all other states.</p>
@@ -35,8 +35,8 @@ each state, and "others" means all other states.</p>
 <code>MediaQuery.of(context).textScaleFactor</code> and the names of the
 EdgeInsets constructors and <code>EdgeInsetsGeometry.lerp</code> have been
 abbreviated for readability.</p>
-<p>The color of the <code>ButtonStyle.textStyle</code> is not used, the
-<code>ButtonStyle.foregroundColor</code> color is used instead.</p>
+<p>The color of the <a href="https://api.flutter.dev/flutter/material/ButtonStyle/textStyle.html">ButtonStyle.textStyle</a> is not used, the
+<a href="https://api.flutter.dev/flutter/material/ButtonStyle/foregroundColor.html">ButtonStyle.foregroundColor</a> color is used instead.</p>
 <ul>
 <li><code>textStyle</code> - Theme.textTheme.button</li>
 <li><code>backgroundColor</code>
@@ -89,7 +89,7 @@ abbreviated for readability.</p>
 <li><code>enableFeedback</code> - true</li>
 <li><code>alignment</code> - Alignment.center</li>
 </ul>
-<p>The default padding values for the <code>ElevatedButton.icon</code> factory are slightly different:</p>
+<p>The default padding values for the <a href="https://api.flutter.dev/flutter/material/ElevatedButton/ElevatedButton.icon.html">ElevatedButton.icon</a> factory are slightly different:</p>
 <ul>
 <li><code>padding</code>
 <ul>
@@ -102,8 +102,8 @@ abbreviated for readability.</p>
 </ul>
 <p>The default value for <code>side</code>, which defines the appearance of the button's
 outline, is null. That means that the outline is defined by the button
-shape's <code>OutlinedBorder.side</code>. Typically the default value of an
-<code>OutlinedBorder</code>'s side is <code>BorderSide.none</code>, so an outline is not drawn.</p>
+shape's <a href="https://api.flutter.dev/flutter/painting/OutlinedBorder/side.html">OutlinedBorder.side</a>. Typically the default value of an
+<a href="https://api.flutter.dev/flutter/painting/OutlinedBorder-class.html">OutlinedBorder</a>'s side is <a href="https://api.flutter.dev/flutter/painting/BorderSide/none-constant.html">BorderSide.none</a>, so an outline is not drawn.</p>
 
 
 

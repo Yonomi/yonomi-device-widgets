@@ -12,9 +12,9 @@
 - @[override](https://api.flutter.dev/flutter/dart-core/override-constant.html)
 
 [RingBorder](../../ui_ring_border/RingBorder-class.md) copyWith
-({BorderSide side})
+({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-class.html) side})
 
-
+_override_
 
 
 

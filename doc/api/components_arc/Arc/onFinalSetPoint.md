@@ -8,7 +8,7 @@
 
 
 
-ValueChanged&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)> onFinalSetPoint
+[ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)> onFinalSetPoint
   
 _final_
 

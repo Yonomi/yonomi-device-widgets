@@ -8,7 +8,7 @@
 
 
 
-TextStyle deviceItemTextPrimaryState
+[TextStyle](https://api.flutter.dev/flutter/painting/TextStyle-class.html) deviceItemTextPrimaryState
   
 _read / write_
 

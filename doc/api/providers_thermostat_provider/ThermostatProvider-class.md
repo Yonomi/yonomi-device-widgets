@@ -13,6 +13,16 @@
 
 
 
+**Inheritance**
+
+- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
+- [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html)
+- ThermostatProvider
+
+
+
+
+
 
 ## Constructors
 
@@ -41,11 +51,11 @@ _read-only, inherited_
 
 
 
-##### [hasListeners](../providers_thermostat_provider/ThermostatProvider/hasListeners.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [hasListeners](https://api.flutter.dev/flutter/foundation/ChangeNotifier/hasListeners.html) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-Whether any listeners are currently registered. [...](../providers_thermostat_provider/ThermostatProvider/hasListeners.md)  
+Whether any listeners are currently registered. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/hasListeners.html)  
 _@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), read-only, inherited_
 
 
@@ -71,23 +81,23 @@ _read-only_
 
 ## Methods
 
-##### [addListener](../providers_thermostat_provider/ThermostatProvider/addListener.md)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
+##### [addListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
 
-Register a closure to be called when the object changes. [...](../providers_thermostat_provider/ThermostatProvider/addListener.md)  
+Register a closure to be called when the object changes. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html)  
 _inherited_
 
 
 
-##### [dispose](../providers_thermostat_provider/ThermostatProvider/dispose.md)() void
+##### [dispose](https://api.flutter.dev/flutter/foundation/ChangeNotifier/dispose.html)() void
 
 
 
 Discards any resources used by the object. After this is called, the
 object is not in a usable state and should be discarded (calls to
-<a href="../providers_thermostat_provider/ThermostatProvider/addListener.md">addListener</a> and <a href="../providers_thermostat_provider/ThermostatProvider/removeListener.md">removeListener</a> will throw after the object is
-disposed). [...](../providers_thermostat_provider/ThermostatProvider/dispose.md)  
+<a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html">addListener</a> and <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html">removeListener</a> will throw after the object is
+disposed). [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/dispose.html)  
 _@[mustCallSuper](https://pub.dev/documentation/meta/1.3.0/meta/mustCallSuper-constant.html), inherited_
 
 
@@ -119,21 +129,21 @@ _inherited_
 
 
 
-##### [notifyListeners](../providers_thermostat_provider/ThermostatProvider/notifyListeners.md)() void
+##### [notifyListeners](https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html)() void
 
 
 
-Call all the registered listeners. [...](../providers_thermostat_provider/ThermostatProvider/notifyListeners.md)  
+Call all the registered listeners. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html)  
 _@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), @[visibleForTesting](https://pub.dev/documentation/meta/1.3.0/meta/visibleForTesting-constant.html), inherited_
 
 
 
-##### [removeListener](../providers_thermostat_provider/ThermostatProvider/removeListener.md)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
+##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
 
 Remove a previously registered closure from the list of closures that are
-notified when the object changes. [...](../providers_thermostat_provider/ThermostatProvider/removeListener.md)  
+notified when the object changes. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)  
 _inherited_
 
 

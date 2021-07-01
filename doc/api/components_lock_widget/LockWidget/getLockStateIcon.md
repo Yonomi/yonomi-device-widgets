@@ -10,7 +10,7 @@
 
 
 
-Widget getLockStateIcon
+[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) getLockStateIcon
 ([LockProvider](../../providers_lock_provider/LockProvider-class.md) lockProvider)
 
 

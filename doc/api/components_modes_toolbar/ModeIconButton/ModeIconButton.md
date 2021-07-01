@@ -9,7 +9,7 @@
 
 
 
-ModeIconButton({Key key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onPressed, [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onLongPress, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) Widget icon})
+ModeIconButton({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html) key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onPressed, [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onLongPress, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon})
 
 
 

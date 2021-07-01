@@ -13,27 +13,41 @@
 
 
 
+**Inheritance**
+
+- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
+- [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
+- [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+- [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)
+- [ButtonStyleButton](https://api.flutter.dev/flutter/material/ButtonStyleButton-class.html)
+- [ElevatedButton](https://api.flutter.dev/flutter/material/ElevatedButton-class.html)
+- ModeIconButton
+
+
+
+
+
 
 ## Constructors
 
-[ModeIconButton](../components_modes_toolbar/ModeIconButton/ModeIconButton.md) ({Key key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onPressed, [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onLongPress, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) Widget icon})
+[ModeIconButton](../components_modes_toolbar/ModeIconButton/ModeIconButton.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html) key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onPressed, [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onLongPress, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon})
 
     
 
 
 ## Properties
 
-##### [autofocus](../components_modes_toolbar/ModeIconButton/autofocus.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [autofocus](https://api.flutter.dev/flutter/material/ButtonStyleButton/autofocus.html) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 True if this widget will be selected as the initial focus when no other
-node in its scope is currently focused. [...](../components_modes_toolbar/ModeIconButton/autofocus.md)  
+node in its scope is currently focused. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/autofocus.html)  
 _final, inherited_
 
 
 
-##### [child](../components_modes_toolbar/ModeIconButton/child.md) &#8594; Widget
+##### [child](https://api.flutter.dev/flutter/material/ButtonStyleButton/child.html) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -42,65 +56,65 @@ _final, inherited_
 
 
 
-##### [clipBehavior](../components_modes_toolbar/ModeIconButton/clipBehavior.md) &#8594; [Clip](https://api.flutter.dev/flutter/dart-ui/Clip-class.html)
+##### [clipBehavior](https://api.flutter.dev/flutter/material/ButtonStyleButton/clipBehavior.html) &#8594; [Clip](https://api.flutter.dev/flutter/dart-ui/Clip-class.html)
 
 
 
-The content will be clipped (or not) according to this option. [...](../components_modes_toolbar/ModeIconButton/clipBehavior.md)  
+The content will be clipped (or not) according to this option. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/clipBehavior.html)  
 _final, inherited_
 
 
 
-##### [enabled](../components_modes_toolbar/ModeIconButton/enabled.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [enabled](https://api.flutter.dev/flutter/material/ButtonStyleButton/enabled.html) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-Whether the button is enabled or disabled. [...](../components_modes_toolbar/ModeIconButton/enabled.md)  
+Whether the button is enabled or disabled. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/enabled.html)  
 _read-only, inherited_
 
 
 
-##### [focusNode](../components_modes_toolbar/ModeIconButton/focusNode.md) &#8594; FocusNode
+##### [focusNode](https://api.flutter.dev/flutter/material/ButtonStyleButton/focusNode.html) &#8594; [FocusNode](https://api.flutter.dev/flutter/widgets/FocusNode-class.html)
 
 
 
-An optional focus node to use as the focus node for this widget. [...](../components_modes_toolbar/ModeIconButton/focusNode.md)  
+An optional focus node to use as the focus node for this widget. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/focusNode.html)  
 _final, inherited_
 
 
 
-##### [hashCode](../components_modes_toolbar/ModeIconButton/hashCode.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
 
-The hash code for this object. [...](../components_modes_toolbar/ModeIconButton/hashCode.md)  
+The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), read-only, inherited_
 
 
 
-##### [key](../components_modes_toolbar/ModeIconButton/key.md) &#8594; Key
+##### [key](https://api.flutter.dev/flutter/widgets/Widget/key.html) &#8594; [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)
 
 
 
-Controls how one widget replaces another widget in the tree. [...](../components_modes_toolbar/ModeIconButton/key.md)  
+Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
 
 
 
-##### [onLongPress](../components_modes_toolbar/ModeIconButton/onLongPress.md) &#8594; [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html)
+##### [onLongPress](https://api.flutter.dev/flutter/material/ButtonStyleButton/onLongPress.html) &#8594; [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html)
 
 
 
-Called when the button is long-pressed. [...](../components_modes_toolbar/ModeIconButton/onLongPress.md)  
+Called when the button is long-pressed. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/onLongPress.html)  
 _final, inherited_
 
 
 
-##### [onPressed](../components_modes_toolbar/ModeIconButton/onPressed.md) &#8594; [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html)
+##### [onPressed](https://api.flutter.dev/flutter/material/ButtonStyleButton/onPressed.html) &#8594; [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html)
 
 
 
-Called when the button is tapped or otherwise activated. [...](../components_modes_toolbar/ModeIconButton/onPressed.md)  
+Called when the button is tapped or otherwise activated. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/onPressed.html)  
 _final, inherited_
 
 
@@ -114,11 +128,11 @@ _read-only, inherited_
 
 
 
-##### [style](../components_modes_toolbar/ModeIconButton/style.md) &#8594; ButtonStyle
+##### [style](https://api.flutter.dev/flutter/material/ButtonStyleButton/style.html) &#8594; [ButtonStyle](https://api.flutter.dev/flutter/material/ButtonStyle-class.html)
 
 
 
-Customizes this button's appearance. [...](../components_modes_toolbar/ModeIconButton/style.md)  
+Customizes this button's appearance. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/style.html)  
 _final, inherited_
 
 
@@ -126,49 +140,49 @@ _final, inherited_
 
 ## Methods
 
-##### [createElement](../components_modes_toolbar/ModeIconButton/createElement.md)() StatefulElement
+##### [createElement](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)() [StatefulElement](https://api.flutter.dev/flutter/widgets/StatefulElement-class.html)
 
 
 
-Creates a <code>StatefulElement</code> to manage this widget's location in the tree. [...](../components_modes_toolbar/ModeIconButton/createElement.md)  
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)  
 _inherited_
 
 
 
-##### [createState](../components_modes_toolbar/ModeIconButton/createState.md)() _ButtonStyleState
+##### [createState](https://api.flutter.dev/flutter/material/ButtonStyleButton/createState.html)() _ButtonStyleState
 
 
 
-Creates the mutable state for this widget at a given location in the tree. [...](../components_modes_toolbar/ModeIconButton/createState.md)  
+Creates the mutable state for this widget at a given location in the tree. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/createState.html)  
 _inherited_
 
 
 
-##### [debugDescribeChildren](../components_modes_toolbar/ModeIconButton/debugDescribeChildren.md)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;DiagnosticsNode>
+##### [debugDescribeChildren](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)>
 
 
 
 Returns a list of <code>DiagnosticsNode</code> objects describing this node's
-children. [...](../components_modes_toolbar/ModeIconButton/debugDescribeChildren.md)  
+children. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)  
 _@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), inherited_
 
 
 
-##### [debugFillProperties](../components_modes_toolbar/ModeIconButton/debugFillProperties.md)(DiagnosticPropertiesBuilder properties) void
+##### [debugFillProperties](https://api.flutter.dev/flutter/material/ButtonStyleButton/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
 
 
 
-Add additional properties associated with the node. [...](../components_modes_toolbar/ModeIconButton/debugFillProperties.md)  
+Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/debugFillProperties.html)  
 _inherited_
 
 
 
-##### [defaultStyleOf](../components_modes_toolbar/ModeIconButton/defaultStyleOf.md)(BuildContext context) ButtonStyle
+##### [defaultStyleOf](../components_modes_toolbar/ModeIconButton/defaultStyleOf.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [ButtonStyle](https://api.flutter.dev/flutter/material/ButtonStyle-class.html)
 
 
 
 Defines the button's default appearance. [...](../components_modes_toolbar/ModeIconButton/defaultStyleOf.md)  
-
+_override_
 
 
 
@@ -181,54 +195,54 @@ _inherited_
 
 
 
-##### [themeStyleOf](../components_modes_toolbar/ModeIconButton/themeStyleOf.md)(BuildContext context) ButtonStyle
+##### [themeStyleOf](https://api.flutter.dev/flutter/material/ElevatedButton/themeStyleOf.html)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [ButtonStyle](https://api.flutter.dev/flutter/material/ButtonStyle-class.html)
 
 
 
-Returns the <code>ElevatedButtonThemeData.style</code> of the closest
-<code>ElevatedButtonTheme</code> ancestor.   
+Returns the <a href="https://api.flutter.dev/flutter/material/ElevatedButtonThemeData/style.html">ElevatedButtonThemeData.style</a> of the closest
+<a href="https://api.flutter.dev/flutter/material/ElevatedButtonTheme-class.html">ElevatedButtonTheme</a> ancestor.   
 _inherited_
 
 
 
-##### [toDiagnosticsNode](../components_modes_toolbar/ModeIconButton/toDiagnosticsNode.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, DiagnosticsTreeStyle style}) DiagnosticsNode
+##### [toDiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, [DiagnosticsTreeStyle](https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle-class.html) style}) [DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)
 
 
 
 Returns a debug representation of the object that is used by debugging
-tools and by <code>DiagnosticsNode.toStringDeep</code>. [...](../components_modes_toolbar/ModeIconButton/toDiagnosticsNode.md)  
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)  
 _inherited_
 
 
 
-##### [toString](../components_modes_toolbar/ModeIconButton/toString.md)({DiagnosticLevel minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toString](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)({[DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-A string representation of this object. [...](../components_modes_toolbar/ModeIconButton/toString.md)  
+A string representation of this object. [...](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)  
 _inherited_
 
 
 
-##### [toStringDeep](../components_modes_toolbar/ModeIconButton/toStringDeep.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, DiagnosticLevel minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringDeep](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-Returns a string representation of this node and its descendants. [...](../components_modes_toolbar/ModeIconButton/toStringDeep.md)  
+Returns a string representation of this node and its descendants. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)  
 _inherited_
 
 
 
-##### [toStringShallow](../components_modes_toolbar/ModeIconButton/toStringShallow.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', DiagnosticLevel minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShallow](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-Returns a one-line detailed description of the object. [...](../components_modes_toolbar/ModeIconButton/toStringShallow.md)  
+Returns a one-line detailed description of the object. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)  
 _inherited_
 
 
 
-##### [toStringShort](../components_modes_toolbar/ModeIconButton/toStringShort.md)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShort](https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
@@ -240,11 +254,11 @@ _inherited_
 
 ## Operators
 
-##### [operator ==](../components_modes_toolbar/ModeIconButton/operator_equals.md)([Object](https://api.flutter.dev/flutter/dart-core/Object-class.html) other) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [operator ==](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)([Object](https://api.flutter.dev/flutter/dart-core/Object-class.html) other) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-The equality operator. [...](../components_modes_toolbar/ModeIconButton/operator_equals.md)  
+The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), inherited_
 
 

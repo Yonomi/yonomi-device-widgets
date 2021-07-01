@@ -10,7 +10,7 @@
 
 
 
-Widget buildLockIcon
+[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) buildLockIcon
 ([[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = 60, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor])
 
 

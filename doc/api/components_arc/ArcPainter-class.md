@@ -13,6 +13,17 @@
 
 
 
+**Inheritance**
+
+- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
+- [Listenable](https://api.flutter.dev/flutter/foundation/Listenable-class.html)
+- [CustomPainter](https://api.flutter.dev/flutter/rendering/CustomPainter-class.html)
+- ArcPainter
+
+
+
+
+
 
 ## Constructors
 
@@ -59,12 +70,12 @@ _read-only, inherited_
 
 
 
-##### [semanticsBuilder](../components_arc/ArcPainter/semanticsBuilder.md) &#8594; SemanticsBuilderCallback
+##### [semanticsBuilder](https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html) &#8594; [SemanticsBuilderCallback](https://api.flutter.dev/flutter/rendering/SemanticsBuilderCallback.html)
 
 
 
 Returns a function that builds semantic information for the picture drawn
-by this painter. [...](../components_arc/ArcPainter/semanticsBuilder.md)  
+by this painter. [...](https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html)  
 _read-only, inherited_
 
 
@@ -81,21 +92,21 @@ _final_
 
 ## Methods
 
-##### [addListener](../components_arc/ArcPainter/addListener.md)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
+##### [addListener](https://api.flutter.dev/flutter/rendering/CustomPainter/addListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
 
-Register a closure to be notified when it is time to repaint. [...](../components_arc/ArcPainter/addListener.md)  
+Register a closure to be notified when it is time to repaint. [...](https://api.flutter.dev/flutter/rendering/CustomPainter/addListener.html)  
 _inherited_
 
 
 
-##### [hitTest](../components_arc/ArcPainter/hitTest.md)([Offset](https://api.flutter.dev/flutter/dart-ui/Offset-class.html) position) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [hitTest](https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html)([Offset](https://api.flutter.dev/flutter/dart-ui/Offset-class.html) position) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 Called whenever a hit test is being performed on an object that is using
-this custom paint delegate. [...](../components_arc/ArcPainter/hitTest.md)  
+this custom paint delegate. [...](https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html)  
 _inherited_
 
 
@@ -116,51 +127,51 @@ _inherited_
 Called whenever the object needs to paint. The given <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">Canvas</a> has its
 coordinate space configured such that the origin is at the top left of the
 box. The area of the box is the size of the <code>size</code> argument. [...](../components_arc/ArcPainter/paint.md)  
+_override_
 
 
 
-
-##### [removeListener](../components_arc/ArcPainter/removeListener.md)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
+##### [removeListener](https://api.flutter.dev/flutter/rendering/CustomPainter/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
 
 Remove a previously registered closure from the list of closures that the
-object notifies when it is time to repaint. [...](../components_arc/ArcPainter/removeListener.md)  
+object notifies when it is time to repaint. [...](https://api.flutter.dev/flutter/rendering/CustomPainter/removeListener.html)  
 _inherited_
 
 
 
-##### [shouldRebuildSemantics](../components_arc/ArcPainter/shouldRebuildSemantics.md)(covariant CustomPainter oldDelegate) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [shouldRebuildSemantics](https://api.flutter.dev/flutter/rendering/CustomPainter/shouldRebuildSemantics.html)(covariant [CustomPainter](https://api.flutter.dev/flutter/rendering/CustomPainter-class.html) oldDelegate) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 Called whenever a new instance of the custom painter delegate class is
-provided to the <code>RenderCustomPaint</code> object, or any time that a new
-<code>CustomPaint</code> object is created with a new instance of the custom painter
+provided to the <a href="https://api.flutter.dev/flutter/rendering/RenderCustomPaint-class.html">RenderCustomPaint</a> object, or any time that a new
+<a href="https://api.flutter.dev/flutter/widgets/CustomPaint-class.html">CustomPaint</a> object is created with a new instance of the custom painter
 delegate class (which amounts to the same thing, because the latter is
-implemented in terms of the former). [...](../components_arc/ArcPainter/shouldRebuildSemantics.md)  
+implemented in terms of the former). [...](https://api.flutter.dev/flutter/rendering/CustomPainter/shouldRebuildSemantics.html)  
 _inherited_
 
 
 
-##### [shouldRepaint](../components_arc/ArcPainter/shouldRepaint.md)(covariant CustomPainter oldDelegate) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [shouldRepaint](../components_arc/ArcPainter/shouldRepaint.md)(covariant [CustomPainter](https://api.flutter.dev/flutter/rendering/CustomPainter-class.html) oldDelegate) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 Called whenever a new instance of the custom painter delegate class is
-provided to the <code>RenderCustomPaint</code> object, or any time that a new
-<code>CustomPaint</code> object is created with a new instance of the custom painter
+provided to the <a href="https://api.flutter.dev/flutter/rendering/RenderCustomPaint-class.html">RenderCustomPaint</a> object, or any time that a new
+<a href="https://api.flutter.dev/flutter/widgets/CustomPaint-class.html">CustomPaint</a> object is created with a new instance of the custom painter
 delegate class (which amounts to the same thing, because the latter is
 implemented in terms of the former). [...](../components_arc/ArcPainter/shouldRepaint.md)  
+_override_
 
 
 
-
-##### [toString](../components_arc/ArcPainter/toString.md)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
-
+##### [toString](https://api.flutter.dev/flutter/rendering/CustomPainter/toString.html)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
-A string representation of this object. [...](../components_arc/ArcPainter/toString.md)  
+
+A string representation of this object. [...](https://api.flutter.dev/flutter/rendering/CustomPainter/toString.html)  
 _inherited_
 
 

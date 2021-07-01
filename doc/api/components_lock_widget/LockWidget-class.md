@@ -13,6 +13,18 @@
 
 
 
+**Inheritance**
+
+- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
+- [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
+- [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+- [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
+- LockWidget
+
+
+
+
+
 
 ## Constructors
 
@@ -23,20 +35,20 @@
 
 ## Properties
 
-##### [hashCode](../components_lock_widget/LockWidget/hashCode.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
 
-The hash code for this object. [...](../components_lock_widget/LockWidget/hashCode.md)  
+The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), read-only, inherited_
 
 
 
-##### [key](../components_lock_widget/LockWidget/key.md) &#8594; Key
+##### [key](https://api.flutter.dev/flutter/widgets/Widget/key.html) &#8594; [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)
 
 
 
-Controls how one widget replaces another widget in the tree. [...](../components_lock_widget/LockWidget/key.md)  
+Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
 
 
@@ -53,44 +65,44 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../components_lock_widget/LockWidget/build.md)(BuildContext context) Widget
+##### [build](../components_lock_widget/LockWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
 Describes the part of the user interface represented by this widget. [...](../components_lock_widget/LockWidget/build.md)  
+_override_
 
 
 
-
-##### [createElement](../components_lock_widget/LockWidget/createElement.md)() StatelessElement
-
+##### [createElement](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)() [StatelessElement](https://api.flutter.dev/flutter/widgets/StatelessElement-class.html)
 
 
-Creates a <code>StatelessElement</code> to manage this widget's location in the tree. [...](../components_lock_widget/LockWidget/createElement.md)  
+
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
 _inherited_
 
 
 
-##### [debugDescribeChildren](../components_lock_widget/LockWidget/debugDescribeChildren.md)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;DiagnosticsNode>
+##### [debugDescribeChildren](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)>
 
 
 
 Returns a list of <code>DiagnosticsNode</code> objects describing this node's
-children. [...](../components_lock_widget/LockWidget/debugDescribeChildren.md)  
+children. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)  
 _@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), inherited_
 
 
 
-##### [debugFillProperties](../components_lock_widget/LockWidget/debugFillProperties.md)(DiagnosticPropertiesBuilder properties) void
+##### [debugFillProperties](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
 
 
 
-Add additional properties associated with the node. [...](../components_lock_widget/LockWidget/debugFillProperties.md)  
+Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
 _inherited_
 
 
 
-##### [getLockStateIcon](../components_lock_widget/LockWidget/getLockStateIcon.md)([LockProvider](../providers_lock_provider/LockProvider-class.md) lockProvider) Widget
+##### [getLockStateIcon](../components_lock_widget/LockWidget/getLockStateIcon.md)([LockProvider](../providers_lock_provider/LockProvider-class.md) lockProvider) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -108,44 +120,44 @@ _inherited_
 
 
 
-##### [toDiagnosticsNode](../components_lock_widget/LockWidget/toDiagnosticsNode.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, DiagnosticsTreeStyle style}) DiagnosticsNode
+##### [toDiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, [DiagnosticsTreeStyle](https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle-class.html) style}) [DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)
 
 
 
 Returns a debug representation of the object that is used by debugging
-tools and by <code>DiagnosticsNode.toStringDeep</code>. [...](../components_lock_widget/LockWidget/toDiagnosticsNode.md)  
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)  
 _inherited_
 
 
 
-##### [toString](../components_lock_widget/LockWidget/toString.md)({DiagnosticLevel minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toString](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)({[DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-A string representation of this object. [...](../components_lock_widget/LockWidget/toString.md)  
+A string representation of this object. [...](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)  
 _inherited_
 
 
 
-##### [toStringDeep](../components_lock_widget/LockWidget/toStringDeep.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, DiagnosticLevel minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringDeep](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-Returns a string representation of this node and its descendants. [...](../components_lock_widget/LockWidget/toStringDeep.md)  
+Returns a string representation of this node and its descendants. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)  
 _inherited_
 
 
 
-##### [toStringShallow](../components_lock_widget/LockWidget/toStringShallow.md)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', DiagnosticLevel minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShallow](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-Returns a one-line detailed description of the object. [...](../components_lock_widget/LockWidget/toStringShallow.md)  
+Returns a one-line detailed description of the object. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)  
 _inherited_
 
 
 
-##### [toStringShort](../components_lock_widget/LockWidget/toStringShort.md)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShort](https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
@@ -157,11 +169,11 @@ _inherited_
 
 ## Operators
 
-##### [operator ==](../components_lock_widget/LockWidget/operator_equals.md)([Object](https://api.flutter.dev/flutter/dart-core/Object-class.html) other) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [operator ==](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)([Object](https://api.flutter.dev/flutter/dart-core/Object-class.html) other) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-The equality operator. [...](../components_lock_widget/LockWidget/operator_equals.md)  
+The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), inherited_
 
 

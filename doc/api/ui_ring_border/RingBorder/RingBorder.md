@@ -9,7 +9,7 @@
 
 
 const
-RingBorder({BorderSide side = BorderSide.none})
+RingBorder({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-class.html) side = BorderSide.none})
 
 
 

@@ -8,7 +8,7 @@
 
 
 
-Widget centerWidget
+[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) centerWidget
   
 _final_
 

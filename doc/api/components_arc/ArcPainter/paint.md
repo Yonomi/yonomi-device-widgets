@@ -14,7 +14,7 @@
 void paint
 ([Canvas](https://api.flutter.dev/flutter/dart-ui/Canvas-class.html) canvas, [Size](https://api.flutter.dev/flutter/dart-ui/Size-class.html) size)
 
-
+_override_
 
 
 
@@ -32,22 +32,22 @@ will be guaranteed to only draw within the clipped area.</p>
 <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/save.html">Canvas.save</a>/<a href="https://api.flutter.dev/flutter/dart-ui/Canvas/saveLayer.html">Canvas.saveLayer</a> and <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/restore.html">Canvas.restore</a>, otherwise all
 subsequent painting on this canvas may be affected, with potentially
 hilarious but confusing results.</p>
-<p>To paint text on a <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">Canvas</a>, use a <code>TextPainter</code>.</p>
+<p>To paint text on a <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">Canvas</a>, use a <a href="https://api.flutter.dev/flutter/painting/TextPainter-class.html">TextPainter</a>.</p>
 <p>To paint an image on a <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">Canvas</a>:</p>
 <ol>
 <li>
-<p>Obtain an <code>ImageStream</code>, for example by calling <code>ImageProvider.resolve</code>
-on an <code>AssetImage</code> or <code>NetworkImage</code> object.</p>
+<p>Obtain an <a href="https://api.flutter.dev/flutter/painting/ImageStream-class.html">ImageStream</a>, for example by calling <a href="https://api.flutter.dev/flutter/painting/ImageProvider/resolve.html">ImageProvider.resolve</a>
+on an <a href="https://api.flutter.dev/flutter/painting/AssetImage-class.html">AssetImage</a> or <a href="https://api.flutter.dev/flutter/painting/NetworkImage-class.html">NetworkImage</a> object.</p>
 </li>
 <li>
-<p>Whenever the <code>ImageStream</code>'s underlying <code>ImageInfo</code> object changes
-(see <code>ImageStream.addListener</code>), create a new instance of your custom
-paint delegate, giving it the new <code>ImageInfo</code> object.</p>
+<p>Whenever the <a href="https://api.flutter.dev/flutter/painting/ImageStream-class.html">ImageStream</a>'s underlying <a href="https://api.flutter.dev/flutter/painting/ImageInfo-class.html">ImageInfo</a> object changes
+(see <a href="https://api.flutter.dev/flutter/painting/ImageStream/addListener.html">ImageStream.addListener</a>), create a new instance of your custom
+paint delegate, giving it the new <a href="https://api.flutter.dev/flutter/painting/ImageInfo-class.html">ImageInfo</a> object.</p>
 </li>
 <li>
 <p>In your delegate's <a href="../../components_arc/ArcPainter/paint.md">paint</a> method, call the <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/drawImage.html">Canvas.drawImage</a>,
 <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/drawImageRect.html">Canvas.drawImageRect</a>, or <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/drawImageNine.html">Canvas.drawImageNine</a> methods to paint the
-<code>ImageInfo.image</code> object, applying the <code>ImageInfo.scale</code> value to
+<a href="https://api.flutter.dev/flutter/painting/ImageInfo/image.html">ImageInfo.image</a> object, applying the <a href="https://api.flutter.dev/flutter/painting/ImageInfo/scale.html">ImageInfo.scale</a> value to
 obtain the correct rendering size.</p>
 </li>
 </ol>
