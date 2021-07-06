@@ -87,7 +87,7 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.lock" }}
+            - v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.yaml" }}
             - v1.0-dependencies-{{ arch }}-
       - run:
           name: Download deps
@@ -98,7 +98,7 @@ commands:
             echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
             pub global activate junitreport
       - save_cache:
-          key: v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.lock" }}
+          key: v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.yaml" }}
           paths:
             - .dart_tool
             - << parameters.pub-cache >>
