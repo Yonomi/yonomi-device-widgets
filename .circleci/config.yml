@@ -102,7 +102,7 @@ commands:
           paths:
             - .dart_tool
             - << parameters.pub-cache >>
-  dartdoc_command:
+  generate-dartdoc:
     description: "Prepare and generate dartdocs"
     steps:
       - run:
@@ -140,7 +140,7 @@ jobs:
     executor: default-executor
     steps:
       - dependencies
-      - dartdoc_command
+      - generate-dartdoc
       - run:
           name: Check if changes made to documentation were not checked in
           command: |
