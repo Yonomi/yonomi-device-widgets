@@ -58,7 +58,6 @@ commands:
             git config --global user.email "developer@yonomi.co"
             git config --global user.name "CircleCI"
   run-semantic-versioning:
-      - setup-github
       - run:
           name: Install npm 
           command: |
@@ -132,6 +131,7 @@ jobs:
     executor: default-executor
     steps:
       - dependencies
+      - setup-github
       - run-semantic-versioning
   publish:
     executor: default-executor
