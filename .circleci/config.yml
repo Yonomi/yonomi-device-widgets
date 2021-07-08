@@ -48,8 +48,8 @@ commands:
           command: flutter test --coverage
       - codecov/upload:
           file: coverage/lcov.info
-  run-semantic-versioning:
-    description: "Tag and create changelog"
+  setup-github:
+    description: "Git Setup"
     steps:
       - run:
           name: Git Setup
@@ -57,6 +57,8 @@ commands:
             mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             git config --global user.email "developer@yonomi.co"
             git config --global user.name "CircleCI"
+  run-semantic-versioning:
+      - setup-github
       - run:
           name: Install npm 
           command: |
@@ -141,6 +143,7 @@ jobs:
     steps:
       - dependencies
       - generate-dartdoc
+      - setup-github
       - run:
           name: Check if changes made to documentation were not checked in
           command: |
@@ -150,7 +153,10 @@ jobs:
             then
               echo "Documentation changes were not checked in"
               echo "Run dartdoc locally and check in any changes under \'doc\' folder"
-              exit 1
+              git add doc/
+              git commit -m "docs: updated dartdocs"
+              git push
+              exit 0
             fi
 
 ######################
@@ -163,6 +169,8 @@ workflows:
       - test:
           <<: *feature-branch-filter
       - dartdoc_verify:
+          context:
+            - org-global
           requires:
             - test
   main:
