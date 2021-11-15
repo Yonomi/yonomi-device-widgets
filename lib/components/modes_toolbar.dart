@@ -6,7 +6,7 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 
 class ModesToolbar extends StatelessWidget {
-  final String deviceId;
+  final String? deviceId;
 
   ModesToolbar({this.deviceId});
 
@@ -60,10 +60,10 @@ class ModesToolbar extends StatelessWidget {
 
 class ModeIconButton extends ElevatedButton {
   ModeIconButton({
-    Key key,
-    @required VoidCallback onPressed,
-    VoidCallback onLongPress,
-    @required Widget icon,
+    Key? key,
+    required VoidCallback onPressed,
+    VoidCallback? onLongPress,
+    required Widget icon,
   })  : assert(icon != null),
         super(
           key: key,
@@ -110,7 +110,7 @@ class ModeIconButton extends ElevatedButton {
 }
 
 class ModeButtonIconChild extends StatelessWidget {
-  ModeButtonIconChild({Key key, @required this.icon}) : super(key: key);
+  ModeButtonIconChild({Key? key, required this.icon}) : super(key: key);
 
   final Widget icon;
 

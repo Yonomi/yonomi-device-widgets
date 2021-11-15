@@ -2,36 +2,36 @@ import 'package:flutter/cupertino.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef GetLockDetailsFunction = Future<Device> Function(
-    Request request, String id);
+    Request? request, String? id);
 
 typedef SendLockUnlockFunction = Future<void> Function(
-    Request request, String id, bool lockUnlock);
+    Request? request, String? id, bool lockUnlock);
 
 class LockProvider extends ChangeNotifier {
   bool loadingDetail = false;
   bool loadingAction = false;
 
   LockProvider(Request request, String deviceId,
-      {GetLockDetailsFunction injectLockDetailsMethod}) {
+      {GetLockDetailsFunction? injectLockDetailsMethod}) {
     _request = request;
     getDeviceDetail(deviceId, injectLockDetailsMethod: injectLockDetailsMethod);
   }
 
-  Request _request;
-  Device _deviceDetail;
+  Request? _request;
+  Device? _deviceDetail;
 
-  Device get deviceDetail => _deviceDetail;
+  Device? get deviceDetail => _deviceDetail;
 
   bool get isLocked => getLockTrait()?.state?.value ?? false;
 
-  LockTrait getLockTrait() {
-    return _deviceDetail?.traits?.first;
+  LockTrait? getLockTrait() {
+    return _deviceDetail?.traits?.first as LockTrait?;
   }
 
   Future<void> getDeviceDetail(String deviceId,
-      {GetLockDetailsFunction injectLockDetailsMethod}) async {
+      {GetLockDetailsFunction? injectLockDetailsMethod}) async {
     final getLockDetailsMethod =
-        injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
+        injectLockDetailsMethod ?? DevicesRepository.getLockDetails as Future<Device> Function(Request?, String);
 
     loadingDetail = true;
     notifyListeners();
@@ -42,13 +42,13 @@ class LockProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setLockUnlockAction(String deviceId, bool setLock,
-      {GetLockDetailsFunction injectLockDetailsMethod,
-      SendLockUnlockFunction injectSendLockUnlockMethod}) async {
+  Future<void> setLockUnlockAction(String? deviceId, bool setLock,
+      {GetLockDetailsFunction? injectLockDetailsMethod,
+      SendLockUnlockFunction? injectSendLockUnlockMethod}) async {
     final getLockDetailsMethod =
-        injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
+        injectLockDetailsMethod ?? DevicesRepository.getLockDetails as Future<Device> Function(Request?, String?);
     final sendLockUnlockMethod =
-        injectSendLockUnlockMethod ?? LockRepository.sendLockUnlockAction;
+        injectSendLockUnlockMethod ?? LockRepository.sendLockUnlockAction as Future<void> Function(Request?, String?, bool);
 
     if (!loadingAction) {
       loadingAction = true;

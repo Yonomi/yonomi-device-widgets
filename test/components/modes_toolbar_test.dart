@@ -86,7 +86,7 @@ void main() {
 
     final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
 
-    expect(modeButton.style.shape.resolve(pressed), isA<RingBorder>());
+    expect(modeButton.style!.shape!.resolve(pressed), isA<RingBorder>());
   });
 
   testWidgets(
@@ -105,6 +105,6 @@ void main() {
 
     final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
 
-    expect(modeButton.style.shape.resolve(focused), isA<RingBorder>());
+    expect(modeButton.style!.shape!.resolve(focused), isA<RingBorder>());
   });
 }

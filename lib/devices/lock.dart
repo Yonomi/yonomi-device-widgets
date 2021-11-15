@@ -8,7 +8,7 @@ class Lock extends StatelessWidget {
   final Request request;
   final String deviceId;
 
-  const Lock({Key key, @required this.request, @required this.deviceId})
+  const Lock({Key? key, required this.request, required this.deviceId})
       : super(key: key);
 
   @override

@@ -8,7 +8,7 @@ class Thermostat extends StatelessWidget {
   final Request request;
   final String deviceId;
 
-  const Thermostat({Key key, @required this.request, @required this.deviceId})
+  const Thermostat({Key? key, required this.request, required this.deviceId})
       : super(key: key);
 
   @override

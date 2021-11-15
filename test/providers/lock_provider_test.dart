@@ -14,9 +14,9 @@ class MockSendLockUnlockFunction extends Mock {
 void main() {
   test('Calling setLockUnlockAction calls repository method', () async {
     Request request = Request("", {});
-    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction() as Future<Device> Function(Request?, String?);
     SendLockUnlockFunction mockSendLockUnlockMethod =
-        MockSendLockUnlockFunction();
+        MockSendLockUnlockFunction() as Future<void> Function(Request?, String?, bool);
     LockProvider lockProvider = LockProvider(request, "deviceId",
         injectLockDetailsMethod: mockLockDetailsMethod);
 
@@ -24,12 +24,12 @@ void main() {
         injectLockDetailsMethod: mockLockDetailsMethod,
         injectSendLockUnlockMethod: mockSendLockUnlockMethod);
 
-    verify(mockSendLockUnlockMethod(any, any, any)).called(1);
+    verify(mockSendLockUnlockMethod(any, any, any!)).called(1);
   });
 
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
-    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction() as Future<Device> Function(Request?, String?);
     LockProvider lockProvider = LockProvider(request, "deviceId",
         injectLockDetailsMethod: mockLockDetailsMethod);
 

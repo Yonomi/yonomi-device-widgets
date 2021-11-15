@@ -12,13 +12,13 @@ import 'package:yonomi_device_widgets/components/arc.dart';
 ///
 /// ```flutter test --update-goldens test/components/arc_test.dart```
 ///
-Widget createArcWidget({ValueChanged<double> callback}) {
+Widget createArcWidget({ValueChanged<double>? callback}) {
   return MaterialApp(
     home: Column(children: [
       Arc(
           centerWidget: Text('centerWidget'),
           initialValue: 5,
-          onFinalSetPoint: callback ?? (double value) => print(value),
+          onFinalSetPoint: callback ?? ((double value) => print(value)),
           maxValue: 100)
     ]),
   );
@@ -45,13 +45,14 @@ void main() {
 
   testWidgets('Widget - starting point', (WidgetTester tester) async {
     int endValue = 0;
-    ValueChanged<double> endValueCallback(double value) {
+    ValueChanged<double>? endValueCallback(double value) {
       endValue = value.round();
     }
 
     ;
 
-    MaterialApp arc = createArcWidget(callback: endValueCallback);
+    MaterialApp arc =
+        createArcWidget(callback: endValueCallback) as MaterialApp;
 
     await tester.pumpWidget(arc);
     await tester.pumpAndSettle();
@@ -69,13 +70,14 @@ void main() {
 
   testWidgets('Widget - last value', (WidgetTester tester) async {
     int endValue = 0;
-    ValueChanged<double> endValueCallback(double value) {
+    ValueChanged<double>? endValueCallback(double value) {
       endValue = value.round();
     }
 
     ;
 
-    MaterialApp arc = createArcWidget(callback: endValueCallback);
+    MaterialApp arc =
+        createArcWidget(callback: endValueCallback) as MaterialApp;
 
     await tester.pumpWidget(arc);
     await tester.pumpAndSettle();

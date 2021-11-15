@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class DeviceControl extends StatelessWidget {
   final bool onOff;
   const DeviceControl({
-    Key key,
-    @required this.onOff,
+    Key? key,
+    required this.onOff,
   }) : super(key: key);
 
   @override
@@ -13,7 +13,7 @@ class DeviceControl extends StatelessWidget {
       width: 300,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: Colors.teal[200], width: 3)),
+          border: Border.all(color: Colors.teal[200]!, width: 3)),
       child: ListTile(
           dense: false,
           leading: Row(

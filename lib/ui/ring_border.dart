@@ -19,7 +19,7 @@ class RingBorder extends CircleBorder {
         super(side: side);
 
   @override
-  RingBorder copyWith({BorderSide side}) {
+  RingBorder copyWith({BorderSide? side}) {
     return RingBorder(side: side ?? this.side);
   }
 
@@ -27,7 +27,7 @@ class RingBorder extends CircleBorder {
   ShapeBorder scale(double t) => RingBorder(side: side.scale(t));
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection textDirection}) {
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
     switch (side.style) {
       case BorderStyle.none:
         break;

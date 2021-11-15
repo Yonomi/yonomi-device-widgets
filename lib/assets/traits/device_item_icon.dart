@@ -38,7 +38,7 @@ class DeviceItemIcon {
     );
   }
 
-  static Widget buildThermostatIcon(double thermostatState) {
+  static Widget buildThermostatIcon(double? thermostatState) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),

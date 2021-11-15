@@ -25,12 +25,12 @@ void main() {
         MockSetPointActionFunction();
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, "deviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
+        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction as Future<Device> Function(Request?, String)?);
 
     await thermostatProvider.setPointAction("DeviceId", 22.0,
-        injectSetPointThermostatMethod: mockSetPointActionFunction);
+        injectSetPointThermostatMethod: mockSetPointActionFunction as Future<void> Function(Request?, String, double)?);
 
-    verify(mockSetPointActionFunction(any, any, 22.0)).called(1);
+    verify(mockSetPointActionFunction(any!, any!, 22.0)).called(1);
   });
 
   test('Calling setThermostatMode calls repository method', () async {
@@ -40,12 +40,12 @@ void main() {
     MockSetModeFunction mockSetModeFunction = MockSetModeFunction();
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, "deviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
+        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction as Future<Device> Function(Request?, String)?);
 
     await thermostatProvider.setThermostatMode("DeviceId", GThermostatMode.AUTO,
-        injectSetModeMethod: mockSetModeFunction);
+        injectSetModeMethod: mockSetModeFunction as Future<void> Function(Request?, String?, GThermostatMode)?);
 
-    verify(mockSetModeFunction(any, any, GThermostatMode.AUTO)).called(1);
+    verify(mockSetModeFunction(any!, any!, GThermostatMode.AUTO)).called(1);
   });
 
   test('Calling getDeviceDetail calls repository method', () async {
@@ -54,12 +54,12 @@ void main() {
         MockGetThermostatDetailsFunction();
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, "deviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
+        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction as Future<Device> Function(Request?, String)?);
 
     await thermostatProvider.getDeviceDetail("DeviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
+        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction as Future<Device> Function(Request?, String)?);
 
-    verify(mockGetThermostatDetailsFunction(any, any)).called(2);
+    verify(mockGetThermostatDetailsFunction(any!, any!)).called(2);
   });
 
   test('Device data is set using DeviceRepository\'s return values', () async {
