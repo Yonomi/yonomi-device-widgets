@@ -1,11 +1,11 @@
-import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DeviceItemIcon {
   static Widget getIcon(List<Trait> traits) {
     Trait determiningTrait = traits[0];
-    if (determiningTrait is LockUnlockTrait) {
+    if (determiningTrait is LockTrait) {
       return (determiningTrait.state.value)
           ? buildLockIcon()
           : buildUnlockIcon();

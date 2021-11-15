@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/ui/ring_border.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 
 class ModesToolbar extends StatelessWidget {
   final String deviceId;
@@ -22,7 +22,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.auto);
+                  deviceId, GThermostatMode.AUTO);
             }
           },
         ),
@@ -31,7 +31,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.cool);
+                  deviceId, GThermostatMode.COOL);
             }
           },
         ),
@@ -40,7 +40,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.heat);
+                  deviceId, GThermostatMode.HEAT);
             }
           },
         ),
@@ -49,7 +49,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.airflow);
+                  deviceId, GThermostatMode.AIRFLOW);
             }
           },
         ),

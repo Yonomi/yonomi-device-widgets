@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
-import 'package:yonomi_platform_sdk/repository/devices/lock_repository.dart';
-import 'package:yonomi_platform_sdk/request/request.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef GetLockDetailsFunction = Future<Device> Function(
     Request request, String id);
@@ -26,7 +24,7 @@ class LockProvider extends ChangeNotifier {
 
   bool get isLocked => getLockTrait()?.state?.value ?? false;
 
-  LockUnlockTrait getLockTrait() {
+  LockTrait getLockTrait() {
     return _deviceDetail?.traits?.first;
   }
 

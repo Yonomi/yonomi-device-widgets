@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.dart';
-import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
-import 'package:yonomi_platform_sdk/repository/devices/thermostat_repository.dart';
-import 'package:yonomi_platform_sdk/request/request.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef SetPointActionFunction = Future<void> Function(
     Request request, String id, double temperature);
 
 typedef SetModeFunction = Future<void> Function(
-    Request request, String id, ThermostatMode mode);
+    Request request, String id, GThermostatMode mode);
 
 typedef GetThermostatDetailsFunction = Future<Device> Function(
   Request request,
@@ -37,7 +35,7 @@ class ThermostatProvider extends ChangeNotifier {
     setPointThermostatMethod(_request, deviceId, temperature);
   }
 
-  Future<void> setThermostatMode(String deviceId, ThermostatMode mode,
+  Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
       {SetModeFunction injectSetModeMethod}) async {
     final setModeMethod = injectSetModeMethod ?? ThermostatRepository.setMode;
     setModeMethod(_request, deviceId, mode);
