@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/components/arc.dart';
 import 'package:yonomi_device_widgets/components/device_control.dart';
 import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ThermostatWidget extends StatelessWidget {
   @override
@@ -16,25 +16,21 @@ class ThermostatWidget extends StatelessWidget {
         Row(
           children: <Widget>[
             Text(
-              thermostatProvider?.deviceDetail?.displayName ?? '',
+              thermostatProvider.deviceDetail?.displayName ?? '',
               style: Theme.of(context).textTheme.headline6,
             ),
           ],
         ),
         Padding(
             padding: const EdgeInsets.only(top: 16.0),
-            child:
-                ModesToolbar(deviceId: thermostatProvider?.deviceDetail?.id)),
+            child: ModesToolbar(deviceId: thermostatProvider.deviceDetail?.id)),
         SizedBox(
           height: 60,
         ),
         Center(
             child: Arc(
           centerWidget: Text(
-            thermostatProvider.thermostatTargetTemperature
-                    ?.toInt()
-                    ?.toString() ??
-                '0',
+            thermostatProvider.thermostatTargetTemperature.toInt().toString(),
             style: Theme.of(context).textTheme.headline2,
           ),
           initialValue: 20.0,

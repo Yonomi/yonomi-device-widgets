@@ -21,7 +21,7 @@ class ModesToolbar extends StatelessWidget {
           icon: Text("A"),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
+              thermostatProvider.setThermostatMode(
                   deviceId, GThermostatMode.AUTO);
             }
           },
@@ -30,7 +30,7 @@ class ModesToolbar extends StatelessWidget {
           icon: Icon(Icons.ac_unit),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
+              thermostatProvider.setThermostatMode(
                   deviceId, GThermostatMode.COOL);
             }
           },
@@ -39,7 +39,7 @@ class ModesToolbar extends StatelessWidget {
           icon: Icon(Icons.whatshot),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
+              thermostatProvider.setThermostatMode(
                   deviceId, GThermostatMode.HEAT);
             }
           },
@@ -48,7 +48,7 @@ class ModesToolbar extends StatelessWidget {
           icon: Icon(Icons.eco),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
+              thermostatProvider.setThermostatMode(
                   deviceId, GThermostatMode.AIRFLOW);
             }
           },
@@ -64,8 +64,7 @@ class ModeIconButton extends ElevatedButton {
     required VoidCallback onPressed,
     VoidCallback? onLongPress,
     required Widget icon,
-  })  : assert(icon != null),
-        super(
+  }) : super(
           key: key,
           onPressed: onPressed,
           onLongPress: onLongPress,

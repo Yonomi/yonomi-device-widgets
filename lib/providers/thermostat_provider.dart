@@ -16,35 +16,36 @@ typedef GetThermostatDetailsFunction = Future<Device> Function(
 class ThermostatProvider extends ChangeNotifier {
   ThermostatProvider(Request request, String deviceId,
       {GetThermostatDetailsFunction? injectGetThermostatDetailsMethod}) {
-    _request = request;
+    this._request = request;
     getDeviceDetail(deviceId,
         injectGetThermostatDetailsMethod: injectGetThermostatDetailsMethod);
   }
 
-  Request? _request;
+  late Request _request;
   Device? _deviceDetail;
 
   ThermostatTrait? getThermostatTrait() {
-    return _deviceDetail?.traits?.first as ThermostatTrait?;
+    return _deviceDetail?.traits.first as ThermostatTrait?;
   }
 
   Future<void> setPointAction(String deviceId, double temperature,
       {SetPointActionFunction? injectSetPointThermostatMethod}) async {
     final setPointThermostatMethod = injectSetPointThermostatMethod ??
-        ThermostatRepository.setPointThermostat as Future<void> Function(Request?, String, double);
+        ThermostatRepository.setPointThermostat;
     setPointThermostatMethod(_request, deviceId, temperature);
   }
 
   Future<void> setThermostatMode(String? deviceId, GThermostatMode mode,
       {SetModeFunction? injectSetModeMethod}) async {
-    final setModeMethod = injectSetModeMethod ?? ThermostatRepository.setMode as Future<void> Function(Request?, String?, GThermostatMode);
-    setModeMethod(_request, deviceId, mode);
+    final setModeMethod = injectSetModeMethod ?? ThermostatRepository.setMode;
+    setModeMethod(_request, deviceId!, mode);
   }
 
   Future<void> getDeviceDetail(String deviceId,
       {GetThermostatDetailsFunction? injectGetThermostatDetailsMethod}) async {
     final getThermostatDetailsMethod = injectGetThermostatDetailsMethod ??
-        DevicesRepository.getThermostatDetails as Future<Device> Function(Request?, String);
+        DevicesRepository.getThermostatDetails as Future<Device> Function(
+            Request?, String);
     _deviceDetail = await getThermostatDetailsMethod(_request, deviceId);
     notifyListeners();
   }
@@ -52,5 +53,5 @@ class ThermostatProvider extends ChangeNotifier {
   Device? get deviceDetail => _deviceDetail;
 
   double get thermostatTargetTemperature =>
-      getThermostatTrait()?.state?.value ?? 0;
+      getThermostatTrait()?.state.value ?? 0;
 }
