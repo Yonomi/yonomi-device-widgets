@@ -14,6 +14,6 @@ dependencies:
   yonomi_platform_sdk: ^1.0.6
 
 dev_dependencies:
-  mockito: ^5.0.0
+  mockito: ^5.0.15
   flutter_test:
     sdk: flutter
