@@ -5,11 +5,11 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class MockGetLockDetailsFunction extends Mock {
-  Future<Device> call(Request? request, String? id);
+  Future<Device> call(Request request, String id);
 }
 
 class MockSendLockUnlockFunction extends Mock {
-  Future<void> call(Request? request, String? id, bool lockUnlock);
+  Future<void> call(Request request, String id, bool lockUnlock);
 }
 
 void main() {

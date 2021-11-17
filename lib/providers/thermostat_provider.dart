@@ -3,13 +3,13 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef SetPointActionFunction = Future<void> Function(
-    Request? request, String id, double temperature);
+    Request request, String id, double temperature);
 
 typedef SetModeFunction = Future<void> Function(
-    Request? request, String? id, GThermostatMode mode);
+    Request request, String id, GThermostatMode mode);
 
 typedef GetThermostatDetailsFunction = Future<Device> Function(
-  Request? request,
+  Request request,
   String id,
 );
 
@@ -35,17 +35,16 @@ class ThermostatProvider extends ChangeNotifier {
     setPointThermostatMethod(_request, deviceId, temperature);
   }
 
-  Future<void> setThermostatMode(String? deviceId, GThermostatMode mode,
+  Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
       {SetModeFunction? injectSetModeMethod}) async {
     final setModeMethod = injectSetModeMethod ?? ThermostatRepository.setMode;
-    setModeMethod(_request, deviceId!, mode);
+    setModeMethod(_request, deviceId, mode);
   }
 
   Future<void> getDeviceDetail(String deviceId,
       {GetThermostatDetailsFunction? injectGetThermostatDetailsMethod}) async {
     final getThermostatDetailsMethod = injectGetThermostatDetailsMethod ??
-        DevicesRepository.getThermostatDetails as Future<Device> Function(
-            Request?, String);
+        DevicesRepository.getThermostatDetails;
     _deviceDetail = await getThermostatDetailsMethod(_request, deviceId);
     notifyListeners();
   }

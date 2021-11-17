@@ -5,15 +5,15 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class MockSetPointActionFunction extends Mock {
-  Future<void> call(Request? request, String? id, double? temperature);
+  Future<void> call(Request request, String id, double temperature);
 }
 
 class MockSetModeFunction extends Mock {
-  Future<void> call(Request? request, String? id, GThermostatMode? mode);
+  Future<void> call(Request request, String id, GThermostatMode mode);
 }
 
 class MockGetThermostatDetailsFunction extends Mock {
-  Future<Device> call(Request? request, String? id);
+  Future<Device> call(Request request, String id);
 }
 
 void main() {
@@ -25,14 +25,12 @@ void main() {
         MockSetPointActionFunction();
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, "deviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction
-            as Future<Device> Function(Request?, String)?);
+        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
 
     await thermostatProvider.setPointAction("DeviceId", 22.0,
-        injectSetPointThermostatMethod: mockSetPointActionFunction
-            as Future<void> Function(Request?, String, double)?);
+        injectSetPointThermostatMethod: mockSetPointActionFunction);
 
-    verify(mockSetPointActionFunction(any, any, 22.0)).called(1);
+    verify(mockSetPointActionFunction(request, "someDeviceId", 22.0)).called(1);
   });
 
   test('Calling setThermostatMode calls repository method', () async {
@@ -46,10 +44,10 @@ void main() {
             as Future<Device> Function(Request?, String)?);
 
     await thermostatProvider.setThermostatMode("DeviceId", GThermostatMode.AUTO,
-        injectSetModeMethod: mockSetModeFunction as Future<void> Function(
-            Request?, String?, GThermostatMode)?);
+        injectSetModeMethod: mockSetModeFunction);
 
-    verify(mockSetModeFunction(any, any, GThermostatMode.AUTO)).called(1);
+    verify(mockSetModeFunction(request, "someDeviceId", GThermostatMode.AUTO))
+        .called(1);
   });
 
   test('Calling getDeviceDetail calls repository method', () async {
@@ -65,7 +63,7 @@ void main() {
         injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction
             as Future<Device> Function(Request?, String)?);
 
-    verify(mockGetThermostatDetailsFunction(any, any)).called(2);
+    verify(mockGetThermostatDetailsFunction(request, "someDeviceId")).called(2);
   });
 
   test('Device data is set using DeviceRepository\'s return values', () async {
@@ -73,8 +71,8 @@ void main() {
 
     MockGetThermostatDetailsFunction mockGetThermostatDetailsFunction =
         MockGetThermostatDetailsFunction();
-    when(mockGetThermostatDetailsFunction(any, any))
-        .thenAnswer((_) => Future.value(
+    when(mockGetThermostatDetailsFunction(request, "someDeviceId"))
+        .thenAnswer((_) async => Future.value(
               Device(
                 "someId",
                 "someDisplayName",
