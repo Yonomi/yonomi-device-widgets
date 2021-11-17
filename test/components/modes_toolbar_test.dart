@@ -39,7 +39,8 @@ void main() {
 
     await tester.tap(find.widgetWithText(ModeIconButton, "A"));
 
-    verify(mockProvider.setThermostatMode(any, GThermostatMode.AUTO)).called(1);
+    verify(mockProvider.setThermostatMode('any', GThermostatMode.AUTO))
+        .called(1);
   });
 
   testWidgets('ModesToolbar - button should set mode to cool when pressed',
@@ -48,7 +49,8 @@ void main() {
 
     await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.ac_unit));
 
-    verify(mockProvider.setThermostatMode(any, GThermostatMode.COOL)).called(1);
+    verify(mockProvider.setThermostatMode('any', GThermostatMode.COOL))
+        .called(1);
   });
 
   testWidgets('ModesToolbar - button should set mode to heat when pressed',
@@ -57,7 +59,8 @@ void main() {
 
     await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.whatshot));
 
-    verify(mockProvider.setThermostatMode(any, GThermostatMode.HEAT)).called(1);
+    verify(mockProvider.setThermostatMode('any', GThermostatMode.HEAT))
+        .called(1);
   });
 
   testWidgets('ModesToolbar - button should set mode to eco when pressed',
@@ -66,7 +69,7 @@ void main() {
 
     await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.eco));
 
-    verify(mockProvider.setThermostatMode(any, GThermostatMode.AIRFLOW))
+    verify(mockProvider.setThermostatMode('any', GThermostatMode.AIRFLOW))
         .called(1);
   });
 
