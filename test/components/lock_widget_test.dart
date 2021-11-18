@@ -80,6 +80,6 @@ void main() {
 
     await tester.tap(find.byIcon(Icons.lock));
 
-    verify(mockProvider.setLockUnlockAction(any, any!)).called(1);
+    verify(mockProvider.setLockUnlockAction('deviceId', true)).called(1);
   });
 }
