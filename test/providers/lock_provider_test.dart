@@ -48,18 +48,18 @@ void main() {
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
     when(mockLockDetailsMethod(request, 'deviceId'))
         .thenAnswer((_) => Future.value(
-          Device(
-            "someId",
-            "someDisplayName",
-            "someDescription",
-            "someManufacturerName",
-            "someModel",
-            "someFirmwareV",
-            GDateTime(),
-            GDateTime(),
-            [],
-          ),
-        ));
+              Device(
+                "someId",
+                "someDisplayName",
+                "someDescription",
+                "someManufacturerName",
+                "someModel",
+                "someFirmwareV",
+                GDateTime(),
+                GDateTime(),
+                [],
+              ),
+            ));
     LockProvider lockProvider = LockProvider(request, 'deviceId',
         getLockDetails: mockLockDetailsMethod);
 
