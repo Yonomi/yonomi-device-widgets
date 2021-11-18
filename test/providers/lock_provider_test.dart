@@ -5,7 +5,7 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class MockGetLockDetailsFunction extends Mock {
-  Future<void> call(Request? request, String? id);
+  Future<Device> call(Request request, String id);
 }
 
 class MockSendLockUnlockFunction extends Mock {
@@ -20,37 +20,36 @@ void main() {
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction()
         as Future<Device> Function(Request?, String?);
     SendLockUnlockFunction mockSendLockUnlockMethod =
-        MockSendLockUnlockFunction() as Future<void> Function(
-            Request?, String?, bool?);
-    LockProvider lockProvider = LockProvider(request, "deviceId",
+        MockSendLockUnlockFunction();
+    LockProvider lockProvider = LockProvider(request, 'deviceId',
         getLockDetails: mockLockDetailsMethod);
 
-    await lockProvider.setLockUnlockAction("deviceId", true,
+    await lockProvider.setLockUnlockAction('deviceId', true,
         lockDetails: mockLockDetailsMethod,
         sendLockUnlock: mockSendLockUnlockMethod);
 
-    verify(mockSendLockUnlockMethod(any, any, false)).called(1);
+    verify(mockSendLockUnlockMethod(request, 'deviceId', false)).called(1);
   });
 
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction()
         as Future<Device> Function(Request?, String?);
-    LockProvider lockProvider = LockProvider(request, "deviceId",
+    LockProvider lockProvider = LockProvider(request, 'deviceId',
         getLockDetails: mockLockDetailsMethod);
 
-    await lockProvider.getDeviceDetail("test",
+    await lockProvider.getDeviceDetail('test',
         getLockDetails: mockLockDetailsMethod);
 
-    verify(mockLockDetailsMethod(any, any)).called(2);
+    verify(mockLockDetailsMethod(request, 'deviceId')).called(2);
   });
 
   test('Device data is set using DeviceRepository\'s return values', () async {
     Request request = Request("", {});
 
-    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction()
-        as Future<Device> Function(Request?, String?);
-    when(mockLockDetailsMethod(any, any)).thenAnswer((_) => Future.value(
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
+    when(mockLockDetailsMethod(request, 'deviceId'))
+        .thenAnswer((_) => Future.value(
           Device(
             "someId",
             "someDisplayName",
@@ -63,12 +62,12 @@ void main() {
             [],
           ),
         ));
-    LockProvider lockProvider = LockProvider(request, "deviceId",
+    LockProvider lockProvider = LockProvider(request, 'deviceId',
         getLockDetails: mockLockDetailsMethod);
 
-    await lockProvider.getDeviceDetail("test",
+    await lockProvider.getDeviceDetail('test',
         getLockDetails: mockLockDetailsMethod);
 
-    expect(lockProvider.deviceDetail?.displayName, "someDisplayName");
+    expect(lockProvider.deviceDetail?.displayName, 'someDisplayName');
   });
 }
