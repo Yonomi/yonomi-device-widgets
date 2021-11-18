@@ -28,7 +28,7 @@ void main() {
         injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
 
     await thermostatProvider.setPointAction("DeviceId", 22.0,
-        injectSetPointThermostatMethod: mockSetPointActionFunction);
+        setPoint: mockSetPointActionFunction);
 
     verify(mockSetPointActionFunction(request, "someDeviceId", 22.0)).called(1);
   });
@@ -56,12 +56,10 @@ void main() {
         MockGetThermostatDetailsFunction();
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, "deviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction
-            as Future<Device> Function(Request?, String)?);
+        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
 
     await thermostatProvider.getDeviceDetail("DeviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction
-            as Future<Device> Function(Request?, String)?);
+        getThermostatDetails: mockGetThermostatDetailsFunction);
 
     verify(mockGetThermostatDetailsFunction(request, "someDeviceId")).called(2);
   });
@@ -90,7 +88,7 @@ void main() {
         injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
 
     await thermostatProvider.getDeviceDetail("DeviceId",
-        injectGetThermostatDetailsMethod: mockGetThermostatDetailsFunction);
+        getThermostatDetails: mockGetThermostatDetailsFunction);
 
     expect(thermostatProvider.deviceDetail?.displayName, "someDisplayName");
     expect(thermostatProvider.thermostatTargetTemperature, 23.1);
