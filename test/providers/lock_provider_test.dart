@@ -5,7 +5,7 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class MockGetLockDetailsFunction extends Mock {
-  Future<Device> call(Request? request, String? id);
+  Future<void> call(Request? request, String? id);
 }
 
 class MockSendLockUnlockFunction extends Mock {
@@ -23,11 +23,11 @@ void main() {
         MockSendLockUnlockFunction() as Future<void> Function(
             Request?, String?, bool?);
     LockProvider lockProvider = LockProvider(request, "deviceId",
-        injectLockDetailsMethod: mockLockDetailsMethod);
+        getLockDetails: mockLockDetailsMethod);
 
     await lockProvider.setLockUnlockAction("deviceId", true,
-        injectLockDetailsMethod: mockLockDetailsMethod,
-        injectSendLockUnlockMethod: mockSendLockUnlockMethod);
+        lockDetails: mockLockDetailsMethod,
+        sendLockUnlock: mockSendLockUnlockMethod);
 
     verify(mockSendLockUnlockMethod(any, any, false)).called(1);
   });
@@ -37,10 +37,10 @@ void main() {
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction()
         as Future<Device> Function(Request?, String?);
     LockProvider lockProvider = LockProvider(request, "deviceId",
-        injectLockDetailsMethod: mockLockDetailsMethod);
+        getLockDetails: mockLockDetailsMethod);
 
     await lockProvider.getDeviceDetail("test",
-        injectLockDetailsMethod: mockLockDetailsMethod);
+        getLockDetails: mockLockDetailsMethod);
 
     verify(mockLockDetailsMethod(any, any)).called(2);
   });
@@ -64,10 +64,10 @@ void main() {
           ),
         ));
     LockProvider lockProvider = LockProvider(request, "deviceId",
-        injectLockDetailsMethod: mockLockDetailsMethod);
+        getLockDetails: mockLockDetailsMethod);
 
     await lockProvider.getDeviceDetail("test",
-        injectLockDetailsMethod: mockLockDetailsMethod);
+        getLockDetails: mockLockDetailsMethod);
 
     expect(lockProvider.deviceDetail?.displayName, "someDisplayName");
   });

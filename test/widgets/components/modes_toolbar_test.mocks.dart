@@ -3,13 +3,17 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i3;
-import 'dart:ui' as _i5;
+import 'dart:ui' as _i7;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart'
     as _i2;
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart'
+import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
+    as _i6;
+import 'package:yonomi_platform_sdk/src/repository/devices/thermostat_repository.dart'
     as _i4;
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart'
+    as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -38,43 +42,37 @@ class MockThermostatProvider extends _i1.Mock
           as bool);
   @override
   _i3.Future<void> setPointAction(String? deviceId, double? temperature,
-          {_i2.SetPointActionFunction? injectSetPointThermostatMethod}) =>
+          {_i2.SetPointActionFunction? setPoint =
+              _i4.ThermostatRepository.setPointThermostat}) =>
       (super.noSuchMethod(
-          Invocation.method(#setPointAction, [
-            deviceId,
-            temperature
-          ], {
-            #injectSetPointThermostatMethod: injectSetPointThermostatMethod
-          }),
+          Invocation.method(
+              #setPointAction, [deviceId, temperature], {#setPoint: setPoint}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
   _i3.Future<void> setThermostatMode(
-          String? deviceId, _i4.GThermostatMode? mode,
-          {_i2.SetModeFunction? injectSetModeMethod}) =>
+          String? deviceId, _i5.GThermostatMode? mode,
+          {_i2.SetModeFunction? setMode = _i4.ThermostatRepository.setMode}) =>
       (super.noSuchMethod(
-          Invocation.method(#setThermostatMode, [deviceId, mode],
-              {#injectSetModeMethod: injectSetModeMethod}),
+          Invocation.method(
+              #setThermostatMode, [deviceId, mode], {#setMode: setMode}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
   _i3.Future<void> getDeviceDetail(String? deviceId,
-          {_i2.GetThermostatDetailsFunction?
-              injectGetThermostatDetailsMethod}) =>
+          {_i2.GetThermostatDetailsFunction? getThermostatDetails =
+              _i6.DevicesRepository.getThermostatDetails}) =>
       (super.noSuchMethod(
-          Invocation.method(#getDeviceDetail, [
-            deviceId
-          ], {
-            #injectGetThermostatDetailsMethod: injectGetThermostatDetailsMethod
-          }),
+          Invocation.method(#getDeviceDetail, [deviceId],
+              {#getThermostatDetails: getThermostatDetails}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
-  void addListener(_i5.VoidCallback? listener) =>
+  void addListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i5.VoidCallback? listener) =>
+  void removeListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

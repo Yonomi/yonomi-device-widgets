@@ -15,10 +15,11 @@ typedef GetThermostatDetailsFunction = Future<Device> Function(
 
 class ThermostatProvider extends ChangeNotifier {
   ThermostatProvider(Request request, String deviceId,
-      {GetThermostatDetailsFunction? injectGetThermostatDetailsMethod}) {
+      {GetThermostatDetailsFunction injectGetThermostatDetailsMethod =
+          DevicesRepository.getThermostatDetails}) {
     this._request = request;
     getDeviceDetail(deviceId,
-        injectGetThermostatDetailsMethod: injectGetThermostatDetailsMethod);
+        getThermostatDetails: injectGetThermostatDetailsMethod);
   }
 
   late Request _request;
@@ -29,23 +30,20 @@ class ThermostatProvider extends ChangeNotifier {
   }
 
   Future<void> setPointAction(String deviceId, double temperature,
-      {SetPointActionFunction? injectSetPointThermostatMethod}) async {
-    final setPointThermostatMethod = injectSetPointThermostatMethod ??
-        ThermostatRepository.setPointThermostat;
-    setPointThermostatMethod(_request, deviceId, temperature);
+      {SetPointActionFunction setPoint =
+          ThermostatRepository.setPointThermostat}) async {
+    setPoint(_request, deviceId, temperature);
   }
 
-  Future<void> setThermostatMode(String? deviceId, GThermostatMode mode,
-      {SetModeFunction? injectSetModeMethod}) async {
-    final setModeMethod = injectSetModeMethod ?? ThermostatRepository.setMode;
-    setModeMethod(_request, deviceId!, mode);
+  Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
+      {SetModeFunction setMode = ThermostatRepository.setMode}) async {
+    setMode(_request, deviceId, mode);
   }
 
   Future<void> getDeviceDetail(String deviceId,
-      {GetThermostatDetailsFunction? injectGetThermostatDetailsMethod}) async {
-    final getThermostatDetailsMethod = injectGetThermostatDetailsMethod ??
-        DevicesRepository.getThermostatDetails;
-    _deviceDetail = await getThermostatDetailsMethod(_request, deviceId);
+      {GetThermostatDetailsFunction getThermostatDetails =
+          DevicesRepository.getThermostatDetails}) async {
+    _deviceDetail = await getThermostatDetails(_request, deviceId);
     notifyListeners();
   }
 
