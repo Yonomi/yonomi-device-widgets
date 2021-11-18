@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 
-class MockThermostatProvider extends Mock implements ThermostatProvider {}
+import 'modes_toolbar_test.mocks.dart';
 
-MockThermostatProvider mockProvider = MockThermostatProvider();
-
-Widget createModesToolbar() {
-  return MaterialApp(
-    home: ChangeNotifierProvider<ThermostatProvider>(
-      create: (_) => mockProvider,
-      child: Column(children: [
-        ModesToolbar(deviceId: ""),
-      ]),
-    ),
-  );
-}
-
+@GenerateMocks([ThermostatProvider])
 void main() {
+  MockThermostatProvider mockProvider = MockThermostatProvider();
+
+  Widget createModesToolbar() {
+    return MaterialApp(
+      home: ChangeNotifierProvider<ThermostatProvider>(
+        create: (_) => mockProvider,
+        child: Column(children: [
+          ModesToolbar(deviceId: ""),
+        ]),
+      ),
+    );
+  }
+
   testWidgets('Setup - ModesToolbar should contain specific icons',
       (WidgetTester tester) async {
     await tester.pumpWidget(createModesToolbar());

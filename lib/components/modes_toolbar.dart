@@ -22,7 +22,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider.setThermostatMode(
-                  deviceId, GThermostatMode.AUTO);
+                  deviceId!, GThermostatMode.AUTO);
             }
           },
         ),
@@ -31,7 +31,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider.setThermostatMode(
-                  deviceId, GThermostatMode.COOL);
+                  deviceId!, GThermostatMode.COOL);
             }
           },
         ),
@@ -40,7 +40,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider.setThermostatMode(
-                  deviceId, GThermostatMode.HEAT);
+                  deviceId!, GThermostatMode.HEAT);
             }
           },
         ),
@@ -49,7 +49,7 @@ class ModesToolbar extends StatelessWidget {
           onPressed: () {
             if (deviceId != null) {
               thermostatProvider.setThermostatMode(
-                  deviceId, GThermostatMode.AIRFLOW);
+                  deviceId!, GThermostatMode.AIRFLOW);
             }
           },
         ),

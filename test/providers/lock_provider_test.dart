@@ -12,6 +12,8 @@ class MockSendLockUnlockFunction extends Mock {
   Future<void> call(Request request, String id, bool lockUnlock);
 }
 
+// @GenerateMocks([])
+
 void main() {
   test('Calling setLockUnlockAction calls repository method', () async {
     Request request = Request("", {});
@@ -46,7 +48,8 @@ void main() {
   test('Device data is set using DeviceRepository\'s return values', () async {
     Request request = Request("", {});
 
-    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction();
+    GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetailsFunction()
+        as Future<Device> Function(Request?, String?);
     when(mockLockDetailsMethod(any, any)).thenAnswer((_) => Future.value(
           Device(
             "someId",

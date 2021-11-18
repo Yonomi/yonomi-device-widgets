@@ -35,10 +35,10 @@ class ThermostatProvider extends ChangeNotifier {
     setPointThermostatMethod(_request, deviceId, temperature);
   }
 
-  Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
+  Future<void> setThermostatMode(String? deviceId, GThermostatMode mode,
       {SetModeFunction? injectSetModeMethod}) async {
     final setModeMethod = injectSetModeMethod ?? ThermostatRepository.setMode;
-    setModeMethod(_request, deviceId, mode);
+    setModeMethod(_request, deviceId!, mode);
   }
 
   Future<void> getDeviceDetail(String deviceId,
