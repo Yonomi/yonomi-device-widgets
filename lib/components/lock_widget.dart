@@ -16,7 +16,7 @@ class LockWidget extends StatelessWidget {
             Row(
               children: <Widget>[
                 Text(
-                  lockProvider.deviceDetail?.displayName ?? '',
+                  lockProvider.deviceDetail.displayName,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
@@ -35,7 +35,7 @@ class LockWidget extends StatelessWidget {
                       onTap: () {
                         bool setLock = !lockProvider.isLocked;
                         lockProvider.setLockUnlockAction(
-                            lockProvider.deviceDetail?.id, setLock);
+                            lockProvider.deviceDetail.id, setLock);
                       },
                     )),
                 color: lockProvider.isLocked

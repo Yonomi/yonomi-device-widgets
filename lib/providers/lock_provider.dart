@@ -19,14 +19,14 @@ class LockProvider extends ChangeNotifier {
   }
 
   late Request _request;
-  Device? _deviceDetail;
+  late Device _deviceDetail;
 
-  Device? get deviceDetail => _deviceDetail;
+  Device get deviceDetail => _deviceDetail;
 
   bool get isLocked => getLockTrait()?.state.value ?? false;
 
   LockTrait? getLockTrait() {
-    return _deviceDetail?.traits.first as LockTrait?;
+    return _deviceDetail.traits.first as LockTrait?;
   }
 
   Future<void> getDeviceDetail(String deviceId,
