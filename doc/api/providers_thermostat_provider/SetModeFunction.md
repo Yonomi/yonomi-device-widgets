@@ -8,11 +8,12 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 
-    [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> SetModeFunction = [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> Function([Request](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/request_request/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) id, [ThermostatMode](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/graphql_devices_thermostat_thermostat_queries.graphql/ThermostatMode-class.html) mode)
+    [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> SetModeFunction = [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> Function([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) id, [GThermostatMode](https://yonomi.co/third_party_yonomi_graphql_schema_schema.docs.schema.gql/GThermostatMode-class.html) mode)
 
 
 
@@ -23,7 +24,7 @@
 
 ```dart
 typedef SetModeFunction = Future<void> Function(
-    Request request, String id, ThermostatMode mode);
+    Request request, String id, GThermostatMode mode);
 ```
 
 

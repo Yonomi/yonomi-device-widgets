@@ -6,13 +6,14 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 - @[override](https://api.flutter.dev/flutter/dart-core/override-constant.html)
 
 [RingBorder](../../ui_ring_border/RingBorder-class.md) copyWith
-({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-class.html) side})
+({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-class.html)? side})
 
 _override_
 
@@ -27,7 +28,7 @@ specified <code>side</code>, if <code>side</code> is non-null.</p>
 
 ```dart
 @override
-RingBorder copyWith({BorderSide side}) {
+RingBorder copyWith({BorderSide? side}) {
   return RingBorder(side: side ?? this.side);
 }
 ```

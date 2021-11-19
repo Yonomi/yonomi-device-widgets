@@ -6,12 +6,13 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 
 [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) getIcon
-([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/Trait-class.html)> traits)
+([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits)
 
 
 
@@ -25,7 +26,7 @@
 ```dart
 static Widget getIcon(List<Trait> traits) {
   Trait determiningTrait = traits[0];
-  if (determiningTrait is LockUnlockTrait) {
+  if (determiningTrait is LockTrait) {
     return (determiningTrait.state.value)
         ? buildLockIcon()
         : buildUnlockIcon();

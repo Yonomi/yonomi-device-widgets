@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -27,7 +28,7 @@
 
 ## Constructors
 
-[ThumbPainter](../components_arc/ThumbPainter/ThumbPainter.md) ([double](https://api.flutter.dev/flutter/dart-core/double-class.html) thumbx, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) thumby)
+[ThumbPainter](../components_arc/ThumbPainter/ThumbPainter.md) ([double](https://api.flutter.dev/flutter/dart-core/double-class.html)? thumbx, [double](https://api.flutter.dev/flutter/dart-core/double-class.html)? thumby)
 
     
 
@@ -52,7 +53,7 @@ _read-only, inherited_
 
 
 
-##### [semanticsBuilder](https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html) &#8594; [SemanticsBuilderCallback](https://api.flutter.dev/flutter/rendering/SemanticsBuilderCallback.html)
+##### [semanticsBuilder](https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html) &#8594; [SemanticsBuilderCallback](https://api.flutter.dev/flutter/rendering/SemanticsBuilderCallback.html)?
 
 
 
@@ -62,7 +63,7 @@ _read-only, inherited_
 
 
 
-##### [thumbx](../components_arc/ThumbPainter/thumbx.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+##### [thumbx](../components_arc/ThumbPainter/thumbx.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)?
 
 
 
@@ -71,7 +72,7 @@ _final_
 
 
 
-##### [thumby](../components_arc/ThumbPainter/thumby.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+##### [thumby](../components_arc/ThumbPainter/thumby.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)?
 
 
 
@@ -92,7 +93,7 @@ _inherited_
 
 
 
-##### [hitTest](https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html)([Offset](https://api.flutter.dev/flutter/dart-ui/Offset-class.html) position) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [hitTest](https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html)([Offset](https://api.flutter.dev/flutter/dart-ui/Offset-class.html) position) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)?
 
 
 

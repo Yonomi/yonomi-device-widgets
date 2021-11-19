@@ -6,9 +6,10 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
-[double](https://api.flutter.dev/flutter/dart-core/double-class.html) thumbx
+[double](https://api.flutter.dev/flutter/dart-core/double-class.html)? thumbx
   
 _final_
 
@@ -20,7 +21,7 @@ _final_
 ## Implementation
 
 ```dart
-final double thumbx;
+final double? thumbx;
 
 
 ```

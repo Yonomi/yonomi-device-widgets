@@ -6,11 +6,12 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 
-[Device](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/Device-class.html) deviceDetail
+[Device](https://yonomi.co/yonomi-sdk/Device-class.html) deviceDetail
   
 
 

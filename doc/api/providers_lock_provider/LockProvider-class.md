@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -26,14 +27,14 @@
 
 ## Constructors
 
-[LockProvider](../providers_lock_provider/LockProvider/LockProvider.md) ([Request](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/request_request/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) injectLockDetailsMethod})
+[LockProvider](../providers_lock_provider/LockProvider/LockProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) getLockDetails = DevicesRepository.getLockDetails})
 
     
 
 
 ## Properties
 
-##### [deviceDetail](../providers_lock_provider/LockProvider/deviceDetail.md) &#8594; [Device](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/Device-class.html)
+##### [deviceDetail](../providers_lock_provider/LockProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)
 
 
 
@@ -56,7 +57,7 @@ _read-only, inherited_
 
 
 Whether any listeners are currently registered. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/hasListeners.html)  
-_@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), read-only, inherited_
+_@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), read-only, inherited_
 
 
 
@@ -116,11 +117,11 @@ Discards any resources used by the object. After this is called, the
 object is not in a usable state and should be discarded (calls to
 <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html">addListener</a> and <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html">removeListener</a> will throw after the object is
 disposed). [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/dispose.html)  
-_@[mustCallSuper](https://pub.dev/documentation/meta/1.3.0/meta/mustCallSuper-constant.html), inherited_
+_@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-constant.html), inherited_
 
 
 
-##### [getDeviceDetail](../providers_lock_provider/LockProvider/getDeviceDetail.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) injectLockDetailsMethod}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [getDeviceDetail](../providers_lock_provider/LockProvider/getDeviceDetail.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) getLockDetails = DevicesRepository.getLockDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -129,7 +130,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.3.0/meta/mustCallSuper-co
 
 
 
-##### [getLockTrait](../providers_lock_provider/LockProvider/getLockTrait.md)() [LockUnlockTrait](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/LockUnlockTrait-class.html)
+##### [getLockTrait](../providers_lock_provider/LockProvider/getLockTrait.md)() [LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)?
 
 
 
@@ -152,7 +153,7 @@ _inherited_
 
 
 Call all the registered listeners. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html)  
-_@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), @[visibleForTesting](https://pub.dev/documentation/meta/1.3.0/meta/visibleForTesting-constant.html), inherited_
+_@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), @[visibleForTesting](https://pub.dev/documentation/meta/1.7.0/meta/visibleForTesting-constant.html), inherited_
 
 
 
@@ -166,7 +167,7 @@ _inherited_
 
 
 
-##### [setLockUnlockAction](../providers_lock_provider/LockProvider/setLockUnlockAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setLock, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) injectLockDetailsMethod, [SendLockUnlockFunction](../providers_lock_provider/SendLockUnlockFunction.md) injectSendLockUnlockMethod}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [setLockUnlockAction](../providers_lock_provider/LockProvider/setLockUnlockAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setLock, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) lockDetails = DevicesRepository.getLockDetails, [SendLockUnlockFunction](../providers_lock_provider/SendLockUnlockFunction.md) sendLockUnlock = LockRepository.sendLockUnlockAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 

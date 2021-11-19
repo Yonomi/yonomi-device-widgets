@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -28,7 +29,7 @@ color.</p>
 "Theme.foo" is shorthand for <code>Theme.of(context).foo</code>. Color
 scheme values like "onSurface(0.38)" are shorthand for
 <code>onSurface.withOpacity(0.38)</code>. <a href="https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html">MaterialStateProperty</a> valued
-properties that are not followed by by a sublist have the same
+properties that are not followed by a sublist have the same
 value for all states, otherwise the values are as specified for
 each state, and "others" means all other states.</p>
 <p>The <code>textScaleFactor</code> is the value of
@@ -75,6 +76,8 @@ abbreviated for readability.</p>
 </ul>
 </li>
 <li><code>minimumSize</code> - Size(64, 36)</li>
+<li><code>fixedSize</code> - null</li>
+<li><code>maximumSize</code> - Size.infinite</li>
 <li><code>side</code> - null</li>
 <li><code>shape</code> - RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))</li>
 <li><code>mouseCursor</code>
@@ -88,6 +91,7 @@ abbreviated for readability.</p>
 <li><code>animationDuration</code> - kThemeChangeDuration</li>
 <li><code>enableFeedback</code> - true</li>
 <li><code>alignment</code> - Alignment.center</li>
+<li><code>splashFactory</code> - InkRipple.splashFactory</li>
 </ul>
 <p>The default padding values for the <a href="https://api.flutter.dev/flutter/material/ElevatedButton/ElevatedButton.icon.html">ElevatedButton.icon</a> factory are slightly different:</p>
 <ul>

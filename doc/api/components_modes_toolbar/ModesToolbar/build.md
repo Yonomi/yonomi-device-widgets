@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -68,8 +69,8 @@ Widget build(BuildContext context) {
         icon: Text("A"),
         onPressed: () {
           if (deviceId != null) {
-            thermostatProvider?.setThermostatMode(
-                deviceId, ThermostatMode.auto);
+            thermostatProvider.setThermostatMode(
+                deviceId!, GThermostatMode.AUTO);
           }
         },
       ),
@@ -77,8 +78,8 @@ Widget build(BuildContext context) {
         icon: Icon(Icons.ac_unit),
         onPressed: () {
           if (deviceId != null) {
-            thermostatProvider?.setThermostatMode(
-                deviceId, ThermostatMode.cool);
+            thermostatProvider.setThermostatMode(
+                deviceId!, GThermostatMode.COOL);
           }
         },
       ),
@@ -86,8 +87,8 @@ Widget build(BuildContext context) {
         icon: Icon(Icons.whatshot),
         onPressed: () {
           if (deviceId != null) {
-            thermostatProvider?.setThermostatMode(
-                deviceId, ThermostatMode.heat);
+            thermostatProvider.setThermostatMode(
+                deviceId!, GThermostatMode.HEAT);
           }
         },
       ),
@@ -95,8 +96,8 @@ Widget build(BuildContext context) {
         icon: Icon(Icons.eco),
         onPressed: () {
           if (deviceId != null) {
-            thermostatProvider?.setThermostatMode(
-                deviceId, ThermostatMode.airflow);
+            thermostatProvider.setThermostatMode(
+                deviceId!, GThermostatMode.AIRFLOW);
           }
         },
       ),

@@ -6,10 +6,11 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
-ModeIconButton({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html) key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onPressed, [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onLongPress, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon})
+ModeIconButton({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) onPressed, [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html)? onLongPress, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon})
 
 
 
@@ -19,12 +20,11 @@ ModeIconButton({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)
 
 ```dart
 ModeIconButton({
-  Key key,
-  @required VoidCallback onPressed,
-  VoidCallback onLongPress,
-  @required Widget icon,
-})  : assert(icon != null),
-      super(
+  Key? key,
+  required VoidCallback onPressed,
+  VoidCallback? onLongPress,
+  required Widget icon,
+}) : super(
         key: key,
         onPressed: onPressed,
         onLongPress: onLongPress,

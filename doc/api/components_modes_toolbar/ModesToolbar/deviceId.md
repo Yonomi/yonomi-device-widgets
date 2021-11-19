@@ -6,9 +6,10 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
-[String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId
+[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? deviceId
   
 _final_
 
@@ -20,7 +21,7 @@ _final_
 ## Implementation
 
 ```dart
-final String deviceId;
+final String? deviceId;
 
 
 ```

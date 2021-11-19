@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -28,7 +29,7 @@
 
 ## Constructors
 
-[Arc](../components_arc/Arc/Arc.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html) key, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) showThumb = true, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) centerWidget, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [double](https://api.flutter.dev/flutter/dart-core/double-class.html) initialValue, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [double](https://api.flutter.dev/flutter/dart-core/double-class.html) maxValue, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)> onFinalSetPoint, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color})
+[Arc](../components_arc/Arc/Arc.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) showThumb = true, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) centerWidget, required [double](https://api.flutter.dev/flutter/dart-core/double-class.html) initialValue, required [double](https://api.flutter.dev/flutter/dart-core/double-class.html) maxValue, required [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[double](https://api.flutter.dev/flutter/dart-core/double-class.html)> onFinalSetPoint, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? color})
 
     
 
@@ -44,7 +45,7 @@ _final_
 
 
 
-##### [color](../components_arc/Arc/color.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+##### [color](../components_arc/Arc/color.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
 
 
 
@@ -58,7 +59,7 @@ _final_
 
 
 The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)  
-_@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), read-only, inherited_
+_@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant.html), read-only, inherited_
 
 
 
@@ -71,7 +72,7 @@ _final_
 
 
 
-##### [key](https://api.flutter.dev/flutter/widgets/Widget/key.html) &#8594; [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)
+##### [key](https://api.flutter.dev/flutter/widgets/Widget/key.html) &#8594; [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)?
 
 
 
@@ -143,7 +144,7 @@ _override_
 
 Returns a list of <code>DiagnosticsNode</code> objects describing this node's
 children. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)  
-_@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), inherited_
+_@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), inherited_
 
 
 
@@ -165,7 +166,7 @@ _inherited_
 
 
 
-##### [toDiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, [DiagnosticsTreeStyle](https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle-class.html) style}) [DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)
+##### [toDiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, [DiagnosticsTreeStyle](https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle.html)? style}) [DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)
 
 
 
@@ -175,7 +176,7 @@ _inherited_
 
 
 
-##### [toString](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)({[DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toString](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)({[DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html) minLevel = DiagnosticLevel.info}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
@@ -184,7 +185,7 @@ _inherited_
 
 
 
-##### [toStringDeep](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixOtherLines, [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringDeep](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) prefixLineOne = '', [String](https://api.flutter.dev/flutter/dart-core/String-class.html)? prefixOtherLines, [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
@@ -193,7 +194,7 @@ _inherited_
 
 
 
-##### [toStringShallow](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel-class.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toStringShallow](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)({[String](https://api.flutter.dev/flutter/dart-core/String-class.html) joiner = ', ', [DiagnosticLevel](https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html) minLevel = DiagnosticLevel.debug}) [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
@@ -219,7 +220,7 @@ _inherited_
 
 
 The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)  
-_@[nonVirtual](https://pub.dev/documentation/meta/1.3.0/meta/nonVirtual-constant.html), inherited_
+_@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant.html), inherited_
 
 
 
