@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -67,25 +68,21 @@ Widget build(BuildContext context) {
       Row(
         children: <Widget>[
           Text(
-            thermostatProvider?.deviceDetail?.displayName ?? '',
+            thermostatProvider.deviceDetail?.displayName ?? '',
             style: Theme.of(context).textTheme.headline6,
           ),
         ],
       ),
       Padding(
           padding: const EdgeInsets.only(top: 16.0),
-          child:
-              ModesToolbar(deviceId: thermostatProvider?.deviceDetail?.id)),
+          child: ModesToolbar(deviceId: thermostatProvider.deviceDetail?.id)),
       SizedBox(
         height: 60,
       ),
       Center(
           child: Arc(
         centerWidget: Text(
-          thermostatProvider.thermostatTargetTemperature
-                  ?.toInt()
-                  ?.toString() ??
-              '0',
+          thermostatProvider.thermostatTargetTemperature.toInt().toString(),
           style: Theme.of(context).textTheme.headline2,
         ),
         initialValue: 20.0,

@@ -6,12 +6,13 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 
 [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> getDeviceDetail
-([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../../providers_lock_provider/GetLockDetailsFunction.md) injectLockDetailsMethod})
+([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../../providers_lock_provider/GetLockDetailsFunction.md) getLockDetails = DevicesRepository.getLockDetails})
 
 
 
@@ -24,14 +25,12 @@
 
 ```dart
 Future<void> getDeviceDetail(String deviceId,
-    {GetLockDetailsFunction injectLockDetailsMethod}) async {
-  final getLockDetailsMethod =
-      injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
-
+    {GetLockDetailsFunction getLockDetails =
+        DevicesRepository.getLockDetails}) async {
   loadingDetail = true;
   notifyListeners();
 
-  _deviceDetail = await getLockDetailsMethod(_request, deviceId);
+  _deviceDetail = await getLockDetails(_request, deviceId);
 
   loadingDetail = false;
   notifyListeners();

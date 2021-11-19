@@ -6,10 +6,11 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
-ModeButtonIconChild({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html) key, @[required](https://pub.dev/documentation/meta/1.3.0/meta/required-constant.html) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon})
+ModeButtonIconChild({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) icon})
 
 
 
@@ -18,7 +19,7 @@ ModeButtonIconChild({[Key](https://api.flutter.dev/flutter/foundation/Key-class.
 ## Implementation
 
 ```dart
-ModeButtonIconChild({Key key, @required this.icon}) : super(key: key);
+ModeButtonIconChild({Key? key, required this.icon}) : super(key: key);
 ```
 
 

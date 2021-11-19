@@ -5,7 +5,7 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class Arc extends StatefulWidget {
   final Widget centerWidget;
-  final Color color;
+  final Color? color;
   final ValueChanged<double> onFinalSetPoint;
   final double maxValue;
 
@@ -14,12 +14,12 @@ class Arc extends StatefulWidget {
   final bool showThumb;
 
   Arc({
-    Key key,
+    Key? key,
     this.showThumb = true,
-    @required this.centerWidget,
-    @required this.initialValue,
-    @required this.maxValue,
-    @required this.onFinalSetPoint,
+    required this.centerWidget,
+    required this.initialValue,
+    required this.maxValue,
+    required this.onFinalSetPoint,
     this.color,
   }) : super(key: key);
 
@@ -28,8 +28,8 @@ class Arc extends StatefulWidget {
 }
 
 class _ArcState extends State<Arc> {
-  double _thumbx = 0;
-  double _thumby = 0;
+  double? _thumbx = 0;
+  double? _thumby = 0;
   double value = 0;
 
   @override
@@ -62,7 +62,7 @@ class _ArcState extends State<Arc> {
   }
 
   double calculateMagnitude() {
-    return calculateMagnitudeFromXY(_thumbx, _thumby);
+    return calculateMagnitudeFromXY(_thumbx!, _thumby!);
   }
 
   double calculateMagnitudeFromXY(double x, double y) {
@@ -152,7 +152,7 @@ class _ArcState extends State<Arc> {
     );
   }
 
-  Map compensatedXY(double dx, double dy, double width) {
+  Map? compensatedXY(double dx, double dy, double width) {
     if (dx > 0 && dy > 0 && dx < width && dy < width) {
       final angle = atan2(dy - width / 2, dx - width / 2);
       final x = width / 2 * cos(angle) - 5 + width / 2;
@@ -165,7 +165,7 @@ class _ArcState extends State<Arc> {
 }
 
 class ArcPainter extends CustomPainter {
-  final Color color;
+  final Color? color;
   final double width;
   final double height;
 
@@ -193,17 +193,17 @@ class ArcPainter extends CustomPainter {
 }
 
 class ThumbPainter extends CustomPainter {
-  final double thumbx;
-  final double thumby;
+  final double? thumbx;
+  final double? thumby;
 
   ThumbPainter(this.thumbx, this.thumby);
 
   @override
   void paint(Canvas canvas, Size size) {
     var thumbPaint = Paint()
-      ..color = Colors.red[400]
+      ..color = Colors.red[400]!
       ..style = PaintingStyle.fill;
-    canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, thumbPaint);
+    canvas.drawCircle(Offset(thumbx! + 5, thumby! + 5), 10, thumbPaint);
   }
 
   @override

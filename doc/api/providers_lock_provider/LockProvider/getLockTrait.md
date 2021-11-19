@@ -6,11 +6,12 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 
-[LockUnlockTrait](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/LockUnlockTrait-class.html) getLockTrait
+[LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)? getLockTrait
 ()
 
 
@@ -23,8 +24,8 @@
 ## Implementation
 
 ```dart
-LockUnlockTrait getLockTrait() {
-  return _deviceDetail?.traits?.first;
+LockTrait? getLockTrait() {
+  return _deviceDetail.traits.first as LockTrait?;
 }
 ```
 

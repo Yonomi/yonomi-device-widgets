@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -85,17 +86,17 @@ _final, inherited_
 
 ## Methods
 
-##### [add](https://api.flutter.dev/flutter/painting/ShapeBorder/add.html)([ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html) other, {[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) reversed = false}) [ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)
+##### [add](https://api.flutter.dev/flutter/painting/ShapeBorder/add.html)([ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html) other, {[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) reversed = false}) [ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)?
 
 
 
 Attempts to create a new object that represents the amalgamation of <code>this</code>
 border and the <code>other</code> border. [...](https://api.flutter.dev/flutter/painting/ShapeBorder/add.html)  
-_@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), inherited_
+_@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), inherited_
 
 
 
-##### [copyWith](../ui_ring_border/RingBorder/copyWith.md)({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-class.html) side}) [RingBorder](../ui_ring_border/RingBorder-class.md)
+##### [copyWith](../ui_ring_border/RingBorder/copyWith.md)({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-class.html)? side}) [RingBorder](../ui_ring_border/RingBorder-class.md)
 
 
 
@@ -105,7 +106,7 @@ _override_
 
 
 
-##### [getInnerPath](https://api.flutter.dev/flutter/painting/CircleBorder/getInnerPath.html)([Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection-class.html) textDirection}) [Path](https://api.flutter.dev/flutter/dart-ui/Path-class.html)
+##### [getInnerPath](https://api.flutter.dev/flutter/painting/CircleBorder/getInnerPath.html)([Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection.html)? textDirection}) [Path](https://api.flutter.dev/flutter/dart-ui/Path-class.html)
 
 
 
@@ -114,7 +115,7 @@ _inherited_
 
 
 
-##### [getOuterPath](https://api.flutter.dev/flutter/painting/CircleBorder/getOuterPath.html)([Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection-class.html) textDirection}) [Path](https://api.flutter.dev/flutter/dart-ui/Path-class.html)
+##### [getOuterPath](https://api.flutter.dev/flutter/painting/CircleBorder/getOuterPath.html)([Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection.html)? textDirection}) [Path](https://api.flutter.dev/flutter/dart-ui/Path-class.html)
 
 
 
@@ -123,7 +124,7 @@ _inherited_
 
 
 
-##### [lerpFrom](https://api.flutter.dev/flutter/painting/CircleBorder/lerpFrom.html)([ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html) a, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) t) [ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)
+##### [lerpFrom](https://api.flutter.dev/flutter/painting/CircleBorder/lerpFrom.html)([ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)? a, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) t) [ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)?
 
 
 
@@ -133,7 +134,7 @@ _inherited_
 
 
 
-##### [lerpTo](https://api.flutter.dev/flutter/painting/CircleBorder/lerpTo.html)([ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html) b, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) t) [ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)
+##### [lerpTo](https://api.flutter.dev/flutter/painting/CircleBorder/lerpTo.html)([ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)? b, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) t) [ShapeBorder](https://api.flutter.dev/flutter/painting/ShapeBorder-class.html)?
 
 
 
@@ -152,7 +153,7 @@ _inherited_
 
 
 
-##### [paint](../ui_ring_border/RingBorder/paint.md)([Canvas](https://api.flutter.dev/flutter/dart-ui/Canvas-class.html) canvas, [Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection-class.html) textDirection}) void
+##### [paint](../ui_ring_border/RingBorder/paint.md)([Canvas](https://api.flutter.dev/flutter/dart-ui/Canvas-class.html) canvas, [Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection.html)? textDirection}) void
 
 
 

@@ -1,27 +1,29 @@
-import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
-import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.graphql.dart';
+import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 
-class MockThermostatProvider extends Mock implements ThermostatProvider {}
+import 'modes_toolbar_test.mocks.dart';
 
-MockThermostatProvider mockProvider = MockThermostatProvider();
-
-Widget createModesToolbar() {
-  return MaterialApp(
-    home: ChangeNotifierProvider<ThermostatProvider>(
-      create: (_) => mockProvider,
-      child: Column(children: [
-        ModesToolbar(deviceId: ""),
-      ]),
-    ),
-  );
-}
-
+@GenerateMocks([ThermostatProvider])
 void main() {
+  MockThermostatProvider mockProvider = MockThermostatProvider();
+
+  Widget createModesToolbar() {
+    return MaterialApp(
+      home: ChangeNotifierProvider<ThermostatProvider>(
+        create: (_) => mockProvider,
+        child: Column(children: [
+          ModesToolbar(deviceId: ""),
+        ]),
+      ),
+    );
+  }
+
   testWidgets('Setup - ModesToolbar should contain specific icons',
       (WidgetTester tester) async {
     await tester.pumpWidget(createModesToolbar());
@@ -38,7 +40,7 @@ void main() {
 
     await tester.tap(find.widgetWithText(ModeIconButton, "A"));
 
-    verify(mockProvider.setThermostatMode(any, ThermostatMode.auto)).called(1);
+    verify(mockProvider.setThermostatMode(any, GThermostatMode.AUTO)).called(1);
   });
 
   testWidgets('ModesToolbar - button should set mode to cool when pressed',
@@ -47,7 +49,7 @@ void main() {
 
     await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.ac_unit));
 
-    verify(mockProvider.setThermostatMode(any, ThermostatMode.cool)).called(1);
+    verify(mockProvider.setThermostatMode(any, GThermostatMode.COOL)).called(1);
   });
 
   testWidgets('ModesToolbar - button should set mode to heat when pressed',
@@ -56,7 +58,7 @@ void main() {
 
     await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.whatshot));
 
-    verify(mockProvider.setThermostatMode(any, ThermostatMode.heat)).called(1);
+    verify(mockProvider.setThermostatMode(any, GThermostatMode.HEAT)).called(1);
   });
 
   testWidgets('ModesToolbar - button should set mode to eco when pressed',
@@ -65,7 +67,7 @@ void main() {
 
     await tester.tap(find.widgetWithIcon(ModeIconButton, Icons.eco));
 
-    verify(mockProvider.setThermostatMode(any, ThermostatMode.airflow))
+    verify(mockProvider.setThermostatMode(any, GThermostatMode.AIRFLOW))
         .called(1);
   });
 }

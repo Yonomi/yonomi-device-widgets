@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -27,14 +28,14 @@
 
 ## Constructors
 
-[ArcPainter](../components_arc/ArcPainter/ArcPainter.md) ([Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) width, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) height)
+[ArcPainter](../components_arc/ArcPainter/ArcPainter.md) ([Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? color, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) width, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) height)
 
     
 
 
 ## Properties
 
-##### [color](../components_arc/ArcPainter/color.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+##### [color](../components_arc/ArcPainter/color.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
 
 
 
@@ -70,7 +71,7 @@ _read-only, inherited_
 
 
 
-##### [semanticsBuilder](https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html) &#8594; [SemanticsBuilderCallback](https://api.flutter.dev/flutter/rendering/SemanticsBuilderCallback.html)
+##### [semanticsBuilder](https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html) &#8594; [SemanticsBuilderCallback](https://api.flutter.dev/flutter/rendering/SemanticsBuilderCallback.html)?
 
 
 
@@ -101,7 +102,7 @@ _inherited_
 
 
 
-##### [hitTest](https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html)([Offset](https://api.flutter.dev/flutter/dart-ui/Offset-class.html) position) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [hitTest](https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html)([Offset](https://api.flutter.dev/flutter/dart-ui/Offset-class.html) position) [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)?
 
 
 

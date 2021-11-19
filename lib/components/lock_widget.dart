@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:yonomi_device_widgets/components/arc.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LockWidget extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class LockWidget extends StatelessWidget {
             Row(
               children: <Widget>[
                 Text(
-                  lockProvider?.deviceDetail?.displayName ?? '',
+                  lockProvider.deviceDetail.displayName,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
@@ -35,7 +35,7 @@ class LockWidget extends StatelessWidget {
                       onTap: () {
                         bool setLock = !lockProvider.isLocked;
                         lockProvider.setLockUnlockAction(
-                            lockProvider?.deviceDetail?.id, setLock);
+                            lockProvider.deviceDetail.id, setLock);
                       },
                     )),
                 color: lockProvider.isLocked

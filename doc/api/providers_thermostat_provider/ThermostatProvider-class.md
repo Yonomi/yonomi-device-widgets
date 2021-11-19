@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -26,14 +27,14 @@
 
 ## Constructors
 
-[ThermostatProvider](../providers_thermostat_provider/ThermostatProvider/ThermostatProvider.md) ([Request](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/request_request/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetThermostatDetailsFunction](../providers_thermostat_provider/GetThermostatDetailsFunction.md) injectGetThermostatDetailsMethod})
+[ThermostatProvider](../providers_thermostat_provider/ThermostatProvider/ThermostatProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetThermostatDetailsFunction](../providers_thermostat_provider/GetThermostatDetailsFunction.md) getThermostatDetails = DevicesRepository.getThermostatDetails})
 
     
 
 
 ## Properties
 
-##### [deviceDetail](../providers_thermostat_provider/ThermostatProvider/deviceDetail.md) &#8594; [Device](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/Device-class.html)
+##### [deviceDetail](../providers_thermostat_provider/ThermostatProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
@@ -56,7 +57,7 @@ _read-only, inherited_
 
 
 Whether any listeners are currently registered. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/hasListeners.html)  
-_@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), read-only, inherited_
+_@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), read-only, inherited_
 
 
 
@@ -98,11 +99,11 @@ Discards any resources used by the object. After this is called, the
 object is not in a usable state and should be discarded (calls to
 <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html">addListener</a> and <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html">removeListener</a> will throw after the object is
 disposed). [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/dispose.html)  
-_@[mustCallSuper](https://pub.dev/documentation/meta/1.3.0/meta/mustCallSuper-constant.html), inherited_
+_@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-constant.html), inherited_
 
 
 
-##### [getDeviceDetail](../providers_thermostat_provider/ThermostatProvider/getDeviceDetail.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetThermostatDetailsFunction](../providers_thermostat_provider/GetThermostatDetailsFunction.md) injectGetThermostatDetailsMethod}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [getDeviceDetail](../providers_thermostat_provider/ThermostatProvider/getDeviceDetail.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetThermostatDetailsFunction](../providers_thermostat_provider/GetThermostatDetailsFunction.md) getThermostatDetails = DevicesRepository.getThermostatDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -111,7 +112,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.3.0/meta/mustCallSuper-co
 
 
 
-##### [getThermostatTrait](../providers_thermostat_provider/ThermostatProvider/getThermostatTrait.md)() [ThermostatTrait](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/ThermostatTrait-class.html)
+##### [getThermostatTrait](../providers_thermostat_provider/ThermostatProvider/getThermostatTrait.md)() [ThermostatTrait](https://yonomi.co/yonomi-sdk/ThermostatTrait-class.html)?
 
 
 
@@ -134,7 +135,7 @@ _inherited_
 
 
 Call all the registered listeners. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html)  
-_@[protected](https://pub.dev/documentation/meta/1.3.0/meta/protected-constant.html), @[visibleForTesting](https://pub.dev/documentation/meta/1.3.0/meta/visibleForTesting-constant.html), inherited_
+_@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), @[visibleForTesting](https://pub.dev/documentation/meta/1.7.0/meta/visibleForTesting-constant.html), inherited_
 
 
 
@@ -148,7 +149,7 @@ _inherited_
 
 
 
-##### [setPointAction](../providers_thermostat_provider/ThermostatProvider/setPointAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) temperature, {[SetPointActionFunction](../providers_thermostat_provider/SetPointActionFunction.md) injectSetPointThermostatMethod}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [setPointAction](../providers_thermostat_provider/ThermostatProvider/setPointAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) temperature, {[SetPointActionFunction](../providers_thermostat_provider/SetPointActionFunction.md) setPoint = ThermostatRepository.setPointThermostat}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -157,7 +158,7 @@ _inherited_
 
 
 
-##### [setThermostatMode](../providers_thermostat_provider/ThermostatProvider/setThermostatMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [ThermostatMode](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/graphql_devices_thermostat_thermostat_queries.graphql/ThermostatMode-class.html) mode, {[SetModeFunction](../providers_thermostat_provider/SetModeFunction.md) injectSetModeMethod}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [setThermostatMode](../providers_thermostat_provider/ThermostatProvider/setThermostatMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [GThermostatMode](https://yonomi.co/third_party_yonomi_graphql_schema_schema.docs.schema.gql/GThermostatMode-class.html) mode, {[SetModeFunction](../providers_thermostat_provider/SetModeFunction.md) setMode = ThermostatRepository.setMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 

@@ -8,6 +8,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -87,7 +88,7 @@ _inherited_
 
 
 
-##### [buildThermostatIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildThermostatIcon.md)([double](https://api.flutter.dev/flutter/dart-core/double-class.html) thermostatState) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [buildThermostatIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildThermostatIcon.md)([double](https://api.flutter.dev/flutter/dart-core/double-class.html)? thermostatState) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -105,7 +106,7 @@ _inherited_
 
 
 
-##### [getIcon](../assets_traits_device_item_icon/DeviceItemIcon/getIcon.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/repository_devices_devices_repository/Trait-class.html)> traits) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [getIcon](../assets_traits_device_item_icon/DeviceItemIcon/getIcon.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 

@@ -1,30 +1,42 @@
-import 'package:yonomi_device_widgets/components/lock_widget.dart';
-import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
+import 'package:yonomi_device_widgets/components/lock_widget.dart';
+import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-class MockLockProvider extends Mock implements LockProvider {}
+import 'lock_widget_test.mocks.dart';
 
-class MockDevice extends Mock implements Device {}
-
-MockDevice mockDeviceDetail = MockDevice();
-MockLockProvider mockProvider = MockLockProvider();
-
-Widget getAppWithLockWidget() {
-  return MaterialApp(
-      home: ChangeNotifierProvider<LockProvider>.value(
-    value: mockProvider,
-    child: LockWidget(),
-  ));
-}
-
+@GenerateMocks([LockProvider])
 void main() {
+  final mockProvider = MockLockProvider();
+  final device = Device(
+      'id',
+      'name',
+      'description',
+      'manufacturerName',
+      'model',
+      null,
+      GDateTime('value'),
+      GDateTime('value'),
+      [LockTrait('name', IsLocked(true))]);
+
+  Widget getAppWithLockWidget() {
+    return MaterialApp(
+        home: ChangeNotifierProvider<LockProvider>.value(
+      value: mockProvider,
+      child: LockWidget(),
+    ));
+  }
+
   setUp(() {
-    when(mockProvider.deviceDetail).thenReturn(mockDeviceDetail);
+    when(mockProvider.deviceDetail).thenReturn(device);
+    when(mockProvider.setLockUnlockAction(any, any))
+        .thenAnswer((_) => Future.value());
   });
 
   testWidgets('Circular progress indicator should be shown when loading',
@@ -37,7 +49,6 @@ void main() {
   });
 
   testWidgets('Lock Widget shows device name', (WidgetTester tester) async {
-    when(mockDeviceDetail.displayName).thenReturn("LockDeviceUnderTest");
     when(mockProvider.loadingDetail).thenReturn(false);
     when(mockProvider.loadingAction).thenReturn(false);
 
@@ -45,7 +56,7 @@ void main() {
 
     await tester.pumpWidget(getAppWithLockWidget());
 
-    expect(find.text("LockDeviceUnderTest"), findsOneWidget);
+    expect(find.text('name'), findsOneWidget);
   });
 
   testWidgets('Lock Widget shows Unlocked Icon when state is Unlocked',

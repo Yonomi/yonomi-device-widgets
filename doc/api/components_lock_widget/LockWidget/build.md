@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -67,7 +68,7 @@ Widget build(BuildContext context) {
           Row(
             children: <Widget>[
               Text(
-                lockProvider?.deviceDetail?.displayName ?? '',
+                lockProvider.deviceDetail.displayName,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ],
@@ -86,7 +87,7 @@ Widget build(BuildContext context) {
                     onTap: () {
                       bool setLock = !lockProvider.isLocked;
                       lockProvider.setLockUnlockAction(
-                          lockProvider?.deviceDetail?.id, setLock);
+                          lockProvider.deviceDetail.id, setLock);
                     },
                   )),
               color: lockProvider.isLocked

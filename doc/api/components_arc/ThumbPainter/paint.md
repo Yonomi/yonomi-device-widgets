@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -60,9 +61,9 @@ obtain the correct rendering size.</p>
 @override
 void paint(Canvas canvas, Size size) {
   var thumbPaint = Paint()
-    ..color = Colors.red[400]
+    ..color = Colors.red[400]!
     ..style = PaintingStyle.fill;
-  canvas.drawCircle(Offset(thumbx + 5, thumby + 5), 10, thumbPaint);
+  canvas.drawCircle(Offset(thumbx! + 5, thumby! + 5), 10, thumbPaint);
 }
 ```
 

@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -23,7 +24,7 @@
 
 ```dart
 double get thermostatTargetTemperature =>
-    getThermostatTrait()?.state?.value ?? 0;
+    getThermostatTrait()?.state.value ?? 0;
 ```
 
 

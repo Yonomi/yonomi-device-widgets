@@ -1,8 +1,7 @@
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as Devices;
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart'
-    as Devices;
 
 Widget createIconWidget(List<Devices.Trait> traits) {
   return MaterialApp(
@@ -38,7 +37,7 @@ void main() {
   testWidgets('should render correct Lock trait icon when unlocked',
       (WidgetTester tester) async {
     final lockDevice = [
-      Devices.LockUnlockTrait('lockunlock', Devices.IsLocked(false))
+      Devices.LockTrait('lockunlock', Devices.IsLocked(false))
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(Icons.lock_open), findsOneWidget);
@@ -47,7 +46,7 @@ void main() {
   testWidgets('should render correct Lock trait icon when locked',
       (WidgetTester tester) async {
     final lockDevice = [
-      Devices.LockUnlockTrait('lockunlock', Devices.IsLocked(true))
+      Devices.LockTrait('lockunlock', Devices.IsLocked(true))
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(Icons.lock), findsOneWidget);

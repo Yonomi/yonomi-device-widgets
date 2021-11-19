@@ -6,13 +6,14 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
 - @[override](https://api.flutter.dev/flutter/dart-core/override-constant.html)
 
 void paint
-([Canvas](https://api.flutter.dev/flutter/dart-ui/Canvas-class.html) canvas, [Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection-class.html) textDirection})
+([Canvas](https://api.flutter.dev/flutter/dart-ui/Canvas-class.html) canvas, [Rect](https://api.flutter.dev/flutter/dart-ui/Rect-class.html) rect, {[TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection.html)? textDirection})
 
 _override_
 
@@ -30,7 +31,7 @@ the border will not need the text direction to paint itself.</p>
 
 ```dart
 @override
-void paint(Canvas canvas, Rect rect, {TextDirection textDirection}) {
+void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
   switch (side.style) {
     case BorderStyle.none:
       break;

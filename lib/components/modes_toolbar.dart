@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/ui/ring_border.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yonomi_platform_sdk/graphql/devices/thermostat/thermostat_queries.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 
 class ModesToolbar extends StatelessWidget {
-  final String deviceId;
+  final String? deviceId;
 
   ModesToolbar({this.deviceId});
 
@@ -21,8 +21,8 @@ class ModesToolbar extends StatelessWidget {
           icon: Text("A"),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.auto);
+              thermostatProvider.setThermostatMode(
+                  deviceId!, GThermostatMode.AUTO);
             }
           },
         ),
@@ -30,8 +30,8 @@ class ModesToolbar extends StatelessWidget {
           icon: Icon(Icons.ac_unit),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.cool);
+              thermostatProvider.setThermostatMode(
+                  deviceId!, GThermostatMode.COOL);
             }
           },
         ),
@@ -39,8 +39,8 @@ class ModesToolbar extends StatelessWidget {
           icon: Icon(Icons.whatshot),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.heat);
+              thermostatProvider.setThermostatMode(
+                  deviceId!, GThermostatMode.HEAT);
             }
           },
         ),
@@ -48,8 +48,8 @@ class ModesToolbar extends StatelessWidget {
           icon: Icon(Icons.eco),
           onPressed: () {
             if (deviceId != null) {
-              thermostatProvider?.setThermostatMode(
-                  deviceId, ThermostatMode.airflow);
+              thermostatProvider.setThermostatMode(
+                  deviceId!, GThermostatMode.AIRFLOW);
             }
           },
         ),
@@ -60,12 +60,11 @@ class ModesToolbar extends StatelessWidget {
 
 class ModeIconButton extends ElevatedButton {
   ModeIconButton({
-    Key key,
-    @required VoidCallback onPressed,
-    VoidCallback onLongPress,
-    @required Widget icon,
-  })  : assert(icon != null),
-        super(
+    Key? key,
+    required VoidCallback onPressed,
+    VoidCallback? onLongPress,
+    required Widget icon,
+  }) : super(
           key: key,
           onPressed: onPressed,
           onLongPress: onLongPress,
@@ -110,7 +109,7 @@ class ModeIconButton extends ElevatedButton {
 }
 
 class ModeButtonIconChild extends StatelessWidget {
-  ModeButtonIconChild({Key key, @required this.icon}) : super(key: key);
+  ModeButtonIconChild({Key? key, required this.icon}) : super(key: key);
 
   final Widget icon;
 

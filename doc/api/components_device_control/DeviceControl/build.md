@@ -6,6 +6,7 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
@@ -63,7 +64,7 @@ Widget build(BuildContext context) {
     width: 300,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: Colors.teal[200], width: 3)),
+        border: Border.all(color: Colors.teal[200]!, width: 3)),
     child: ListTile(
         dense: false,
         leading: Row(

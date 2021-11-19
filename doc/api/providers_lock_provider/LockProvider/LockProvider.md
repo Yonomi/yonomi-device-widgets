@@ -6,10 +6,11 @@
 
 
 
+    *[<Null safety>](https://dart.dev/null-safety)*
 
 
 
-LockProvider([Request](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/request_request/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../../providers_lock_provider/GetLockDetailsFunction.md) injectLockDetailsMethod})
+LockProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../../providers_lock_provider/GetLockDetailsFunction.md) getLockDetails = DevicesRepository.getLockDetails})
 
 
 
@@ -19,9 +20,10 @@ LockProvider([Request](https://pub.dev/documentation/yonomi_platform_sdk/1.0.5/r
 
 ```dart
 LockProvider(Request request, String deviceId,
-    {GetLockDetailsFunction injectLockDetailsMethod}) {
+    {GetLockDetailsFunction getLockDetails =
+        DevicesRepository.getLockDetails}) {
   _request = request;
-  getDeviceDetail(deviceId, injectLockDetailsMethod: injectLockDetailsMethod);
+  getDeviceDetail(deviceId, getLockDetails: getLockDetails);
 }
 ```
 

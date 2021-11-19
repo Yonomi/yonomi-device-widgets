@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:yonomi_platform_sdk/repository/devices/devices_repository.dart';
-import 'package:yonomi_platform_sdk/repository/devices/lock_repository.dart';
-import 'package:yonomi_platform_sdk/request/request.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef GetLockDetailsFunction = Future<Device> Function(
     Request request, String id);
@@ -14,55 +12,50 @@ class LockProvider extends ChangeNotifier {
   bool loadingAction = false;
 
   LockProvider(Request request, String deviceId,
-      {GetLockDetailsFunction injectLockDetailsMethod}) {
+      {GetLockDetailsFunction getLockDetails =
+          DevicesRepository.getLockDetails}) {
     _request = request;
-    getDeviceDetail(deviceId, injectLockDetailsMethod: injectLockDetailsMethod);
+    getDeviceDetail(deviceId, getLockDetails: getLockDetails);
   }
 
-  Request _request;
-  Device _deviceDetail;
+  late Request _request;
+  late Device _deviceDetail;
 
   Device get deviceDetail => _deviceDetail;
 
-  bool get isLocked => getLockTrait()?.state?.value ?? false;
+  bool get isLocked => getLockTrait()?.state.value ?? false;
 
-  LockUnlockTrait getLockTrait() {
-    return _deviceDetail?.traits?.first;
+  LockTrait? getLockTrait() {
+    return _deviceDetail.traits.first as LockTrait?;
   }
 
   Future<void> getDeviceDetail(String deviceId,
-      {GetLockDetailsFunction injectLockDetailsMethod}) async {
-    final getLockDetailsMethod =
-        injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
-
+      {GetLockDetailsFunction getLockDetails =
+          DevicesRepository.getLockDetails}) async {
     loadingDetail = true;
     notifyListeners();
 
-    _deviceDetail = await getLockDetailsMethod(_request, deviceId);
+    _deviceDetail = await getLockDetails(_request, deviceId);
 
     loadingDetail = false;
     notifyListeners();
   }
 
   Future<void> setLockUnlockAction(String deviceId, bool setLock,
-      {GetLockDetailsFunction injectLockDetailsMethod,
-      SendLockUnlockFunction injectSendLockUnlockMethod}) async {
-    final getLockDetailsMethod =
-        injectLockDetailsMethod ?? DevicesRepository.getLockDetails;
-    final sendLockUnlockMethod =
-        injectSendLockUnlockMethod ?? LockRepository.sendLockUnlockAction;
-
+      {GetLockDetailsFunction lockDetails = DevicesRepository.getLockDetails,
+      SendLockUnlockFunction sendLockUnlock =
+          LockRepository.sendLockUnlockAction}) async {
     if (!loadingAction) {
       loadingAction = true;
 
       notifyListeners();
 
-      await sendLockUnlockMethod(_request, deviceId, setLock);
+      await sendLockUnlock(_request, deviceId, setLock);
 
       var maxRetries = 0;
-      while (getLockTrait()?.state?.value != setLock && maxRetries < 10) {
+      while (getLockTrait()?.state.value != setLock && maxRetries < 10) {
         // Wait more time
-        _deviceDetail = await getLockDetailsMethod(_request, deviceId);
+        _deviceDetail = await lockDetails(_request, deviceId);
         await Future.delayed(Duration(milliseconds: 750));
         maxRetries++;
       }
