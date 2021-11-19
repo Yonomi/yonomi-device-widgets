@@ -15,11 +15,10 @@ typedef GetThermostatDetailsFunction = Future<Device> Function(
 
 class ThermostatProvider extends ChangeNotifier {
   ThermostatProvider(Request request, String deviceId,
-      {GetThermostatDetailsFunction injectGetThermostatDetailsMethod =
+      {GetThermostatDetailsFunction getThermostatDetails =
           DevicesRepository.getThermostatDetails}) {
     this._request = request;
-    getDeviceDetail(deviceId,
-        getThermostatDetails: injectGetThermostatDetailsMethod);
+    getDeviceDetail(deviceId, getThermostatDetails: getThermostatDetails);
   }
 
   late Request _request;

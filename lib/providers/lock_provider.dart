@@ -54,7 +54,6 @@ class LockProvider extends ChangeNotifier {
 
       var maxRetries = 0;
       while (getLockTrait()?.state.value != setLock && maxRetries < 10) {
-        print('didnt reach here===========');
         // Wait more time
         _deviceDetail = await lockDetails(_request, deviceId);
         await Future.delayed(Duration(milliseconds: 750));
