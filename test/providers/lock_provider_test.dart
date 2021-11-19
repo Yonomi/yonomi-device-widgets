@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
-import 'package:mockito/annotations.dart';
 
 import 'lock_provider_test.mocks.dart';
 
@@ -41,6 +41,35 @@ void main() {
     verify(mockLockDetailsMethod(request, 'deviceId')).called(1);
 
     verify(mockSendLockUnlockMethod(request, 'deviceId', true)).called(1);
+  });
+
+  test(
+      'setLockUnlockAction will retry calling repository method multiple times if state value has not yet changed',
+      () async {
+    Request request = Request("", {});
+    final mockLockDetailsMethod = MockGetLockDetails();
+    final device = Device(
+        'id',
+        'name',
+        'description',
+        'manufacturerName',
+        'model',
+        null,
+        GDateTime('value'),
+        GDateTime('value'),
+        [LockTrait('name', IsLocked(false))]);
+    when(mockLockDetailsMethod.call(request, "deviceId"))
+        .thenAnswer((_) => Future.value(device));
+    final mockSendLockUnlockMethod = MockSendLockUnlock();
+    LockProvider lockProvider = LockProvider(request, 'deviceId',
+        getLockDetails: mockLockDetailsMethod);
+
+    await lockProvider.setLockUnlockAction('deviceId', true,
+        lockDetails: mockLockDetailsMethod,
+        sendLockUnlock: mockSendLockUnlockMethod);
+
+    verify(mockSendLockUnlockMethod(request, 'deviceId', true)).called(1);
+    verify(mockLockDetailsMethod(request, 'deviceId')).called(11);
   });
 
   test('Calling getDeviceDetail calls repository method', () async {
