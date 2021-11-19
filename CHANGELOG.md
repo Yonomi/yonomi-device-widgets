@@ -1,3 +1,31 @@
+# [2.0.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v1.1.0...v2.0.0) (2021-11-19)
+
+
+### Bug Fixes
+
+* all tests passing ([6999c74](https://github.com/Yonomi/yonomi-device-widgets/commit/6999c743af1d9eebbd1451cc18004b9163285847))
+* build test code ([e247044](https://github.com/Yonomi/yonomi-device-widgets/commit/e24704473fcbf04a401fa86fff587c621a0354c0))
+* Fix build from any Null test error ([15edc76](https://github.com/Yonomi/yonomi-device-widgets/commit/15edc763397687bc03c789fbc3115ca88057418c))
+* Fix lock_provider_test mock method signatures and tests ([8a4b30b](https://github.com/Yonomi/yonomi-device-widgets/commit/8a4b30bea659c235dd1f6f95a88e2b9b3fbfdab4))
+* Fix lock_provider_test mock method signatures and tests ([897a7bb](https://github.com/Yonomi/yonomi-device-widgets/commit/897a7bbf60399c667197bf509680de906bf540b3))
+* Fix mock lock provider get details function signature ([37a9b72](https://github.com/Yonomi/yonomi-device-widgets/commit/37a9b725c1ac18b3f5dafb357070934b80365968))
+* flutter version ([199efaa](https://github.com/Yonomi/yonomi-device-widgets/commit/199efaa13dfb99efbe8cf275bacd1cc6b6b0db6c))
+* injection method non nullable ([ba7aeff](https://github.com/Yonomi/yonomi-device-widgets/commit/ba7aeff12393a91e5dc5a32a55429c0b7f2e9376))
+* merge fixes ([ce6b92f](https://github.com/Yonomi/yonomi-device-widgets/commit/ce6b92f318b8d56a531ed33a195645fc5dd506f2))
+* mocking lockunlocak ([a691110](https://github.com/Yonomi/yonomi-device-widgets/commit/a691110745b0fdb2509696f9433e5d8af408e50c))
+* modes_toolbar_test ([554b316](https://github.com/Yonomi/yonomi-device-widgets/commit/554b3162eb3e553d70aa0fb77fc62b0694a0de59))
+* provider tests ([0f619f4](https://github.com/Yonomi/yonomi-device-widgets/commit/0f619f459529beb36ec8a70437d0cfd34df4926e))
+* Remove bad implicit casts ([483a529](https://github.com/Yonomi/yonomi-device-widgets/commit/483a529fc918d97e34b1ce2a20a652541a3aea7e))
+* updated sdk dependency ([beed178](https://github.com/Yonomi/yonomi-device-widgets/commit/beed1789d05dfd5f2841d186074d0a55d0058c62))
+
+
+* Merge pull request #20 from Yonomi/fix_dependencies ([9261801](https://github.com/Yonomi/yonomi-device-widgets/commit/9261801d347d7587a1549d5af7cf14d179bed61c)), closes [#20](https://github.com/Yonomi/yonomi-device-widgets/issues/20)
+
+
+### BREAKING CHANGES
+
+* make codebase null-safe compatible
+
 # [1.1.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v1.0.6...v1.1.0) (2021-06-02)
 
 
