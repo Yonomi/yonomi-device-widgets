@@ -10,7 +10,7 @@ dependencies:
   provider: ^6.0.1
   flutter:
     sdk: flutter
-  yonomi_platform_sdk: 1.0.7
+  yonomi_platform_sdk: ^2.0.0
 
 dev_dependencies:
   mockito: ^5.0.15
