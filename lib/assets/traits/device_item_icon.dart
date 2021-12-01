@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -9,16 +10,11 @@ class DeviceItemIcon {
       return (determiningTrait.state.value)
           ? buildLockIcon()
           : buildUnlockIcon();
-    }
-    if (determiningTrait is ThermostatTrait) {
+    } else if (determiningTrait is ThermostatTrait) {
       return buildThermostatIcon(determiningTrait.state.value);
+    } else {
+      return UnknownItemIcon();
     }
-
-    return Icon(
-      Icons.device_unknown,
-      size: WidgetStyleConstants.defaultDeviceIconSize,
-      color: WidgetStyleConstants.deviceIconColor,
-    );
   }
 
   static Widget buildLockIcon(
