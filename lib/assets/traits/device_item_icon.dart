@@ -13,15 +13,17 @@ class DeviceItemIcon {
     if (determiningTrait is ThermostatTrait) {
       return buildThermostatIcon(determiningTrait.state.value);
     }
+
     return Icon(
       Icons.device_unknown,
-      size: 60,
+      size: WidgetStyleConstants.defaultDeviceIconSize,
       color: WidgetStyleConstants.deviceIconColor,
     );
   }
 
   static Widget buildLockIcon(
-      [double size = 60, Color color = WidgetStyleConstants.deviceIconColor]) {
+      [double size = WidgetStyleConstants.defaultDeviceIconSize,
+      Color color = WidgetStyleConstants.deviceIconColor]) {
     return Icon(
       Icons.lock,
       size: size,
@@ -30,7 +32,8 @@ class DeviceItemIcon {
   }
 
   static Widget buildUnlockIcon(
-      [double size = 60, Color color = WidgetStyleConstants.deviceIconColor]) {
+      [double size = WidgetStyleConstants.defaultDeviceIconSize,
+      Color color = WidgetStyleConstants.deviceIconColor]) {
     return Icon(
       Icons.lock_open,
       size: size,

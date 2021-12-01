@@ -21,4 +21,6 @@ class WidgetStyleConstants {
       fontSize: 19.0);
 
   static const Color defaultArcColor = Color(0xff63aa65);
+
+  static const double defaultDeviceIconSize = 60.0;
 }
