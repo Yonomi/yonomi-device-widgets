@@ -79,7 +79,7 @@ _inherited_
 
 ## Static Methods
 
-##### [buildLockIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildLockIcon.md)([[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = 60, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor]) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [buildLockIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildLockIcon.md)([[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = WidgetStyleConstants.defaultDeviceIconSize, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor]) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -97,7 +97,7 @@ _inherited_
 
 
 
-##### [buildUnlockIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildUnlockIcon.md)([[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = 60, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor]) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [buildUnlockIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildUnlockIcon.md)([[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = WidgetStyleConstants.defaultDeviceIconSize, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor]) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 

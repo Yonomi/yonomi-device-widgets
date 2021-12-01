@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../components_thermostat_widget/ThermostatWidget/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../assets_traits_unknown_item_icon/UnknownItemIcon/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,45 +60,7 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  final thermostatProvider =
-      Provider.of<ThermostatProvider>(context, listen: true);
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      Row(
-        children: <Widget>[
-          Text(
-            thermostatProvider.deviceDetail?.displayName ?? '',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-        ],
-      ),
-      Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: ModesToolbar(deviceId: thermostatProvider.deviceDetail?.id)),
-      SizedBox(
-        height: WidgetStyleConstants.defaultDeviceIconSize,
-      ),
-      Center(
-          child: Arc(
-        centerWidget: Text(
-          thermostatProvider.thermostatTargetTemperature.toInt().toString(),
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        initialValue: 20.0,
-        onFinalSetPoint: (double temperature) {
-          print('Printing temperature');
-          // thermostatProvider.setPointAction(deviceId, temperature);
-          // data.setPointAction(deviceId, temperature);
-        },
-        maxValue: 50,
-      )),
-      SizedBox(
-        height: 30,
-      ),
-      DeviceControl(onOff: true)
-    ],
-  );
+  return Icon(BootstrapIcons.box, size: _size, color: _color);
 }
 ```
 

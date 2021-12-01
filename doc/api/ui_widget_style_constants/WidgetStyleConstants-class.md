@@ -100,6 +100,15 @@ _read / write_
 
 
 
+##### [defaultDeviceIconSize](../ui_widget_style_constants/WidgetStyleConstants/defaultDeviceIconSize-constant.md) const [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+
+
+
+   
+
+
+
+
 ##### [deviceDetailIconColorActive](../ui_widget_style_constants/WidgetStyleConstants/deviceDetailIconColorActive-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
 
 
