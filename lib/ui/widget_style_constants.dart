@@ -30,4 +30,6 @@ class WidgetStyleConstants {
       BorderRadius.circular(100);
 
   static const double defaultDeviceIconSize = 60.0;
+
+  static const double defaultDeviceWidgetSize = 175.0;
 }
