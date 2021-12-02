@@ -1,7 +1,7 @@
 
 
 
-# UnknownWidget class
+# LockIcon class
 
 
 
@@ -20,7 +20,7 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- UnknownWidget
+- LockIcon
 
 
 
@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[UnknownWidget](../components_unknown_widget/UnknownWidget/UnknownWidget.md) ()
+[LockIcon](../assets_traits_lock_item_icon/LockIcon/LockIcon.md) ([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) isLocked, {dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
@@ -66,11 +66,11 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../components_unknown_widget/UnknownWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](../assets_traits_lock_item_icon/LockIcon/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../components_unknown_widget/UnknownWidget/build.md)  
+Describes the part of the user interface represented by this widget. [...](../assets_traits_lock_item_icon/LockIcon/build.md)  
 _override_
 
 
@@ -100,15 +100,6 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
 _inherited_
-
-
-
-##### [getUnknownStateIcon](../components_unknown_widget/UnknownWidget/getUnknownStateIcon.md)([UnknownProvider](../providers_unknown_provider/UnknownProvider-class.md) provider) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
 
 
 

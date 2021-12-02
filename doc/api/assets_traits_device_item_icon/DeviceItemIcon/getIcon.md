@@ -27,11 +27,9 @@
 static Widget getIcon(List<Trait> traits) {
   Trait determiningTrait = traits[0];
   if (determiningTrait is LockTrait) {
-    return (determiningTrait.state.value)
-        ? buildLockIcon()
-        : buildUnlockIcon();
+    return LockIcon(determiningTrait.state.value);
   } else if (determiningTrait is ThermostatTrait) {
-    return buildThermostatIcon(determiningTrait.state.value);
+    return ThermostatIcon(thermostatState: determiningTrait.state.value);
   } else {
     return UnknownItemIcon();
   }

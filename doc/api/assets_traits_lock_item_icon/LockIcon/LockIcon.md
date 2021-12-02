@@ -1,7 +1,7 @@
 
 
 
-# UnknownItemIcon constructor
+# LockIcon constructor
 
 
 
@@ -10,7 +10,7 @@
 
 
 
-UnknownItemIcon({dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+LockIcon([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) isLocked, {dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
 
 
@@ -19,13 +19,14 @@ UnknownItemIcon({dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dyna
 ## Implementation
 
 ```dart
-UnknownItemIcon(
+LockIcon(bool isLocked,
     {size = WidgetStyleConstants.defaultDeviceIconSize,
     color = WidgetStyleConstants.deviceIconColor,
     Key? key})
     : super(key: key) {
   this._size = WidgetStyleConstants.defaultDeviceIconSize;
   this._color = WidgetStyleConstants.deviceIconColor;
+  this._locked = isLocked;
 }
 ```
 

@@ -27,8 +27,8 @@
 static Widget buildUnlockIcon(
     [double size = WidgetStyleConstants.defaultDeviceIconSize,
     Color color = WidgetStyleConstants.deviceIconColor]) {
-  return Icon(
-    Icons.lock_open,
+  return LockIcon(
+    false,
     size: size,
     color: color,
   );

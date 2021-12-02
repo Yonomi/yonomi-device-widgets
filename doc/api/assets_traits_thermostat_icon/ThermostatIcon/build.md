@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../components_unknown_widget/UnknownWidget/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../assets_traits_thermostat_icon/ThermostatIcon/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,36 +60,15 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  final provider = Provider.of<UnknownProvider>(context, listen: true);
-
-  return provider.loadingDetail
-      ? Center(child: CircularProgressIndicator())
-      : Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-          Row(children: <Widget>[
-            Text(
-              provider.deviceDetails.displayName,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ]),
-          SizedBox(
-            height: 80,
-          ),
-          Center(
-              child: Arc(
-                  showThumb: false,
-                  centerWidget: SizedBox(
-                      width: WidgetStyleConstants.defaultDeviceWidgetSize,
-                      height: WidgetStyleConstants.defaultDeviceWidgetSize,
-                      child: GestureDetector(
-                        child: getUnknownStateIcon(provider),
-                        onTap: () {
-                          provider.performAction(provider.deviceDetails.id);
-                        },
-                      )),
-                  initialValue: 0,
-                  maxValue: 1.0,
-                  onFinalSetPoint: (double value) {}))
-        ]);
+  return Container(
+    decoration: _decoration,
+    child: Center(
+      child: Text(
+        _thermostatState,
+        style: _textStyle,
+      ),
+    ),
+  );
 }
 ```
 

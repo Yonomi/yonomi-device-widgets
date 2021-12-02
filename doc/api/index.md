@@ -60,7 +60,15 @@ open coverage/html/index.html
  
 
 
+##### [device_provider](providers_device_provider/providers_device_provider-library.md)
+ 
+
+
 ##### [lock](devices_lock/devices_lock-library.md)
+ 
+
+
+##### [lock_item_icon](assets_traits_lock_item_icon/assets_traits_lock_item_icon-library.md)
  
 
 
@@ -84,6 +92,10 @@ open coverage/html/index.html
  
 
 
+##### [thermostat_icon](assets_traits_thermostat_icon/assets_traits_thermostat_icon-library.md)
+ 
+
+
 ##### [thermostat_provider](providers_thermostat_provider/providers_thermostat_provider-library.md)
  
 
@@ -93,6 +105,10 @@ open coverage/html/index.html
 
 
 ##### [unknown_item_icon](assets_traits_unknown_item_icon/assets_traits_unknown_item_icon-library.md)
+ 
+
+
+##### [unknown_provider](providers_unknown_provider/providers_unknown_provider-library.md)
  
 
 

@@ -80,8 +80,8 @@ Widget build(BuildContext context) {
             child: Arc(
               showThumb: false,
               centerWidget: SizedBox(
-                  width: 175,
-                  height: 175,
+                  width: WidgetStyleConstants.defaultDeviceWidgetSize,
+                  height: WidgetStyleConstants.defaultDeviceWidgetSize,
                   child: GestureDetector(
                     child: getLockStateIcon(lockProvider),
                     onTap: () {
