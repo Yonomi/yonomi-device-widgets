@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
+import 'package:yonomi_device_widgets/assets/traits/thermostat_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -7,11 +9,9 @@ class DeviceItemIcon {
   static Widget getIcon(List<Trait> traits) {
     Trait determiningTrait = traits[0];
     if (determiningTrait is LockTrait) {
-      return (determiningTrait.state.value)
-          ? buildLockIcon()
-          : buildUnlockIcon();
+      return LockIcon(determiningTrait.state.value);
     } else if (determiningTrait is ThermostatTrait) {
-      return buildThermostatIcon(determiningTrait.state.value);
+      return ThermostatIcon(thermostatState: determiningTrait.state.value);
     } else {
       return UnknownItemIcon();
     }
@@ -20,8 +20,8 @@ class DeviceItemIcon {
   static Widget buildLockIcon(
       [double size = WidgetStyleConstants.defaultDeviceIconSize,
       Color color = WidgetStyleConstants.deviceIconColor]) {
-    return Icon(
-      Icons.lock,
+    return LockIcon(
+      true,
       size: size,
       color: color,
     );
@@ -30,26 +30,14 @@ class DeviceItemIcon {
   static Widget buildUnlockIcon(
       [double size = WidgetStyleConstants.defaultDeviceIconSize,
       Color color = WidgetStyleConstants.deviceIconColor]) {
-    return Icon(
-      Icons.lock_open,
+    return LockIcon(
+      false,
       size: size,
       color: color,
     );
   }
 
   static Widget buildThermostatIcon(double? thermostatState) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          border: Border.all(width: 3, color: Colors.black)),
-      child: Center(
-        child: Text(
-          (thermostatState != null)
-              ? thermostatState.round().toString()
-              : 'N/A',
-          style: WidgetStyleConstants.deviceItemTextPrimaryState,
-        ),
-      ),
-    );
+    return ThermostatIcon(thermostatState: thermostatState);
   }
 }
