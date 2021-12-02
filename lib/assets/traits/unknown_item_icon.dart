@@ -7,9 +7,9 @@ class UnknownItemIcon extends StatelessWidget {
   late final Color _color;
 
   UnknownItemIcon(
-      [size = WidgetStyleConstants.defaultDeviceIconSize,
+      {size = WidgetStyleConstants.defaultDeviceIconSize,
       color = WidgetStyleConstants.deviceIconColor,
-      Key? key])
+      Key? key})
       : super(key: key) {
     this._size = WidgetStyleConstants.defaultDeviceIconSize;
     this._color = WidgetStyleConstants.deviceIconColor;
