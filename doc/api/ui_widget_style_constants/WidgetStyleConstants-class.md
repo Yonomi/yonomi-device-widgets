@@ -145,6 +145,24 @@ _read / write_
 
 
 
+##### [switchActiveDefaultColor](../ui_widget_style_constants/WidgetStyleConstants/switchActiveDefaultColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
+##### [switchInactiveDefaultColor](../ui_widget_style_constants/WidgetStyleConstants/switchInactiveDefaultColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
 ##### [textColorState](../ui_widget_style_constants/WidgetStyleConstants/textColorState-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
 
 

@@ -64,7 +64,10 @@ Widget build(BuildContext context) {
 
   return lockProvider.loadingDetail
       ? Center(child: CircularProgressIndicator())
-      : Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      : Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
           Row(
             children: <Widget>[
               Text(
@@ -84,11 +87,7 @@ Widget build(BuildContext context) {
                   height: 175,
                   child: GestureDetector(
                     child: getLockStateIcon(lockProvider),
-                    onTap: () {
-                      bool setLock = !lockProvider.isLocked;
-                      lockProvider.setLockUnlockAction(
-                          lockProvider.deviceDetail.id, setLock);
-                    },
+                    onTap: () => _lockTap(lockProvider),
                   )),
               color: lockProvider.isLocked
                   ? WidgetStyleConstants.deviceDetailIconColorActive
@@ -98,7 +97,18 @@ Widget build(BuildContext context) {
               onFinalSetPoint: (double value) {},
             ),
           ),
-        ]);
+          SizedBox(
+                height: 80,
+              ),
+              CupertinoSwitch(
+                onChanged: (bool value) {
+                  _lockTap(lockProvider);
+                },
+                value: lockProvider.isLocked,
+              ),
+            ],
+          ),
+        );
 }
 ```
 
