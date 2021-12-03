@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
@@ -12,7 +13,10 @@ class LockWidget extends StatelessWidget {
 
     return lockProvider.loadingDetail
         ? Center(child: CircularProgressIndicator())
-        : Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        : Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
             Row(
               children: <Widget>[
                 Text(
@@ -32,11 +36,7 @@ class LockWidget extends StatelessWidget {
                     height: 175,
                     child: GestureDetector(
                       child: getLockStateIcon(lockProvider),
-                      onTap: () {
-                        bool setLock = !lockProvider.isLocked;
-                        lockProvider.setLockUnlockAction(
-                            lockProvider.deviceDetail.id, setLock);
-                      },
+                      onTap: () => _lockTap(lockProvider),
                     )),
                 color: lockProvider.isLocked
                     ? WidgetStyleConstants.deviceDetailIconColorActive
@@ -46,7 +46,18 @@ class LockWidget extends StatelessWidget {
                 onFinalSetPoint: (double value) {},
               ),
             ),
-          ]);
+            SizedBox(
+                  height: 80,
+                ),
+                CupertinoSwitch(
+                  onChanged: (bool value) {
+                    _lockTap(lockProvider);
+                  },
+                  value: lockProvider.isLocked,
+                ),
+              ],
+            ),
+          );
   }
 
   Widget getLockStateIcon(LockProvider lockProvider) {
@@ -57,5 +68,10 @@ class LockWidget extends StatelessWidget {
                 175, WidgetStyleConstants.deviceDetailIconColorActive)
             : DeviceItemIcon.buildUnlockIcon(
                 175, WidgetStyleConstants.deviceDetailIconColorInactive);
+  }
+
+  void _lockTap(LockProvider provider) {
+    bool setLock = !provider.isLocked;
+    provider.setLockUnlockAction(provider.deviceDetail.id, setLock);
   }
 }

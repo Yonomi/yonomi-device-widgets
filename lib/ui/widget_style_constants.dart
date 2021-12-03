@@ -15,6 +15,10 @@ class WidgetStyleConstants {
 
   static const Color textColorState = Color(0xFF00B3A6);
 
+  static const Color switchActiveDefaultColor = Color(0x01A299);
+
+  static const Color switchInactiveDefaultColor = Color(0xC8D0D8);
+
   static TextStyle deviceItemTextPrimaryState = TextStyle(
       fontWeight: FontWeight.w900,
       color: WidgetStyleConstants.textColorState,
