@@ -34,11 +34,7 @@ static Widget getIcon(List<Trait> traits) {
   if (determiningTrait is ThermostatTrait) {
     return buildThermostatIcon(determiningTrait.state.value);
   }
-  return Icon(
-    Icons.device_unknown,
-    size: 60,
-    color: WidgetStyleConstants.deviceIconColor,
-  );
+  return buildUnknownIcon();
 }
 ```
 
