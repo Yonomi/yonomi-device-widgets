@@ -13,10 +13,15 @@ class DeviceItemIcon {
     if (determiningTrait is ThermostatTrait) {
       return buildThermostatIcon(determiningTrait.state.value);
     }
+    return buildUnknownIcon();
+  }
+
+  static Widget buildUnknownIcon(
+      [double size = 60, Color color = WidgetStyleConstants.deviceIconColor]) {
     return Icon(
       Icons.device_unknown,
-      size: 60,
-      color: WidgetStyleConstants.deviceIconColor,
+      size: size,
+      color: color,
     );
   }
 
