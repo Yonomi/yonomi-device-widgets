@@ -11,7 +11,7 @@ class DeviceItemIcon {
     if (determiningTrait is LockTrait) {
       return LockIcon(determiningTrait.state.value);
     } else if (determiningTrait is ThermostatTrait) {
-      return ThermostatIcon(thermostatState: determiningTrait.state.value);
+      return buildThermostatIcon(determiningTrait.state.value);
     } else {
       return UnknownItemIcon();
     }
