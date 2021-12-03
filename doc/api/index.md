@@ -60,10 +60,6 @@ open coverage/html/index.html
  
 
 
-##### [device_provider](providers_device_provider/providers_device_provider-library.md)
- 
-
-
 ##### [lock](devices_lock/devices_lock-library.md)
  
 
@@ -105,14 +101,6 @@ open coverage/html/index.html
 
 
 ##### [unknown_item_icon](assets_traits_unknown_item_icon/assets_traits_unknown_item_icon-library.md)
- 
-
-
-##### [unknown_provider](providers_unknown_provider/providers_unknown_provider-library.md)
- 
-
-
-##### [unknown_widget](components_unknown_widget/components_unknown_widget-library.md)
  
 
 
