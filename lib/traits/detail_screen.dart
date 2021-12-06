@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
+import 'package:yonomi_device_widgets/traits/lock.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as yoSdk;
 
 class DetailScreen extends StatelessWidget {
   final Request request;
@@ -11,10 +12,42 @@ class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key, required this.request, required this.deviceId})
       : super(key: key);
 
+  Widget createWidget(String name) {
+    switch (name) {
+      case 'lock':
+        return Consumer<LockProvider>(builder: (_, lockProvider, child) {
+          return LockWidget();
+        });
+      default:
+        return Text(name);
+    }
+  }
+
+/*
+return MultiProvider(
+      providers: [
+        Provider<LoginProvider>.value(value: loginProvider),
+        ChangeNotifierProvider<DevicesProvider>(
+          create: (context) => DevicesProvider(loginProvider.request),
+        ),
+        ChangeNotifierProvider(
+            create: (context) => UserInfoProvider(loginProvider.request)),
+      ],
+      child: YonomiHomePage(
+        title: StringConstants.app_title,
+      ),
+    );
+*/
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => TraitBasedDeviceNotifier(request, deviceId),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<TraitBasedDeviceNotifier>(
+          create: (context) => TraitBasedDeviceNotifier(request, deviceId),
+        ),
+        ChangeNotifierProvider(
+            create: (context) => LockProvider(request, deviceId)),
+      ],
       child: Consumer<TraitBasedDeviceNotifier>(
           builder: (_, traitBasedDeviceNotifier, child) {
         if (traitBasedDeviceNotifier.deviceDetail == null) {
@@ -24,7 +57,7 @@ class DetailScreen extends StatelessWidget {
               children:
                   traitBasedDeviceNotifier.deviceDetail!.traits.map((element) {
             return Row(
-              children: [Text(element.name)],
+              children: [createWidget(element.name)],
             );
           }).toList());
         }

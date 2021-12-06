@@ -13,50 +13,48 @@ class LockWidget extends StatelessWidget {
 
     return lockProvider.loadingDetail
         ? Center(child: CircularProgressIndicator())
-        : Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  children: <Widget>[
-                    Text(
-                      lockProvider.deviceDetail.displayName,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 80,
-                ),
-                Center(
-                  child: Arc(
-                    showThumb: false,
-                    centerWidget: SizedBox(
-                        width: 175,
-                        height: 175,
-                        child: GestureDetector(
-                          child: getLockStateIcon(lockProvider),
-                          onTap: () => _lockTap(lockProvider),
-                        )),
-                    color: lockProvider.isLocked
-                        ? WidgetStyleConstants.deviceDetailIconColorActive
-                        : WidgetStyleConstants.deviceDetailIconColorInactive,
-                    initialValue: 0.0,
-                    maxValue: 1.0,
-                    onFinalSetPoint: (double value) {},
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                children: <Widget>[
+                  Text(
+                    lockProvider.deviceDetail.displayName,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
+                ],
+              ),
+              SizedBox(
+                height: 80,
+              ),
+              Center(
+                child: Arc(
+                  showThumb: false,
+                  centerWidget: SizedBox(
+                      width: 175,
+                      height: 175,
+                      child: GestureDetector(
+                        child: getLockStateIcon(lockProvider),
+                        onTap: () => _lockTap(lockProvider),
+                      )),
+                  color: lockProvider.isLocked
+                      ? WidgetStyleConstants.deviceDetailIconColorActive
+                      : WidgetStyleConstants.deviceDetailIconColorInactive,
+                  initialValue: 0.0,
+                  maxValue: 1.0,
+                  onFinalSetPoint: (double value) {},
                 ),
-                SizedBox(
-                  height: 80,
-                ),
-                CupertinoSwitch(
-                  onChanged: (bool value) {
-                    _lockTap(lockProvider);
-                  },
-                  value: lockProvider.isLocked,
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 80,
+              ),
+              CupertinoSwitch(
+                onChanged: (bool value) {
+                  _lockTap(lockProvider);
+                },
+                value: lockProvider.isLocked,
+              ),
+            ],
           );
   }
 
