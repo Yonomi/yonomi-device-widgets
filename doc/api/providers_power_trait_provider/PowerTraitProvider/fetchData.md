@@ -12,7 +12,7 @@
 
 
 [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?> fetchData
-({[GetDetailsFunction](../../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getDeviceDetails})
+({[GetDeviceDetailsMethod](../../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDeviceDetails = DevicesRepository.getDeviceDetails})
 
 
 
@@ -25,12 +25,11 @@
 
 ```dart
 Future<Device?> fetchData(
-    {GetDetailsFunction getDetails =
+    {GetDeviceDetailsMethod getDeviceDetails =
         DevicesRepository.getDeviceDetails}) async {
   setLoading = true;
 
-  this.deviceDetail = await getDetails(_request, _deviceId);
-  setLoading = false;
+  this.deviceDetail = await getDeviceDetails(_request, _deviceId);
 
   return _deviceDetail;
 }

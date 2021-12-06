@@ -63,12 +63,12 @@ _read-only, inherited_
 
 
 
-##### [trait](../devices_trait_based_device_screen/PowerTraitWidget/trait.md) &#8596; [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)
+##### [trait](../devices_trait_based_device_screen/PowerTraitWidget/trait.md) &#8594; [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)
 
 
 
    
-_read / write_
+_final_
 
 
 

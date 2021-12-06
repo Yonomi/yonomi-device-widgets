@@ -30,20 +30,20 @@ Future<void> setLockUnlockAction(String deviceId, bool setLock,
         LockRepository.sendLockUnlockAction}) async {
   if (!loadingAction) {
     loadingAction = true;
-
     notifyListeners();
 
     await sendLockUnlock(_request, deviceId, setLock);
 
-    var maxRetries = 0;
-    while (getLockTrait().state.value != setLock && maxRetries < 10) {
+    int numRetries = 0;
+    while (
+        getLockTrait()?.state.value != setLock && numRetries < _MAX_RETRIES) {
       // Wait more time
       _deviceDetail = await lockDetails(_request, deviceId);
       await Future.delayed(Duration(milliseconds: 750));
-      maxRetries++;
+      numRetries++;
     }
-    loadingAction = false;
 
+    loadingAction = false;
     notifyListeners();
   }
 }

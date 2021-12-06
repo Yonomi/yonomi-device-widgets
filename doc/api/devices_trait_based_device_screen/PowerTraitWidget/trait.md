@@ -11,7 +11,7 @@
 
 [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait
   
-_read / write_
+_final_
 
 
 
@@ -21,7 +21,7 @@ _read / write_
 ## Implementation
 
 ```dart
-Trait trait;
+final Trait trait;
 
 
 ```
