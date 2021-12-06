@@ -27,8 +27,6 @@
 static Widget buildUnlockIcon(
     [double size = WidgetStyleConstants.defaultDeviceIconSize,
     Color color = WidgetStyleConstants.deviceIconColor]) {
-  print('REACHED BUILD UNLOCK ICON');
-
   return LockIcon(
     false,
     size: size,
