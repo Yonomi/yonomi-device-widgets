@@ -28,8 +28,8 @@ class LockWidget extends StatelessWidget {
               child: Arc(
                 showThumb: false,
                 centerWidget: SizedBox(
-                    width: 175,
-                    height: 175,
+                    width: WidgetStyleConstants.defaultDeviceWidgetSize,
+                    height: WidgetStyleConstants.defaultDeviceWidgetSize,
                     child: GestureDetector(
                       child: getLockStateIcon(lockProvider),
                       onTap: () {
@@ -54,8 +54,10 @@ class LockWidget extends StatelessWidget {
         ? Center(child: CircularProgressIndicator())
         : (lockProvider.isLocked)
             ? DeviceItemIcon.buildLockIcon(
-                175, WidgetStyleConstants.deviceDetailIconColorActive)
+                WidgetStyleConstants.defaultDeviceWidgetSize,
+                WidgetStyleConstants.deviceDetailIconColorActive)
             : DeviceItemIcon.buildUnlockIcon(
-                175, WidgetStyleConstants.deviceDetailIconColorInactive);
+                WidgetStyleConstants.defaultDeviceWidgetSize,
+                WidgetStyleConstants.deviceDetailIconColorInactive);
   }
 }

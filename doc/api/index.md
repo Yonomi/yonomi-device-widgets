@@ -68,7 +68,7 @@ open coverage/html/index.html
  
 
 
-##### [lock](traits_lock/traits_lock-library.md)
+##### [lock_item_icon](assets_traits_lock_item_icon/assets_traits_lock_item_icon-library.md)
  
 
 
@@ -92,6 +92,10 @@ open coverage/html/index.html
  
 
 
+##### [thermostat_icon](assets_traits_thermostat_icon/assets_traits_thermostat_icon-library.md)
+ 
+
+
 ##### [thermostat_provider](providers_thermostat_provider/providers_thermostat_provider-library.md)
  
 
@@ -100,7 +104,7 @@ open coverage/html/index.html
  
 
 
-##### [trait_based_device_notifier](providers_trait_based_device_notifier/providers_trait_based_device_notifier-library.md)
+##### [unknown_item_icon](assets_traits_unknown_item_icon/assets_traits_unknown_item_icon-library.md)
  
 
 

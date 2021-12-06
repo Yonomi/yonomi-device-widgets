@@ -77,7 +77,7 @@ Widget build(BuildContext context) {
           padding: const EdgeInsets.only(top: 16.0),
           child: ModesToolbar(deviceId: thermostatProvider.deviceDetail?.id)),
       SizedBox(
-        height: 60,
+        height: WidgetStyleConstants.defaultDeviceIconSize,
       ),
       Center(
           child: Arc(

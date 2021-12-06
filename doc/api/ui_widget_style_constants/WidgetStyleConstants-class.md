@@ -78,6 +78,15 @@ _inherited_
 
 ## Static Properties
 
+##### [defaultCircularBorderRadius](../ui_widget_style_constants/WidgetStyleConstants/defaultCircularBorderRadius.md) &#8594; [BorderRadius](https://api.flutter.dev/flutter/painting/BorderRadius-class.html)
+
+
+
+   
+_final_
+
+
+
 ##### [deviceItemTextPrimaryState](../ui_widget_style_constants/WidgetStyleConstants/deviceItemTextPrimaryState.md) &#8596; [TextStyle](https://api.flutter.dev/flutter/painting/TextStyle-class.html)
 
 
@@ -92,6 +101,42 @@ _read / write_
 ## Constants
 
 ##### [defaultArcColor](../ui_widget_style_constants/WidgetStyleConstants/defaultArcColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
+##### [defaultBorderColor](../ui_widget_style_constants/WidgetStyleConstants/defaultBorderColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
+##### [defaultBorderWidth](../ui_widget_style_constants/WidgetStyleConstants/defaultBorderWidth-constant.md) const [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+
+
+
+   
+
+
+
+
+##### [defaultDeviceIconSize](../ui_widget_style_constants/WidgetStyleConstants/defaultDeviceIconSize-constant.md) const [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+
+
+
+   
+
+
+
+
+##### [defaultDeviceWidgetSize](../ui_widget_style_constants/WidgetStyleConstants/defaultDeviceWidgetSize-constant.md) const [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
 
 
 

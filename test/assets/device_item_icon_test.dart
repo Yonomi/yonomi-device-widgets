@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as Devices;
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,6 @@ void main() {
       (WidgetTester tester) async {
     final unknownDevice = [UnknownTrait('unknown', Devices.IsLocked(true))];
     await tester.pumpWidget(createIconWidget(unknownDevice));
-    expect(find.byIcon(Icons.device_unknown), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.box), findsOneWidget);
   });
 }

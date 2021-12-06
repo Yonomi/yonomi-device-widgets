@@ -4,6 +4,7 @@ import 'package:yonomi_device_widgets/components/arc.dart';
 import 'package:yonomi_device_widgets/components/device_control.dart';
 import 'package:yonomi_device_widgets/components/modes_toolbar.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class ThermostatWidget extends StatelessWidget {
   @override
@@ -25,7 +26,7 @@ class ThermostatWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16.0),
             child: ModesToolbar(deviceId: thermostatProvider.deviceDetail?.id)),
         SizedBox(
-          height: 60,
+          height: WidgetStyleConstants.defaultDeviceIconSize,
         ),
         Center(
             child: Arc(

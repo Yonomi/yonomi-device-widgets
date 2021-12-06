@@ -130,7 +130,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [getLockTrait](../providers_lock_provider/LockProvider/getLockTrait.md)() [LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)?
+##### [getLockTrait](../providers_lock_provider/LockProvider/getLockTrait.md)() [LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)
 
 
 
