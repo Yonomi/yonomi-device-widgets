@@ -27,7 +27,7 @@
 
 ## Constructors
 
-[TraitBasedDeviceNotifier](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/TraitBasedDeviceNotifier.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDetailsFunction](../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getLockDetails})
+[TraitBasedDeviceNotifier](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/TraitBasedDeviceNotifier.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDetailsFunction](../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
@@ -103,7 +103,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/fetchData.md)({[GetDetailsFunction](../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getLockDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?>
+##### [fetchData](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/fetchData.md)({[GetDetailsFunction](../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?>
 
 
 

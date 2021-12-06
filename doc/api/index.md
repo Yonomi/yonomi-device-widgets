@@ -52,6 +52,10 @@ open coverage/html/index.html
  
 
 
+##### [detail_screen](traits_detail_screen/traits_detail_screen-library.md)
+ 
+
+
 ##### [device_control](components_device_control/components_device_control-library.md)
  
 
@@ -61,6 +65,10 @@ open coverage/html/index.html
 
 
 ##### [lock](devices_lock/devices_lock-library.md)
+ 
+
+
+##### [lock](traits_lock/traits_lock-library.md)
  
 
 

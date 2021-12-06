@@ -10,7 +10,7 @@
 
 
 
-TraitBasedDeviceNotifier([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDetailsFunction](../../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getLockDetails})
+TraitBasedDeviceNotifier([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDetailsFunction](../../providers_trait_based_device_notifier/GetDetailsFunction.md) getDetails = DevicesRepository.getDeviceDetails})
 
 
 
@@ -20,7 +20,7 @@ TraitBasedDeviceNotifier([Request](https://yonomi.co/yonomi-sdk/Request-class.ht
 
 ```dart
 TraitBasedDeviceNotifier(Request request, String deviceId,
-    {GetDetailsFunction getDetails = DevicesRepository.getLockDetails}) {
+    {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails}) {
   _request = request;
   _deviceId = deviceId;
   fetchData(getDetails: getDetails);
