@@ -64,6 +64,10 @@ open coverage/html/index.html
  
 
 
+##### [lock](traits_lock/traits_lock-library.md)
+ 
+
+
 ##### [lock](devices_lock/devices_lock-library.md)
  
 
@@ -101,6 +105,10 @@ open coverage/html/index.html
 
 
 ##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
+ 
+
+
+##### [trait_based_device_notifier](providers_trait_based_device_notifier/providers_trait_based_device_notifier-library.md)
  
 
 
