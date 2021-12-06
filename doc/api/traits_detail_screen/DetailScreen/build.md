@@ -60,8 +60,14 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return ChangeNotifierProvider(
-    create: (_) => TraitBasedDeviceNotifier(request, deviceId),
+  return MultiProvider(
+    providers: [
+      ChangeNotifierProvider<TraitBasedDeviceNotifier>(
+        create: (context) => TraitBasedDeviceNotifier(request, deviceId),
+      ),
+      ChangeNotifierProvider(
+          create: (context) => LockProvider(request, deviceId)),
+    ],
     child: Consumer<TraitBasedDeviceNotifier>(
         builder: (_, traitBasedDeviceNotifier, child) {
       if (traitBasedDeviceNotifier.deviceDetail == null) {
@@ -71,7 +77,7 @@ Widget build(BuildContext context) {
             children:
                 traitBasedDeviceNotifier.deviceDetail!.traits.map((element) {
           return Row(
-            children: [Text(element.name)],
+            children: [createWidget(element.name)],
           );
         }).toList());
       }

@@ -102,6 +102,15 @@ _inherited_
 
 
 
+##### [createWidget](../traits_detail_screen/DetailScreen/createWidget.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+
+
+
+   
+
+
+
+
 ##### [debugDescribeChildren](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)>
 
 
