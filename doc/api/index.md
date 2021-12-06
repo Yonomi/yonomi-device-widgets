@@ -104,10 +104,6 @@ open coverage/html/index.html
  
 
 
-##### [trait_based_device_screen](devices_trait_based_device_screen/devices_trait_based_device_screen-library.md)
- 
-
-
 ##### [widget_style_constants](ui_widget_style_constants/ui_widget_style_constants-library.md)
  
 
