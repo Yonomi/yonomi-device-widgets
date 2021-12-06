@@ -21,7 +21,7 @@ class TraitBasedDeviceNotifier extends ChangeNotifier {
   }
 
   TraitBasedDeviceNotifier(Request request, String deviceId,
-      {GetDetailsFunction getDetails = DevicesRepository.getLockDetails}) {
+      {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails}) {
     _request = request;
     _deviceId = deviceId;
     fetchData(getDetails: getDetails);
@@ -29,12 +29,12 @@ class TraitBasedDeviceNotifier extends ChangeNotifier {
 
   Future<Device?> fetchData(
       {GetDetailsFunction getDetails =
-          DevicesRepository.getLockDetails}) async {
+          DevicesRepository.getDeviceDetails}) async {
     loadingDetail = true;
     notifyListeners();
 
     _deviceDetail = await getDetails(_request, _deviceId);
-
+    print(_deviceDetail!.traits.length);
     loadingDetail = false;
     notifyListeners();
 
