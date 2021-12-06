@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -67,7 +68,7 @@ void main() {
 
     await tester.pumpWidget(getAppWithLockWidget());
 
-    expect(find.byIcon(Icons.lock_open), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.unlock), findsOneWidget);
   });
 
   testWidgets('Lock Widget shows Locked Icon when state is Locked',
@@ -79,7 +80,7 @@ void main() {
 
     await tester.pumpWidget(getAppWithLockWidget());
 
-    expect(find.byIcon(Icons.lock), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.lock), findsOneWidget);
   });
 
   testWidgets('Tapping on center Lock icon should run setLockUnlockAction',
@@ -89,7 +90,7 @@ void main() {
     when(mockProvider.isLocked).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 
-    await tester.tap(find.byIcon(Icons.lock));
+    await tester.tap(find.byIcon(BootstrapIcons.lock));
 
     verify(mockProvider.setLockUnlockAction(any, any)).called(1);
   });

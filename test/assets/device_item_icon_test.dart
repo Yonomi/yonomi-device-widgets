@@ -41,7 +41,7 @@ void main() {
       Devices.LockTrait('lockunlock', Devices.IsLocked(false))
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
-    expect(find.byIcon(Icons.lock_open), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.unlock), findsOneWidget);
   });
 
   testWidgets('should render correct Lock trait icon when locked',
@@ -50,7 +50,7 @@ void main() {
       Devices.LockTrait('lockunlock', Devices.IsLocked(true))
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
-    expect(find.byIcon(Icons.lock), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.lock), findsOneWidget);
   });
 
   testWidgets('should render unknown icon if trait not found',
