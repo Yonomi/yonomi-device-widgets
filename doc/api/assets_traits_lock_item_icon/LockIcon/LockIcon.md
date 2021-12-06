@@ -24,8 +24,8 @@ LockIcon(bool isLocked,
     color = WidgetStyleConstants.deviceIconColor,
     Key? key})
     : super(key: key) {
-  this._size = WidgetStyleConstants.defaultDeviceIconSize;
-  this._color = WidgetStyleConstants.deviceIconColor;
+  this._size = size;
+  this._color = color;
   this._locked = isLocked;
 }
 ```

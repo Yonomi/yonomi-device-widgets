@@ -27,6 +27,7 @@
 static Widget buildLockIcon(
     [double size = WidgetStyleConstants.defaultDeviceIconSize,
     Color color = WidgetStyleConstants.deviceIconColor]) {
+  print('REACHED BUILD LOCK ICON');
   return LockIcon(
     true,
     size: size,

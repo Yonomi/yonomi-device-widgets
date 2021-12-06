@@ -76,28 +76,26 @@ Widget build(BuildContext context) {
               ],
             ),
             SizedBox(
-              height: 80,
+              height: 10,
             ),
             Center(
-              child: Arc(
-                showThumb: false,
-                centerWidget: SizedBox(
-                    width: 175,
-                    height: 175,
-                    child: GestureDetector(
-                      child: getLockStateIcon(lockProvider),
-                      onTap: () => _lockTap(lockProvider),
-                    )),
-                color: lockProvider.isLocked
-                    ? WidgetStyleConstants.deviceDetailIconColorActive
-                    : WidgetStyleConstants.deviceDetailIconColorInactive,
-                initialValue: 0.0,
-                maxValue: 1.0,
-                onFinalSetPoint: (double value) {},
-              ),
+              child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: lockProvider.loadingDetail
+                      ? CircularProgressIndicator()
+                      : lockProvider.isLocked
+                          ? Icon(
+                              BootstrapIcons.lock,
+                              size: 100,
+                            )
+                          : Icon(
+                              BootstrapIcons.unlock,
+                              size: 100,
+                            )),
             ),
             SizedBox(
-              height: 80,
+              height: 10,
             ),
             CupertinoSwitch(
               onChanged: (bool value) {

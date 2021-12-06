@@ -60,7 +60,7 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return Icon(_locked ? Icons.lock : Icons.lock_open,
+  return Icon(_locked ? BootstrapIcons.lock : BootstrapIcons.unlock,
       size: _size, color: _color);
 }
 ```

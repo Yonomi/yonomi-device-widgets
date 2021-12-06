@@ -28,10 +28,27 @@ Widget createWidget(String name) {
   switch (name) {
     case 'lock':
       return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-        return LockWidget();
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: LockWidget(),
+        );
       });
     default:
-      return Text(name);
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Icon(
+              BootstrapIcons.box,
+              size: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Unknown trait', style: TextStyle(fontSize: 20)),
+            ),
+          ],
+        ),
+      );
   }
 }
 ```
