@@ -20,6 +20,7 @@ class DeviceItemIcon {
   static Widget buildLockIcon(
       [double size = WidgetStyleConstants.defaultDeviceIconSize,
       Color color = WidgetStyleConstants.deviceIconColor]) {
+    print('REACHED BUILD LOCK ICON');
     return LockIcon(
       true,
       size: size,
@@ -30,6 +31,8 @@ class DeviceItemIcon {
   static Widget buildUnlockIcon(
       [double size = WidgetStyleConstants.defaultDeviceIconSize,
       Color color = WidgetStyleConstants.deviceIconColor]) {
+    print('REACHED BUILD UNLOCK ICON');
+
     return LockIcon(
       false,
       size: size,

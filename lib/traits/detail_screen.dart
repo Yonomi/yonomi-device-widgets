@@ -1,5 +1,7 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
@@ -16,10 +18,27 @@ class DetailScreen extends StatelessWidget {
     switch (name) {
       case 'lock':
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return LockWidget();
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: LockWidget(),
+          );
         });
       default:
-        return Text(name);
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Icon(
+                BootstrapIcons.box,
+                size: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Unknown trait', style: TextStyle(fontSize: 20)),
+              ),
+            ],
+          ),
+        );
     }
   }
 
@@ -33,20 +52,24 @@ class DetailScreen extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => LockProvider(request, deviceId)),
       ],
-      child: Consumer<TraitBasedDeviceNotifier>(
-          builder: (_, traitBasedDeviceNotifier, child) {
-        if (traitBasedDeviceNotifier.deviceDetail == null) {
-          return CircularProgressIndicator();
-        } else {
-          return Column(
-              children:
-                  traitBasedDeviceNotifier.deviceDetail!.traits.map((element) {
-            return Row(
-              children: [createWidget(element.name)],
-            );
-          }).toList());
-        }
-      }),
+      child: Center(
+        child: Consumer<TraitBasedDeviceNotifier>(
+            builder: (_, traitBasedDeviceNotifier, child) {
+          if (traitBasedDeviceNotifier.deviceDetail == null) {
+            return CircularProgressIndicator();
+          } else {
+            return Column(
+                children: traitBasedDeviceNotifier.deviceDetail!.traits
+                    .map((element) {
+              return Row(
+                children: [
+                  createWidget(element.name),
+                ],
+              );
+            }).toList());
+          }
+        }),
+      ),
     );
   }
 }
