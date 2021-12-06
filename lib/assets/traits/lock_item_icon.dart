@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
@@ -19,7 +20,7 @@ class LockIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(_locked ? Icons.lock : Icons.lock_open,
+    return Icon(_locked ? BootstrapIcons.lock : BootstrapIcons.unlock,
         size: _size, color: _color);
   }
 }
