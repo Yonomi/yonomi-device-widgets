@@ -25,9 +25,7 @@ class LockWidget extends StatelessWidget {
               height: 80,
             ),
             Center(
-              child: Arc(
-                showThumb: false,
-                centerWidget: SizedBox(
+              child: SizedBox(
                     width: WidgetStyleConstants.defaultDeviceWidgetSize,
                     height: WidgetStyleConstants.defaultDeviceWidgetSize,
                     child: GestureDetector(
@@ -38,13 +36,6 @@ class LockWidget extends StatelessWidget {
                             lockProvider.deviceDetail.id, setLock);
                       },
                     )),
-                color: lockProvider.isLocked
-                    ? WidgetStyleConstants.deviceDetailIconColorActive
-                    : WidgetStyleConstants.deviceDetailIconColorInactive,
-                initialValue: 0.0,
-                maxValue: 1.0,
-                onFinalSetPoint: (double value) {},
-              ),
             ),
           ]);
   }
