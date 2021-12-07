@@ -14,6 +14,7 @@ class PowerTraitProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool _isPerformingAction = false;
   bool _isInErrorState = false;
+  String _latestErrorMsg = "An error occurred.";
 
   late String _deviceId;
 
@@ -44,10 +45,10 @@ class PowerTraitProvider extends ChangeNotifier {
 
     this.deviceDetail = await getDeviceDetails(_request, _deviceId);
 
-    return _deviceDetail;
+    return deviceDetail;
   }
 
-  Future<void> sendPowerOnOffAction(bool setOnOff,
+  Future<void> sendPowerOnOffAction(bool desiredOnOffState,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendPowerMethod sendPowerMethod =
           PowerRepository.sendPowerAction}) async {
@@ -55,11 +56,10 @@ class PowerTraitProvider extends ChangeNotifier {
       setPerformingAction = true;
 
       try {
-        await sendPowerMethod(_request, this._deviceId, setOnOff);
+        await sendPowerMethod(_request, this._deviceId, desiredOnOffState);
 
         int numRetries = 0;
-        while (getPowerTrait()?.state.value != setOnOff &&
-            numRetries < MAX_RETRIES) {
+        while (getOnOffState != desiredOnOffState && numRetries < MAX_RETRIES) {
           _deviceDetail = await getDetails(_request, _deviceId);
 
           await Future.delayed(Duration(milliseconds: 750));
@@ -67,6 +67,7 @@ class PowerTraitProvider extends ChangeNotifier {
         }
         setPerformingAction = false;
       } catch (error) {
+        setErrorMessage = error.toString();
         setErrorState = true;
         Future.delayed(Duration(seconds: 1)).then((_) => setErrorState = false);
       }
@@ -74,20 +75,30 @@ class PowerTraitProvider extends ChangeNotifier {
   }
 
   PowerTrait? getPowerTrait() {
-    return _deviceDetail?.traits.first as PowerTrait?;
+    try {
+      return _deviceDetail?.traits.first as PowerTrait?;
+    } catch (error) {
+      return null;
+    }
   }
 
-  set setLoading(bool newIsLoading) {
+  bool get getOnOffState {
+    return getPowerTrait()?.state.value ?? false;
+  }
+
+  bool get isBusy => isLoading || isPerformingAction;
+
+  set setLoading(bool setIsLoading) {
+    _isLoading = setIsLoading;
     _isPerformingAction = false;
-    _isLoading = newIsLoading;
     _isInErrorState = false;
     notifyListeners();
   }
 
   bool get isLoading => _isLoading;
 
-  set setPerformingAction(bool newIsPerformingAction) {
-    _isPerformingAction = newIsPerformingAction;
+  set setPerformingAction(bool setIsPerformingAction) {
+    _isPerformingAction = setIsPerformingAction;
     _isLoading = false;
     _isInErrorState = false;
     notifyListeners();
@@ -95,12 +106,19 @@ class PowerTraitProvider extends ChangeNotifier {
 
   bool get isPerformingAction => _isPerformingAction;
 
-  set setErrorState(bool newIsError) {
-    _isInErrorState = newIsError;
+  set setErrorState(bool setIsError) {
+    _isInErrorState = setIsError;
     _isLoading = false;
     _isPerformingAction = false;
     notifyListeners();
   }
 
   bool get isInErrorState => _isInErrorState;
+
+  set setErrorMessage(String errorMsg) {
+    if (errorMsg.isEmpty) errorMsg = "An error occurred.";
+    _latestErrorMsg = errorMsg;
+  }
+
+  String get getErrorMessage => _latestErrorMsg;
 }
