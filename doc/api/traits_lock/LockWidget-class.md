@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[LockWidget](../traits_lock/LockWidget/LockWidget.md) ()
+[LockWidget](../traits_lock/LockWidget/LockWidget.md) ([LockProvider](../providers_lock_provider/LockProvider-class.md) _lockProvider)
 
     
 
@@ -100,15 +100,6 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
 _inherited_
-
-
-
-##### [getLockStateIcon](../traits_lock/LockWidget/getLockStateIcon.md)([LockProvider](../providers_lock_provider/LockProvider-class.md) lockProvider) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
 
 
 

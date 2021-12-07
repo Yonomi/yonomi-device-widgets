@@ -60,9 +60,7 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  final lockProvider = Provider.of<LockProvider>(context, listen: true);
-
-  return lockProvider.loadingDetail
+  return _lockProvider.loadingDetail
       ? Center(child: CircularProgressIndicator())
       : Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +68,7 @@ Widget build(BuildContext context) {
             Row(
               children: <Widget>[
                 Text(
-                  lockProvider.deviceDetail.displayName,
+                  _lockProvider.getLockTrait().name,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
@@ -78,30 +76,32 @@ Widget build(BuildContext context) {
             SizedBox(
               height: 10,
             ),
-            Center(
-              child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: lockProvider.loadingDetail
-                      ? CircularProgressIndicator()
-                      : lockProvider.isLocked
-                          ? Icon(
-                              BootstrapIcons.lock,
-                              size: 100,
-                            )
-                          : Icon(
-                              BootstrapIcons.unlock,
-                              size: 100,
-                            )),
+            Container(
+              child: Center(
+                child: SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: _lockProvider.loadingAction
+                        ? CircularProgressIndicator()
+                        : _lockProvider.isLocked
+                            ? Icon(
+                                BootstrapIcons.lock,
+                                size: 100,
+                              )
+                            : Icon(
+                                BootstrapIcons.unlock,
+                                size: 100,
+                              )),
+              ),
             ),
             SizedBox(
               height: 10,
             ),
             CupertinoSwitch(
               onChanged: (bool value) {
-                _lockTap(lockProvider);
+                _lockTap(_lockProvider);
               },
-              value: lockProvider.isLocked,
+              value: _lockProvider.isLocked,
             ),
           ],
         );

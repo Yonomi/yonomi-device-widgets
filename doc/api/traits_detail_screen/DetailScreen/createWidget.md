@@ -30,7 +30,7 @@ Widget createWidget(String name) {
       return Consumer<LockProvider>(builder: (_, lockProvider, child) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: LockWidget(),
+          child: LockWidget(lockProvider),
         );
       });
     default:
@@ -44,7 +44,7 @@ Widget createWidget(String name) {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Unknown trait', style: TextStyle(fontSize: 20)),
+              child: Text(name, style: TextStyle(fontSize: 20)),
             ),
           ],
         ),
