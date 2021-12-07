@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:yonomi_device_widgets/devices/trait_based_device_screen.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
+import 'package:yonomi_device_widgets/traits/trait_based_device_screen.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 

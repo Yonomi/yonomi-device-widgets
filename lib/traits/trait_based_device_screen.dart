@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as yoSdk;
@@ -8,9 +9,11 @@ class TraitBasedDetailScreen extends StatelessWidget {
   final Request request;
   final String deviceId;
 
-  const TraitBasedDetailScreen(
-      {Key? key, required this.request, required this.deviceId})
-      : super(key: key);
+  const TraitBasedDetailScreen({
+    Key? key,
+    required this.request,
+    required this.deviceId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class TraitBasedDetailScreen extends StatelessWidget {
         if (traitBasedDeviceNotifier.isLoading) {
           return CircularProgressIndicator();
         } else {
-          return TraitWidgetsBuilder.build(
+          return TraitWidgetsBuilder.build(this.request, this.deviceId,
               traitBasedDeviceNotifier.deviceDetail!);
         }
       }),
@@ -38,7 +41,7 @@ class PowerTrait extends Trait {
 }
 
 class TraitWidgetsBuilder {
-  static Widget build(Device deviceDetail) {
+  static Widget build(Request req, String deviceId, Device deviceDetail) {
     List<Trait> dummyTraits = [
       LockTrait("whenLocked", IsLocked(true)),
       LockTrait("whenUnlocked", IsLocked(false)),
@@ -50,7 +53,7 @@ class TraitWidgetsBuilder {
     return Column(
       children: [
         buildDeviceTitleRow(deviceDetail.displayName),
-        ...buildTraitRows(dummyTraits),
+        ...buildTraitRows(req, deviceId, dummyTraits),
       ],
     );
   }
@@ -61,24 +64,25 @@ class TraitWidgetsBuilder {
     );
   }
 
-  static List<Row> buildTraitRows(List<Trait> traits) {
+  static List<Row> buildTraitRows(
+      Request request, String deviceId, List<Trait> traits) {
     List<Row> traitRows = [];
     for (var trait in traits) {
       traitRows.add(
         Row(
-          children: [traitFactory(trait)],
+          children: [traitFactory(request, deviceId, trait)],
         ),
       );
     }
     return traitRows;
   }
 
-  static Widget traitFactory(Trait trait) {
+  static Widget traitFactory(Request req, String deviceId, Trait trait) {
     switch (trait.runtimeType) {
       case LockTrait:
         return LockTraitWidget(trait);
       case PowerTrait:
-        return PowerTraitWidget(trait);
+        return PowerTraitWidget(req, deviceId, trait);
       default:
         return UnknownTraitWidget(trait);
     }
@@ -99,17 +103,32 @@ class LockTraitWidget extends StatelessWidget {
 class PowerTraitWidget extends StatelessWidget {
   final Trait trait;
 
-  PowerTraitWidget(this.trait);
+  final Request request;
+
+  final String deviceId;
+
+  const PowerTraitWidget(this.request, this.deviceId, this.trait);
 
   @override
   Widget build(BuildContext context) {
-    return Text("Power Trait: ${this.trait.name}");
-    // return Switch(
-    //   value: false,
-    //   onChanged: (bool newValue) {
-    //     print("Switched ${newValue}");
-    //   },
-    // );
+    return ChangeNotifierProvider(
+      create: (_) => PowerTraitProvider(request, deviceId),
+      child: Consumer<PowerTraitProvider>(
+          builder: (_, powerDeviceNotifier, child) {
+        if (powerDeviceNotifier.isLoading ||
+            powerDeviceNotifier.isPerformingAction) {
+          return CircularProgressIndicator();
+        } else {
+          return Switch(
+            value: powerDeviceNotifier.getPowerTrait()?.state.value ?? false,
+            onChanged: (bool newValue) {
+              print("Power Switch value set to: ${newValue}");
+              powerDeviceNotifier.sendPowerOnOffAction(newValue);
+            },
+          );
+        }
+      }),
+    );
   }
 }
 
