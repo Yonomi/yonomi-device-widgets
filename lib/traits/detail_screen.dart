@@ -1,7 +1,6 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
@@ -20,7 +19,7 @@ class DetailScreen extends StatelessWidget {
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: LockWidget(),
+            child: LockWidget(lockProvider),
           );
         });
       default:
@@ -34,7 +33,7 @@ class DetailScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Unknown trait', style: TextStyle(fontSize: 20)),
+                child: Text(name, style: TextStyle(fontSize: 20)),
               ),
             ],
           ),

@@ -11,7 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.5.0
-  yonomi_platform_sdk: ^2.0.0
+  yonomi_platform_sdk: 
+    git:
+      url: git@github.com:Yonomi/yonomi-sdk-dart.git
+      ref: fix/unknown_trait_name
 
 dev_dependencies:
   mockito: ^5.0.15
