@@ -68,24 +68,30 @@ Widget build(BuildContext context) {
       ChangeNotifierProvider(
           create: (context) => LockProvider(request, deviceId)),
     ],
-    child: Center(
-      child: Consumer<TraitBasedDeviceNotifier>(
-          builder: (_, traitBasedDeviceNotifier, child) {
-        if (traitBasedDeviceNotifier.deviceDetail == null) {
-          return CircularProgressIndicator();
-        } else {
-          return Column(
-              children: traitBasedDeviceNotifier.deviceDetail!.traits
-                  .map((element) {
-            return Row(
-              children: [
-                createWidget(element.name),
-              ],
-            );
-          }).toList());
-        }
-      }),
-    ),
+    child: Consumer<TraitBasedDeviceNotifier>(
+        builder: (_, traitBasedDeviceNotifier, child) {
+      if (traitBasedDeviceNotifier.deviceDetail == null) {
+        return CircularProgressIndicator();
+      } else {
+        return Container(
+          alignment: Alignment.center,
+          child: Center(
+            child: Column(
+                children: traitBasedDeviceNotifier.deviceDetail!.traits
+                    .map((element) {
+              return Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                  ),
+                  createWidget(element.name),
+                ],
+              );
+            }).toList()),
+          ),
+        );
+      }
+    }),
   );
 }
 ```

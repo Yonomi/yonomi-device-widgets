@@ -68,7 +68,7 @@ Widget build(BuildContext context) {
             Row(
               children: <Widget>[
                 Text(
-                  _lockProvider.getLockTrait().name,
+                  'LOCK',
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
