@@ -25,7 +25,9 @@ setLoading=
 
 ```dart
 set setLoading(bool newIsLoading) {
+  _isPerformingAction = false;
   _isLoading = newIsLoading;
+  _isInErrorState = false;
   notifyListeners();
 }
 ```

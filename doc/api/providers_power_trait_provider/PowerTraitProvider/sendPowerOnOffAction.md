@@ -31,18 +31,22 @@ Future<void> sendPowerOnOffAction(bool setOnOff,
   if (!isPerformingAction) {
     setPerformingAction = true;
 
-    await sendPowerMethod(_request, this._deviceId, setOnOff);
+    try {
+      await sendPowerMethod(_request, this._deviceId, setOnOff);
 
-    int numRetries = 0;
-    while (getPowerTrait()?.state.value != setOnOff &&
-        numRetries < MAX_RETRIES) {
-      _deviceDetail = await getDetails(_request, _deviceId);
+      int numRetries = 0;
+      while (getPowerTrait()?.state.value != setOnOff &&
+          numRetries < MAX_RETRIES) {
+        _deviceDetail = await getDetails(_request, _deviceId);
 
-      await Future.delayed(Duration(milliseconds: 750));
-      numRetries++;
+        await Future.delayed(Duration(milliseconds: 750));
+        numRetries++;
+      }
+      setPerformingAction = false;
+    } catch (error) {
+      setErrorState = true;
+      Future.delayed(Duration(seconds: 1)).then((_) => setErrorState = false);
     }
-
-    setPerformingAction = false;
   }
 }
 ```

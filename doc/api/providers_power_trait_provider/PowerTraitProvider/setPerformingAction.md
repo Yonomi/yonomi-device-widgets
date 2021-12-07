@@ -26,6 +26,8 @@ setPerformingAction=
 ```dart
 set setPerformingAction(bool newIsPerformingAction) {
   _isPerformingAction = newIsPerformingAction;
+  _isLoading = false;
+  _isInErrorState = false;
   notifyListeners();
 }
 ```

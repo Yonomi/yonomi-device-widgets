@@ -67,12 +67,14 @@ Widget build(BuildContext context) {
       if (powerDeviceNotifier.isLoading ||
           powerDeviceNotifier.isPerformingAction) {
         return CircularProgressIndicator();
+      } else if (powerDeviceNotifier.isInErrorState) {
+        return Icon(Icons.error);
       } else {
         return Switch(
           value: powerDeviceNotifier.getPowerTrait()?.state.value ?? false,
-          onChanged: (bool newValue) {
-            print("Power Switch value set to: ${newValue}");
-            powerDeviceNotifier.sendPowerOnOffAction(newValue);
+          onChanged: (bool onOff) {
+            print("Power switch value set to: ${onOff}");
+            powerDeviceNotifier.sendPowerOnOffAction(onOff);
           },
         );
       }

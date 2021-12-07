@@ -61,6 +61,15 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
+##### [isInErrorState](../providers_power_trait_provider/PowerTraitProvider/isInErrorState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_read-only_
+
+
+
 ##### [isLoading](../providers_power_trait_provider/PowerTraitProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
@@ -94,6 +103,15 @@ _final_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [setErrorState](../providers_power_trait_provider/PowerTraitProvider/setErrorState.md) &#8592; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_write-only_
 
 
 
