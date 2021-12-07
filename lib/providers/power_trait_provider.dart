@@ -12,8 +12,8 @@ class PowerTraitProvider extends ChangeNotifier {
   final int MAX_RETRIES = 10;
 
   bool _isLoading = false;
-
   bool _isPerformingAction = false;
+  bool _isInErrorState = false;
 
   late String _deviceId;
 
@@ -54,18 +54,22 @@ class PowerTraitProvider extends ChangeNotifier {
     if (!isPerformingAction) {
       setPerformingAction = true;
 
-      await sendPowerMethod(_request, this._deviceId, setOnOff);
+      try {
+        await sendPowerMethod(_request, this._deviceId, setOnOff);
 
-      int numRetries = 0;
-      while (getPowerTrait()?.state.value != setOnOff &&
-          numRetries < MAX_RETRIES) {
-        _deviceDetail = await getDetails(_request, _deviceId);
+        int numRetries = 0;
+        while (getPowerTrait()?.state.value != setOnOff &&
+            numRetries < MAX_RETRIES) {
+          _deviceDetail = await getDetails(_request, _deviceId);
 
-        await Future.delayed(Duration(milliseconds: 750));
-        numRetries++;
+          await Future.delayed(Duration(milliseconds: 750));
+          numRetries++;
+        }
+        setPerformingAction = false;
+      } catch (error) {
+        setErrorState = true;
+        Future.delayed(Duration(seconds: 1)).then((_) => setErrorState = false);
       }
-
-      setPerformingAction = false;
     }
   }
 
@@ -74,7 +78,9 @@ class PowerTraitProvider extends ChangeNotifier {
   }
 
   set setLoading(bool newIsLoading) {
+    _isPerformingAction = false;
     _isLoading = newIsLoading;
+    _isInErrorState = false;
     notifyListeners();
   }
 
@@ -82,8 +88,19 @@ class PowerTraitProvider extends ChangeNotifier {
 
   set setPerformingAction(bool newIsPerformingAction) {
     _isPerformingAction = newIsPerformingAction;
+    _isLoading = false;
+    _isInErrorState = false;
     notifyListeners();
   }
 
   bool get isPerformingAction => _isPerformingAction;
+
+  set setErrorState(bool newIsError) {
+    _isInErrorState = newIsError;
+    _isLoading = false;
+    _isPerformingAction = false;
+    notifyListeners();
+  }
+
+  bool get isInErrorState => _isInErrorState;
 }
