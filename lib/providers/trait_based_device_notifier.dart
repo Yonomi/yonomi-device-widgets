@@ -34,7 +34,6 @@ class TraitBasedDeviceNotifier extends ChangeNotifier {
     notifyListeners();
 
     _deviceDetail = await getDetails(_request, _deviceId);
-    print(_deviceDetail!.traits.length);
     loadingDetail = false;
     notifyListeners();
 
