@@ -14,7 +14,7 @@ dependencies:
   yonomi_platform_sdk: 
     git:
       url: git@github.com:Yonomi/yonomi-sdk-dart.git
-      ref: fix/unknown_trait_name
+      ref: 1c5d58096a16bdd8
 
 dev_dependencies:
   mockito: ^5.0.15
