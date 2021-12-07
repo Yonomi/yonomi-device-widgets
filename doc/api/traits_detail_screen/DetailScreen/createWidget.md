@@ -38,10 +38,7 @@ Widget createWidget(String name) {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Icon(
-              BootstrapIcons.box,
-              size: 20,
-            ),
+            UnknownItemIcon(size: 20),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(name, style: TextStyle(fontSize: 20)),
