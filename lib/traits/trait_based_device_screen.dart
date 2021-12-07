@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
@@ -24,8 +25,25 @@ class TraitBasedDetailScreen extends StatelessWidget {
         if (traitBasedDeviceNotifier.isLoading) {
           return CircularProgressIndicator();
         } else {
-          return TraitWidgetsBuilder.build(this.request, this.deviceId,
-              traitBasedDeviceNotifier.deviceDetail!);
+          return TraitWidgetsBuilder.build(
+              this.request,
+              this.deviceId,
+              Device(
+                traitBasedDeviceNotifier.deviceDetail!.id,
+                traitBasedDeviceNotifier.deviceDetail!.displayName,
+                traitBasedDeviceNotifier.deviceDetail!.description,
+                traitBasedDeviceNotifier.deviceDetail!.manufacturerName,
+                traitBasedDeviceNotifier.deviceDetail!.model,
+                traitBasedDeviceNotifier.deviceDetail!.serialNumber,
+                traitBasedDeviceNotifier.deviceDetail!.createdAt,
+                traitBasedDeviceNotifier.deviceDetail!.updatedAt,
+                [
+                  LockTrait("whenLocked", IsLocked(true)),
+                  LockTrait("whenUnlocked", IsLocked(false)),
+                  PowerTrait("PowerTrait", isPowered(true)),
+                  UnknownTrait("Unknown Trait"),
+                ],
+              ));
         }
       }),
     );
@@ -42,18 +60,10 @@ class PowerTrait extends Trait {
 
 class TraitWidgetsBuilder {
   static Widget build(Request req, String deviceId, Device deviceDetail) {
-    List<Trait> dummyTraits = [
-      LockTrait("whenLocked", IsLocked(true)),
-      LockTrait("whenUnlocked", IsLocked(false)),
-      PowerTrait("PowerTrait", isPowered(true)),
-      UnknownTrait("Unknown Trait"),
-    ];
-
-    // TODO: L41: use deviceDetail.traits, not dummyTraits;
     return Column(
       children: [
         buildDeviceTitleRow(deviceDetail.displayName),
-        ...buildTraitRows(req, deviceId, dummyTraits),
+        ...buildTraitRows(req, deviceId, deviceDetail.traits),
       ],
     );
   }
@@ -122,10 +132,10 @@ class PowerTraitWidget extends StatelessWidget {
               "PowerDeviceTrait Error: ${powerDeviceNotifier.getErrorMessage}");
           return Icon(Icons.error);
         } else {
-          return Switch(
+          return CupertinoSwitch(
             value: powerDeviceNotifier.getOnOffState,
             onChanged: (bool onOff) {
-              print("Power switch value set to: ${onOff}");
+              print('turned ${(onOff) ? 'on' : 'off'}');
               powerDeviceNotifier.sendPowerOnOffAction(onOff);
             },
           );
