@@ -43,6 +43,24 @@ _read / write_
 
 
 
+##### [getErrorMessage](../providers_power_trait_provider/PowerTraitProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getOnOffState](../providers_power_trait_provider/PowerTraitProvider/getOnOffState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_read-only_
+
+
+
 ##### [hashCode](https://api.flutter.dev/flutter/dart-core/Object/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
@@ -58,6 +76,15 @@ _read-only, inherited_
 
 Whether any listeners are currently registered. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/hasListeners.html)  
 _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), read-only, inherited_
+
+
+
+##### [isBusy](../providers_power_trait_provider/PowerTraitProvider/isBusy.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_read-only_
 
 
 
@@ -103,6 +130,15 @@ _final_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [setErrorMessage](../providers_power_trait_provider/PowerTraitProvider/setErrorMessage.md) &#8592; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_write-only_
 
 
 
@@ -203,7 +239,7 @@ _inherited_
 
 
 
-##### [sendPowerOnOffAction](../providers_power_trait_provider/PowerTraitProvider/sendPowerOnOffAction.md)([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setOnOff, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendPowerMethod](../providers_power_trait_provider/SendPowerMethod.md) sendPowerMethod = PowerRepository.sendPowerAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [sendPowerOnOffAction](../providers_power_trait_provider/PowerTraitProvider/sendPowerOnOffAction.md)([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) desiredOnOffState, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendPowerMethod](../providers_power_trait_provider/SendPowerMethod.md) sendPowerMethod = PowerRepository.sendPowerAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 

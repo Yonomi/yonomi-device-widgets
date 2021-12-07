@@ -13,7 +13,7 @@
 
 
 setPerformingAction=
-([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) newIsPerformingAction)  
+([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setIsPerformingAction)  
 
 
 
@@ -24,8 +24,8 @@ setPerformingAction=
 ## Implementation
 
 ```dart
-set setPerformingAction(bool newIsPerformingAction) {
-  _isPerformingAction = newIsPerformingAction;
+set setPerformingAction(bool setIsPerformingAction) {
+  _isPerformingAction = setIsPerformingAction;
   _isLoading = false;
   _isInErrorState = false;
   notifyListeners();

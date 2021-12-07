@@ -25,7 +25,11 @@
 
 ```dart
 PowerTrait? getPowerTrait() {
-  return _deviceDetail?.traits.first as PowerTrait?;
+  try {
+    return _deviceDetail?.traits.first as PowerTrait?;
+  } catch (error) {
+    return null;
+  }
 }
 ```
 

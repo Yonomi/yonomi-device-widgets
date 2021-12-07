@@ -36,7 +36,7 @@ Future<void> setLockUnlockAction(String deviceId, bool setLock,
 
     int numRetries = 0;
     while (
-        getLockTrait()?.state.value != setLock && numRetries < _MAX_RETRIES) {
+        getLockTrait().state.value != setLock && numRetries < _MAX_RETRIES) {
       // Wait more time
       _deviceDetail = await lockDetails(_request, deviceId);
       await Future.delayed(Duration(milliseconds: 750));

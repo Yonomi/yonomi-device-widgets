@@ -13,7 +13,7 @@
 
 
 setErrorState=
-([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) newIsError)  
+([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setIsError)  
 
 
 
@@ -24,8 +24,8 @@ setErrorState=
 ## Implementation
 
 ```dart
-set setErrorState(bool newIsError) {
-  _isInErrorState = newIsError;
+set setErrorState(bool setIsError) {
+  _isInErrorState = setIsError;
   _isLoading = false;
   _isPerformingAction = false;
   notifyListeners();

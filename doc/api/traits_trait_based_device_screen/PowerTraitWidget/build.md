@@ -64,14 +64,15 @@ Widget build(BuildContext context) {
     create: (_) => PowerTraitProvider(request, deviceId),
     child: Consumer<PowerTraitProvider>(
         builder: (_, powerDeviceNotifier, child) {
-      if (powerDeviceNotifier.isLoading ||
-          powerDeviceNotifier.isPerformingAction) {
+      if (powerDeviceNotifier.isBusy) {
         return CircularProgressIndicator();
       } else if (powerDeviceNotifier.isInErrorState) {
+        print(
+            "PowerDeviceTrait Error: ${powerDeviceNotifier.getErrorMessage}");
         return Icon(Icons.error);
       } else {
         return Switch(
-          value: powerDeviceNotifier.getPowerTrait()?.state.value ?? false,
+          value: powerDeviceNotifier.getOnOffState,
           onChanged: (bool onOff) {
             print("Power switch value set to: ${onOff}");
             powerDeviceNotifier.sendPowerOnOffAction(onOff);

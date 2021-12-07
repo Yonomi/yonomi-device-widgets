@@ -31,7 +31,7 @@ Future<Device?> fetchData(
 
   this.deviceDetail = await getDeviceDetails(_request, _deviceId);
 
-  return _deviceDetail;
+  return deviceDetail;
 }
 ```
 
