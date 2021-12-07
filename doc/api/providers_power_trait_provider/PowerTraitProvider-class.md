@@ -148,7 +148,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [getPowerTrait](../providers_power_trait_provider/PowerTraitProvider/getPowerTrait.md)() [PowerTrait](../devices_trait_based_device_screen/PowerTrait-class.md)?
+##### [getPowerTrait](../providers_power_trait_provider/PowerTraitProvider/getPowerTrait.md)() [PowerTrait](../traits_trait_based_device_screen/PowerTrait-class.md)?
 
 
 

@@ -11,7 +11,7 @@
 
 
 
-[PowerTrait](../../devices_trait_based_device_screen/PowerTrait-class.md)? getPowerTrait
+[PowerTrait](../../traits_trait_based_device_screen/PowerTrait-class.md)? getPowerTrait
 ()
 
 

@@ -116,7 +116,7 @@ open coverage/html/index.html
  
 
 
-##### [trait_based_device_screen](devices_trait_based_device_screen/devices_trait_based_device_screen-library.md)
+##### [trait_based_device_screen](traits_trait_based_device_screen/traits_trait_based_device_screen-library.md)
  
 
 
