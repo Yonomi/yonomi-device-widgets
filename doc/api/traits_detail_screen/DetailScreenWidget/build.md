@@ -62,7 +62,7 @@ and</li>
 Widget build(BuildContext context) {
   return Consumer<TraitBasedDeviceNotifier>(
       builder: (_, traitBasedDeviceNotifier, child) {
-    if (traitBasedDeviceNotifier.deviceDetail == null) {
+    if (traitBasedDeviceNotifier.isLoading) {
       return CircularProgressIndicator();
     } else {
       return buildContainer(traitBasedDeviceNotifier.deviceDetail!.traits);

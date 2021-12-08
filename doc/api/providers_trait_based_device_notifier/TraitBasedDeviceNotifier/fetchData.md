@@ -27,12 +27,10 @@
 Future<Device?> fetchData(
     {GetDetailsFunction getDetails =
         DevicesRepository.getDeviceDetails}) async {
-  loadingDetail = true;
-  notifyListeners();
+  setLoading = true;
 
   _deviceDetail = await getDetails(_request, _deviceId);
-  loadingDetail = false;
-  notifyListeners();
+  setLoading = false;
 
   return _deviceDetail;
 }

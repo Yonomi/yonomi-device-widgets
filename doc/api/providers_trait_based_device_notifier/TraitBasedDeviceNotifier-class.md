@@ -61,12 +61,12 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [loadingDetail](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/loadingDetail.md) &#8596; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isLoading](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
    
-_read / write_
+_read-only_
 
 
 
@@ -76,6 +76,15 @@ _read / write_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [setLoading](../providers_trait_based_device_notifier/TraitBasedDeviceNotifier/setLoading.md) &#8592; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_write-only_
 
 
 
