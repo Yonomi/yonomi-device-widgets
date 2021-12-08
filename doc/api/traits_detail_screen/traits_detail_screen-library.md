@@ -23,6 +23,13 @@
  
 
 
+##### [DetailScreenWidget](../traits_detail_screen/DetailScreenWidget-class.md)
+
+
+
+ 
+
+
 
 
 

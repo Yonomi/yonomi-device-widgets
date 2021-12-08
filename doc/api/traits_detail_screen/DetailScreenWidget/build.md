@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../traits_detail_screen/DetailScreen/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../traits_detail_screen/DetailScreenWidget/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,15 +60,14 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return MultiProvider(
-    providers: [
-      ChangeNotifierProvider<TraitBasedDeviceNotifier>(
-          create: (context) => TraitBasedDeviceNotifier(request, deviceId)),
-      ChangeNotifierProvider(
-          create: (context) => LockProvider(request, deviceId)),
-    ],
-    child: DetailScreenWidget(request, deviceId),
-  );
+  return Consumer<TraitBasedDeviceNotifier>(
+      builder: (_, traitBasedDeviceNotifier, child) {
+    if (traitBasedDeviceNotifier.deviceDetail == null) {
+      return CircularProgressIndicator();
+    } else {
+      return buildContainer(traitBasedDeviceNotifier.deviceDetail!.traits);
+    }
+  });
 }
 ```
 

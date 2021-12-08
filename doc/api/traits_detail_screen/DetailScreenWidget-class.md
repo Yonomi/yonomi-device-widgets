@@ -1,7 +1,7 @@
 
 
 
-# DetailScreen class
+# DetailScreenWidget class
 
 
 
@@ -20,7 +20,7 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- DetailScreen
+- DetailScreenWidget
 
 
 
@@ -29,19 +29,19 @@
 
 ## Constructors
 
-[DetailScreen](../traits_detail_screen/DetailScreen/DetailScreen.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, required [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId})
+[DetailScreenWidget](../traits_detail_screen/DetailScreenWidget/DetailScreenWidget.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId)
 
-   _const_ 
+    
 
 
 ## Properties
 
-##### [deviceId](../traits_detail_screen/DetailScreen/deviceId.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [deviceId](../traits_detail_screen/DetailScreenWidget/deviceId.md) &#8596; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
    
-_final_
+_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), read / write_
 
 
 
@@ -63,12 +63,12 @@ _final, inherited_
 
 
 
-##### [request](../traits_detail_screen/DetailScreen/request.md) &#8594; [Request](https://yonomi.co/yonomi-sdk/Request-class.html)
+##### [request](../traits_detail_screen/DetailScreenWidget/request.md) &#8596; [Request](https://yonomi.co/yonomi-sdk/Request-class.html)
 
 
 
    
-_final_
+_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), read / write_
 
 
 
@@ -84,12 +84,21 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_detail_screen/DetailScreen/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](../traits_detail_screen/DetailScreenWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_detail_screen/DetailScreen/build.md)  
+Describes the part of the user interface represented by this widget. [...](../traits_detail_screen/DetailScreenWidget/build.md)  
 _override_
+
+
+
+##### [buildContainer](../traits_detail_screen/DetailScreenWidget/buildContainer.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+
+
+
+   
+
 
 
 
@@ -99,6 +108,15 @@ _override_
 
 Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
 _inherited_
+
+
+
+##### [createTraitWidget](../traits_detail_screen/DetailScreenWidget/createTraitWidget.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+
+
+
+   
+
 
 
 
