@@ -13,8 +13,7 @@ class ThermostatIcon extends StatelessWidget {
       TextStyle? textStyle,
       Key? key})
       : super(key: key) {
-    this._thermostatState =
-        (thermostatState != null) ? thermostatState.round().toString() : 'N/A';
+    this._thermostatState = thermostatState?.round().toString() ?? 'N/A';
     this._decoration = decoration ??
         BoxDecoration(
             borderRadius: WidgetStyleConstants.defaultCircularBorderRadius,
