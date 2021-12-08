@@ -23,11 +23,8 @@ LockIcon(bool isLocked,
     {size = WidgetStyleConstants.defaultDeviceIconSize,
     color = WidgetStyleConstants.deviceIconColor,
     Key? key})
-    : super(key: key) {
-  this._size = size;
-  this._color = color;
-  this._locked = isLocked;
-}
+    : super(isLocked ? BootstrapIcons.lock : BootstrapIcons.unlock,
+          key: key, size: size, color: color);
 ```
 
 
