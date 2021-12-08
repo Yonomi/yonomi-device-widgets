@@ -128,8 +128,7 @@ class PowerTraitWidget extends StatelessWidget {
         if (powerDeviceNotifier.isBusy) {
           return CircularProgressIndicator();
         } else if (powerDeviceNotifier.isInErrorState) {
-          print(
-              "PowerDeviceTrait Error: ${powerDeviceNotifier.getErrorMessage}");
+          _showToast(context, powerDeviceNotifier.getErrorMessage);
           return Icon(Icons.error);
         } else {
           return CupertinoSwitch(
@@ -142,6 +141,13 @@ class PowerTraitWidget extends StatelessWidget {
         }
       }),
     );
+  }
+
+  void _showToast(BuildContext context, String message) {
+    WidgetsBinding.instance!
+        .addPostFrameCallback((_) => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(message)),
+            ));
   }
 }
 

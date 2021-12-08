@@ -69,7 +69,8 @@ class PowerTraitProvider extends ChangeNotifier {
       } catch (error) {
         setErrorMessage = error.toString();
         setErrorState = true;
-        Future.delayed(Duration(seconds: 1)).then((_) => setErrorState = false);
+        await Future.delayed(Duration(seconds: 1))
+            .then((_) => setErrorState = false);
       }
     }
   }
