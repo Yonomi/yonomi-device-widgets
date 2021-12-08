@@ -37,17 +37,17 @@ class MockTraitBasedDeviceNotifier extends _i1.Mock
   }
 
   @override
-  bool get loadingDetail =>
-      (super.noSuchMethod(Invocation.getter(#loadingDetail), returnValue: false)
-          as bool);
-  @override
-  set loadingDetail(bool? _loadingDetail) =>
-      super.noSuchMethod(Invocation.setter(#loadingDetail, _loadingDetail),
-          returnValueForMissingStub: null);
-  @override
   set deviceDetail(_i2.Device? detail) =>
       super.noSuchMethod(Invocation.setter(#deviceDetail, detail),
           returnValueForMissingStub: null);
+  @override
+  set setLoading(bool? newLoading) =>
+      super.noSuchMethod(Invocation.setter(#setLoading, newLoading),
+          returnValueForMissingStub: null);
+  @override
+  bool get isLoading =>
+      (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
+          as bool);
   @override
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)

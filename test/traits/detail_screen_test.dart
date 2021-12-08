@@ -19,6 +19,27 @@ Device buildMockDevice(Trait trait) {
   return mockDevice;
 }
 
+Widget createDetailScreenWhenLoading(
+  Request req,
+  String deviceId,
+) {
+  TraitBasedDeviceNotifier mockTraitBasedNotifier =
+      MockTraitBasedDeviceNotifier();
+  when(mockTraitBasedNotifier.isLoading).thenReturn(true);
+
+  LockProvider mockLockProvider = MockLockProvider();
+
+  return MaterialApp(
+    home: Column(children: [
+      MultiProvider(providers: [
+        ChangeNotifierProvider<TraitBasedDeviceNotifier>.value(
+            value: mockTraitBasedNotifier),
+        ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
+      ], child: DetailScreenWidget(req, deviceId)),
+    ]),
+  );
+}
+
 Widget createDetailScreenWidgetForTrait(
   Trait,
   Request req,
@@ -26,6 +47,7 @@ Widget createDetailScreenWidgetForTrait(
 ) {
   TraitBasedDeviceNotifier mockTraitBasedNotifier =
       MockTraitBasedDeviceNotifier();
+  when(mockTraitBasedNotifier.isLoading).thenReturn(false);
   when(mockTraitBasedNotifier.deviceDetail).thenReturn(buildMockDevice(Trait));
 
   LockProvider mockLockProvider = MockLockProvider();
@@ -46,6 +68,13 @@ Widget createDetailScreenWidgetForTrait(
 
 @GenerateMocks([TraitBasedDeviceNotifier, LockProvider])
 void main() {
+  testWidgets('When loading, should show CircularProgressIndicator ',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(createDetailScreenWhenLoading(Request('', {}), ""));
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
   testWidgets('For the LockTrait, Detail screen should show the LockWidget ',
       (WidgetTester tester) async {
     Request request = Request('', {});

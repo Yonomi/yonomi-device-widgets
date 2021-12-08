@@ -5,7 +5,7 @@ typedef GetDetailsFunction = Future<Device> Function(
     Request request, String id);
 
 class TraitBasedDeviceNotifier extends ChangeNotifier {
-  bool loadingDetail = false;
+  bool _loadingDetail = false;
 
   late String _deviceId;
 
@@ -30,13 +30,18 @@ class TraitBasedDeviceNotifier extends ChangeNotifier {
   Future<Device?> fetchData(
       {GetDetailsFunction getDetails =
           DevicesRepository.getDeviceDetails}) async {
-    loadingDetail = true;
-    notifyListeners();
+    setLoading = true;
 
     _deviceDetail = await getDetails(_request, _deviceId);
-    loadingDetail = false;
-    notifyListeners();
+    setLoading = false;
 
     return _deviceDetail;
   }
+
+  set setLoading(bool newLoading) {
+    _loadingDetail = newLoading;
+    notifyListeners();
+  }
+
+  bool get isLoading => _loadingDetail;
 }
