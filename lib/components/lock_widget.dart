@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
+import 'package:yonomi_device_widgets/components/arc.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
@@ -24,7 +25,9 @@ class LockWidget extends StatelessWidget {
               height: 80,
             ),
             Center(
-              child: SizedBox(
+              child: Arc(
+                showThumb: false,
+                centerWidget: SizedBox(
                     width: WidgetStyleConstants.defaultDeviceWidgetSize,
                     height: WidgetStyleConstants.defaultDeviceWidgetSize,
                     child: GestureDetector(
@@ -35,6 +38,13 @@ class LockWidget extends StatelessWidget {
                             lockProvider.deviceDetail.id, setLock);
                       },
                     )),
+                color: lockProvider.isLocked
+                    ? WidgetStyleConstants.deviceDetailIconColorActive
+                    : WidgetStyleConstants.deviceDetailIconColorInactive,
+                initialValue: 0.0,
+                maxValue: 1.0,
+                onFinalSetPoint: (double value) {},
+              ),
             ),
           ]);
   }
