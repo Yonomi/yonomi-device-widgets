@@ -25,18 +25,10 @@
 
 ```dart
 static Widget build(Request req, String deviceId, Device deviceDetail) {
-  List<Trait> dummyTraits = [
-    LockTrait("whenLocked", IsLocked(true)),
-    LockTrait("whenUnlocked", IsLocked(false)),
-    PowerTrait("PowerTrait", isPowered(true)),
-    UnknownTrait("Unknown Trait"),
-  ];
-
-  // TODO: L41: use deviceDetail.traits, not dummyTraits;
   return Column(
     children: [
       buildDeviceTitleRow(deviceDetail.displayName),
-      ...buildTraitRows(req, deviceId, dummyTraits),
+      ...buildTraitRows(req, deviceId, deviceDetail.traits),
     ],
   );
 }

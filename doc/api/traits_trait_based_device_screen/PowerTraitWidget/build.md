@@ -67,14 +67,13 @@ Widget build(BuildContext context) {
       if (powerDeviceNotifier.isBusy) {
         return CircularProgressIndicator();
       } else if (powerDeviceNotifier.isInErrorState) {
-        print(
-            "PowerDeviceTrait Error: ${powerDeviceNotifier.getErrorMessage}");
+        _showToast(context, powerDeviceNotifier.getErrorMessage);
         return Icon(Icons.error);
       } else {
-        return Switch(
+        return CupertinoSwitch(
           value: powerDeviceNotifier.getOnOffState,
           onChanged: (bool onOff) {
-            print("Power switch value set to: ${onOff}");
+            print('turned ${(onOff) ? 'on' : 'off'}');
             powerDeviceNotifier.sendPowerOnOffAction(onOff);
           },
         );

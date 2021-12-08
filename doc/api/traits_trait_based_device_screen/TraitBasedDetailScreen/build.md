@@ -67,8 +67,25 @@ Widget build(BuildContext context) {
       if (traitBasedDeviceNotifier.isLoading) {
         return CircularProgressIndicator();
       } else {
-        return TraitWidgetsBuilder.build(this.request, this.deviceId,
-            traitBasedDeviceNotifier.deviceDetail!);
+        return TraitWidgetsBuilder.build(
+            this.request,
+            this.deviceId,
+            Device(
+              traitBasedDeviceNotifier.deviceDetail!.id,
+              traitBasedDeviceNotifier.deviceDetail!.displayName,
+              traitBasedDeviceNotifier.deviceDetail!.description,
+              traitBasedDeviceNotifier.deviceDetail!.manufacturerName,
+              traitBasedDeviceNotifier.deviceDetail!.model,
+              traitBasedDeviceNotifier.deviceDetail!.serialNumber,
+              traitBasedDeviceNotifier.deviceDetail!.createdAt,
+              traitBasedDeviceNotifier.deviceDetail!.updatedAt,
+              [
+                LockTrait("whenLocked", IsLocked(true)),
+                LockTrait("whenUnlocked", IsLocked(false)),
+                PowerTrait("PowerTrait", isPowered(true)),
+                UnknownTrait("Unknown Trait"),
+              ],
+            ));
       }
     }),
   );
