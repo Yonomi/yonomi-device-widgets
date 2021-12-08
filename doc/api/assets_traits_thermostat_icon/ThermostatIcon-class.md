@@ -36,6 +36,15 @@
 
 ## Properties
 
+##### [decoration](../assets_traits_thermostat_icon/ThermostatIcon/decoration.md) &#8594; [Decoration](https://api.flutter.dev/flutter/painting/Decoration-class.html)
+
+
+
+   
+_read-only_
+
+
+
 ##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
@@ -60,6 +69,24 @@ _final, inherited_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [state](../assets_traits_thermostat_icon/ThermostatIcon/state.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [textStyle](../assets_traits_thermostat_icon/ThermostatIcon/textStyle.md) &#8594; [TextStyle](https://api.flutter.dev/flutter/painting/TextStyle-class.html)
+
+
+
+   
+_read-only_
 
 
 
