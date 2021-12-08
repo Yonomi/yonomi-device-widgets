@@ -77,7 +77,9 @@ Widget build(BuildContext context) {
             height: 80,
           ),
           Center(
-            child: SizedBox(
+            child: Arc(
+              showThumb: false,
+              centerWidget: SizedBox(
                   width: WidgetStyleConstants.defaultDeviceWidgetSize,
                   height: WidgetStyleConstants.defaultDeviceWidgetSize,
                   child: GestureDetector(
@@ -88,6 +90,13 @@ Widget build(BuildContext context) {
                           lockProvider.deviceDetail.id, setLock);
                     },
                   )),
+              color: lockProvider.isLocked
+                  ? WidgetStyleConstants.deviceDetailIconColorActive
+                  : WidgetStyleConstants.deviceDetailIconColorInactive,
+              initialValue: 0.0,
+              maxValue: 1.0,
+              onFinalSetPoint: (double value) {},
+            ),
           ),
         ]);
 }
