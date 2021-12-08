@@ -49,8 +49,6 @@ void main() {
       endValue = value.round();
     }
 
-    ;
-
     MaterialApp arc =
         createArcWidget(callback: endValueCallback) as MaterialApp;
 
@@ -73,8 +71,6 @@ void main() {
     ValueChanged<double>? endValueCallback(double value) {
       endValue = value.round();
     }
-
-    ;
 
     MaterialApp arc =
         createArcWidget(callback: endValueCallback) as MaterialApp;
