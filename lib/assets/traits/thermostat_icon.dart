@@ -20,7 +20,8 @@ class ThermostatIcon extends StatelessWidget {
             border: Border.all(
                 width: WidgetStyleConstants.defaultBorderWidth,
                 color: WidgetStyleConstants.defaultBorderColor));
-    this._textStyle = WidgetStyleConstants.deviceItemTextPrimaryState;
+    this._textStyle =
+        textStyle ?? WidgetStyleConstants.deviceItemTextPrimaryState;
   }
 
   @override
