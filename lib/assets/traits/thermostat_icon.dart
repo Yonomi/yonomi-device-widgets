@@ -24,6 +24,12 @@ class ThermostatIcon extends StatelessWidget {
         textStyle ?? WidgetStyleConstants.deviceItemTextPrimaryState;
   }
 
+  String get state => _thermostatState;
+
+  Decoration get decoration => _decoration;
+
+  TextStyle get textStyle => _textStyle;
+
   @override
   Widget build(BuildContext context) {
     return Container(
