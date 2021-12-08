@@ -13,7 +13,57 @@ class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key, required this.request, required this.deviceId})
       : super(key: key);
 
-  Widget createWidget(String name) {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<TraitBasedDeviceNotifier>(
+            create: (context) => TraitBasedDeviceNotifier(request, deviceId)),
+        ChangeNotifierProvider(
+            create: (context) => LockProvider(request, deviceId)),
+      ],
+      child: DetailScreenWidget(request, deviceId),
+    );
+  }
+}
+
+class DetailScreenWidget extends StatelessWidget {
+  @required
+  Request request;
+
+  @required
+  String deviceId;
+
+  DetailScreenWidget(this.request, this.deviceId);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<TraitBasedDeviceNotifier>(
+        builder: (_, traitBasedDeviceNotifier, child) {
+      if (traitBasedDeviceNotifier.deviceDetail == null) {
+        return CircularProgressIndicator();
+      } else {
+        return buildContainer(traitBasedDeviceNotifier.deviceDetail!.traits);
+      }
+    });
+  }
+
+  Widget buildContainer(List<Trait> traits) {
+    return Container(
+      alignment: Alignment.center,
+      child: Center(
+        child: Column(
+            children: traits.map((element) {
+          return Row(children: [
+            SizedBox(width: 50),
+            createTraitWidget(element.name),
+          ]);
+        }).toList()),
+      ),
+    );
+  }
+
+  Widget createTraitWidget(String name) {
     switch (name) {
       case 'lock':
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
@@ -39,42 +89,5 @@ class DetailScreen extends StatelessWidget {
           ),
         );
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<TraitBasedDeviceNotifier>(
-          create: (context) => TraitBasedDeviceNotifier(request, deviceId),
-        ),
-        ChangeNotifierProvider(
-            create: (context) => LockProvider(request, deviceId)),
-      ],
-      child: Consumer<TraitBasedDeviceNotifier>(
-          builder: (_, traitBasedDeviceNotifier, child) {
-        if (traitBasedDeviceNotifier.deviceDetail == null) {
-          return CircularProgressIndicator();
-        } else {
-          return Container(
-            alignment: Alignment.center,
-            child: Center(
-              child: Column(
-                  children: traitBasedDeviceNotifier.deviceDetail!.traits
-                      .map((element) {
-                return Row(
-                  children: [
-                    SizedBox(
-                      width: 50,
-                    ),
-                    createWidget(element.name),
-                  ],
-                );
-              }).toList()),
-            ),
-          );
-        }
-      }),
-    );
   }
 }

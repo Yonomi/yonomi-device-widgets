@@ -1,7 +1,7 @@
 
 
 
-# createWidget method
+# createTraitWidget method
 
 
 
@@ -11,7 +11,7 @@
 
 
 
-[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) createWidget
+[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) createTraitWidget
 ([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name)
 
 
@@ -24,7 +24,7 @@
 ## Implementation
 
 ```dart
-Widget createWidget(String name) {
+Widget createTraitWidget(String name) {
   switch (name) {
     case 'lock':
       return Consumer<LockProvider>(builder: (_, lockProvider, child) {

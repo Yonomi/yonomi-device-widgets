@@ -25,15 +25,15 @@ ThermostatIcon(
     TextStyle? textStyle,
     Key? key})
     : super(key: key) {
-  this._thermostatState =
-      (thermostatState != null) ? thermostatState.round().toString() : 'N/A';
+  this._thermostatState = thermostatState?.round().toString() ?? 'N/A';
   this._decoration = decoration ??
       BoxDecoration(
           borderRadius: WidgetStyleConstants.defaultCircularBorderRadius,
           border: Border.all(
               width: WidgetStyleConstants.defaultBorderWidth,
               color: WidgetStyleConstants.defaultBorderColor));
-  this._textStyle = WidgetStyleConstants.deviceItemTextPrimaryState;
+  this._textStyle =
+      textStyle ?? WidgetStyleConstants.deviceItemTextPrimaryState;
 }
 ```
 
