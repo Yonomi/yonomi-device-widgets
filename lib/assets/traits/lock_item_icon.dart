@@ -2,24 +2,12 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class LockIcon extends StatelessWidget {
-  late final double _size;
-  late final Color _color;
-  late final bool _locked;
+class LockIcon extends Icon {
 
   LockIcon(bool isLocked,
       {size = WidgetStyleConstants.defaultDeviceIconSize,
       color = WidgetStyleConstants.deviceIconColor,
       Key? key})
-      : super(key: key) {
-    this._size = size;
-    this._color = color;
-    this._locked = isLocked;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(_locked ? BootstrapIcons.lock : BootstrapIcons.unlock,
-        size: _size, color: _color);
-  }
+      : super(isLocked ? BootstrapIcons.lock : BootstrapIcons.unlock,
+            key: key, size: size, color: color);
 }

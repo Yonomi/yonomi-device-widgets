@@ -2,21 +2,10 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class UnknownItemIcon extends StatelessWidget {
-  late final double _size;
-  late final Color _color;
-
+class UnknownItemIcon extends Icon {
   UnknownItemIcon(
       {size = WidgetStyleConstants.defaultDeviceIconSize,
       color = WidgetStyleConstants.deviceIconColor,
       Key? key})
-      : super(key: key) {
-    this._size = size;
-    this._color = color;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(BootstrapIcons.box, size: _size, color: _color);
-  }
+      : super(BootstrapIcons.box, key: key, size: size, color: color) {}
 }
