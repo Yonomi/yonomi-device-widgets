@@ -34,5 +34,6 @@ void main() {
     await traitBasedNotifier.fetchData(getDetails: mockGetDetailsMethod);
 
     verify(mockGetDetailsMethod(request, 'test')).called(2);
+    expect(traitBasedNotifier.deviceDetail!.displayName, equals("name"));
   });
 }
