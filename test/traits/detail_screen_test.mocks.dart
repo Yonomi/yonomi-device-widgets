@@ -2,17 +2,19 @@
 // in yonomi_device_widgets/test/traits/detail_screen_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
-import 'dart:ui' as _i6;
+import 'dart:async' as _i6;
+import 'dart:ui' as _i8;
 
+import 'package:flutter/material.dart' as _i3;
+import 'package:flutter/src/foundation/diagnostics.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i7;
+import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i9;
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart'
-    as _i3;
-import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
     as _i5;
+import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
+    as _i7;
 import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
-    as _i8;
+    as _i10;
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,15 +29,39 @@ class _FakeDevice_0 extends _i1.Fake implements _i2.Device {}
 
 class _FakeLockTrait_1 extends _i1.Fake implements _i2.LockTrait {}
 
+class _FakeWidget_2 extends _i1.Fake implements _i3.Widget {
+  @override
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
+}
+
+class _FakeInheritedWidget_3 extends _i1.Fake implements _i3.InheritedWidget {
+  @override
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
+}
+
+class _FakeDiagnosticsNode_4 extends _i1.Fake implements _i3.DiagnosticsNode {
+  @override
+  String toString(
+          {_i4.TextTreeConfiguration? parentConfiguration,
+          _i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
+}
+
 /// A class which mocks [TraitDetailProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockTraitDetailProvider extends _i1.Mock
-    implements _i3.TraitDetailProvider {
+    implements _i5.TraitDetailProvider {
   MockTraitDetailProvider() {
     _i1.throwOnMissingStub(this);
   }
 
+  @override
+  set deviceDetail(_i2.Device? detail) =>
+      super.noSuchMethod(Invocation.setter(#deviceDetail, detail),
+          returnValueForMissingStub: null);
   @override
   set setLoading(bool? newLoading) =>
       super.noSuchMethod(Invocation.setter(#setLoading, newLoading),
@@ -49,18 +75,18 @@ class MockTraitDetailProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i4.Future<_i2.Device?> fetchData(
-          {_i3.GetDetailsFunction? getDetails =
-              _i5.DevicesRepository.getDeviceDetails}) =>
+  _i6.Future<_i2.Device?> fetchData(
+          {_i5.GetDetailsFunction? getDetails =
+              _i7.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
-          returnValue: Future<_i2.Device?>.value()) as _i4.Future<_i2.Device?>);
+          returnValue: Future<_i2.Device?>.value()) as _i6.Future<_i2.Device?>);
   @override
-  void addListener(_i6.VoidCallback? listener) =>
+  void addListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i6.VoidCallback? listener) =>
+  void removeListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -77,7 +103,7 @@ class MockTraitDetailProvider extends _i1.Mock
 /// A class which mocks [LockProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLockProvider extends _i1.Mock implements _i7.LockProvider {
+class MockLockProvider extends _i1.Mock implements _i9.LockProvider {
   MockLockProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -115,31 +141,31 @@ class MockLockProvider extends _i1.Mock implements _i7.LockProvider {
       (super.noSuchMethod(Invocation.method(#getLockTrait, []),
           returnValue: _FakeLockTrait_1()) as _i2.LockTrait);
   @override
-  _i4.Future<void> getDeviceDetail(String? deviceId,
-          {_i7.GetLockDetailsFunction? getLockDetails =
-              _i5.DevicesRepository.getLockDetails}) =>
+  _i6.Future<void> getDeviceDetail(String? deviceId,
+          {_i9.GetLockDetailsFunction? getLockDetails =
+              _i7.DevicesRepository.getLockDetails}) =>
       (super.noSuchMethod(
           Invocation.method(
               #getDeviceDetail, [deviceId], {#getLockDetails: getLockDetails}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  _i4.Future<void> setLockUnlockAction(String? deviceId, bool? setLock,
-          {_i7.GetLockDetailsFunction? lockDetails =
-              _i5.DevicesRepository.getLockDetails,
-          _i7.SendLockUnlockFunction? sendLockUnlock =
-              _i8.LockRepository.sendLockUnlockAction}) =>
+  _i6.Future<void> setLockUnlockAction(String? deviceId, bool? setLock,
+          {_i9.GetLockDetailsFunction? lockDetails =
+              _i7.DevicesRepository.getLockDetails,
+          _i9.SendLockUnlockFunction? sendLockUnlock =
+              _i10.LockRepository.sendLockUnlockAction}) =>
       (super.noSuchMethod(
           Invocation.method(#setLockUnlockAction, [deviceId, setLock],
               {#lockDetails: lockDetails, #sendLockUnlock: sendLockUnlock}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  void addListener(_i6.VoidCallback? listener) =>
+  void addListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i6.VoidCallback? listener) =>
+  void removeListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -149,6 +175,65 @@ class MockLockProvider extends _i1.Mock implements _i7.LockProvider {
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
           returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [BuildContext].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockBuildContext extends _i1.Mock implements _i3.BuildContext {
+  MockBuildContext() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Widget get widget => (super.noSuchMethod(Invocation.getter(#widget),
+      returnValue: _FakeWidget_2()) as _i3.Widget);
+  @override
+  bool get debugDoingBuild => (super
+          .noSuchMethod(Invocation.getter(#debugDoingBuild), returnValue: false)
+      as bool);
+  @override
+  _i3.InheritedWidget dependOnInheritedElement(_i3.InheritedElement? ancestor,
+          {Object? aspect}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #dependOnInheritedElement, [ancestor], {#aspect: aspect}),
+          returnValue: _FakeInheritedWidget_3()) as _i3.InheritedWidget);
+  @override
+  void visitAncestorElements(bool Function(_i3.Element)? visitor) =>
+      super.noSuchMethod(Invocation.method(#visitAncestorElements, [visitor]),
+          returnValueForMissingStub: null);
+  @override
+  void visitChildElements(_i3.ElementVisitor? visitor) =>
+      super.noSuchMethod(Invocation.method(#visitChildElements, [visitor]),
+          returnValueForMissingStub: null);
+  @override
+  _i3.DiagnosticsNode describeElement(String? name,
+          {_i4.DiagnosticsTreeStyle? style =
+              _i4.DiagnosticsTreeStyle.errorProperty}) =>
+      (super.noSuchMethod(
+          Invocation.method(#describeElement, [name], {#style: style}),
+          returnValue: _FakeDiagnosticsNode_4()) as _i3.DiagnosticsNode);
+  @override
+  _i3.DiagnosticsNode describeWidget(String? name,
+          {_i4.DiagnosticsTreeStyle? style =
+              _i4.DiagnosticsTreeStyle.errorProperty}) =>
+      (super.noSuchMethod(
+          Invocation.method(#describeWidget, [name], {#style: style}),
+          returnValue: _FakeDiagnosticsNode_4()) as _i3.DiagnosticsNode);
+  @override
+  List<_i3.DiagnosticsNode> describeMissingAncestor(
+          {Type? expectedAncestorType}) =>
+      (super.noSuchMethod(
+          Invocation.method(#describeMissingAncestor, [],
+              {#expectedAncestorType: expectedAncestorType}),
+          returnValue: <_i3.DiagnosticsNode>[]) as List<_i3.DiagnosticsNode>);
+  @override
+  _i3.DiagnosticsNode describeOwnershipChain(String? name) =>
+      (super.noSuchMethod(Invocation.method(#describeOwnershipChain, [name]),
+          returnValue: _FakeDiagnosticsNode_4()) as _i3.DiagnosticsNode);
   @override
   String toString() => super.toString();
 }

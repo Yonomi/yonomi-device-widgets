@@ -63,7 +63,7 @@ MaterialApp createMaterialApp(TraitDetailProvider mockTraitBasedNotifier,
   );
 }
 
-@GenerateMocks([TraitDetailProvider, LockProvider])
+@GenerateMocks([TraitDetailProvider, LockProvider, BuildContext])
 void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -92,5 +92,12 @@ void main() {
 
     expect(find.text("unknown"), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);
+  });
+
+  test('Detail screen returns a multiprovider', () {
+    final detailScreen =
+        DetailScreen(request: Request('', {}), deviceId: 'deviceId');
+    expect(
+        detailScreen.build(MockBuildContext()), isInstanceOf<MultiProvider>());
   });
 }
