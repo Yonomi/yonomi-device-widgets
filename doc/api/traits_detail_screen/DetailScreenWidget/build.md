@@ -60,7 +60,7 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return Consumer<TraitBasedDeviceNotifier>(
+  return Consumer<TraitDetailProvider>(
       builder: (_, traitBasedDeviceNotifier, child) {
     if (traitBasedDeviceNotifier.isLoading) {
       return CircularProgressIndicator();

@@ -11,7 +11,7 @@
 
 [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId
   
-_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), read / write_
+_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), final_
 
 
 
@@ -22,7 +22,7 @@ _@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.htm
 
 ```dart
 @required
-String deviceId;
+final String deviceId;
 
 
 ```

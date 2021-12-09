@@ -84,14 +84,8 @@ Widget build(BuildContext context) {
                     child: _lockProvider.loadingAction
                         ? CircularProgressIndicator()
                         : _lockProvider.isLocked
-                            ? Icon(
-                                BootstrapIcons.lock,
-                                size: 100,
-                              )
-                            : Icon(
-                                BootstrapIcons.unlock,
-                                size: 100,
-                              )),
+                            ? LockIcon(true, size: 100.0)
+                            : LockIcon(false, size: 100.0)),
               ),
             ),
             SizedBox(

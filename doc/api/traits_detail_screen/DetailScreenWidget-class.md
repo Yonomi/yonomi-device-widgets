@@ -36,12 +36,12 @@
 
 ## Properties
 
-##### [deviceId](../traits_detail_screen/DetailScreenWidget/deviceId.md) &#8596; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [deviceId](../traits_detail_screen/DetailScreenWidget/deviceId.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
    
-_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), read / write_
+_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), final_
 
 
 
@@ -63,12 +63,12 @@ _final, inherited_
 
 
 
-##### [request](../traits_detail_screen/DetailScreenWidget/request.md) &#8596; [Request](https://yonomi.co/yonomi-sdk/Request-class.html)
+##### [request](../traits_detail_screen/DetailScreenWidget/request.md) &#8594; [Request](https://yonomi.co/yonomi-sdk/Request-class.html)
 
 
 
    
-_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), read / write_
+_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), final_
 
 
 
