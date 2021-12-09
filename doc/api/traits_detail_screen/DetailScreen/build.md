@@ -62,8 +62,8 @@ and</li>
 Widget build(BuildContext context) {
   return MultiProvider(
     providers: [
-      ChangeNotifierProvider<TraitBasedDeviceNotifier>(
-          create: (context) => TraitBasedDeviceNotifier(request, deviceId)),
+      ChangeNotifierProvider<TraitDetailProvider>(
+          create: (context) => TraitDetailProvider(request, deviceId)),
       ChangeNotifierProvider(
           create: (context) => LockProvider(request, deviceId)),
     ],
