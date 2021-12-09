@@ -34,12 +34,12 @@
 
 ## Properties
 
-##### [deviceDetail](../providers_trait_detail_provider/TraitDetailProvider/deviceDetail.md) &#8596; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
+##### [deviceDetail](../providers_trait_detail_provider/TraitDetailProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
    
-_read / write_
+_read-only_
 
 
 
