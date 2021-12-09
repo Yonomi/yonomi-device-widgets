@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
+import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -28,9 +28,8 @@ void main() {
         [LockTrait('name', IsLocked(true))]);
     when(mockGetDetailsMethod.call(request, 'test'))
         .thenAnswer((_) => Future.value(device));
-    TraitBasedDeviceNotifier traitBasedNotifier = TraitBasedDeviceNotifier(
-        request, 'test',
-        getDetails: mockGetDetailsMethod);
+    TraitDetailProvider traitBasedNotifier =
+        TraitDetailProvider(request, 'test', getDetails: mockGetDetailsMethod);
 
     await traitBasedNotifier.fetchData(getDetails: mockGetDetailsMethod);
 

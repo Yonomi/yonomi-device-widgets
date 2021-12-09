@@ -7,7 +7,7 @@ import 'dart:ui' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i7;
-import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart'
+import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart'
     as _i3;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
     as _i5;
@@ -27,12 +27,12 @@ class _FakeDevice_0 extends _i1.Fake implements _i2.Device {}
 
 class _FakeLockTrait_1 extends _i1.Fake implements _i2.LockTrait {}
 
-/// A class which mocks [TraitBasedDeviceNotifier].
+/// A class which mocks [TraitDetailProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTraitBasedDeviceNotifier extends _i1.Mock
-    implements _i3.TraitBasedDeviceNotifier {
-  MockTraitBasedDeviceNotifier() {
+class MockTraitDetailProvider extends _i1.Mock
+    implements _i3.TraitDetailProvider {
+  MockTraitDetailProvider() {
     _i1.throwOnMissingStub(this);
   }
 

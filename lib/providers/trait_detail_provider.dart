@@ -4,7 +4,7 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 typedef GetDetailsFunction = Future<Device> Function(
     Request request, String id);
 
-class TraitBasedDeviceNotifier extends ChangeNotifier {
+class TraitDetailProvider extends ChangeNotifier {
   bool _loadingDetail = false;
 
   late String _deviceId;
@@ -20,7 +20,7 @@ class TraitBasedDeviceNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  TraitBasedDeviceNotifier(Request request, String deviceId,
+  TraitDetailProvider(Request request, String deviceId,
       {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails}) {
     _request = request;
     _deviceId = deviceId;

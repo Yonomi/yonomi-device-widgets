@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
-import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
+import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -17,8 +17,8 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<TraitBasedDeviceNotifier>(
-            create: (context) => TraitBasedDeviceNotifier(request, deviceId)),
+        ChangeNotifierProvider<TraitDetailProvider>(
+            create: (context) => TraitDetailProvider(request, deviceId)),
         ChangeNotifierProvider(
             create: (context) => LockProvider(request, deviceId)),
       ],
@@ -29,16 +29,16 @@ class DetailScreen extends StatelessWidget {
 
 class DetailScreenWidget extends StatelessWidget {
   @required
-  Request request;
+  final Request request;
 
   @required
-  String deviceId;
+  final String deviceId;
 
   DetailScreenWidget(this.request, this.deviceId);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TraitBasedDeviceNotifier>(
+    return Consumer<TraitDetailProvider>(
         builder: (_, traitBasedDeviceNotifier, child) {
       if (traitBasedDeviceNotifier.isLoading) {
         return CircularProgressIndicator();

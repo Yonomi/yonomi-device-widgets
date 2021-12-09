@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
-import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
+import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
@@ -23,14 +23,13 @@ Widget createDetailScreenWhenLoading(
   Request req,
   String deviceId,
 ) {
-  TraitBasedDeviceNotifier mockTraitBasedNotifier =
-      MockTraitBasedDeviceNotifier();
-  when(mockTraitBasedNotifier.isLoading).thenReturn(true);
+  TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
+  when(mockTraitDetailProvider.isLoading).thenReturn(true);
 
   LockProvider mockLockProvider = MockLockProvider();
 
   return createMaterialApp(
-      mockTraitBasedNotifier, mockLockProvider, req, deviceId);
+      mockTraitDetailProvider, mockLockProvider, req, deviceId);
 }
 
 Widget createDetailScreenWidgetForTrait(
@@ -38,10 +37,9 @@ Widget createDetailScreenWidgetForTrait(
   Request req,
   String deviceId,
 ) {
-  TraitBasedDeviceNotifier mockTraitBasedNotifier =
-      MockTraitBasedDeviceNotifier();
-  when(mockTraitBasedNotifier.isLoading).thenReturn(false);
-  when(mockTraitBasedNotifier.deviceDetail).thenReturn(buildMockDevice(trait));
+  TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
+  when(mockTraitDetailProvider.isLoading).thenReturn(false);
+  when(mockTraitDetailProvider.deviceDetail).thenReturn(buildMockDevice(trait));
 
   LockProvider mockLockProvider = MockLockProvider();
   when(mockLockProvider.loadingDetail).thenReturn(false);
@@ -49,15 +47,15 @@ Widget createDetailScreenWidgetForTrait(
   when(mockLockProvider.isLocked).thenReturn(false);
 
   return createMaterialApp(
-      mockTraitBasedNotifier, mockLockProvider, req, deviceId);
+      mockTraitDetailProvider, mockLockProvider, req, deviceId);
 }
 
-MaterialApp createMaterialApp(TraitBasedDeviceNotifier mockTraitBasedNotifier,
+MaterialApp createMaterialApp(TraitDetailProvider mockTraitBasedNotifier,
     LockProvider mockLockProvider, Request req, String deviceId) {
   return MaterialApp(
     home: Column(children: [
       MultiProvider(providers: [
-        ChangeNotifierProvider<TraitBasedDeviceNotifier>.value(
+        ChangeNotifierProvider<TraitDetailProvider>.value(
             value: mockTraitBasedNotifier),
         ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
       ], child: DetailScreenWidget(req, deviceId)),
@@ -65,7 +63,7 @@ MaterialApp createMaterialApp(TraitBasedDeviceNotifier mockTraitBasedNotifier,
   );
 }
 
-@GenerateMocks([TraitBasedDeviceNotifier, LockProvider])
+@GenerateMocks([TraitDetailProvider, LockProvider])
 void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {

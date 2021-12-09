@@ -1,6 +1,7 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 
 class LockWidget extends StatelessWidget {
@@ -34,14 +35,8 @@ class LockWidget extends StatelessWidget {
                       child: _lockProvider.loadingAction
                           ? CircularProgressIndicator()
                           : _lockProvider.isLocked
-                              ? Icon(
-                                  BootstrapIcons.lock,
-                                  size: 100,
-                                )
-                              : Icon(
-                                  BootstrapIcons.unlock,
-                                  size: 100,
-                                )),
+                              ? LockIcon(true, size: 100.0)
+                              : LockIcon(false, size: 100.0)),
                 ),
               ),
               SizedBox(
