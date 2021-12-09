@@ -5,7 +5,7 @@ import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'trait_based_device_notifier_test.mocks.dart';
+import 'trait_detail_provider_test.mocks.dart';
 
 class GetDetails extends Mock {
   Future<Device> call(Request request, String id);
