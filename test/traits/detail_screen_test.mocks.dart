@@ -59,10 +59,6 @@ class MockTraitDetailProvider extends _i1.Mock
   }
 
   @override
-  set deviceDetail(_i2.Device? detail) =>
-      super.noSuchMethod(Invocation.setter(#deviceDetail, detail),
-          returnValueForMissingStub: null);
-  @override
   set setLoading(bool? newLoading) =>
       super.noSuchMethod(Invocation.setter(#setLoading, newLoading),
           returnValueForMissingStub: null);

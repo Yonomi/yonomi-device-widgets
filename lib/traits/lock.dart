@@ -35,8 +35,9 @@ class LockWidget extends StatelessWidget {
                       child: _lockProvider.loadingAction
                           ? CircularProgressIndicator()
                           : _lockProvider.isLocked
-                              ? LockIcon(true, size: 100.0)
-                              : LockIcon(false, size: 100.0)),
+                              ? LockIcon(true, size: 100.0, color: Colors.white)
+                              : LockIcon(false,
+                                  size: 100.0, color: Colors.white)),
                 ),
               ),
               SizedBox(
