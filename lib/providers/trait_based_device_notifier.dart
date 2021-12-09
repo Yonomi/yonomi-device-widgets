@@ -15,11 +15,6 @@ class TraitBasedDeviceNotifier extends ChangeNotifier {
 
   Device? get deviceDetail => _deviceDetail;
 
-  set deviceDetail(Device? detail) {
-    _deviceDetail = detail;
-    notifyListeners();
-  }
-
   TraitBasedDeviceNotifier(Request request, String deviceId,
       {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails}) {
     _request = request;
