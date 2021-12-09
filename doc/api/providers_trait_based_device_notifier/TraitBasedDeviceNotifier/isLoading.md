@@ -23,7 +23,7 @@
 ## Implementation
 
 ```dart
-bool get isLoading => _isLoading;
+bool get isLoading => _loadingDetail;
 ```
 
 

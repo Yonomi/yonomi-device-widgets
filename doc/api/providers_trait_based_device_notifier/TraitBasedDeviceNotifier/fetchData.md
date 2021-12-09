@@ -29,7 +29,7 @@ Future<Device?> fetchData(
         DevicesRepository.getDeviceDetails}) async {
   setLoading = true;
 
-  this.deviceDetail = await getDetails(_request, _deviceId);
+  _deviceDetail = await getDetails(_request, _deviceId);
   setLoading = false;
 
   return _deviceDetail;

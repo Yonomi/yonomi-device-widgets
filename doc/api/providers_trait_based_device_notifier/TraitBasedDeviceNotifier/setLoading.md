@@ -13,7 +13,7 @@
 
 
 setLoading=
-([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setIsLoading)  
+([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) newLoading)  
 
 
 
@@ -24,8 +24,8 @@ setLoading=
 ## Implementation
 
 ```dart
-set setLoading(bool setIsLoading) {
-  _isLoading = setIsLoading;
+set setLoading(bool newLoading) {
+  _loadingDetail = newLoading;
   notifyListeners();
 }
 ```
