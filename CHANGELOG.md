@@ -1,3 +1,35 @@
+# [2.1.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.0.1...v2.1.0) (2021-12-10)
+
+
+### Bug Fixes
+
+* **lock_item_icon.dart:** Use actual size and color arguments ([cceea78](https://github.com/Yonomi/yonomi-device-widgets/commit/cceea7880460d8c550dda985d9563e6e25c17cd0))
+* **lock_item_icon.dart:** Use the correct bootstrap lock icons ([ebea44c](https://github.com/Yonomi/yonomi-device-widgets/commit/ebea44c36247c494081bb3442d740d79a725c9af))
+* **lock_widget.dart:** Remove arc as the arc doesn't match mockups for lock ([fc5e019](https://github.com/Yonomi/yonomi-device-widgets/commit/fc5e01941573c47169ba0cefd64bcf1570db08ce))
+* **thermostat_icon_test.dart:** Use text style when provided ([0742522](https://github.com/Yonomi/yonomi-device-widgets/commit/0742522a86b877bca9e26d22fdc0e5478a3ff790))
+* **unknown_item_icon.dart:** Use constructor size and color instead of constant ([860634b](https://github.com/Yonomi/yonomi-device-widgets/commit/860634b61adc26c6ac60facd02a199342d8eadd5))
+* ref pegged to commit ([4762ca4](https://github.com/Yonomi/yonomi-device-widgets/commit/4762ca41b9412118d24c6590b248e3220e49f3e3))
+* **unknown_widget.dart,device_provider.dart,unknown_provider.dart:** Remove widget provider logic for unknown device ([003a674](https://github.com/Yonomi/yonomi-device-widgets/commit/003a67453ae1434d6c0c6d283e26e833fe0a80a7))
+* alignments ([a1e5a6d](https://github.com/Yonomi/yonomi-device-widgets/commit/a1e5a6db3204c507efc00d39ebca8f6d7dc86959))
+* cleanup ([28e4d03](https://github.com/Yonomi/yonomi-device-widgets/commit/28e4d03adbb3705327dcd5e8ef32ee67b5fe1e04))
+* code cleanup ([67db7d0](https://github.com/Yonomi/yonomi-device-widgets/commit/67db7d048458df45d092edb218b94a0479d9538a))
+* coverage plus cleanup ([0d933a2](https://github.com/Yonomi/yonomi-device-widgets/commit/0d933a2ebf84b88b837f379ff8f6e8b1379ca471))
+* detail screen ([862835a](https://github.com/Yonomi/yonomi-device-widgets/commit/862835a1bf12efde16e0898c7154c2140a7b2d42))
+* increase code coverage ([5ec43d6](https://github.com/Yonomi/yonomi-device-widgets/commit/5ec43d6627b0a6661611e0f10544c6e6a828dba4))
+* lock widget display ([0633664](https://github.com/Yonomi/yonomi-device-widgets/commit/0633664acf365355d8f002d8de677dba7b0ff5b9))
+* moved detail screen to device widget ([522bdef](https://github.com/Yonomi/yonomi-device-widgets/commit/522bdef646ccefc8fb778e633301b76327595c33))
+* rename test ([c392d7c](https://github.com/Yonomi/yonomi-device-widgets/commit/c392d7c2e2f913f6f87d9c75bb0dba4218766210))
+* sdk dependency ([5df8963](https://github.com/Yonomi/yonomi-device-widgets/commit/5df8963485bc4ec5283b2f87d101a06bd9f62b4a))
+* simplified the logic to use bootstrap directly ([9ad42a4](https://github.com/Yonomi/yonomi-device-widgets/commit/9ad42a4028c4e3bd71f2ebbb4e9aab8af312169a))
+* upgrade sdk ([ec31cc7](https://github.com/Yonomi/yonomi-device-widgets/commit/ec31cc70c46f475fa5973471bcb6cb261265eee7))
+
+
+### Features
+
+* **lib/assets/traits/device_item_icon.dart,lib/assets/traits/unknown_item_icon.dart,lib/components/unknown_widget.dart,test/assets/device_item_icon_test.dart:** Add display of Bootstrap Icons box for unknown trait devices ([24b5cad](https://github.com/Yonomi/yonomi-device-widgets/commit/24b5cad49bec87aba14d883cc77b1d4c649a966a))
+* **trait_based:** create new trait-based device detail screen ([16f42ae](https://github.com/Yonomi/yonomi-device-widgets/commit/16f42aec97764f4b2c3aa8c6d4c01cd65c12ee80))
+* **unknown_widget.dart,device_provider.dart,unknown_provider.dart:** Add a provider for the unknown trait devices and a base provider ([673bc69](https://github.com/Yonomi/yonomi-device-widgets/commit/673bc69996f6a17aca8f4c2b853be790ba168847))
+
 ## [2.0.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.0.0...v2.0.1) (2021-11-22)
 
 
