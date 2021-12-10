@@ -102,6 +102,24 @@ _final, inherited_
 
 
 
+##### [onFocusChange](https://api.flutter.dev/flutter/material/ButtonStyleButton/onFocusChange.html) &#8594; [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)>?
+
+
+
+Handler called when the focus changes. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/onFocusChange.html)  
+_final, inherited_
+
+
+
+##### [onHover](https://api.flutter.dev/flutter/material/ButtonStyleButton/onHover.html) &#8594; [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)>?
+
+
+
+Called when a pointer enters or exits the button response area. [...](https://api.flutter.dev/flutter/material/ButtonStyleButton/onHover.html)  
+_final, inherited_
+
+
+
 ##### [onLongPress](https://api.flutter.dev/flutter/material/ButtonStyleButton/onLongPress.html) &#8594; [VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html)?
 
 

@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i3;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
     as _i5;
-import 'package:yonomi_platform_sdk/src/repository/devices/lock_repository.dart'
+import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
     as _i6;
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
 
@@ -22,6 +22,8 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
 // ignore_for_file: unnecessary_parenthesis
 
 class _FakeDevice_0 extends _i1.Fake implements _i2.Device {}
+
+class _FakeLockTrait_1 extends _i1.Fake implements _i2.LockTrait {}
 
 /// A class which mocks [LockProvider].
 ///
@@ -59,6 +61,10 @@ class MockLockProvider extends _i1.Mock implements _i3.LockProvider {
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
+  @override
+  _i2.LockTrait getLockTrait() =>
+      (super.noSuchMethod(Invocation.method(#getLockTrait, []),
+          returnValue: _FakeLockTrait_1()) as _i2.LockTrait);
   @override
   _i4.Future<void> getDeviceDetail(String? deviceId,
           {_i3.GetLockDetailsFunction? getLockDetails =

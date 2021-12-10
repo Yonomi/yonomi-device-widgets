@@ -21,4 +21,15 @@ class WidgetStyleConstants {
       fontSize: 19.0);
 
   static const Color defaultArcColor = Color(0xff63aa65);
+
+  static const Color defaultBorderColor = Colors.black;
+
+  static const double defaultBorderWidth = 3.0;
+
+  static final BorderRadius defaultCircularBorderRadius =
+      BorderRadius.circular(100);
+
+  static const double defaultDeviceIconSize = 60.0;
+
+  static const double defaultDeviceWidgetSize = 175.0;
 }

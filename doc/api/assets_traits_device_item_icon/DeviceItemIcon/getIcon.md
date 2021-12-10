@@ -27,18 +27,12 @@
 static Widget getIcon(List<Trait> traits) {
   Trait determiningTrait = traits[0];
   if (determiningTrait is LockTrait) {
-    return (determiningTrait.state.value)
-        ? buildLockIcon()
-        : buildUnlockIcon();
-  }
-  if (determiningTrait is ThermostatTrait) {
+    return LockIcon(determiningTrait.state.value);
+  } else if (determiningTrait is ThermostatTrait) {
     return buildThermostatIcon(determiningTrait.state.value);
+  } else {
+    return UnknownItemIcon();
   }
-  return Icon(
-    Icons.device_unknown,
-    size: 60,
-    color: WidgetStyleConstants.deviceIconColor,
-  );
 }
 ```
 

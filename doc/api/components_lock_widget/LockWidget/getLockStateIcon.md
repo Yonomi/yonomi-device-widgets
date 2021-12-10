@@ -29,9 +29,11 @@ Widget getLockStateIcon(LockProvider lockProvider) {
       ? Center(child: CircularProgressIndicator())
       : (lockProvider.isLocked)
           ? DeviceItemIcon.buildLockIcon(
-              175, WidgetStyleConstants.deviceDetailIconColorActive)
+              WidgetStyleConstants.defaultDeviceWidgetSize,
+              WidgetStyleConstants.deviceDetailIconColorActive)
           : DeviceItemIcon.buildUnlockIcon(
-              175, WidgetStyleConstants.deviceDetailIconColorInactive);
+              WidgetStyleConstants.defaultDeviceWidgetSize,
+              WidgetStyleConstants.deviceDetailIconColorInactive);
 }
 ```
 
