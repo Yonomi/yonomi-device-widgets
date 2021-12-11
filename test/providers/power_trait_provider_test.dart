@@ -173,6 +173,35 @@ void main() {
       expect(powerProvider.isInErrorState, equals(true));
       expect(powerProvider.getErrorMessage, equals(exceptionMesssage));
     });
+
+    test(""""When an error occurs running an action, we are notified 
+        an error occurred using isInErrorState and get 
+        an error message with getErrorMessage.""", () async {
+      Request request = Request("", {});
+      String deviceId = 'aDeviceId';
+
+      String exceptionMesssage = "Throwing an exception";
+
+      MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
+          MockGetDeviceDetailsMethod();
+
+      MockSendPowerMethod mockSendPowerMethod = MockSendPowerMethod();
+      when(mockSendPowerMethod.call(request, deviceId, true))
+          .thenAnswer((_) => throw (exceptionMesssage));
+
+      PowerTraitProvider powerProvider = await PowerTraitProvider(
+          request, deviceId,
+          getDetails: mockDeviceDetailsMethod);
+
+      powerProvider.sendPowerOnOffAction(true,
+          getDetails: mockDeviceDetailsMethod,
+          sendPowerMethod: mockSendPowerMethod);
+
+      await Future.delayed(Duration(milliseconds: 100));
+
+      expect(powerProvider.isInErrorState, equals(true));
+      expect(powerProvider.getErrorMessage, equals(exceptionMesssage));
+    });
   });
 }
 

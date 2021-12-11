@@ -14,7 +14,7 @@ class PowerTraitProvider extends ChangeNotifier {
   final int MAX_RETRIES = 10;
   final int RETRY_DELAY_MS = 750;
 
-  PowerState currentState = PowerState.idle;
+  PowerState _currentState = PowerState.idle;
   String _latestErrorMsg = "An error occurred.";
 
   late String _deviceId;
@@ -36,13 +36,13 @@ class PowerTraitProvider extends ChangeNotifier {
   Future<Device?> fetchData(
       {GetDeviceDetailsMethod getDeviceDetails =
           DevicesRepository.getDeviceDetails}) async {
-    setState = PowerState.loading;
+    _setState = PowerState.loading;
 
     try {
-      this.deviceDetail = await getDeviceDetails(_request, _deviceId);
+      _deviceDetail = await getDeviceDetails(_request, _deviceId);
+      _setState = PowerState.idle;
     } catch (error) {
-      setErrorMessage = error.toString();
-      setState = PowerState.error;
+      _setErrorState(error.toString());
       return null;
     }
 
@@ -53,8 +53,8 @@ class PowerTraitProvider extends ChangeNotifier {
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendPowerMethod sendPowerMethod =
           PowerRepository.sendPowerAction}) async {
-    if (currentState != PowerState.performingAction) {
-      setState = PowerState.performingAction;
+    if (!isPerformingAction) {
+      _setState = PowerState.performingAction;
 
       try {
         await sendPowerMethod(_request, this._deviceId, desiredOnOffState);
@@ -66,12 +66,11 @@ class PowerTraitProvider extends ChangeNotifier {
           await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
           numRetries++;
         }
-        setState = PowerState.idle;
+        _setState = PowerState.idle;
       } catch (error) {
-        setErrorMessage = error.toString();
-        setState = PowerState.error;
+        _setErrorState(error.toString());
         await Future.delayed(Duration(seconds: 1))
-            .then((_) => setState = PowerState.idle);
+            .then((_) => _setState = PowerState.idle);
       }
     }
   }
@@ -86,29 +85,29 @@ class PowerTraitProvider extends ChangeNotifier {
 
   Device? get deviceDetail => _deviceDetail;
 
-  set deviceDetail(Device? detail) {
-    _deviceDetail = detail;
-
-    setState = PowerState.idle;
-  }
-
   bool get getOnOffState {
     return getPowerTrait()?.state.value ?? false;
   }
 
-  set setState(PowerState newState) {
-    this.currentState = newState;
+  set _setState(PowerState newState) {
+    _currentState = newState;
     notifyListeners();
   }
 
-  bool get isBusy => (currentState == PowerState.loading ||
-      currentState == PowerState.performingAction);
+  void _setErrorState(String errorMsg) {
+    setErrorMessage = errorMsg;
+    _currentState = PowerState.error;
+    notifyListeners();
+  }
 
-  bool get isLoading => currentState == PowerState.loading;
+  bool get isBusy => (_currentState == PowerState.loading ||
+      _currentState == PowerState.performingAction);
 
-  bool get isPerformingAction => currentState == PowerState.performingAction;
+  bool get isLoading => _currentState == PowerState.loading;
 
-  bool get isInErrorState => currentState == PowerState.error;
+  bool get isPerformingAction => _currentState == PowerState.performingAction;
+
+  bool get isInErrorState => _currentState == PowerState.error;
 
   set setErrorMessage(String errorMsg) {
     if (errorMsg.isEmpty) errorMsg = "An error occurred.";
