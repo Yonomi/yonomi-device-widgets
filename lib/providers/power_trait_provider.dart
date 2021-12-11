@@ -8,12 +8,13 @@ typedef GetDeviceDetailsMethod = Future<Device> Function(
 typedef SendPowerMethod = Future<void> Function(
     Request request, String id, bool onOff);
 
+enum PowerState { idle, loading, performingAction, error }
+
 class PowerTraitProvider extends ChangeNotifier {
   final int MAX_RETRIES = 10;
+  final int RETRY_DELAY_MS = 750;
 
-  bool _isLoading = false;
-  bool _isPerformingAction = false;
-  bool _isInErrorState = false;
+  PowerState currentState = PowerState.idle;
   String _latestErrorMsg = "An error occurred.";
 
   late String _deviceId;
@@ -22,17 +23,11 @@ class PowerTraitProvider extends ChangeNotifier {
 
   Device? _deviceDetail;
 
-  Device? get deviceDetail => _deviceDetail;
-
-  set deviceDetail(Device? detail) {
-    _deviceDetail = detail;
-
-    setLoading = false;
-  }
-
-  PowerTraitProvider(Request request, String deviceId,
-      {GetDeviceDetailsMethod getDetails =
-          DevicesRepository.getDeviceDetails}) {
+  PowerTraitProvider(
+    @required Request request,
+    @required String deviceId, {
+    GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
+  }) {
     _request = request;
     _deviceId = deviceId;
     fetchData(getDeviceDetails: getDetails);
@@ -41,9 +36,15 @@ class PowerTraitProvider extends ChangeNotifier {
   Future<Device?> fetchData(
       {GetDeviceDetailsMethod getDeviceDetails =
           DevicesRepository.getDeviceDetails}) async {
-    setLoading = true;
+    setState = PowerState.loading;
 
-    this.deviceDetail = await getDeviceDetails(_request, _deviceId);
+    try {
+      this.deviceDetail = await getDeviceDetails(_request, _deviceId);
+    } catch (error) {
+      setErrorMessage = error.toString();
+      setState = PowerState.error;
+      return null;
+    }
 
     return deviceDetail;
   }
@@ -52,8 +53,8 @@ class PowerTraitProvider extends ChangeNotifier {
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendPowerMethod sendPowerMethod =
           PowerRepository.sendPowerAction}) async {
-    if (!isPerformingAction) {
-      setPerformingAction = true;
+    if (currentState != PowerState.performingAction) {
+      setState = PowerState.performingAction;
 
       try {
         await sendPowerMethod(_request, this._deviceId, desiredOnOffState);
@@ -62,15 +63,15 @@ class PowerTraitProvider extends ChangeNotifier {
         while (getOnOffState != desiredOnOffState && numRetries < MAX_RETRIES) {
           _deviceDetail = await getDetails(_request, _deviceId);
 
-          await Future.delayed(Duration(milliseconds: 750));
+          await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
           numRetries++;
         }
-        setPerformingAction = false;
+        setState = PowerState.idle;
       } catch (error) {
         setErrorMessage = error.toString();
-        setErrorState = true;
+        setState = PowerState.error;
         await Future.delayed(Duration(seconds: 1))
-            .then((_) => setErrorState = false);
+            .then((_) => setState = PowerState.idle);
       }
     }
   }
@@ -83,38 +84,31 @@ class PowerTraitProvider extends ChangeNotifier {
     }
   }
 
+  Device? get deviceDetail => _deviceDetail;
+
+  set deviceDetail(Device? detail) {
+    _deviceDetail = detail;
+
+    setState = PowerState.idle;
+  }
+
   bool get getOnOffState {
     return getPowerTrait()?.state.value ?? false;
   }
 
-  bool get isBusy => isLoading || isPerformingAction;
-
-  set setLoading(bool setIsLoading) {
-    _isLoading = setIsLoading;
-    _isPerformingAction = false;
-    _isInErrorState = false;
+  set setState(PowerState newState) {
+    this.currentState = newState;
     notifyListeners();
   }
 
-  bool get isLoading => _isLoading;
+  bool get isBusy => (currentState == PowerState.loading ||
+      currentState == PowerState.performingAction);
 
-  set setPerformingAction(bool setIsPerformingAction) {
-    _isPerformingAction = setIsPerformingAction;
-    _isLoading = false;
-    _isInErrorState = false;
-    notifyListeners();
-  }
+  bool get isLoading => currentState == PowerState.loading;
 
-  bool get isPerformingAction => _isPerformingAction;
+  bool get isPerformingAction => currentState == PowerState.performingAction;
 
-  set setErrorState(bool setIsError) {
-    _isInErrorState = setIsError;
-    _isLoading = false;
-    _isPerformingAction = false;
-    notifyListeners();
-  }
-
-  bool get isInErrorState => _isInErrorState;
+  bool get isInErrorState => currentState == PowerState.error;
 
   set setErrorMessage(String errorMsg) {
     if (errorMsg.isEmpty) errorMsg = "An error occurred.";
