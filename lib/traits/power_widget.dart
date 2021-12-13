@@ -14,15 +14,12 @@ class PowerWidget extends StatelessWidget {
       print("In Busy State");
       return CircularProgressIndicator();
     } else if (powerTraitProvider.isInErrorState) {
-      print("In Error State");
       _showToast(context, powerTraitProvider.getErrorMessage);
       return Icon(Icons.error);
     } else {
-      print("Show Switch with its state");
       return CupertinoSwitch(
         value: powerTraitProvider.getOnOffState,
         onChanged: (bool onOff) {
-          print('turned ${(onOff) ? 'on' : 'off'}');
           powerTraitProvider.sendPowerOnOffAction(onOff);
         },
       );
