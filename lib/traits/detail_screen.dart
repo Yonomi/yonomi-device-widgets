@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
+import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -21,6 +23,8 @@ class DetailScreen extends StatelessWidget {
             create: (context) => TraitDetailProvider(request, deviceId)),
         ChangeNotifierProvider(
             create: (context) => LockProvider(request, deviceId)),
+        ChangeNotifierProvider(
+            create: (context) => PowerTraitProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );
@@ -70,6 +74,13 @@ class DetailScreenWidget extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: LockWidget(lockProvider),
+          );
+        });
+      case 'power':
+        return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PowerWidget(),
           );
         });
       default:
