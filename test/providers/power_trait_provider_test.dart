@@ -157,15 +157,9 @@ void main() {
         throw (exceptionMesssage);
       });
 
-      final mockSendPowerMethod = MockSendPowerMethod();
-
       PowerTraitProvider powerProvider = await PowerTraitProvider(
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
-
-      powerProvider.sendPowerOnOffAction(true,
-          getDetails: mockDeviceDetailsMethod,
-          sendPowerMethod: mockSendPowerMethod);
 
       await Future.delayed(Duration(milliseconds: 100));
 
