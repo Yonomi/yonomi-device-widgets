@@ -80,7 +80,7 @@ class DetailScreenWidget extends StatelessWidget {
         return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: PowerWidget(),
+            child: PowerWidget(powerProvider),
           );
         });
       default:
