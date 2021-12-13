@@ -63,6 +63,10 @@ class MockTraitDetailProvider extends _i1.Mock
   }
 
   @override
+  set setLoading(bool? newLoading) =>
+      super.noSuchMethod(Invocation.setter(#setLoading, newLoading),
+          returnValueForMissingStub: null);
+  @override
   bool get isLoading =>
       (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
           as bool);
@@ -212,10 +216,6 @@ class MockPowerTraitProvider extends _i1.Mock
   bool get isInErrorState => (super
           .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
       as bool);
-  @override
-  set setErrorMessage(String? errorMsg) =>
-      super.noSuchMethod(Invocation.setter(#setErrorMessage, errorMsg),
-          returnValueForMissingStub: null);
   @override
   String get getErrorMessage =>
       (super.noSuchMethod(Invocation.getter(#getErrorMessage), returnValue: '')

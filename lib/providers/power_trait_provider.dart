@@ -32,6 +32,9 @@ class PowerTraitProvider extends ChangeNotifier {
     fetchData(getDeviceDetails: getDetails);
   }
 
+  /// Fetches device data. When loaded, get the data with [getDeviceDetails]
+  ///
+  /// @throws ServerException for any errors returned by the platform
   Future<Device?> fetchData(
       {GetDeviceDetailsMethod getDeviceDetails =
           DevicesRepository.getDeviceDetails}) async {
@@ -48,6 +51,10 @@ class PowerTraitProvider extends ChangeNotifier {
     return deviceDetail;
   }
 
+  /// Run the "makePowerActionRequest" mutation on this device
+  ///
+  /// @param desiredOnOffState use true to set power state to on, false otherwise
+  /// @throws ServerException for any errors returned by the platform
   Future<void> sendPowerOnOffAction(bool desiredOnOffState,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendPowerMethod sendPowerMethod =
@@ -94,24 +101,30 @@ class PowerTraitProvider extends ChangeNotifier {
   }
 
   void _setErrorState(String errorMsg) {
-    setErrorMessage = errorMsg;
-    _currentState = PowerState.error;
-    notifyListeners();
+    _setErrorMessage = errorMsg;
+    _setState = PowerState.error;
   }
 
+  /// To know if this ChangeNotifier is busy from fetching data or running an action
   bool get isBusy => (_currentState == PowerState.loading ||
       _currentState == PowerState.performingAction);
 
+  /// To know if this ChangeNotifier is fetching device data
   bool get isLoading => _currentState == PowerState.loading;
 
+  /// To know if this ChangeNotifier is performing an action
   bool get isPerformingAction => _currentState == PowerState.performingAction;
 
+  /// To know if this ChangeNotifier had an error
+  /// see [getErrorMessage] to get the accomponying error message
   bool get isInErrorState => _currentState == PowerState.error;
 
-  set setErrorMessage(String errorMsg) {
+  set _setErrorMessage(String errorMsg) {
     if (errorMsg.isEmpty) errorMsg = "An error occurred.";
     _latestErrorMsg = errorMsg;
   }
 
+  /// Get the error message whenever this ChangeNotifier had an error
+  /// See also: [isInErrorState]
   String get getErrorMessage => _latestErrorMsg;
 }
