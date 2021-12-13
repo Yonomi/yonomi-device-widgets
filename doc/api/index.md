@@ -88,6 +88,10 @@ open coverage/html/index.html
  
 
 
+##### [power_item_icon](assets_traits_power_item_icon/assets_traits_power_item_icon-library.md)
+ 
+
+
 ##### [power_trait_provider](providers_power_trait_provider/providers_power_trait_provider-library.md)
  
 
