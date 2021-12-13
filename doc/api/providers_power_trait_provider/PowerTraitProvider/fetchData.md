@@ -18,6 +18,8 @@
 
 
 
+<p>Fetches device data. When loaded, get the data with <code>getDeviceDetails</code></p>
+<p>@throws ServerException for any errors returned by the platform</p>
 
 
 

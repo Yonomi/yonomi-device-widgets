@@ -17,6 +17,8 @@
 
 
 
+<p>To know if this ChangeNotifier had an error
+see <a href="../../providers_power_trait_provider/PowerTraitProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message</p>
 
 
 

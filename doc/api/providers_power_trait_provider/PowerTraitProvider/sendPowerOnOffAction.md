@@ -18,6 +18,9 @@
 
 
 
+<p>Run the "makePowerActionRequest" mutation on this device</p>
+<p>@param desiredOnOffState use true to set power state to on, false otherwise
+@throws ServerException for any errors returned by the platform</p>
 
 
 
