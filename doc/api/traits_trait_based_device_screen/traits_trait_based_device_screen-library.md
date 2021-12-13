@@ -16,21 +16,7 @@
 
 ## Classes
 
-##### [isPowered](../traits_trait_based_device_screen/isPowered-class.md)
-
-
-
- 
-
-
 ##### [LockTraitWidget](../traits_trait_based_device_screen/LockTraitWidget-class.md)
-
-
-
- 
-
-
-##### [PowerTrait](../traits_trait_based_device_screen/PowerTrait-class.md)
 
 
 

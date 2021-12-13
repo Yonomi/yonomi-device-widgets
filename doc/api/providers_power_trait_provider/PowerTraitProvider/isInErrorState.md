@@ -23,7 +23,7 @@
 ## Implementation
 
 ```dart
-bool get isInErrorState => _isInErrorState;
+bool get isInErrorState => _currentState == PowerState.error;
 ```
 
 

@@ -27,19 +27,19 @@
 
 ## Constructors
 
-[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, @[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
 
 ## Properties
 
-##### [deviceDetail](../providers_power_trait_provider/PowerTraitProvider/deviceDetail.md) &#8596; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
+##### [deviceDetail](../providers_power_trait_provider/PowerTraitProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
    
-_read / write_
+_read-only_
 
 
 
@@ -124,6 +124,15 @@ _final_
 
 
 
+##### [RETRY_DELAY_MS](../providers_power_trait_provider/PowerTraitProvider/RETRY_DELAY_MS.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
+_final_
+
+
+
 ##### [runtimeType](https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html) &#8594; [Type](https://api.flutter.dev/flutter/dart-core/Type-class.html)
 
 
@@ -134,33 +143,6 @@ _read-only, inherited_
 
 
 ##### [setErrorMessage](../providers_power_trait_provider/PowerTraitProvider/setErrorMessage.md) &#8592; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
-
-
-
-   
-_write-only_
-
-
-
-##### [setErrorState](../providers_power_trait_provider/PowerTraitProvider/setErrorState.md) &#8592; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
-
-
-
-   
-_write-only_
-
-
-
-##### [setLoading](../providers_power_trait_provider/PowerTraitProvider/setLoading.md) &#8592; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
-
-
-
-   
-_write-only_
-
-
-
-##### [setPerformingAction](../providers_power_trait_provider/PowerTraitProvider/setPerformingAction.md) &#8592; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
@@ -202,7 +184,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [getPowerTrait](../providers_power_trait_provider/PowerTraitProvider/getPowerTrait.md)() [PowerTrait](../traits_trait_based_device_screen/PowerTrait-class.md)?
+##### [getPowerTrait](../providers_power_trait_provider/PowerTraitProvider/getPowerTrait.md)() [PowerTrait](https://yonomi.co/yonomi-sdk/PowerTrait-class.html)?
 
 
 

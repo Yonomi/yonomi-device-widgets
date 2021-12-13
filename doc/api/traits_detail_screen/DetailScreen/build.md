@@ -66,6 +66,8 @@ Widget build(BuildContext context) {
           create: (context) => TraitDetailProvider(request, deviceId)),
       ChangeNotifierProvider(
           create: (context) => LockProvider(request, deviceId)),
+      ChangeNotifierProvider(
+          create: (context) => PowerTraitProvider(request, deviceId)),
     ],
     child: DetailScreenWidget(request, deviceId),
   );

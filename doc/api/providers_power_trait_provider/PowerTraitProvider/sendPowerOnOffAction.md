@@ -29,7 +29,7 @@ Future<void> sendPowerOnOffAction(bool desiredOnOffState,
     SendPowerMethod sendPowerMethod =
         PowerRepository.sendPowerAction}) async {
   if (!isPerformingAction) {
-    setPerformingAction = true;
+    _setState = PowerState.performingAction;
 
     try {
       await sendPowerMethod(_request, this._deviceId, desiredOnOffState);
@@ -38,15 +38,14 @@ Future<void> sendPowerOnOffAction(bool desiredOnOffState,
       while (getOnOffState != desiredOnOffState && numRetries < MAX_RETRIES) {
         _deviceDetail = await getDetails(_request, _deviceId);
 
-        await Future.delayed(Duration(milliseconds: 750));
+        await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
         numRetries++;
       }
-      setPerformingAction = false;
+      _setState = PowerState.idle;
     } catch (error) {
-      setErrorMessage = error.toString();
-      setErrorState = true;
+      _setErrorState(error.toString());
       await Future.delayed(Duration(seconds: 1))
-          .then((_) => setErrorState = false);
+          .then((_) => _setState = PowerState.idle);
     }
   }
 }

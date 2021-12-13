@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../traits_trait_based_device_screen/TraitBasedDetailScreen/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../traits_power_widget/PowerWidget/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,35 +60,7 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return ChangeNotifierProvider(
-    create: (_) => TraitDetailProvider(request, deviceId),
-    child: Consumer<TraitDetailProvider>(
-        builder: (_, traitDetailProvider, child) {
-      if (traitDetailProvider.isLoading) {
-        return CircularProgressIndicator();
-      } else {
-        return TraitWidgetsBuilder.build(
-            this.request,
-            this.deviceId,
-            Device(
-              traitDetailProvider.deviceDetail!.id,
-              traitDetailProvider.deviceDetail!.displayName,
-              traitDetailProvider.deviceDetail!.description,
-              traitDetailProvider.deviceDetail!.manufacturerName,
-              traitDetailProvider.deviceDetail!.model,
-              traitDetailProvider.deviceDetail!.serialNumber,
-              traitDetailProvider.deviceDetail!.createdAt,
-              traitDetailProvider.deviceDetail!.updatedAt,
-              [
-                LockTrait("whenLocked", IsLocked(true)),
-                LockTrait("whenUnlocked", IsLocked(false)),
-                PowerTrait("PowerTrait", IsOnOff(true)),
-                UnknownTrait("Unknown Trait"),
-              ],
-            ));
-      }
-    }),
-  );
+  return Text("PowerWidget");
 }
 ```
 

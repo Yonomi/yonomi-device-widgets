@@ -11,7 +11,7 @@
 
 
 
-[PowerTrait](../../traits_trait_based_device_screen/PowerTrait-class.md)? getPowerTrait
+[PowerTrait](https://yonomi.co/yonomi-sdk/PowerTrait-class.html)? getPowerTrait
 ()
 
 

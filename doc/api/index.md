@@ -92,6 +92,10 @@ open coverage/html/index.html
  
 
 
+##### [power_widget](traits_power_widget/traits_power_widget-library.md)
+ 
+
+
 ##### [ring_border](ui_ring_border/ui_ring_border-library.md)
  
 
@@ -112,11 +116,11 @@ open coverage/html/index.html
  
 
 
-##### [trait_detail_provider](providers_trait_detail_provider/providers_trait_detail_provider-library.md)
+##### [trait_based_device_screen](traits_trait_based_device_screen/traits_trait_based_device_screen-library.md)
  
 
 
-##### [trait_based_device_screen](traits_trait_based_device_screen/traits_trait_based_device_screen-library.md)
+##### [trait_detail_provider](providers_trait_detail_provider/providers_trait_detail_provider-library.md)
  
 
 

@@ -33,6 +33,13 @@ Widget createTraitWidget(String name) {
           child: LockWidget(lockProvider),
         );
       });
+    case 'power':
+      return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PowerWidget(),
+        );
+      });
     default:
       return Padding(
         padding: const EdgeInsets.all(8.0),
