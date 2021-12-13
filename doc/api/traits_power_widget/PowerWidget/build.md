@@ -60,7 +60,23 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return Text("PowerWidget");
+  if (powerTraitProvider.isBusy) {
+    print("In Busy State");
+    return CircularProgressIndicator();
+  } else if (powerTraitProvider.isInErrorState) {
+    print("In Error State");
+    _showToast(context, powerTraitProvider.getErrorMessage);
+    return Icon(Icons.error);
+  } else {
+    print("Show Switch with its state");
+    return CupertinoSwitch(
+      value: powerTraitProvider.getOnOffState,
+      onChanged: (bool onOff) {
+        print('turned ${(onOff) ? 'on' : 'off'}');
+        powerTraitProvider.sendPowerOnOffAction(onOff);
+      },
+    );
+  }
 }
 ```
 

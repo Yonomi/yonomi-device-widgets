@@ -17,6 +17,8 @@
 
 
 
+<p>Get the error message whenever this ChangeNotifier had an error
+See also: <a href="../../providers_power_trait_provider/PowerTraitProvider/isInErrorState.md">isInErrorState</a></p>
 
 
 

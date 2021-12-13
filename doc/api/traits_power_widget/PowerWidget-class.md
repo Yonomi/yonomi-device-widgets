@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) ()
+[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) powerTraitProvider)
 
     
 
@@ -51,6 +51,15 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
+
+
+
+##### [powerTraitProvider](../traits_power_widget/PowerWidget/powerTraitProvider.md) &#8596; [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md)
+
+
+
+   
+_read / write_
 
 
 

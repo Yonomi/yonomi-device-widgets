@@ -47,7 +47,8 @@ _read-only_
 
 
 
-   
+Get the error message whenever this ChangeNotifier had an error
+See also: <a href="../providers_power_trait_provider/PowerTraitProvider/isInErrorState.md">isInErrorState</a>   
 _read-only_
 
 
@@ -83,7 +84,7 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-   
+To know if this ChangeNotifier is busy from fetching data or running an action   
 _read-only_
 
 
@@ -92,7 +93,8 @@ _read-only_
 
 
 
-   
+To know if this ChangeNotifier had an error
+see <a href="../providers_power_trait_provider/PowerTraitProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
 _read-only_
 
 
@@ -101,7 +103,7 @@ _read-only_
 
 
 
-   
+To know if this ChangeNotifier is fetching device data   
 _read-only_
 
 
@@ -110,7 +112,7 @@ _read-only_
 
 
 
-   
+To know if this ChangeNotifier is performing an action   
 _read-only_
 
 
@@ -142,15 +144,6 @@ _read-only, inherited_
 
 
 
-##### [setErrorMessage](../providers_power_trait_provider/PowerTraitProvider/setErrorMessage.md) &#8592; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
-
-
-
-   
-_write-only_
-
-
-
 
 ## Methods
 
@@ -179,7 +172,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-   
+Fetches device data. When loaded, get the data with <code>getDeviceDetails</code> [...](../providers_power_trait_provider/PowerTraitProvider/fetchData.md)  
 
 
 
@@ -225,7 +218,7 @@ _inherited_
 
 
 
-   
+Run the "makePowerActionRequest" mutation on this device [...](../providers_power_trait_provider/PowerTraitProvider/sendPowerOnOffAction.md)  
 
 
 
