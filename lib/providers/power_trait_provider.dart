@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:yonomi_device_widgets/traits/trait_based_device_screen.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef GetDeviceDetailsMethod = Future<Device> Function(

@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
-import 'package:yonomi_device_widgets/providers/trait_based_device_notifier.dart';
+import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as yoSdk;
 
 class TraitBasedDetailScreen extends StatelessWidget {
   final Request request;
@@ -19,28 +18,28 @@ class TraitBasedDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => TraitBasedDeviceNotifier(request, deviceId),
-      child: Consumer<TraitBasedDeviceNotifier>(
-          builder: (_, traitBasedDeviceNotifier, child) {
-        if (traitBasedDeviceNotifier.isLoading) {
+      create: (_) => TraitDetailProvider(request, deviceId),
+      child: Consumer<TraitDetailProvider>(
+          builder: (_, traitDetailProvider, child) {
+        if (traitDetailProvider.isLoading) {
           return CircularProgressIndicator();
         } else {
           return TraitWidgetsBuilder.build(
               this.request,
               this.deviceId,
               Device(
-                traitBasedDeviceNotifier.deviceDetail!.id,
-                traitBasedDeviceNotifier.deviceDetail!.displayName,
-                traitBasedDeviceNotifier.deviceDetail!.description,
-                traitBasedDeviceNotifier.deviceDetail!.manufacturerName,
-                traitBasedDeviceNotifier.deviceDetail!.model,
-                traitBasedDeviceNotifier.deviceDetail!.serialNumber,
-                traitBasedDeviceNotifier.deviceDetail!.createdAt,
-                traitBasedDeviceNotifier.deviceDetail!.updatedAt,
+                traitDetailProvider.deviceDetail!.id,
+                traitDetailProvider.deviceDetail!.displayName,
+                traitDetailProvider.deviceDetail!.description,
+                traitDetailProvider.deviceDetail!.manufacturerName,
+                traitDetailProvider.deviceDetail!.model,
+                traitDetailProvider.deviceDetail!.serialNumber,
+                traitDetailProvider.deviceDetail!.createdAt,
+                traitDetailProvider.deviceDetail!.updatedAt,
                 [
                   LockTrait("whenLocked", IsLocked(true)),
                   LockTrait("whenUnlocked", IsLocked(false)),
-                  PowerTrait("PowerTrait", isPowered(true)),
+                  PowerTrait("PowerTrait", IsOnOff(true)),
                   UnknownTrait("Unknown Trait"),
                 ],
               ));
@@ -48,14 +47,6 @@ class TraitBasedDetailScreen extends StatelessWidget {
       }),
     );
   }
-}
-
-class isPowered extends yoSdk.State<bool> {
-  isPowered(bool isOn) : super("Power", isOn);
-}
-
-class PowerTrait extends Trait {
-  PowerTrait(String name, yoSdk.State state) : super(name, state);
 }
 
 class TraitWidgetsBuilder {
