@@ -48,8 +48,13 @@ Widget createDetailScreenWidgetForTrait(
   when(mockLockProvider.loadingAction).thenReturn(false);
   when(mockLockProvider.isLocked).thenReturn(false);
 
+  PowerTraitProvider mockPowerTraitProvider = MockPowerTraitProvider();
+  when(mockPowerTraitProvider.isBusy).thenReturn(false);
+  when(mockPowerTraitProvider.isInErrorState).thenReturn(false);
+  when(mockPowerTraitProvider.getOnOffState).thenReturn(false);
+
   return createMaterialApp(req, deviceId, mockTraitDetailProvider,
-      mockLockProvider, MockPowerTraitProvider());
+      mockLockProvider, mockPowerTraitProvider);
 }
 
 MaterialApp createMaterialApp(
