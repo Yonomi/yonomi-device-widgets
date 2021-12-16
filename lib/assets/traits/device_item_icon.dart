@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
+import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/thermostat_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
@@ -12,6 +13,8 @@ class DeviceItemIcon {
       return LockIcon(determiningTrait.state.value);
     } else if (determiningTrait is ThermostatTrait) {
       return buildThermostatIcon(determiningTrait.state.value);
+    } else if (determiningTrait is PowerTrait) {
+      return buildPowerIcon(determiningTrait.state.value);
     } else {
       return UnknownItemIcon();
     }
@@ -39,5 +42,9 @@ class DeviceItemIcon {
 
   static Widget buildThermostatIcon(double? thermostatState) {
     return ThermostatIcon(thermostatState: thermostatState);
+  }
+
+  static Widget buildPowerIcon(bool powerState) {
+    return PowerItemIcon(powerState);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
-import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 Widget createIconWidget(List<Trait> traits) {
@@ -33,20 +33,23 @@ void main() {
 
   testWidgets('should render correct Lock trait icon when unlocked',
       (WidgetTester tester) async {
-    final lockDevice = [
-      LockTrait('lockunlock', IsLocked(false))
-    ];
+    final lockDevice = [LockTrait('lockunlock', IsLocked(false))];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.unlock), findsOneWidget);
   });
 
   testWidgets('should render correct Lock trait icon when locked',
       (WidgetTester tester) async {
-    final lockDevice = [
-      LockTrait('lockunlock', IsLocked(true))
-    ];
+    final lockDevice = [LockTrait('lockunlock', IsLocked(true))];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.lock), findsOneWidget);
+  });
+
+  testWidgets('should render correct Power trait icon',
+      (WidgetTester tester) async {
+    final powerDevice = [PowerTrait('power', IsOnOff(true))];
+    await tester.pumpWidget(createIconWidget(powerDevice));
+    expect(find.byIcon(BootstrapIcons.power), findsOneWidget);
   });
 
   testWidgets('should render unknown icon if trait not found',
