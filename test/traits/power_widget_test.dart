@@ -82,5 +82,22 @@ void main() {
               description: 'Switch is On'),
           findsOneWidget);
     });
+
+    testWidgets(
+        'Should run PowerTraitProvider\'s sendPowerOnOffAction method when Switch is pressed',
+        (WidgetTester tester) async {
+      final mockPowerTraitProvider = MockPowerTraitProvider();
+      when(mockPowerTraitProvider.isBusy).thenReturn(false);
+      when(mockPowerTraitProvider.isInErrorState).thenReturn(false);
+      when(mockPowerTraitProvider.getOnOffState).thenReturn(true);
+
+      await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
+
+      await tester.tap(find.byType(CupertinoSwitch));
+
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.byType(CupertinoSwitch), findsOneWidget);
+      verify(mockPowerTraitProvider.sendPowerOnOffAction(false)).called(1);
+    });
   });
 }
