@@ -12,7 +12,6 @@ class PowerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (_powerTraitProvider.isBusy) {
-      print("In Busy State");
       return CircularProgressIndicator();
     } else if (_powerTraitProvider.isInErrorState) {
       _showToast(context, _powerTraitProvider.getErrorMessage);
