@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.5.0
-  yonomi_platform_sdk: ^2.1.0
+  yonomi_platform_sdk: ^2.2.0
 
 dev_dependencies:
   mockito: ^5.0.15

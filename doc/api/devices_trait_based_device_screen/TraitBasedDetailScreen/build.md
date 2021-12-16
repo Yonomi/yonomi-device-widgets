@@ -64,7 +64,7 @@ Widget build(BuildContext context) {
     create: (_) => TraitBasedDeviceNotifier(request, deviceId),
     child: Consumer<TraitBasedDeviceNotifier>(
         builder: (_, traitBasedDeviceNotifier, child) {
-      if (traitBasedDeviceNotifier.deviceDetail == null) {
+      if (traitBasedDeviceNotifier.isLoading) {
         return CircularProgressIndicator();
       } else {
         return TraitWidgetsBuilder.build(

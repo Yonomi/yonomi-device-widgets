@@ -5,9 +5,11 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
+import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -28,8 +30,8 @@ Widget createDetailScreenWhenLoading(
 
   LockProvider mockLockProvider = MockLockProvider();
 
-  return createMaterialApp(
-      mockTraitDetailProvider, mockLockProvider, req, deviceId);
+  return createMaterialApp(req, deviceId, mockTraitDetailProvider,
+      mockLockProvider, MockPowerTraitProvider());
 }
 
 Widget createDetailScreenWidgetForTrait(
@@ -46,24 +48,34 @@ Widget createDetailScreenWidgetForTrait(
   when(mockLockProvider.loadingAction).thenReturn(false);
   when(mockLockProvider.isLocked).thenReturn(false);
 
-  return createMaterialApp(
-      mockTraitDetailProvider, mockLockProvider, req, deviceId);
+  return createMaterialApp(req, deviceId, mockTraitDetailProvider,
+      mockLockProvider, MockPowerTraitProvider());
 }
 
-MaterialApp createMaterialApp(TraitDetailProvider mockTraitBasedNotifier,
-    LockProvider mockLockProvider, Request req, String deviceId) {
+MaterialApp createMaterialApp(
+    Request req,
+    String deviceId,
+    TraitDetailProvider mockTraitBasedNotifier,
+    LockProvider mockLockProvider,
+    PowerTraitProvider mockPowerTrait) {
   return MaterialApp(
     home: Column(children: [
-      MultiProvider(providers: [
-        ChangeNotifierProvider<TraitDetailProvider>.value(
-            value: mockTraitBasedNotifier),
-        ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
-      ], child: DetailScreenWidget(req, deviceId)),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<TraitDetailProvider>.value(
+              value: mockTraitBasedNotifier),
+          ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
+          ChangeNotifierProvider<PowerTraitProvider>.value(
+              value: mockPowerTrait),
+        ],
+        child: DetailScreenWidget(req, deviceId),
+      ),
     ]),
   );
 }
 
-@GenerateMocks([TraitDetailProvider, LockProvider, BuildContext])
+@GenerateMocks(
+    [TraitDetailProvider, LockProvider, PowerTraitProvider, BuildContext])
 void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -72,7 +84,7 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
-  testWidgets('For the LockTrait, Detail screen should show the LockWidget ',
+  testWidgets('For the Lock Trait, Detail screen should show the LockWidget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
     final String testedDeviceId = "";
@@ -80,6 +92,17 @@ void main() {
         LockTrait("lock", IsLocked(true)), request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
+  });
+
+  testWidgets(
+      'For the Power Trait, Detail screen should show the Power Widget ',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+        PowerTrait("power", IsOnOff(true)), request, testedDeviceId));
+
+    expect(find.byType(PowerWidget), findsOneWidget);
   });
 
   testWidgets(

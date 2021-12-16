@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef GetLockDetailsFunction = Future<Device> Function(
@@ -10,6 +10,8 @@ typedef SendLockUnlockFunction = Future<void> Function(
 class LockProvider extends ChangeNotifier {
   bool loadingDetail = false;
   bool loadingAction = false;
+
+  final int _MAX_RETRIES = 10;
 
   LockProvider(Request request, String deviceId,
       {GetLockDetailsFunction getLockDetails =
@@ -49,20 +51,20 @@ class LockProvider extends ChangeNotifier {
           LockRepository.sendLockUnlockAction}) async {
     if (!loadingAction) {
       loadingAction = true;
-
       notifyListeners();
 
       await sendLockUnlock(_request, deviceId, setLock);
 
-      var maxRetries = 0;
-      while (getLockTrait().state.value != setLock && maxRetries < 10) {
+      int numRetries = 0;
+      while (
+          getLockTrait().state.value != setLock && numRetries < _MAX_RETRIES) {
         // Wait more time
         _deviceDetail = await lockDetails(_request, deviceId);
         await Future.delayed(Duration(milliseconds: 750));
-        maxRetries++;
+        numRetries++;
       }
-      loadingAction = false;
 
+      loadingAction = false;
       notifyListeners();
     }
   }
