@@ -85,13 +85,9 @@ Widget build(BuildContext context) {
             child: SizedBox(
                 width: 100,
                 height: 100,
-                child: _powerTraitProvider.isBusy
-                    ? CircularProgressIndicator()
-                    : _powerTraitProvider.getOnOffState
-                        ? PowerItemIcon(true,
-                            size: 100.0, color: Colors.white)
-                        : PowerItemIcon(false,
-                            size: 100.0, color: Colors.white)),
+                child: _powerTraitProvider.getOnOffState
+                    ? PowerItemIcon(true, size: 100.0, color: Colors.white)
+                    : PowerItemIcon(false, size: 100.0, color: Colors.white)),
           ),
         ),
         SizedBox(
