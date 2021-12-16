@@ -7,6 +7,5 @@ class PowerItemIcon extends Icon {
       {size = WidgetStyleConstants.defaultDeviceIconSize,
       color = WidgetStyleConstants.deviceIconColor,
       Key? key})
-      : super(isOnOff ? BootstrapIcons.box : BootstrapIcons.box,
-            key: key, size: size, color: color);
+      : super(BootstrapIcons.power, key: key, size: size, color: color);
 }

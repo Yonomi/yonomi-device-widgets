@@ -32,4 +32,6 @@ class WidgetStyleConstants {
   static const double defaultDeviceIconSize = 60.0;
 
   static const double defaultDeviceWidgetSize = 175.0;
+
+  static const Color traitDetailSwitchPressedColor = Color(0xFF01A299);
 }

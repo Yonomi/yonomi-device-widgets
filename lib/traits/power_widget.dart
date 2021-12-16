@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class PowerWidget extends StatelessWidget {
   PowerTraitProvider _powerTraitProvider;
@@ -49,6 +50,7 @@ class PowerWidget extends StatelessWidget {
             height: 10,
           ),
           CupertinoSwitch(
+            activeColor: WidgetStyleConstants.traitDetailSwitchPressedColor,
             onChanged: (bool onOff) {
               _powerTraitProvider.sendPowerOnOffAction(onOff);
             },
