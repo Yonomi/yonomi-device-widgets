@@ -64,11 +64,11 @@ open coverage/html/index.html
  
 
 
-##### [lock](devices_lock/devices_lock-library.md)
+##### [lock](traits_lock/traits_lock-library.md)
  
 
 
-##### [lock](traits_lock/traits_lock-library.md)
+##### [lock](devices_lock/devices_lock-library.md)
  
 
 
