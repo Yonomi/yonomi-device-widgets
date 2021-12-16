@@ -199,6 +199,15 @@ _read / write_
 
 
 
+##### [traitDetailSwitchPressedColor](../ui_widget_style_constants/WidgetStyleConstants/traitDetailSwitchPressedColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
 
 
 
