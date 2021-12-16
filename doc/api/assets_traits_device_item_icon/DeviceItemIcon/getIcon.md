@@ -30,6 +30,8 @@ static Widget getIcon(List<Trait> traits) {
     return LockIcon(determiningTrait.state.value);
   } else if (determiningTrait is ThermostatTrait) {
     return buildThermostatIcon(determiningTrait.state.value);
+  } else if (determiningTrait is PowerTrait) {
+    return buildPowerIcon(determiningTrait.state.value);
   } else {
     return UnknownItemIcon();
   }

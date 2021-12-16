@@ -88,6 +88,15 @@ _inherited_
 
 
 
+##### [buildPowerIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildPowerIcon.md)([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) powerState) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+
+
+
+   
+
+
+
+
 ##### [buildThermostatIcon](../assets_traits_device_item_icon/DeviceItemIcon/buildThermostatIcon.md)([double](https://api.flutter.dev/flutter/dart-core/double-class.html)? thermostatState) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
