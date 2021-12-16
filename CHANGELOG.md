@@ -1,3 +1,20 @@
+# [2.2.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.1.0...v2.2.0) (2021-12-16)
+
+
+### Bug Fixes
+
+* sdk version bump ([bd57566](https://github.com/Yonomi/yonomi-device-widgets/commit/bd575664b70a4cea8c02f900fd9d8466135f0f6c))
+
+
+### Features
+
+* **detail_screen:** handle PowerTrait and render a Power widget ([650c487](https://github.com/Yonomi/yonomi-device-widgets/commit/650c4876da34c6ccfe0c96c26ebe226e7f217ca4))
+* **power_trait_provider:** reflect error state in UI ([cd3d154](https://github.com/Yonomi/yonomi-device-widgets/commit/cd3d15473397081d2be73ba707a41eb70ffdbe62))
+* **power_trait_provider.dart:** expose an error message along with error state ([e0a9260](https://github.com/Yonomi/yonomi-device-widgets/commit/e0a92606074ee89491a94aaf60d23b71deb14914))
+* **power_trait_provider.dart:** introduce PowerTraitProvider ([d088a5c](https://github.com/Yonomi/yonomi-device-widgets/commit/d088a5cb7fd65b7a6d9327b7f96a3e2bc635b9d6))
+* **trait_detail_screen:** use PowerProvider to view state and perform actions on device ([9a65169](https://github.com/Yonomi/yonomi-device-widgets/commit/9a65169b4354e2f9e04a0f01a5cbf62814e0b73b))
+* **trait_device_screen:** show toast with error message if any error occurs ([0cebb62](https://github.com/Yonomi/yonomi-device-widgets/commit/0cebb62db54748f373ab0c9026b22dae4bd760ca))
+
 # [2.1.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.0.1...v2.1.0) (2021-12-10)
 
 
