@@ -64,11 +64,11 @@ open coverage/html/index.html
  
 
 
-##### [lock](traits_lock/traits_lock-library.md)
+##### [lock](devices_lock/devices_lock-library.md)
  
 
 
-##### [lock](devices_lock/devices_lock-library.md)
+##### [lock](traits_lock/traits_lock-library.md)
  
 
 
@@ -85,6 +85,10 @@ open coverage/html/index.html
 
 
 ##### [modes_toolbar](components_modes_toolbar/components_modes_toolbar-library.md)
+ 
+
+
+##### [power_item_icon](assets_traits_power_item_icon/assets_traits_power_item_icon-library.md)
  
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
+import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/thermostat_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
@@ -8,36 +9,25 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 class DeviceItemIcon {
   static Widget getIcon(List<Trait> traits) {
     Trait determiningTrait = traits[0];
-    if (determiningTrait is LockTrait) {
-      return LockIcon(determiningTrait.state.value);
-    } else if (determiningTrait is ThermostatTrait) {
-      return buildThermostatIcon(determiningTrait.state.value);
-    } else {
-      return UnknownItemIcon();
+    switch (determiningTrait.runtimeType) {
+      case LockTrait:
+        return LockIcon(determiningTrait.state.value);
+      case ThermostatTrait:
+        return ThermostatIcon(thermostatState: determiningTrait.state.value);
+      case PowerTrait:
+        return PowerItemIcon(determiningTrait.state.value);
+      default:
+        return UnknownItemIcon();
     }
   }
 
-  static Widget buildLockIcon(
+  static buildLockUnlockIcon(bool isLocked,
       [double size = WidgetStyleConstants.defaultDeviceIconSize,
       Color color = WidgetStyleConstants.deviceIconColor]) {
     return LockIcon(
-      true,
+      isLocked,
       size: size,
       color: color,
     );
-  }
-
-  static Widget buildUnlockIcon(
-      [double size = WidgetStyleConstants.defaultDeviceIconSize,
-      Color color = WidgetStyleConstants.deviceIconColor]) {
-    return LockIcon(
-      false,
-      size: size,
-      color: color,
-    );
-  }
-
-  static Widget buildThermostatIcon(double? thermostatState) {
-    return ThermostatIcon(thermostatState: thermostatState);
   }
 }

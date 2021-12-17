@@ -1,7 +1,7 @@
 
 
 
-# PowerWidget class
+# PowerItemIcon class
 
 
 
@@ -20,7 +20,8 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- PowerWidget
+- [Icon](https://api.flutter.dev/flutter/widgets/Icon-class.html)
+- PowerItemIcon
 
 
 
@@ -29,12 +30,21 @@
 
 ## Constructors
 
-[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
+[PowerItemIcon](../assets_traits_power_item_icon/PowerItemIcon/PowerItemIcon.md) ([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) isOnOff, {dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
 
 ## Properties
+
+##### [color](https://api.flutter.dev/flutter/widgets/Icon/color.html) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
+
+
+
+The color to use when drawing the icon. [...](https://api.flutter.dev/flutter/widgets/Icon/color.html)  
+_final, inherited_
+
+
 
 ##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
@@ -42,6 +52,15 @@
 
 The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant.html), read-only, inherited_
+
+
+
+##### [icon](https://api.flutter.dev/flutter/widgets/Icon/icon.html) &#8594; [IconData](https://api.flutter.dev/flutter/widgets/IconData-class.html)?
+
+
+
+The icon to display. The available icons are described in <a href="https://api.flutter.dev/flutter/material/Icons-class.html">Icons</a>. [...](https://api.flutter.dev/flutter/widgets/Icon/icon.html)  
+_final, inherited_
 
 
 
@@ -63,15 +82,42 @@ _read-only, inherited_
 
 
 
+##### [semanticLabel](https://api.flutter.dev/flutter/widgets/Icon/semanticLabel.html) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)?
+
+
+
+Semantic label for the icon. [...](https://api.flutter.dev/flutter/widgets/Icon/semanticLabel.html)  
+_final, inherited_
+
+
+
+##### [size](https://api.flutter.dev/flutter/widgets/Icon/size.html) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)?
+
+
+
+The size of the icon in logical pixels. [...](https://api.flutter.dev/flutter/widgets/Icon/size.html)  
+_final, inherited_
+
+
+
+##### [textDirection](https://api.flutter.dev/flutter/widgets/Icon/textDirection.html) &#8594; [TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection.html)?
+
+
+
+The text direction to use for rendering the icon. [...](https://api.flutter.dev/flutter/widgets/Icon/textDirection.html)  
+_final, inherited_
+
+
+
 
 ## Methods
 
-##### [build](../traits_power_widget/PowerWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](https://api.flutter.dev/flutter/widgets/Icon/build.html)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_power_widget/PowerWidget/build.md)  
-_override_
+Describes the part of the user interface represented by this widget. [...](https://api.flutter.dev/flutter/widgets/Icon/build.html)  
+_inherited_
 
 
 
@@ -94,11 +140,11 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [debugFillProperties](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
+##### [debugFillProperties](https://api.flutter.dev/flutter/widgets/Icon/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
 
 
 
-Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
+Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Icon/debugFillProperties.html)  
 _inherited_
 
 

@@ -26,12 +26,15 @@
 ```dart
 static Widget getIcon(List<Trait> traits) {
   Trait determiningTrait = traits[0];
-  if (determiningTrait is LockTrait) {
-    return LockIcon(determiningTrait.state.value);
-  } else if (determiningTrait is ThermostatTrait) {
-    return buildThermostatIcon(determiningTrait.state.value);
-  } else {
-    return UnknownItemIcon();
+  switch (determiningTrait.runtimeType) {
+    case LockTrait:
+      return LockIcon(determiningTrait.state.value);
+    case ThermostatTrait:
+      return ThermostatIcon(thermostatState: determiningTrait.state.value);
+    case PowerTrait:
+      return PowerItemIcon(determiningTrait.state.value);
+    default:
+      return UnknownItemIcon();
   }
 }
 ```

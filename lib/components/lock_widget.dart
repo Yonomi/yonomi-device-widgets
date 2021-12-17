@@ -52,12 +52,12 @@ class LockWidget extends StatelessWidget {
   Widget getLockStateIcon(LockProvider lockProvider) {
     return (lockProvider.loadingDetail || lockProvider.loadingAction)
         ? Center(child: CircularProgressIndicator())
-        : (lockProvider.isLocked)
-            ? DeviceItemIcon.buildLockIcon(
-                WidgetStyleConstants.defaultDeviceWidgetSize,
-                WidgetStyleConstants.deviceDetailIconColorActive)
-            : DeviceItemIcon.buildUnlockIcon(
-                WidgetStyleConstants.defaultDeviceWidgetSize,
-                WidgetStyleConstants.deviceDetailIconColorInactive);
+        : DeviceItemIcon.buildLockUnlockIcon(
+            lockProvider.isLocked,
+            WidgetStyleConstants.defaultDeviceWidgetSize,
+            (lockProvider.isLocked)
+                ? WidgetStyleConstants.deviceDetailIconColorActive
+                : WidgetStyleConstants.deviceDetailIconColorInactive,
+          );
   }
 }
