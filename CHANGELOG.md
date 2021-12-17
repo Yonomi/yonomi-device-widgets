@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.2.0...v2.3.0) (2021-12-17)
+
+
+### Features
+
+* **power_widget:** handle loading, error and normal UI states for PowerWidget ([90cfe2c](https://github.com/Yonomi/yonomi-device-widgets/commit/90cfe2cce08c857e733c10869ce8447c2a5ebef7))
+
 # [2.2.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.1.0...v2.2.0) (2021-12-16)
 
 
