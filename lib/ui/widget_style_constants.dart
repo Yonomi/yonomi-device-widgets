@@ -34,4 +34,8 @@ class WidgetStyleConstants {
   static const double defaultDeviceWidgetSize = 175.0;
 
   static const Color traitDetailSwitchPressedColor = Color(0xFF01A299);
+
+  static const int batteryLowMax = 15;
+
+  static const int batteryFullMin = 75;
 }
