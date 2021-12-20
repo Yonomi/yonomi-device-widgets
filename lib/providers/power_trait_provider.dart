@@ -9,8 +9,8 @@ typedef SendPowerMethod = Future<void> Function(
     Request request, String id, bool onOff);
 
 class PowerTraitProvider extends ChangeNotifier {
-  final int MAX_RETRIES = 10;
-  final int RETRY_DELAY_MS = 750;
+  static const int MAX_RETRIES = 10;
+  static const int RETRY_DELAY_MS = 750;
 
   WidgetState _currentState = WidgetState.idle;
   String _latestErrorMsg = "An error occurred.";
@@ -22,8 +22,8 @@ class PowerTraitProvider extends ChangeNotifier {
   Device? _deviceDetail;
 
   PowerTraitProvider(
-    @required Request request,
-    @required String deviceId, {
+    Request request,
+    String deviceId, {
     GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
   }) {
     _request = request;

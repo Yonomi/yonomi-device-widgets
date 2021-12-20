@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
+import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/thermostat_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
@@ -16,6 +17,8 @@ class DeviceItemIcon {
         return ThermostatIcon(thermostatState: determiningTrait.state.value);
       case PowerTrait:
         return PowerItemIcon(determiningTrait.state.value);
+      case BatteryLevelTrait:
+        return BatteryLevelIcon(determiningTrait.state.value);
       default:
         return UnknownItemIcon();
     }

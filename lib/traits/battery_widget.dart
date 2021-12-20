@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
+import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
 
 class BatteryWidget extends StatelessWidget {
   final BatteryLevelTraitProvider _batteryLevelTraitProvider;

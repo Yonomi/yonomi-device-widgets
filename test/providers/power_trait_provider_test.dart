@@ -27,8 +27,7 @@ void main() {
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(
-          request, deviceId,
+      PowerTraitProvider powerProvider = PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       await powerProvider.sendPowerOnOffAction(true,
@@ -41,7 +40,7 @@ void main() {
           .called(greaterThan(0));
     });
 
-    test("""When loading device data, we are notified that it is loading 
+    test("""When loading device data, we are notified that it is loading
         through isLoading.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -55,7 +54,7 @@ void main() {
       expect(powerProvider.isLoading, equals(true));
     });
 
-    test("""After successfully loading device data, should be in idle state 
+    test("""After successfully loading device data, should be in idle state
         when done.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -67,11 +66,14 @@ void main() {
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
-      expect(powerProvider.isBusy, equals(false));
-      expect(powerProvider.isInErrorState, equals(false));
+      expect(powerProvider.isLoading, equals(false),
+          reason: 'is in loading state');
+      expect(powerProvider.isBusy, equals(false), reason: 'is in busy state');
+      expect(powerProvider.isInErrorState, equals(false),
+          reason: 'is in error state');
     });
 
-    test("""When performing action, we are notified that it is performing 
+    test("""When performing action, we are notified that it is performing
     action through isPerformingAction.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -81,8 +83,7 @@ void main() {
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(
-          request, deviceId,
+      PowerTraitProvider powerProvider = PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       powerProvider.sendPowerOnOffAction(true,
@@ -92,7 +93,7 @@ void main() {
       expect(powerProvider.isPerformingAction, equals(true));
     });
 
-    test("""When already performing action, but called action again, 
+    test("""When already performing action, but called action again,
         won't call action a second time""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -102,8 +103,7 @@ void main() {
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(
-          request, deviceId,
+      PowerTraitProvider powerProvider = PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       powerProvider.sendPowerOnOffAction(true,
@@ -119,7 +119,7 @@ void main() {
       verifyNever(mockSendPowerMethod.call(request, deviceId, false));
     });
 
-    test("""When performing action, but state hasn't changed, 
+    test("""When performing action, but state hasn't changed,
         we fetch data 10x to check if state changed.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -129,8 +129,7 @@ void main() {
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(
-          request, deviceId,
+      PowerTraitProvider powerProvider = PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       await powerProvider.sendPowerOnOffAction(true,
@@ -141,8 +140,8 @@ void main() {
           .called(greaterThan(9));
     });
 
-    test(""""When an error occurs loading device data, we are notified 
-        an error occurred using isInErrorState and get 
+    test(""""When an error occurs loading device data, we are notified
+        an error occurred using isInErrorState and get
         an error message with getErrorMessage.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -157,18 +156,15 @@ void main() {
         throw (exceptionMesssage);
       });
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(
-          request, deviceId,
+      PowerTraitProvider powerProvider = await PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
-
-      await Future.delayed(Duration(milliseconds: 100));
 
       expect(powerProvider.isInErrorState, equals(true));
       expect(powerProvider.getErrorMessage, equals(exceptionMesssage));
     });
 
-    test(""""When an error occurs running an action, we are notified 
-        an error occurred using isInErrorState and get 
+    test(""""When an error occurs running an action, we are notified
+        an error occurred using isInErrorState and get
         an error message with getErrorMessage.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
@@ -182,8 +178,7 @@ void main() {
       when(mockSendPowerMethod.call(request, deviceId, true))
           .thenAnswer((_) => throw (exceptionMesssage));
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(
-          request, deviceId,
+      PowerTraitProvider powerProvider = PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       powerProvider.sendPowerOnOffAction(true,

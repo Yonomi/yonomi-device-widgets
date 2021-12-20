@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
+import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 

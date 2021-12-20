@@ -6,7 +6,7 @@ import 'dart:async' as _i3;
 import 'dart:ui' as _i7;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
+import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart'
     as _i2;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
     as _i5;
