@@ -60,10 +60,6 @@ class MockPowerTraitProvider extends _i1.Mock
           .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
       as bool);
   @override
-  set setErrorMessage(String? errorMsg) =>
-      super.noSuchMethod(Invocation.setter(#setErrorMessage, errorMsg),
-          returnValueForMissingStub: null);
-  @override
   String get getErrorMessage =>
       (super.noSuchMethod(Invocation.getter(#getErrorMessage), returnValue: '')
           as String);
