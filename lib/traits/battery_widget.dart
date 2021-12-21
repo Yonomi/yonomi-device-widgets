@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class BatteryWidget extends StatelessWidget {
   final BatteryLevelTraitProvider _batteryLevelTraitProvider;
@@ -19,8 +20,11 @@ class BatteryWidget extends StatelessWidget {
           children: <Widget>[
             Row(children: <Widget>[
               Text(
-                'BATTERY',
-                style: Theme.of(context).textTheme.headline6,
+                '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _getBatteryLevelColor(_batteryLevelTraitProvider.getBatteryLevel)),
               )
             ]),
             SizedBox(
@@ -45,6 +49,16 @@ class BatteryWidget extends StatelessWidget {
               style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
             ),
           ]);
+    }
+  }
+
+  Color _getBatteryLevelColor(int batteryLevel) {
+    if (batteryLevel >= WidgetStyleConstants.batteryFullMin) {
+      return WidgetStyleConstants.globalSuccessColor;
+    } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
+      return WidgetStyleConstants.globalWarningColor;
+    } else {
+      return Colors.white;
     }
   }
 }
