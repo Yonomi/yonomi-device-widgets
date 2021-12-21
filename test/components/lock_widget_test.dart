@@ -23,7 +23,7 @@ void main() {
       null,
       GDateTime('value'),
       GDateTime('value'),
-      [LockTrait('name', IsLocked(true))]);
+      [LockTrait(IsLocked(true))]);
 
   Widget getAppWithLockWidget() {
     return MaterialApp(

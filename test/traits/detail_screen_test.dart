@@ -94,7 +94,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        LockTrait("lock", IsLocked(true)), request, testedDeviceId));
+        LockTrait(IsLocked(true)), request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
   });
@@ -105,7 +105,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        PowerTrait("power", IsOnOff(true)), request, testedDeviceId));
+        PowerTrait(IsOnOff(true)), request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
   });
@@ -116,7 +116,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        UnknownTrait("unknown"), request, testedDeviceId));
+        UnknownTrait('unknown'), request, testedDeviceId));
 
     expect(find.text("unknown"), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);

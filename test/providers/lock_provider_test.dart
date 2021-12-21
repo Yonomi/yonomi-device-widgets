@@ -29,7 +29,7 @@ void main() {
         null,
         GDateTime('value'),
         GDateTime('value'),
-        [LockTrait('name', IsLocked(true))]);
+        [LockTrait(IsLocked(true))]);
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
@@ -57,7 +57,7 @@ void main() {
         null,
         GDateTime('value'),
         GDateTime('value'),
-        [LockTrait('name', IsLocked(false))]);
+        [LockTrait(IsLocked(false))]);
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
@@ -84,7 +84,7 @@ void main() {
         null,
         GDateTime('value'),
         GDateTime('value'),
-        [LockTrait('name', IsLocked(true))]);
+        [LockTrait(IsLocked(true))]);
     when(mockLockDetailsMethod.call(request, 'test'))
         .thenAnswer((_) => Future.value(device));
     LockProvider lockProvider =

@@ -42,7 +42,7 @@ void main() {
                 'someFirmwareV',
                 GDateTime('value'),
                 GDateTime('value'),
-                [ThermostatTrait('', TargetTemperature(23.1))],
+                [ThermostatTrait(TargetTemperature(23.1))],
               ),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
@@ -71,7 +71,7 @@ void main() {
                 'someFirmwareV',
                 GDateTime('value'),
                 GDateTime('value'),
-                [ThermostatTrait('', TargetTemperature(23.1))],
+                [ThermostatTrait(TargetTemperature(23.1))],
               ),
             ));
     when(mockSetModeFunction.call(any, any, any)).thenAnswer((_) async => null);
@@ -101,7 +101,7 @@ void main() {
                 'someFirmwareV',
                 GDateTime('value'),
                 GDateTime('value'),
-                [ThermostatTrait('', TargetTemperature(23.1))],
+                [ThermostatTrait(TargetTemperature(23.1))],
               ),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
@@ -129,7 +129,7 @@ void main() {
                 'someFirmwareV',
                 GDateTime('value'),
                 GDateTime('value'),
-                [ThermostatTrait('', TargetTemperature(23.1))],
+                [ThermostatTrait(TargetTemperature(23.1))],
               ),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
