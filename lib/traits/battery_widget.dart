@@ -36,7 +36,14 @@ class BatteryWidget extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}",
+              style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
+            ),
           ]);
     }
   }
