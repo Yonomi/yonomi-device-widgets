@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WidgetStyleConstants {
+  static const Color globalWarningColor = Color(0xFFF19953);
+
+  static const Color globalSuccessColor = Color(0xFF01A299);
+
   static const Color modesButtonUnpressedColor = Color(0xFFDFE0E4);
 
   static const Color modesButtonPressedColor = Color(0xFF5D657A);

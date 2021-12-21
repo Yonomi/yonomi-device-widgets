@@ -131,9 +131,9 @@ class DetailScreenWidget extends StatelessWidget {
 
   Color _getBatteryLevelColor(int batteryLevel) {
     if (batteryLevel >= WidgetStyleConstants.batteryFullMin) {
-      return Colors.green;
+      return WidgetStyleConstants.globalSuccessColor;
     } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
-      return Colors.red;
+      return WidgetStyleConstants.globalWarningColor;
     } else {
       return Colors.white;
     }
