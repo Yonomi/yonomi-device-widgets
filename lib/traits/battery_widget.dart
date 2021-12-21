@@ -41,7 +41,7 @@ class BatteryWidget extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}",
+              "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
               style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
             ),
           ]);
