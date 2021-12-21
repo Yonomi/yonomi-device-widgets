@@ -12,6 +12,8 @@ class BatteryLevelTraitProvider extends ChangeNotifier {
 
   WidgetState _state = WidgetState.idle;
 
+  String _latestErrorMsg = "An error occurred.";
+
   BatteryLevelTraitProvider(Request request, String deviceId,
       {GetDeviceDetailsMethod getDetails =
           DevicesRepository.getDeviceDetails}) {
@@ -25,23 +27,40 @@ class BatteryLevelTraitProvider extends ChangeNotifier {
   Future<Device?> fetchData(
       {GetDeviceDetailsMethod getDeviceDetails =
           DevicesRepository.getDeviceDetails}) async {
-    _state = WidgetState.loading;
+    _setState = WidgetState.loading;
 
     try {
       _deviceDetail = await getDeviceDetails(_request, _deviceId);
+      _setState = WidgetState.idle;
     } catch (error) {
-      _state = WidgetState.error;
+      _setErrorState(error.toString());
       return null;
     }
 
-    _state = WidgetState.idle;
     return deviceDetail;
   }
 
+  set _setState(WidgetState newState) {
+    _state = newState;
+    notifyListeners();
+  }
+
+  void _setErrorState(String errorMsg) {
+    _setErrorMessage = errorMsg;
+    _setState = WidgetState.error;
+  }
+
+  set _setErrorMessage(String errorMsg) {
+    if (errorMsg.isEmpty) errorMsg = "An error occurred.";
+    _latestErrorMsg = errorMsg;
+  }
+
   BatteryLevelTrait? getBatteryLevelTrait() {
-    return deviceDetail?.traits
-            .firstWhere((trait) => trait.runtimeType is BatteryLevelTrait)
-        as BatteryLevelTrait;
+    try {
+      return _deviceDetail?.traits.first as BatteryLevelTrait?;
+    } catch (error) {
+      return null;
+    }
   }
 
   int get getBatteryLevel {
