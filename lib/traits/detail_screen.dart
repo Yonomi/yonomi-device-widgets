@@ -5,10 +5,11 @@ import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dar
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
-import 'package:yonomi_device_widgets/traits/battery_widget.dart';
+import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class DetailScreen extends StatelessWidget {
   final Request request;
@@ -92,7 +93,21 @@ class DetailScreenWidget extends StatelessWidget {
             builder: (_, batteryLevelProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: BatteryWidget(batteryLevelProvider),
+            child: Row(
+              children: [
+                BatteryLevelIcon(
+                  batteryLevelProvider.getBatteryLevel,
+                  size: 20.0,
+                  color: Colors.white,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                      'Battery Level: ${batteryLevelProvider.getBatteryLevel}%',
+                      style: TextStyle(fontSize: 20, color: _getBatteryLevelColor(batteryLevelProvider.getBatteryLevel))),
+                ),
+              ],
+            ),
           );
         });
       default:
@@ -111,6 +126,16 @@ class DetailScreenWidget extends StatelessWidget {
             ],
           ),
         );
+    }
+  }
+
+  Color _getBatteryLevelColor(int batteryLevel) {
+    if (batteryLevel >= WidgetStyleConstants.batteryFullMin) {
+      return Colors.green;
+    } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
+      return Colors.red;
+    } else {
+      return Colors.white;
     }
   }
 }
