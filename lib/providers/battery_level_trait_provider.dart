@@ -57,7 +57,9 @@ class BatteryLevelTraitProvider extends ChangeNotifier {
 
   BatteryLevelTrait? getBatteryLevelTrait() {
     try {
-      return _deviceDetail?.traits.first as BatteryLevelTrait?;
+      return _deviceDetail?.traits
+              .firstWhere((trait) => trait.runtimeType == BatteryLevelTrait)
+          as BatteryLevelTrait?;
     } catch (error) {
       return null;
     }
