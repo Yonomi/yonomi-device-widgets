@@ -20,11 +20,18 @@ class BatteryWidget extends StatelessWidget {
           children: <Widget>[
             Row(children: <Widget>[
               Text(
+                (_batteryLevelTraitProvider.deviceDetail?.displayName ??
+                    'BATTERY'),
+                style: Theme.of(context).textTheme.headline6,
+                textAlign: TextAlign.left,
+              ),
+              Text(
                 '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(color: _getBatteryLevelColor(_batteryLevelTraitProvider.getBatteryLevel)),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    color: _getBatteryLevelColor(
+                        _batteryLevelTraitProvider.getBatteryLevel)),
               )
             ]),
             SizedBox(

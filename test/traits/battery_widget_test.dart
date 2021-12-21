@@ -7,6 +7,8 @@ import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'battery_widget_test.mocks.dart';
 
@@ -17,6 +19,9 @@ MaterialApp createMaterialApp(
   );
 }
 
+final device = Device('id', 'name', 'description', 'manufacturerName', 'model',
+    null, GDateTime('value'), GDateTime('value'), [LockTrait(IsLocked(true))]);
+
 @GenerateMocks([BatteryLevelTraitProvider])
 void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
@@ -24,6 +29,7 @@ void main() {
     final mockBatteryLevelProvider = MockBatteryLevelTraitProvider();
     when(mockBatteryLevelProvider.isLoading).thenReturn(true);
     when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
+    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -37,6 +43,7 @@ void main() {
     when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
     when(mockBatteryLevelProvider.getBatteryLevel)
         .thenReturn(WidgetStyleConstants.batteryLowMax);
+    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -53,6 +60,7 @@ void main() {
     when(mockBatteryLevelProvider.isLoading).thenReturn(false);
     when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
     when(mockBatteryLevelProvider.getBatteryLevel).thenReturn(50);
+    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -69,6 +77,7 @@ void main() {
     when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
     when(mockBatteryLevelProvider.getBatteryLevel)
         .thenReturn(WidgetStyleConstants.batteryFullMin);
+    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
