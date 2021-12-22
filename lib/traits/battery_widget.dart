@@ -25,6 +25,11 @@ class BatteryWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline6,
                 textAlign: TextAlign.left,
               ),
+            ]),
+            SizedBox(
+              height: 10,
+            ),
+            Row(children: [
               Text(
                 '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
                 style: TextStyle(
