@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../traits_battery_widget/BatteryWidget/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../traits_lock_widget/LockWidget/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,75 +60,49 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  if (_batteryLevelTraitProvider.isLoading) {
-    return CircularProgressIndicator();
-  } else if (_batteryLevelTraitProvider.isInErrorState) {
-    return Icon(Icons.error);
-  } else {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Row(children: <Widget>[
-            Text(
-<<<<<<< HEAD
-              (_batteryLevelTraitProvider.deviceDetail?.displayName ??
-                  'BATTERY'),
-              style: Theme.of(context).textTheme.headline6,
-=======
-              'BATTERY',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: _textColor),
->>>>>>> bb10565 (docs: updated dartdocs)
-              textAlign: TextAlign.left,
+  return _lockProvider.loadingDetail
+      ? Center(child: CircularProgressIndicator())
+      : Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              children: <Widget>[
+                Text(
+                  'LOCK',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(color: _textColor),
+                ),
+              ],
             ),
-          ]),
-          SizedBox(
-            height: 10,
-          ),
-          Row(children: [
-            Text(
-              '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontStyle: FontStyle.normal,
-                  color: _getBatteryLevelColor(
-                      _batteryLevelTraitProvider.getBatteryLevel)),
-            )
-          ]),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            child: SizedBox(
-              width: 100,
-              height: 100,
-              child: BatteryLevelIcon(
-                _batteryLevelTraitProvider.getBatteryLevel,
-                size: 100.0,
-<<<<<<< HEAD
-                color: Colors.white,
-=======
-                color: _iconColor,
->>>>>>> bb10565 (docs: updated dartdocs)
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              child: Center(
+                child: SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: _lockProvider.loadingAction
+                        ? CircularProgressIndicator()
+                        : _lockProvider.isLocked
+                            ? LockIcon(true, size: 100.0, color: _iconColor)
+                            : LockIcon(false,
+                                size: 100.0, color: _iconColor)),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
-<<<<<<< HEAD
-            style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
-=======
-            style: TextStyle(
-                fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
->>>>>>> bb10565 (docs: updated dartdocs)
-          ),
-        ]);
-  }
+            SizedBox(
+              height: 10,
+            ),
+            CupertinoSwitch(
+              onChanged: (bool value) {
+                _lockTap(_lockProvider);
+              },
+              value: _lockProvider.isLocked,
+            ),
+          ],
+        );
 }
 ```
 

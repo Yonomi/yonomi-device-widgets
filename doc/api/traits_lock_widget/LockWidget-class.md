@@ -1,7 +1,7 @@
 
 
 
-# DetailScreenWidget class
+# LockWidget class
 
 
 
@@ -20,7 +20,7 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- DetailScreenWidget
+- LockWidget
 
 
 
@@ -34,21 +34,12 @@
 
 ## Constructors
 
-[DetailScreenWidget](../traits_detail_screen/DetailScreenWidget/DetailScreenWidget.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId)
+[LockWidget](../traits_lock_widget/LockWidget/LockWidget.md) ([LockProvider](../providers_lock_provider/LockProvider-class.md) _lockProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
 
     
 
 
 ## Properties
-
-##### [deviceId](../traits_detail_screen/DetailScreenWidget/deviceId.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
-
-
-
-   
-_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), final_
-
-
 
 ##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
@@ -68,15 +59,6 @@ _final, inherited_
 
 
 
-##### [request](../traits_detail_screen/DetailScreenWidget/request.md) &#8594; [Request](https://yonomi.co/yonomi-sdk/Request-class.html)
-
-
-
-   
-_@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html), final_
-
-
-
 ##### [runtimeType](https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html) &#8594; [Type](https://api.flutter.dev/flutter/dart-core/Type-class.html)
 
 
@@ -89,21 +71,12 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_detail_screen/DetailScreenWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](../traits_lock_widget/LockWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_detail_screen/DetailScreenWidget/build.md)  
+Describes the part of the user interface represented by this widget. [...](../traits_lock_widget/LockWidget/build.md)  
 _override_
-
-
-
-##### [buildContainer](../traits_detail_screen/DetailScreenWidget/buildContainer.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
 
 
 
@@ -113,33 +86,6 @@ _override_
 
 Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
 _inherited_
-
-
-
-##### [createTraitWidget](../traits_detail_screen/DetailScreenWidget/createTraitWidget.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive}) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
-
-
-
-##### [createTraitWidgetHeader](../traits_detail_screen/DetailScreenWidget/createTraitWidgetHeader.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
-
-
-
-##### [createTraitWidgetHeader](../traits_detail_screen/DetailScreenWidget/createTraitWidgetHeader.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
 
 
 

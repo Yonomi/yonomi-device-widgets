@@ -80,10 +80,6 @@ open coverage/html/index.html
  
 
 
-##### [lock](traits_lock/traits_lock-library.md)
- 
-
-
 ##### [lock_item_icon](assets_traits_lock_item_icon/assets_traits_lock_item_icon-library.md)
  
 
@@ -93,6 +89,10 @@ open coverage/html/index.html
 
 
 ##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+ 
+
+
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 

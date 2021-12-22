@@ -34,7 +34,11 @@
 
 ## Constructors
 
+<<<<<<< HEAD
 [BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelTraitProvider](../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider)
+=======
+[BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelTraitProvider](../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
+>>>>>>> bb10565 (docs: updated dartdocs)
 
     
 
