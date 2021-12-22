@@ -118,7 +118,6 @@ void main() {
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
         UnknownTrait('unknown'), request, testedDeviceId));
 
-    expect(find.text("unknown"), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);
   });
 
