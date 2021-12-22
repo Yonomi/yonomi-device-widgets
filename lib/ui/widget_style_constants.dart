@@ -17,6 +17,8 @@ class WidgetStyleConstants {
 
   static const Color textColorState = Color(0xFF00B3A6);
 
+  static const Color darkTextColor = Color(0xFF25262F);
+
   static TextStyle deviceItemTextPrimaryState = TextStyle(
       fontWeight: FontWeight.w900,
       color: WidgetStyleConstants.textColorState,

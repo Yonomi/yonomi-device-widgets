@@ -6,8 +6,15 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class PowerWidget extends StatelessWidget {
   final PowerTraitProvider _powerTraitProvider;
+  late final Color _iconColor;
+  late final Color _textColor;
 
-  PowerWidget(this._powerTraitProvider);
+  PowerWidget(this._powerTraitProvider,
+      {Color iconColor = WidgetStyleConstants.deviceIconColor,
+      Color textColor = Colors.white}) {
+    this._iconColor = iconColor;
+    this._textColor = textColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,10 @@ class PowerWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 'POWER',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
               ),
             ],
           ),
@@ -37,7 +47,7 @@ class PowerWidget extends StatelessWidget {
                   width: 100,
                   height: 100,
                   child: PowerItemIcon(_powerTraitProvider.getOnOffState,
-                      size: 100.0, color: Colors.white)),
+                      size: 100.0, color: _iconColor)),
             ),
           ),
           SizedBox(

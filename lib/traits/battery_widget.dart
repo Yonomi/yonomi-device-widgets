@@ -5,8 +5,15 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class BatteryWidget extends StatelessWidget {
   final BatteryLevelTraitProvider _batteryLevelTraitProvider;
+  late final Color _iconColor;
+  late final Color _textColor;
 
-  BatteryWidget(this._batteryLevelTraitProvider);
+  BatteryWidget(this._batteryLevelTraitProvider,
+      {Color iconColor = WidgetStyleConstants.deviceIconColor,
+      Color textColor = Colors.white}) {
+    this._iconColor = iconColor;
+    this._textColor = textColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +27,11 @@ class BatteryWidget extends StatelessWidget {
           children: <Widget>[
             Row(children: <Widget>[
               Text(
-                (_batteryLevelTraitProvider.deviceDetail?.displayName ??
-                    'BATTERY'),
-                style: Theme.of(context).textTheme.headline6,
+                'BATTERY',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
                 textAlign: TextAlign.left,
               ),
             ]),
@@ -49,7 +58,7 @@ class BatteryWidget extends StatelessWidget {
                 child: BatteryLevelIcon(
                   _batteryLevelTraitProvider.getBatteryLevel,
                   size: 100.0,
-                  color: Colors.white,
+                  color: _iconColor,
                 ),
               ),
             ),
@@ -58,7 +67,8 @@ class BatteryWidget extends StatelessWidget {
             ),
             Text(
               "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
-              style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
+              style: TextStyle(
+                  fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
             ),
           ]);
     }

@@ -66,7 +66,7 @@ class DetailScreenWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: Center(
             child: Column(children: [
-          createTraitWidget(traits.first.name),
+          createTraitWidget(traits.first.name, iconColor: Colors.white),
           Accordion(
               maxOpenSections: 1,
               headerPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
@@ -78,26 +78,30 @@ class DetailScreenWidget extends StatelessWidget {
                   contentBorderWidth: 1,
                   contentBorderColor: Colors.white,
                   headerBackgroundColor: Colors.white,
-                  contentBackgroundColor: Color(0xFF2e2e2e),
+                  contentBackgroundColor: Colors.white,
                 );
               }).toList())
         ])));
   }
 
-  Widget createTraitWidget(String name) {
+  Widget createTraitWidget(String name,
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
     switch (name) {
       case 'lock':
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: LockWidget(lockProvider),
+            child: LockWidget(lockProvider,
+                iconColor: iconColor, textColor: textColor),
           );
         });
       case 'power':
         return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: PowerWidget(powerProvider),
+            child: PowerWidget(powerProvider,
+                iconColor: iconColor, textColor: textColor),
           );
         });
       case 'battery_level':
@@ -105,13 +109,14 @@ class DetailScreenWidget extends StatelessWidget {
             builder: (_, batteryLevelTraitProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: BatteryWidget(batteryLevelTraitProvider),
+            child: BatteryWidget(batteryLevelTraitProvider,
+                iconColor: iconColor, textColor: textColor),
           );
         });
       default:
         return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: UnknownItemIcon(color: Colors.white));
+            child: UnknownItemIcon(color: iconColor));
     }
   }
 
@@ -123,11 +128,17 @@ class DetailScreenWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  LockIcon(lockProvider.isLocked, size: 20.0),
+                  LockIcon(
+                    lockProvider.isLocked,
+                    size: 20.0,
+                    color: WidgetStyleConstants.deviceDetailIconColorActive,
+                  ),
                   Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(lockProvider.getLockTrait().name,
-                          style: TextStyle(fontSize: 20, color: Colors.black))),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: WidgetStyleConstants.darkTextColor))),
                 ],
               ));
         });
@@ -137,13 +148,17 @@ class DetailScreenWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  PowerItemIcon(powerProvider.getOnOffState, size: 20.0),
+                  PowerItemIcon(powerProvider.getOnOffState,
+                      size: 20.0,
+                      color: WidgetStyleConstants.deviceDetailIconColorActive),
                   Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                           (powerProvider.getPowerTrait()?.name ??
                               'Power Switch'),
-                          style: TextStyle(fontSize: 20))),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: WidgetStyleConstants.darkTextColor))),
                 ],
               ));
         });
@@ -157,6 +172,7 @@ class DetailScreenWidget extends StatelessWidget {
                 BatteryLevelIcon(
                   batteryLevelTraitProvider.getBatteryLevel,
                   size: 20.0,
+                  color: WidgetStyleConstants.deviceDetailIconColorActive,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -178,11 +194,14 @@ class DetailScreenWidget extends StatelessWidget {
             children: [
               UnknownItemIcon(
                 size: 20.0,
+                color: WidgetStyleConstants.deviceDetailIconColorActive,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(name,
-                    style: TextStyle(fontSize: 20, color: Colors.black)),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: WidgetStyleConstants.darkTextColor)),
               ),
             ],
           ),
@@ -196,7 +215,7 @@ class DetailScreenWidget extends StatelessWidget {
     } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
       return WidgetStyleConstants.globalWarningColor;
     } else {
-      return Colors.black;
+      return WidgetStyleConstants.darkTextColor;
     }
   }
 }
