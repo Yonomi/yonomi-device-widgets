@@ -12,7 +12,10 @@ dependencies:
     sdk: flutter
   bootstrap_icons: ^1.5.0
   yonomi_platform_sdk:
-    path: ../yonomi-sdk-dart
+    git:
+      url: git://github.com/Yonomi/yonomi-sdk-dart.git
+      ref: DX-252_battery_level_trait
+  accordion: ^2.1.2
 
 dev_dependencies:
   mockito: ^5.0.15
