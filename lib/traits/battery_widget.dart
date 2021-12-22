@@ -80,7 +80,7 @@ class BatteryWidget extends StatelessWidget {
     } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
       return WidgetStyleConstants.globalWarningColor;
     } else {
-      return Colors.white;
+      return _textColor;
     }
   }
 }
