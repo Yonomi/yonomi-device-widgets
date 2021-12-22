@@ -73,7 +73,10 @@ Widget build(BuildContext context) {
           children: <Widget>[
             Text(
               'POWER',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: _textColor),
             ),
           ],
         ),
@@ -85,9 +88,8 @@ Widget build(BuildContext context) {
             child: SizedBox(
                 width: 100,
                 height: 100,
-                child: _powerTraitProvider.getOnOffState
-                    ? PowerItemIcon(true, size: 100.0, color: Colors.white)
-                    : PowerItemIcon(false, size: 100.0, color: Colors.white)),
+                child: PowerItemIcon(_powerTraitProvider.getOnOffState,
+                    size: 100.0, color: _iconColor)),
           ),
         ),
         SizedBox(

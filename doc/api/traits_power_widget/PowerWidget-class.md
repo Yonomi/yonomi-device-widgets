@@ -25,11 +25,16 @@
 
 
 
+**Available Extensions**
+
+- [WidgetPaddingX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetPaddingX.html)
+- [WidgetMarginX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetMarginX.html)
+- [WidgetSliverBoxX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetSliverBoxX.html)
 
 
 ## Constructors
 
-[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
+[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) ([PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
 
     
 

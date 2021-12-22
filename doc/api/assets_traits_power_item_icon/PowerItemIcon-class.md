@@ -26,6 +26,11 @@
 
 
 
+**Available Extensions**
+
+- [WidgetPaddingX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetPaddingX.html)
+- [WidgetMarginX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetMarginX.html)
+- [WidgetSliverBoxX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetSliverBoxX.html)
 
 
 ## Constructors

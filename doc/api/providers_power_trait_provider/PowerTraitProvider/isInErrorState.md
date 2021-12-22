@@ -25,7 +25,7 @@ see <a href="../../providers_power_trait_provider/PowerTraitProvider/getErrorMes
 ## Implementation
 
 ```dart
-bool get isInErrorState => _currentState == PowerState.error;
+bool get isInErrorState => _currentState == WidgetState.error;
 ```
 
 

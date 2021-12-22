@@ -27,7 +27,7 @@
 
 ## Constructors
 
-[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, @[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
@@ -114,24 +114,6 @@ _read-only_
 
 To know if this ChangeNotifier is performing an action   
 _read-only_
-
-
-
-##### [MAX_RETRIES](../providers_power_trait_provider/PowerTraitProvider/MAX_RETRIES.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
-_final_
-
-
-
-##### [RETRY_DELAY_MS](../providers_power_trait_provider/PowerTraitProvider/RETRY_DELAY_MS.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
-_final_
 
 
 
@@ -243,6 +225,26 @@ The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/op
 _inherited_
 
 
+
+
+
+
+## Constants
+
+##### [MAX_RETRIES](../providers_power_trait_provider/PowerTraitProvider/MAX_RETRIES-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
+
+
+
+
+##### [RETRY_DELAY_MS](../providers_power_trait_provider/PowerTraitProvider/RETRY_DELAY_MS-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
 
 
 

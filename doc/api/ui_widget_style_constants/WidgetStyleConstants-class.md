@@ -100,6 +100,33 @@ _read / write_
 
 ## Constants
 
+##### [batteryFullMin](../ui_widget_style_constants/WidgetStyleConstants/batteryFullMin-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
+
+
+
+
+##### [batteryLowMax](../ui_widget_style_constants/WidgetStyleConstants/batteryLowMax-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
+
+
+
+
+##### [darkTextColor](../ui_widget_style_constants/WidgetStyleConstants/darkTextColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
 ##### [defaultArcColor](../ui_widget_style_constants/WidgetStyleConstants/defaultArcColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
 
 
@@ -164,6 +191,24 @@ _read / write_
 
 
 ##### [deviceIconColor](../ui_widget_style_constants/WidgetStyleConstants/deviceIconColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
+##### [globalSuccessColor](../ui_widget_style_constants/WidgetStyleConstants/globalSuccessColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
+##### [globalWarningColor](../ui_widget_style_constants/WidgetStyleConstants/globalWarningColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
 
 
 

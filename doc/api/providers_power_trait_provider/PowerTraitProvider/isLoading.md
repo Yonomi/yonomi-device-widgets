@@ -24,7 +24,7 @@
 ## Implementation
 
 ```dart
-bool get isLoading => _currentState == PowerState.loading;
+bool get isLoading => _currentState == WidgetState.loading;
 ```
 
 
