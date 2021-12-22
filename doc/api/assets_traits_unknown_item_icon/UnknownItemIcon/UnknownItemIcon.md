@@ -23,7 +23,7 @@ UnknownItemIcon(
     {size = WidgetStyleConstants.defaultDeviceIconSize,
     color = WidgetStyleConstants.deviceIconColor,
     Key? key})
-    : super(BootstrapIcons.box, key: key, size: size, color: color) {}
+    : super(BootstrapIcons.box, key: key, size: size, color: color);
 ```
 
 

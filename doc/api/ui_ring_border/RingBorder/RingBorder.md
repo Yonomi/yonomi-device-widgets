@@ -20,8 +20,7 @@ RingBorder({[BorderSide](https://api.flutter.dev/flutter/painting/BorderSide-cla
 
 ```dart
 const RingBorder({BorderSide side = BorderSide.none})
-    : assert(side != null),
-      super(side: side);
+    : super(side: side);
 ```
 
 

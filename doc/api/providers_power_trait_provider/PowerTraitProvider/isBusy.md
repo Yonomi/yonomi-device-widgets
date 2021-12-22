@@ -24,8 +24,8 @@
 ## Implementation
 
 ```dart
-bool get isBusy => (_currentState == PowerState.loading ||
-    _currentState == PowerState.performingAction);
+bool get isBusy => (_currentState == WidgetState.loading ||
+    _currentState == WidgetState.performingAction);
 ```
 
 

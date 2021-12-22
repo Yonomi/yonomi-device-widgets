@@ -24,7 +24,7 @@
 ## Implementation
 
 ```dart
-bool get isPerformingAction => _currentState == PowerState.performingAction;
+bool get isPerformingAction => _currentState == WidgetState.performingAction;
 ```
 
 
