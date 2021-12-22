@@ -15,6 +15,7 @@ dependencies:
     git:
       url: git://github.com/Yonomi/yonomi-sdk-dart.git
       ref: DX-252_battery_level_trait
+  accordion: ^2.1.2
 
 dev_dependencies:
   mockito: ^5.0.15
