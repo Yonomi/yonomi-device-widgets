@@ -5,7 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
-import 'package:yonomi_device_widgets/traits/lock.dart';
+import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
