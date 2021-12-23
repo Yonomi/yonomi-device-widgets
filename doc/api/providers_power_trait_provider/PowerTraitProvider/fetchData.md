@@ -29,11 +29,11 @@
 Future<Device?> fetchData(
     {GetDeviceDetailsMethod getDeviceDetails =
         DevicesRepository.getDeviceDetails}) async {
-  _setState = PowerState.loading;
+  _setState = WidgetState.loading;
 
   try {
     _deviceDetail = await getDeviceDetails(_request, _deviceId);
-    _setState = PowerState.idle;
+    _setState = WidgetState.idle;
   } catch (error) {
     _setErrorState(error.toString());
     return null;

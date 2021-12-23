@@ -10,7 +10,7 @@
 
 
 
-PowerWidget(@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [PowerTraitProvider](../../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
+PowerWidget([PowerTraitProvider](../../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
 
 
 
@@ -19,7 +19,7 @@ PowerWidget(@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-c
 ## Implementation
 
 ```dart
-PowerWidget(@required this._powerTraitProvider);
+PowerWidget(this._powerTraitProvider);
 ```
 
 

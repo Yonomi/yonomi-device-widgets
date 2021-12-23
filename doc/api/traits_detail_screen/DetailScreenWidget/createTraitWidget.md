@@ -40,22 +40,18 @@ Widget createTraitWidget(String name) {
           child: PowerWidget(powerProvider),
         );
       });
+    case 'battery_level':
+      return Consumer<BatteryLevelTraitProvider>(
+          builder: (_, batteryLevelTraitProvider, child) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: BatteryWidget(batteryLevelTraitProvider),
+        );
+      });
     default:
       return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            UnknownItemIcon(
-              size: 20.0,
-              color: Colors.white,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(name, style: TextStyle(fontSize: 20)),
-            ),
-          ],
-        ),
-      );
+          padding: const EdgeInsets.all(8.0),
+          child: UnknownItemIcon(color: Colors.white));
   }
 }
 ```
