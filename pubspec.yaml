@@ -6,19 +6,12 @@ homepage: https://www.yonomi.co
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
-flutter:
-  uses-material-design: true
-
 dependencies:
   provider: ^6.0.1
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.5.0
-  yonomi_platform_sdk:
-    git:
-      url: git://github.com/Yonomi/yonomi-sdk-dart.git
-      ref: DX-252_battery_level_trait
-  accordion: ^2.1.2
+  yonomi_platform_sdk: ^2.2.0
 
 dev_dependencies:
   mockito: ^5.0.15
