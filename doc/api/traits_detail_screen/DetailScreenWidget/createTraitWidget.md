@@ -42,16 +42,42 @@ Widget createTraitWidget(String name) {
       });
     case 'battery_level':
       return Consumer<BatteryLevelTraitProvider>(
-          builder: (_, batteryLevelTraitProvider, child) {
+          builder: (_, batteryLevelProvider, child) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: BatteryWidget(batteryLevelTraitProvider),
+          child: Row(
+            children: [
+              BatteryLevelIcon(
+                batteryLevelProvider.getBatteryLevel,
+                size: 20.0,
+                color: Colors.white,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    'Battery Level: ${batteryLevelProvider.getBatteryLevel}%',
+                    style: TextStyle(fontSize: 20, color: _getBatteryLevelColor(batteryLevelProvider.getBatteryLevel))),
+              ),
+            ],
+          ),
         );
       });
     default:
       return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: UnknownItemIcon(color: Colors.white));
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            UnknownItemIcon(
+              size: 20.0,
+              color: Colors.white,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(name, style: TextStyle(fontSize: 20)),
+            ),
+          ],
+        ),
+      );
   }
 }
 ```

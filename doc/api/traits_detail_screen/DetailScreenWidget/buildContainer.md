@@ -26,25 +26,17 @@
 ```dart
 Widget buildContainer(List<Trait> traits) {
   return Container(
-      alignment: Alignment.center,
-      child: Center(
-          child: Column(children: [
-        createTraitWidget(traits.first.name),
-        Accordion(
-            maxOpenSections: 1,
-            headerPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-            children: traits.skip(1).map((trait) {
-              return AccordionSection(
-                header: createTraitWidgetHeader(trait.name),
-                content: createTraitWidget(trait.name),
-                contentHorizontalPadding: 20,
-                contentBorderWidth: 1,
-                contentBorderColor: Colors.white,
-                headerBackgroundColor: Colors.white,
-                contentBackgroundColor: Color(0xFF2e2e2e),
-              );
-            }).toList())
-      ])));
+    alignment: Alignment.center,
+    child: Center(
+      child: Column(
+          children: traits.map((element) {
+        return Row(children: [
+          SizedBox(width: 50),
+          createTraitWidget(element.name),
+        ]);
+      }).toList()),
+    ),
+  );
 }
 ```
 
