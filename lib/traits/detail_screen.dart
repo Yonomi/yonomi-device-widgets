@@ -8,9 +8,9 @@ import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
-import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
+import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
@@ -169,15 +169,15 @@ class DetailScreenWidget extends StatelessWidget {
             child: Row(
               children: [
                 BatteryLevelIcon(
-                  batteryLevelProvider.getBatteryLevel,
+                  batteryLevelTraitProvider.getBatteryLevel,
                   size: 20.0,
                   color: WidgetStyleConstants.deviceDetailIconColorActive,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                      'Battery Level: ${batteryLevelProvider.getBatteryLevel}%',
-                      style: TextStyle(fontSize: 20, color: _getBatteryLevelColor(batteryLevelProvider.getBatteryLevel))),
+                      'Battery Level: ${batteryLevelTraitProvider.getBatteryLevel}%',
+                      style: TextStyle(fontSize: 20, color: _getBatteryLevelColor(batteryLevelTraitProvider.getBatteryLevel))),
                 ),
               ],
             ),

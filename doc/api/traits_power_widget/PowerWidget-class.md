@@ -25,18 +25,13 @@
 
 
 
-**Available Extensions**
-
-- [WidgetPaddingX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetPaddingX.html)
-- [WidgetMarginX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetMarginX.html)
-- [WidgetSliverBoxX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetSliverBoxX.html)
 
 
 ## Constructors
 
 [PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) ([PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
 
-
+    
 
 
 ## Properties
@@ -45,7 +40,7 @@
 
 
 
-The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)
+The hash code for this object. [...](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant.html), read-only, inherited_
 
 
@@ -54,7 +49,7 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 
 
-Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)
+Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
 
 
@@ -63,7 +58,7 @@ _final, inherited_
 
 
 
-A representation of the runtime type of the object.
+A representation of the runtime type of the object.   
 _read-only, inherited_
 
 
@@ -75,7 +70,7 @@ _read-only, inherited_
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_power_widget/PowerWidget/build.md)
+Describes the part of the user interface represented by this widget. [...](../traits_power_widget/PowerWidget/build.md)  
 _override_
 
 
@@ -84,7 +79,7 @@ _override_
 
 
 
-Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
 _inherited_
 
 
@@ -94,7 +89,7 @@ _inherited_
 
 
 Returns a list of <code>DiagnosticsNode</code> objects describing this node's
-children. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)
+children. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)  
 _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.html), inherited_
 
 
@@ -103,7 +98,7 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)
+Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
 _inherited_
 
 
@@ -112,7 +107,7 @@ _inherited_
 
 
 
-Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)
+Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
 _inherited_
 
 
@@ -122,7 +117,7 @@ _inherited_
 
 
 Returns a debug representation of the object that is used by debugging
-tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html)  
 _inherited_
 
 
@@ -131,7 +126,7 @@ _inherited_
 
 
 
-A string representation of this object. [...](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)
+A string representation of this object. [...](https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html)  
 _inherited_
 
 
@@ -140,7 +135,7 @@ _inherited_
 
 
 
-Returns a string representation of this node and its descendants. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)
+Returns a string representation of this node and its descendants. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html)  
 _inherited_
 
 
@@ -149,7 +144,7 @@ _inherited_
 
 
 
-Returns a one-line detailed description of the object. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)
+Returns a one-line detailed description of the object. [...](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html)  
 _inherited_
 
 
@@ -158,7 +153,7 @@ _inherited_
 
 
 
-A short, textual description of this widget.
+A short, textual description of this widget.   
 _inherited_
 
 
@@ -170,7 +165,7 @@ _inherited_
 
 
 
-The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)
+The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html)  
 _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant.html), inherited_
 
 

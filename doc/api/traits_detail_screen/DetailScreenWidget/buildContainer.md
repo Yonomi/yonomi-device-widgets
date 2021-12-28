@@ -29,7 +29,7 @@ Widget buildContainer(List<Trait> traits) {
       alignment: Alignment.center,
       child: Center(
           child: Column(children: [
-        createTraitWidget(traits.first.name),
+        createTraitWidget(traits.first.name, iconColor: Colors.white),
         Accordion(
             maxOpenSections: 1,
             headerPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
@@ -41,7 +41,7 @@ Widget buildContainer(List<Trait> traits) {
                 contentBorderWidth: 1,
                 contentBorderColor: Colors.white,
                 headerBackgroundColor: Colors.white,
-                contentBackgroundColor: Color(0xFF2e2e2e),
+                contentBackgroundColor: Colors.white,
               );
             }).toList())
       ])));

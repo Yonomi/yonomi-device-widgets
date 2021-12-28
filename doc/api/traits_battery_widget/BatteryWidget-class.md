@@ -25,20 +25,11 @@
 
 
 
-**Available Extensions**
-
-- [WidgetPaddingX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetPaddingX.html)
-- [WidgetMarginX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetMarginX.html)
-- [WidgetSliverBoxX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetSliverBoxX.html)
 
 
 ## Constructors
 
-<<<<<<< HEAD
-[BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelTraitProvider](../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider)
-=======
 [BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelTraitProvider](../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
->>>>>>> bb10565 (docs: updated dartdocs)
 
     
 

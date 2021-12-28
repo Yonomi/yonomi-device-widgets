@@ -19,7 +19,7 @@
 
 [WidgetStyleConstants](../ui_widget_style_constants/WidgetStyleConstants/WidgetStyleConstants.md) ()
 
-
+    
 
 
 ## Properties
@@ -28,7 +28,7 @@
 
 
 
-The hash code for this object. [...](https://api.flutter.dev/flutter/dart-core/Object/hashCode.html)
+The hash code for this object. [...](https://api.flutter.dev/flutter/dart-core/Object/hashCode.html)  
 _read-only, inherited_
 
 
@@ -37,7 +37,7 @@ _read-only, inherited_
 
 
 
-A representation of the runtime type of the object.
+A representation of the runtime type of the object.   
 _read-only, inherited_
 
 
@@ -49,7 +49,7 @@ _read-only, inherited_
 
 
 
-Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)
+Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
 _inherited_
 
 
@@ -58,7 +58,7 @@ _inherited_
 
 
 
-A string representation of this object. [...](https://api.flutter.dev/flutter/dart-core/Object/toString.html)
+A string representation of this object. [...](https://api.flutter.dev/flutter/dart-core/Object/toString.html)  
 _inherited_
 
 
@@ -70,7 +70,7 @@ _inherited_
 
 
 
-The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html)
+The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html)  
 _inherited_
 
 
@@ -82,7 +82,7 @@ _inherited_
 
 
 
-
+   
 _final_
 
 
@@ -91,7 +91,7 @@ _final_
 
 
 
-
+   
 _read / write_
 
 
@@ -104,7 +104,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -113,7 +113,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -122,7 +122,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -131,7 +131,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -140,7 +140,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -149,7 +149,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -158,7 +158,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -167,7 +167,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -176,7 +176,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -185,7 +185,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -194,7 +194,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -203,7 +203,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -212,7 +212,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -221,7 +221,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -230,7 +230,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -239,7 +239,7 @@ _read / write_
 
 
 
-
+   
 
 
 
@@ -248,7 +248,7 @@ _read / write_
 
 
 
-
+   
 
 
 

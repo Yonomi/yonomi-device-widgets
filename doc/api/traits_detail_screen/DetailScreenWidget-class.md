@@ -25,11 +25,6 @@
 
 
 
-**Available Extensions**
-
-- [WidgetPaddingX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetPaddingX.html)
-- [WidgetMarginX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetMarginX.html)
-- [WidgetSliverBoxX](https://pub.dev/documentation/get/4.6.1/get_utils_src_extensions_widget_extensions/WidgetSliverBoxX.html)
 
 
 ## Constructors
@@ -117,15 +112,6 @@ _inherited_
 
 
 ##### [createTraitWidget](../traits_detail_screen/DetailScreenWidget/createTraitWidget.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive}) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
-
-
-
-##### [createTraitWidgetHeader](../traits_detail_screen/DetailScreenWidget/createTraitWidgetHeader.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 

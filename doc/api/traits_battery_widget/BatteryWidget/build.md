@@ -70,17 +70,11 @@ Widget build(BuildContext context) {
         children: <Widget>[
           Row(children: <Widget>[
             Text(
-<<<<<<< HEAD
-              (_batteryLevelTraitProvider.deviceDetail?.displayName ??
-                  'BATTERY'),
-              style: Theme.of(context).textTheme.headline6,
-=======
               'BATTERY',
               style: Theme.of(context)
                   .textTheme
                   .headline6
                   ?.copyWith(color: _textColor),
->>>>>>> bb10565 (docs: updated dartdocs)
               textAlign: TextAlign.left,
             ),
           ]),
@@ -107,11 +101,7 @@ Widget build(BuildContext context) {
               child: BatteryLevelIcon(
                 _batteryLevelTraitProvider.getBatteryLevel,
                 size: 100.0,
-<<<<<<< HEAD
-                color: Colors.white,
-=======
                 color: _iconColor,
->>>>>>> bb10565 (docs: updated dartdocs)
               ),
             ),
           ),
@@ -120,12 +110,8 @@ Widget build(BuildContext context) {
           ),
           Text(
             "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
-<<<<<<< HEAD
-            style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
-=======
             style: TextStyle(
                 fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
->>>>>>> bb10565 (docs: updated dartdocs)
           ),
         ]);
   }
