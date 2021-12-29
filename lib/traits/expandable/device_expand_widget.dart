@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DeviceExpandableWidget extends StatelessWidget {
+class DeviceExpandWidget extends StatelessWidget {
   final Icon leftIcon;
 
   final Text headerText;
@@ -11,7 +11,7 @@ class DeviceExpandableWidget extends StatelessWidget {
 
   final Color? backgroundColor;
 
-  DeviceExpandableWidget(
+  DeviceExpandWidget(
       {required this.leftIcon,
       required this.headerText,
       this.rightIcon,
