@@ -9,11 +9,14 @@ class DeviceExpandableWidget extends StatelessWidget {
 
   final Widget? content;
 
+  final Color? backgroundColor;
+
   DeviceExpandableWidget(
       {required this.leftIcon,
       required this.headerText,
       this.rightIcon,
       this.content,
+      this.backgroundColor,
       Key? key})
       : super(key: key);
 
@@ -27,6 +30,7 @@ class DeviceExpandableWidget extends StatelessWidget {
     return ExpansionTile(
       childrenPadding: EdgeInsets.all(8.0),
       trailing: rightIcon,
+      backgroundColor: backgroundColor,
       title: Row(children: [
         leftIcon,
         Padding(padding: EdgeInsets.all(8.0)),
@@ -41,6 +45,7 @@ class DeviceExpandableWidget extends StatelessWidget {
 
   Widget _tile() {
     return ListTile(
+      tileColor: backgroundColor,
       trailing: rightIcon,
       title: Row(children: [
         leftIcon,

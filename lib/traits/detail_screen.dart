@@ -105,7 +105,7 @@ class DetailScreenWidget extends StatelessWidget {
     }
   }
 
-  Widget _createTraitListWidget(Trait trait) {
+  Widget _createTraitListWidget(Trait trait, {backgroundColor = Colors.white}) {
     switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
@@ -145,10 +145,12 @@ class DetailScreenWidget extends StatelessWidget {
       case BatteryLevelTrait:
         return Consumer<BatteryLevelTraitProvider>(
             builder: (_, batteryLevelTraitProvider, child) {
-          return BatteryExpandWidget(batteryLevelTraitProvider);
+          return BatteryExpandWidget(batteryLevelTraitProvider,
+              backgroundColor: backgroundColor);
         });
       default:
         return DeviceExpandableWidget(
+          backgroundColor: backgroundColor,
           leftIcon: UnknownItemIcon(
             size: 20.0,
             color: WidgetStyleConstants.deviceDetailIconColorActive,

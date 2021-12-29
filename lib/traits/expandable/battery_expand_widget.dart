@@ -4,8 +4,10 @@ import 'package:yonomi_device_widgets/traits/expandable/device_expandable_widget
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class BatteryExpandWidget extends DeviceExpandableWidget {
-  BatteryExpandWidget(_batteryLevelTraitProvider, {Key? key})
+  BatteryExpandWidget(_batteryLevelTraitProvider,
+      {Color? backgroundColor, Key? key})
       : super(
+          backgroundColor: backgroundColor,
           leftIcon:
               _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
           headerText: Text(
