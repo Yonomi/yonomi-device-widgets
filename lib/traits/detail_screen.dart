@@ -67,17 +67,18 @@ class DetailScreenWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: Center(
             child: Column(children: [
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _createTraitWidget(traits.first, iconColor: Colors.white)),
+          _card(_createTraitWidget(traits.first)),
           ...traits.skip(1).map((trait) {
-            return Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Padding(
-                    padding: EdgeInsets.only(left: 8, right: 8),
-                    child: _createTraitListWidget(trait)));
+            return _card(_createTraitListWidget(trait));
           }).toList()
         ])));
+  }
+
+  Widget _card(Widget content) {
+    return Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        color: Colors.white,
+        child: Padding(padding: const EdgeInsets.all(8.0), child: content));
   }
 
   Widget _createTraitWidget(Trait trait,
