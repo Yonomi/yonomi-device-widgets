@@ -29,9 +29,13 @@ Widget buildContainer(List<Trait> traits) {
       alignment: Alignment.center,
       child: Center(
           child: Column(children: [
-        _card(_createTraitWidget(traits.first)),
+        _card(_createTraitWidget(traits.first), const EdgeInsets.all(8.0),
+            const EdgeInsets.only(bottom: 8.0)),
         ...traits.skip(1).map((trait) {
-          return _card(_createTraitListWidget(trait));
+          return _card(
+              _createTraitListWidget(trait),
+              const EdgeInsets.all(8.0),
+              const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0));
         }).toList()
       ])));
 }
