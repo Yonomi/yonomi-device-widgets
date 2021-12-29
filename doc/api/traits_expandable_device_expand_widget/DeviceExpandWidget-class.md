@@ -1,7 +1,7 @@
 
 
 
-# LockIcon class
+# DeviceExpandWidget class
 
 
 
@@ -20,29 +20,42 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- [Icon](https://api.flutter.dev/flutter/widgets/Icon-class.html)
-- LockIcon
+- DeviceExpandWidget
 
 
 
+**Implementers**
+
+- [BatteryExpandWidget](../traits_expandable_battery_expand_widget/BatteryExpandWidget-class.md)
+- [LockExpandWidget](../traits_expandable_lock_expand_widget/LockExpandWidget-class.md)
+- [PowerExpandWidget](../traits_expandable_power_expand_widget/PowerExpandWidget-class.md)
 
 
 
 ## Constructors
 
-[LockIcon](../assets_traits_lock_item_icon/LockIcon/LockIcon.md) ([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) isLocked, {dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[DeviceExpandWidget](../traits_expandable_device_expand_widget/DeviceExpandWidget/DeviceExpandWidget.md) ({required [Icon](https://api.flutter.dev/flutter/widgets/Icon-class.html) leftIcon, required [Text](https://api.flutter.dev/flutter/widgets/Text-class.html) headerText, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? rightIcon, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
 
 ## Properties
 
-##### [color](https://api.flutter.dev/flutter/widgets/Icon/color.html) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
+##### [backgroundColor](../traits_expandable_device_expand_widget/DeviceExpandWidget/backgroundColor.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
 
 
 
-The color to use when drawing the icon. [...](https://api.flutter.dev/flutter/widgets/Icon/color.html)  
-_final, inherited_
+   
+_final_
+
+
+
+##### [content](../traits_expandable_device_expand_widget/DeviceExpandWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+
+
+
+   
+_final_
 
 
 
@@ -55,12 +68,12 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 
 
-##### [icon](https://api.flutter.dev/flutter/widgets/Icon/icon.html) &#8594; [IconData](https://api.flutter.dev/flutter/widgets/IconData-class.html)?
+##### [headerText](../traits_expandable_device_expand_widget/DeviceExpandWidget/headerText.md) &#8594; [Text](https://api.flutter.dev/flutter/widgets/Text-class.html)
 
 
 
-The icon to display. The available icons are described in <a href="https://api.flutter.dev/flutter/material/Icons-class.html">Icons</a>. [...](https://api.flutter.dev/flutter/widgets/Icon/icon.html)  
-_final, inherited_
+   
+_final_
 
 
 
@@ -73,6 +86,24 @@ _final, inherited_
 
 
 
+##### [leftIcon](../traits_expandable_device_expand_widget/DeviceExpandWidget/leftIcon.md) &#8594; [Icon](https://api.flutter.dev/flutter/widgets/Icon-class.html)
+
+
+
+   
+_final_
+
+
+
+##### [rightIcon](../traits_expandable_device_expand_widget/DeviceExpandWidget/rightIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+
+
+
+   
+_final_
+
+
+
 ##### [runtimeType](https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html) &#8594; [Type](https://api.flutter.dev/flutter/dart-core/Type-class.html)
 
 
@@ -82,42 +113,15 @@ _read-only, inherited_
 
 
 
-##### [semanticLabel](https://api.flutter.dev/flutter/widgets/Icon/semanticLabel.html) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)?
-
-
-
-Semantic label for the icon. [...](https://api.flutter.dev/flutter/widgets/Icon/semanticLabel.html)  
-_final, inherited_
-
-
-
-##### [size](https://api.flutter.dev/flutter/widgets/Icon/size.html) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)?
-
-
-
-The size of the icon in logical pixels. [...](https://api.flutter.dev/flutter/widgets/Icon/size.html)  
-_final, inherited_
-
-
-
-##### [textDirection](https://api.flutter.dev/flutter/widgets/Icon/textDirection.html) &#8594; [TextDirection](https://api.flutter.dev/flutter/dart-ui/TextDirection.html)?
-
-
-
-The text direction to use for rendering the icon. [...](https://api.flutter.dev/flutter/widgets/Icon/textDirection.html)  
-_final, inherited_
-
-
-
 
 ## Methods
 
-##### [build](https://api.flutter.dev/flutter/widgets/Icon/build.html)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](../traits_expandable_device_expand_widget/DeviceExpandWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](https://api.flutter.dev/flutter/widgets/Icon/build.html)  
-_inherited_
+Describes the part of the user interface represented by this widget. [...](../traits_expandable_device_expand_widget/DeviceExpandWidget/build.md)  
+_override_
 
 
 
@@ -140,11 +144,11 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [debugFillProperties](https://api.flutter.dev/flutter/widgets/Icon/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
+##### [debugFillProperties](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)([DiagnosticPropertiesBuilder](https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html) properties) void
 
 
 
-Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Icon/debugFillProperties.html)  
+Add additional properties associated with the node. [...](https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html)  
 _inherited_
 
 
