@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../traits_detail_screen/DetailScreenWidget/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../traits_expandable_device_expand_widget/DeviceExpandWidget/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,14 +60,8 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return Consumer<TraitDetailProvider>(
-      builder: (_, traitBasedDeviceNotifier, child) {
-    if (traitBasedDeviceNotifier.isLoading) {
-      return Center(child: CircularProgressIndicator());
-    } else {
-      return buildContainer(traitBasedDeviceNotifier.deviceDetail!.traits);
-    }
-  });
+  return Column(
+      children: <Widget>[(content != null ? _expandableTile() : _tile())]);
 }
 ```
 

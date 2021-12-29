@@ -48,6 +48,10 @@ open coverage/html/index.html
  
 
 
+##### [battery_expand_widget](traits_expandable_battery_expand_widget/traits_expandable_battery_expand_widget-library.md)
+ 
+
+
 ##### [battery_level_icon](assets_traits_battery_level_icon/assets_traits_battery_level_icon-library.md)
  
 
@@ -72,11 +76,19 @@ open coverage/html/index.html
  
 
 
+##### [device_expand_widget](traits_expandable_device_expand_widget/traits_expandable_device_expand_widget-library.md)
+ 
+
+
 ##### [device_item_icon](assets_traits_device_item_icon/assets_traits_device_item_icon-library.md)
  
 
 
 ##### [lock](devices_lock/devices_lock-library.md)
+ 
+
+
+##### [lock_expand_widget](traits_expandable_lock_expand_widget/traits_expandable_lock_expand_widget-library.md)
  
 
 
@@ -88,15 +100,19 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
- 
-
-
 ##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+ 
+
+
 ##### [modes_toolbar](components_modes_toolbar/components_modes_toolbar-library.md)
+ 
+
+
+##### [power_expand_widget](traits_expandable_power_expand_widget/traits_expandable_power_expand_widget-library.md)
  
 
 
