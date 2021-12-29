@@ -5,7 +5,6 @@ import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dar
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/traits/expandable/battery_expand_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
@@ -14,6 +13,7 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 import 'expandable/device_expand_widget.dart';
+import 'expandable/lock_expand_widget.dart';
 import 'expandable/power_expand_widget.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -110,21 +110,8 @@ class DetailScreenWidget extends StatelessWidget {
     switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return Row(
-            children: [
-              LockIcon(
-                lockProvider.isLocked,
-                size: 20.0,
-                color: WidgetStyleConstants.deviceDetailIconColorActive,
-              ),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(lockProvider.getLockTrait().name,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: WidgetStyleConstants.darkTextColor))),
-            ],
-          );
+          return LockExpandWidget(lockProvider,
+              backgroundColor: backgroundColor);
         });
       case PowerTrait:
         return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
-import 'package:yonomi_device_widgets/traits/expandable/device_expandable_widget.dart';
+import 'package:yonomi_device_widgets/traits/expandable/device_expand_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class BatteryExpandWidget extends DeviceExpandableWidget {
+class BatteryExpandWidget extends DeviceExpandWidget {
   BatteryExpandWidget(_batteryLevelTraitProvider,
       {Color? backgroundColor, Key? key})
       : super(
