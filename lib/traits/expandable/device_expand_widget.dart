@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 
 class DeviceExpandWidget extends StatelessWidget {
   final Icon leftIcon;
-
   final Text headerText;
-
-  final Icon? rightIcon;
-
+  final Widget? rightIcon;
   final Widget? content;
-
   final Color? backgroundColor;
 
   DeviceExpandWidget(
@@ -29,16 +25,12 @@ class DeviceExpandWidget extends StatelessWidget {
   Widget _expandableTile() {
     return ExpansionTile(
       childrenPadding: EdgeInsets.all(8.0),
+      leading: leftIcon,
       trailing: rightIcon,
       backgroundColor: backgroundColor,
-      title: Row(children: [
-        leftIcon,
-        Padding(padding: EdgeInsets.all(8.0)),
-        headerText
-      ]),
-      children: <Widget>[
-        content ?? Padding(padding: EdgeInsets.zero),
-      ],
+      title: headerText,
+      tilePadding: EdgeInsets.all(0.0),
+      children: [content!],
       key: key,
     );
   }
@@ -46,12 +38,10 @@ class DeviceExpandWidget extends StatelessWidget {
   Widget _tile() {
     return ListTile(
       tileColor: backgroundColor,
+      leading: leftIcon,
       trailing: rightIcon,
-      title: Row(children: [
-        leftIcon,
-        Padding(padding: EdgeInsets.all(8.0)),
-        headerText
-      ]),
+      title: headerText,
+      horizontalTitleGap: 0.0,
       key: key,
     );
   }

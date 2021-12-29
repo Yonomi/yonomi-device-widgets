@@ -6,7 +6,6 @@ import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
-import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/traits/expandable/battery_expand_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
@@ -14,7 +13,8 @@ import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-import 'expandable/device_expandable_widget.dart';
+import 'expandable/device_expand_widget.dart';
+import 'expandable/power_expand_widget.dart';
 
 class DetailScreen extends StatelessWidget {
   final Request request;
@@ -128,20 +128,8 @@ class DetailScreenWidget extends StatelessWidget {
         });
       case PowerTrait:
         return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
-          return Row(
-            children: [
-              PowerItemIcon(powerProvider.getOnOffState,
-                  size: 20.0,
-                  color: WidgetStyleConstants.deviceDetailIconColorActive),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      (powerProvider.getPowerTrait()?.name ?? 'Power Switch'),
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: WidgetStyleConstants.darkTextColor))),
-            ],
-          );
+          return PowerExpandWidget(powerProvider,
+              backgroundColor: backgroundColor);
         });
       case BatteryLevelTrait:
         return Consumer<BatteryLevelTraitProvider>(
@@ -150,7 +138,7 @@ class DetailScreenWidget extends StatelessWidget {
               backgroundColor: backgroundColor);
         });
       default:
-        return DeviceExpandableWidget(
+        return DeviceExpandWidget(
           backgroundColor: backgroundColor,
           leftIcon: UnknownItemIcon(
             size: 20.0,
