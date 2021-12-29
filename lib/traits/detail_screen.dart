@@ -68,7 +68,7 @@ class DetailScreenWidget extends StatelessWidget {
         child: Center(
             child: Column(children: [
           _card(_createTraitWidget(traits.first), const EdgeInsets.all(8.0),
-              EdgeInsets.zero),
+              const EdgeInsets.only(bottom: 8.0)),
           ...traits.skip(1).map((trait) {
             return _card(
                 _createTraitListWidget(trait),
