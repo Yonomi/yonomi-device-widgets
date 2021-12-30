@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
@@ -12,6 +13,7 @@ import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -30,13 +32,8 @@ Widget createDetailScreenWhenLoading(
   TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
   when(mockTraitDetailProvider.isLoading).thenReturn(true);
 
-  return createMaterialApp(
-      req,
-      deviceId,
-      mockTraitDetailProvider,
-      MockLockProvider(),
-      MockPowerTraitProvider(),
-      MockBatteryLevelProvider());
+  return createMaterialApp(req, deviceId, mockTraitDetailProvider,
+      MockLockProvider(), MockPowerTraitProvider(), MockBatteryLevelProvider());
 }
 
 Widget createDetailScreenWidgetForTrait(
@@ -62,7 +59,12 @@ Widget createDetailScreenWidgetForTrait(
   BatteryLevelProvider mockBatteryTraitProvider = MockBatteryLevelProvider();
   when(mockBatteryTraitProvider.isLoading).thenReturn(false);
   when(mockBatteryTraitProvider.isInErrorState).thenReturn(false);
-  when(mockBatteryTraitProvider.getBatteryLevel).thenReturn(90);
+  final batteryLevel = traits
+      .firstWhere((trait) => trait is BatteryLevelTrait,
+          orElse: () => BatteryLevelTrait(BatteryLevel(90)))
+      .state
+      .value as int;
+  when(mockBatteryTraitProvider.getBatteryLevel).thenReturn(batteryLevel);
   when(mockBatteryTraitProvider.displayName).thenReturn('BATTERY');
 
   return createMaterialApp(req, deviceId, mockTraitDetailProvider,
@@ -174,6 +176,77 @@ void main() {
     expect(find.byType(UnknownItemIcon), findsOneWidget);
   });
 
+  testWidgets(
+      'For a device with multiple traits, Detail screen should show a primary trait and additional traits',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+
+    await tester.pumpWidget(createDetailScreenWidgetForTrait([
+      LockTrait(IsLocked(false)),
+      UnknownTrait('unknown'),
+      BatteryLevelTrait(BatteryLevel(100))
+    ], request, testedDeviceId));
+
+    expect(find.byType(LockWidget), findsOneWidget);
+    expect(find.byType(UnknownItemIcon), findsOneWidget);
+    expect(find.byType(BatteryLevelIcon), findsOneWidget);
+
+    expect(
+        tester
+            .widget<Text>((find.textContaining('Battery Level: 100')))
+            .style
+            ?.color,
+        WidgetStyleConstants.globalSuccessColor);
+  });
+
+  testWidgets(
+      'For a device with multiple traits, Detail screen should show a primary trait and additional traits with middle battery life',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+
+    await tester.pumpWidget(createDetailScreenWidgetForTrait([
+      LockTrait(IsLocked(false)),
+      UnknownTrait('unknown'),
+      BatteryLevelTrait(BatteryLevel(50))
+    ], request, testedDeviceId));
+
+    expect(find.byType(LockWidget), findsOneWidget);
+    expect(find.byType(UnknownItemIcon), findsOneWidget);
+    expect(find.byType(BatteryLevelIcon), findsOneWidget);
+
+    expect(
+        tester
+            .widget<Text>((find.textContaining('Battery Level: 50')))
+            .style
+            ?.color,
+        Colors.white);
+  });
+
+  testWidgets(
+      'For a device with multiple traits, Detail screen should show a primary trait and additional traits with low battery life',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+
+    await tester.pumpWidget(createDetailScreenWidgetForTrait([
+      LockTrait(IsLocked(false)),
+      UnknownTrait('unknown'),
+      BatteryLevelTrait(BatteryLevel(1))
+    ], request, testedDeviceId));
+
+    expect(find.byType(LockWidget), findsOneWidget);
+    expect(find.byType(UnknownItemIcon), findsOneWidget);
+    expect(find.byType(BatteryLevelIcon), findsOneWidget);
+
+    expect(
+        tester
+            .widget<Text>((find.textContaining('Battery Level: 1')))
+            .style
+            ?.color,
+        WidgetStyleConstants.globalWarningColor);
+  });
   test('Detail screen returns a multiprovider', () {
     final detailScreen =
         DetailScreen(request: Request('', {}), deviceId: 'deviceId');
