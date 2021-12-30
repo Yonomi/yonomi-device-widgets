@@ -48,6 +48,10 @@ class MockBatteryLevelProvider extends _i1.Mock
           .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
       as bool);
   @override
+  String get getErrorMessage =>
+      (super.noSuchMethod(Invocation.getter(#getErrorMessage), returnValue: '')
+          as String);
+  @override
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);

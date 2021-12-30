@@ -74,4 +74,6 @@ class BatteryLevelProvider extends ChangeNotifier {
   bool get isLoading => _state == WidgetState.loading;
 
   bool get isInErrorState => _state == WidgetState.error;
+
+  String get getErrorMessage => _latestErrorMsg;
 }

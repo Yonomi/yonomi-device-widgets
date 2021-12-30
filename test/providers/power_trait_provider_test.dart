@@ -17,13 +17,13 @@ class SendPowerMethod extends Mock {
 
 @GenerateMocks([GetDeviceDetailsMethod, SendPowerMethod])
 void main() {
-  group("For PowerTraitProvider", () {
+  group('For PowerTraitProvider', () {
     test('Calling sendOnOff calls repository method', () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          getMockDeviceDetailsMethod(request, deviceId);
+          _getMockDeviceDetailsMethod(request, deviceId);
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
@@ -46,7 +46,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          getMockDeviceDetailsMethod(request, deviceId);
+          _getMockDeviceDetailsMethod(request, deviceId);
 
       PowerTraitProvider powerProvider = PowerTraitProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
@@ -60,7 +60,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          getMockDeviceDetailsMethod(request, deviceId);
+          _getMockDeviceDetailsMethod(request, deviceId);
 
       PowerTraitProvider powerProvider = await PowerTraitProvider(
           request, deviceId,
@@ -79,7 +79,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          getMockDeviceDetailsMethod(request, deviceId);
+          _getMockDeviceDetailsMethod(request, deviceId);
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
@@ -99,7 +99,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          getMockDeviceDetailsMethod(request, deviceId);
+          _getMockDeviceDetailsMethod(request, deviceId);
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
@@ -125,7 +125,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
-          getMockDeviceDetailsMethod(request, deviceId);
+          _getMockDeviceDetailsMethod(request, deviceId);
 
       final mockSendPowerMethod = MockSendPowerMethod();
 
@@ -140,13 +140,13 @@ void main() {
           .called(greaterThan(9));
     });
 
-    test(""""When an error occurs loading device data, we are notified
+    test("""When an error occurs loading device data, we are notified
         an error occurred using isInErrorState and get
         an error message with getErrorMessage.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
 
-      String exceptionMesssage = "Throwing an exception";
+      String exceptionMesssage = 'Throwing an exception';
 
       MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
           MockGetDeviceDetailsMethod();
@@ -163,13 +163,13 @@ void main() {
       expect(powerProvider.getErrorMessage, equals(exceptionMesssage));
     });
 
-    test(""""When an error occurs running an action, we are notified
+    test("""When an error occurs running an action, we are notified
         an error occurred using isInErrorState and get
         an error message with getErrorMessage.""", () async {
       Request request = Request("", {});
       String deviceId = 'aDeviceId';
 
-      String exceptionMesssage = "Throwing an exception";
+      String exceptionMesssage = 'Throwing an exception';
 
       MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
           MockGetDeviceDetailsMethod();
@@ -193,7 +193,7 @@ void main() {
   });
 }
 
-MockGetDeviceDetailsMethod getMockDeviceDetailsMethod(
+MockGetDeviceDetailsMethod _getMockDeviceDetailsMethod(
     Request request, String deviceId) {
   MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
       MockGetDeviceDetailsMethod();
