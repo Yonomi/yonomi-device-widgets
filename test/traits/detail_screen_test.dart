@@ -17,9 +17,9 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'detail_screen_test.mocks.dart';
 
-Device buildMockDevice(Trait trait) {
+Device buildMockDevice(List<Trait> traits) {
   var mockDevice = Device("TestedDeviceName", "", "", "", "", "",
-      GDateTime('stub'), GDateTime('stub'), [trait]);
+      GDateTime('stub'), GDateTime('stub'), traits);
   return mockDevice;
 }
 
@@ -40,13 +40,14 @@ Widget createDetailScreenWhenLoading(
 }
 
 Widget createDetailScreenWidgetForTrait(
-  Trait trait,
+  List<Trait> traits,
   Request req,
   String deviceId,
 ) {
   TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
   when(mockTraitDetailProvider.isLoading).thenReturn(false);
-  when(mockTraitDetailProvider.deviceDetail).thenReturn(buildMockDevice(trait));
+  when(mockTraitDetailProvider.deviceDetail)
+      .thenReturn(buildMockDevice(traits));
 
   LockProvider mockLockProvider = MockLockProvider();
   when(mockLockProvider.loadingDetail).thenReturn(false);
@@ -114,7 +115,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        LockTrait(IsLocked(true)), request, testedDeviceId));
+        [LockTrait(IsLocked(true))], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
   });
@@ -125,7 +126,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        PowerTrait(IsOnOff(true)), request, testedDeviceId));
+        [PowerTrait(IsOnOff(true))], request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
   });
@@ -136,7 +137,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        BatteryLevelTrait(BatteryLevel(90)), request, testedDeviceId));
+        [BatteryLevelTrait(BatteryLevel(90))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
   });
@@ -147,7 +148,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        BatteryLevelTrait(BatteryLevel(1)), request, testedDeviceId));
+        [BatteryLevelTrait(BatteryLevel(1))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
   });
@@ -158,7 +159,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        BatteryLevelTrait(BatteryLevel(50)), request, testedDeviceId));
+        [BatteryLevelTrait(BatteryLevel(50))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
   });
@@ -169,7 +170,7 @@ void main() {
     Request request = Request('', {});
     final String testedDeviceId = "";
     await tester.pumpWidget(createDetailScreenWidgetForTrait(
-        UnknownTrait('unknown'), request, testedDeviceId));
+        [UnknownTrait('unknown')], request, testedDeviceId));
 
     expect(find.byType(UnknownItemIcon), findsOneWidget);
   });
