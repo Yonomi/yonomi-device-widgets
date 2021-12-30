@@ -6,7 +6,7 @@ import 'dart:async' as _i3;
 import 'dart:ui' as _i7;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart'
+import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
     as _i2;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
     as _i5;
@@ -22,12 +22,12 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i4;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-/// A class which mocks [BatteryLevelTraitProvider].
+/// A class which mocks [BatteryLevelProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBatteryLevelTraitProvider extends _i1.Mock
-    implements _i2.BatteryLevelTraitProvider {
-  MockBatteryLevelTraitProvider() {
+class MockBatteryLevelProvider extends _i1.Mock
+    implements _i2.BatteryLevelProvider {
+  MockBatteryLevelProvider() {
     _i1.throwOnMissingStub(this);
   }
 
