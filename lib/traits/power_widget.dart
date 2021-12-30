@@ -17,6 +17,7 @@ class PowerWidget extends StatelessWidget {
       _showToast(context, _powerTraitProvider.getErrorMessage);
       return Icon(Icons.error);
     } else {
+      final onOffState = _powerTraitProvider.getOnOffState;
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -36,7 +37,7 @@ class PowerWidget extends StatelessWidget {
               child: SizedBox(
                   width: 100,
                   height: 100,
-                  child: PowerItemIcon(_powerTraitProvider.getOnOffState,
+                  child: PowerItemIcon(onOffState,
                       size: 100.0, color: Colors.white)),
             ),
           ),

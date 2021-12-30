@@ -22,14 +22,22 @@ MaterialApp createMaterialApp(
 final device = Device('id', 'name', 'description', 'manufacturerName', 'model',
     null, GDateTime('value'), GDateTime('value'), [LockTrait(IsLocked(true))]);
 
+MockBatteryLevelTraitProvider _getMockBatteryTraitProvider() {
+  final mockBatteryLevelProvider = MockBatteryLevelTraitProvider();
+  when(mockBatteryLevelProvider.isLoading).thenReturn(false);
+  when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
+  when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
+  when(mockBatteryLevelProvider.displayName).thenReturn('BATTERY');
+
+  return mockBatteryLevelProvider;
+}
+
 @GenerateMocks([BatteryLevelTraitProvider])
 void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final mockBatteryLevelProvider = MockBatteryLevelTraitProvider();
+    final mockBatteryLevelProvider = _getMockBatteryTraitProvider();
     when(mockBatteryLevelProvider.isLoading).thenReturn(true);
-    when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
-    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -38,12 +46,9 @@ void main() {
 
   testWidgets('When battery level is low, should show low battery icon',
       (WidgetTester tester) async {
-    final mockBatteryLevelProvider = MockBatteryLevelTraitProvider();
-    when(mockBatteryLevelProvider.isLoading).thenReturn(false);
-    when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
+    final mockBatteryLevelProvider = _getMockBatteryTraitProvider();
     when(mockBatteryLevelProvider.getBatteryLevel)
         .thenReturn(WidgetStyleConstants.batteryLowMax);
-    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -51,16 +56,15 @@ void main() {
     expect(find.byType(BatteryWidget), findsOneWidget);
     expect(find.byType(BatteryLevelIcon), findsOneWidget);
     expect(find.byIcon(BootstrapIcons.battery), findsOneWidget);
+    expect(tester.widget<Text>((find.textContaining(' Battery'))).style?.color,
+        WidgetStyleConstants.globalWarningColor);
   });
 
   testWidgets(
       'When battery level is not low or high, should show half battery icon',
       (WidgetTester tester) async {
-    final mockBatteryLevelProvider = MockBatteryLevelTraitProvider();
-    when(mockBatteryLevelProvider.isLoading).thenReturn(false);
-    when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
+    final mockBatteryLevelProvider = _getMockBatteryTraitProvider();
     when(mockBatteryLevelProvider.getBatteryLevel).thenReturn(50);
-    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -68,16 +72,15 @@ void main() {
     expect(find.byType(BatteryWidget), findsOneWidget);
     expect(find.byType(BatteryLevelIcon), findsOneWidget);
     expect(find.byIcon(BootstrapIcons.battery_half), findsOneWidget);
+    expect(tester.widget<Text>((find.textContaining(' Battery'))).style?.color,
+        Colors.white);
   });
 
   testWidgets('When battery level is high, should show full battery icon',
       (WidgetTester tester) async {
-    final mockBatteryLevelProvider = MockBatteryLevelTraitProvider();
-    when(mockBatteryLevelProvider.isLoading).thenReturn(false);
-    when(mockBatteryLevelProvider.isInErrorState).thenReturn(false);
+    final mockBatteryLevelProvider = _getMockBatteryTraitProvider();
     when(mockBatteryLevelProvider.getBatteryLevel)
         .thenReturn(WidgetStyleConstants.batteryFullMin);
-    when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -85,5 +88,17 @@ void main() {
     expect(find.byType(BatteryWidget), findsOneWidget);
     expect(find.byType(BatteryLevelIcon), findsOneWidget);
     expect(find.byIcon(BootstrapIcons.battery_full), findsOneWidget);
+    expect(tester.widget<Text>((find.textContaining(' Battery'))).style?.color,
+        WidgetStyleConstants.globalSuccessColor);
+  });
+
+  testWidgets('When battery widget is in error, should show error icon',
+      (WidgetTester tester) async {
+    final mockBatteryLevelProvider = _getMockBatteryTraitProvider();
+    when(mockBatteryLevelProvider.isInErrorState).thenReturn(true);
+
+    await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
+
+    expect(find.byIcon(Icons.error), findsOneWidget);
   });
 }

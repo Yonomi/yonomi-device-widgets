@@ -8,6 +8,8 @@ import 'dart:ui' as _i8;
 import 'package:flutter/material.dart' as _i3;
 import 'package:flutter/src/foundation/diagnostics.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart'
+    as _i13;
 import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i9;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
     as _i11;
@@ -189,14 +191,6 @@ class MockPowerTraitProvider extends _i1.Mock
   }
 
   @override
-  int get MAX_RETRIES =>
-      (super.noSuchMethod(Invocation.getter(#MAX_RETRIES), returnValue: 0)
-          as int);
-  @override
-  int get RETRY_DELAY_MS =>
-      (super.noSuchMethod(Invocation.getter(#RETRY_DELAY_MS), returnValue: 0)
-          as int);
-  @override
   bool get getOnOffState =>
       (super.noSuchMethod(Invocation.getter(#getOnOffState), returnValue: false)
           as bool);
@@ -243,6 +237,62 @@ class MockPowerTraitProvider extends _i1.Mock
               {#getDetails: getDetails, #sendPowerMethod: sendPowerMethod}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  @override
+  void addListener(_i8.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#addListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void removeListener(_i8.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#removeListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void notifyListeners() =>
+      super.noSuchMethod(Invocation.method(#notifyListeners, []),
+          returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [BatteryLevelTraitProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockBatteryLevelTraitProvider extends _i1.Mock
+    implements _i13.BatteryLevelTraitProvider {
+  MockBatteryLevelTraitProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int get getBatteryLevel =>
+      (super.noSuchMethod(Invocation.getter(#getBatteryLevel), returnValue: 0)
+          as int);
+  @override
+  String get displayName =>
+      (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
+          as String);
+  @override
+  bool get isLoading =>
+      (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
+          as bool);
+  @override
+  bool get isInErrorState => (super
+          .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
+      as bool);
+  @override
+  bool get hasListeners =>
+      (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
+          as bool);
+  @override
+  _i6.Future<_i2.Device?> fetchData(
+          {_i11.GetDeviceDetailsMethod? getDeviceDetails =
+              _i7.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #fetchData, [], {#getDeviceDetails: getDeviceDetails}),
+          returnValue: Future<_i2.Device?>.value()) as _i6.Future<_i2.Device?>);
   @override
   void addListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),

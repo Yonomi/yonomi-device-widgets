@@ -69,6 +69,8 @@ class BatteryLevelTraitProvider extends ChangeNotifier {
     return getBatteryLevelTrait()?.state.value ?? 0;
   }
 
+  String get displayName => _deviceDetail?.displayName ?? 'BATTERY';
+
   bool get isLoading => _state == WidgetState.loading;
 
   bool get isInErrorState => _state == WidgetState.error;
