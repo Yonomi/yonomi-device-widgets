@@ -66,6 +66,7 @@ Widget build(BuildContext context) {
     _showToast(context, _powerTraitProvider.getErrorMessage);
     return Icon(Icons.error);
   } else {
+    final onOffState = _powerTraitProvider.getOnOffState;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -88,7 +89,7 @@ Widget build(BuildContext context) {
             child: SizedBox(
                 width: 100,
                 height: 100,
-                child: PowerItemIcon(_powerTraitProvider.getOnOffState,
+                child: PowerItemIcon(onOffState,
                     size: 100.0, color: _iconColor)),
           ),
         ),

@@ -60,11 +60,12 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  if (_batteryLevelTraitProvider.isLoading) {
+  if (_batteryLevelProvider.isLoading) {
     return CircularProgressIndicator();
-  } else if (_batteryLevelTraitProvider.isInErrorState) {
+  } else if (_batteryLevelProvider.isInErrorState) {
     return Icon(Icons.error);
   } else {
+    final batteryLevel = _batteryLevelProvider.getBatteryLevel;
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -81,14 +82,13 @@ Widget build(BuildContext context) {
           SizedBox(
             height: 10,
           ),
-          Row(children: [
+          Row(children: <Widget>[
             Text(
-              '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
+              '$batteryLevel% Battery',
               style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.normal,
-                  color: _getBatteryLevelColor(
-                      _batteryLevelTraitProvider.getBatteryLevel)),
+                  color: _getBatteryLevelColor(batteryLevel)),
             )
           ]),
           SizedBox(
@@ -96,10 +96,10 @@ Widget build(BuildContext context) {
           ),
           Container(
             child: SizedBox(
-              width: 100,
-              height: 100,
+              width: 100.0,
+              height: 100.0,
               child: BatteryLevelIcon(
-                _batteryLevelTraitProvider.getBatteryLevel,
+                batteryLevel,
                 size: 100.0,
                 color: _iconColor,
               ),
@@ -109,7 +109,7 @@ Widget build(BuildContext context) {
             height: 10,
           ),
           Text(
-            "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
+            "Battery Level: $batteryLevel%",
             style: TextStyle(
                 fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
           ),
