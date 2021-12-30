@@ -60,18 +60,18 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  if (_batteryLevelTraitProvider.isLoading) {
+  if (_batteryLevelProvider.isLoading) {
     return CircularProgressIndicator();
-  } else if (_batteryLevelTraitProvider.isInErrorState) {
+  } else if (_batteryLevelProvider.isInErrorState) {
     return Icon(Icons.error);
   } else {
-    final batteryLevel = _batteryLevelTraitProvider.getBatteryLevel;
+    final batteryLevel = _batteryLevelProvider.getBatteryLevel;
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Row(children: <Widget>[
             Text(
-              _batteryLevelTraitProvider.displayName,
+              _batteryLevelProvider.displayName,
               style: Theme.of(context).textTheme.headline6,
               textAlign: TextAlign.left,
             ),

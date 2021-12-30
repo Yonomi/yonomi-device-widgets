@@ -27,7 +27,7 @@
 Widget createSlimTraitWidget(Trait trait) {
   switch (trait.runtimeType) {
     case BatteryLevelTrait:
-      return Consumer<BatteryLevelTraitProvider>(
+      return Consumer<BatteryLevelProvider>(
           builder: (_, batteryLevelProvider, child) {
         final batteryLevel = batteryLevelProvider.getBatteryLevel;
 

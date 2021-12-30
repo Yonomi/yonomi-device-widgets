@@ -41,7 +41,7 @@ Widget createTraitWidget(Trait trait) {
         );
       });
     case BatteryLevelTrait:
-      return Consumer<BatteryLevelTraitProvider>(
+      return Consumer<BatteryLevelProvider>(
           builder: (_, batteryLevelProvider, child) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
