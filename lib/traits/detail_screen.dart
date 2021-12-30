@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
@@ -30,7 +30,7 @@ class DetailScreen extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => PowerTraitProvider(request, deviceId)),
         ChangeNotifierProvider(
-            create: (context) => BatteryLevelTraitProvider(request, deviceId)),
+            create: (context) => BatteryLevelProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );
@@ -91,7 +91,7 @@ class DetailScreenWidget extends StatelessWidget {
           );
         });
       case BatteryLevelTrait:
-        return Consumer<BatteryLevelTraitProvider>(
+        return Consumer<BatteryLevelProvider>(
             builder: (_, batteryLevelProvider, child) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -120,7 +120,7 @@ class DetailScreenWidget extends StatelessWidget {
   Widget createSlimTraitWidget(Trait trait) {
     switch (trait.runtimeType) {
       case BatteryLevelTrait:
-        return Consumer<BatteryLevelTraitProvider>(
+        return Consumer<BatteryLevelProvider>(
             builder: (_, batteryLevelProvider, child) {
           final batteryLevel = batteryLevelProvider.getBatteryLevel;
 

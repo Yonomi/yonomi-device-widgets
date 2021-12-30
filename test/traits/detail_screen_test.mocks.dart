@@ -8,7 +8,7 @@ import 'dart:ui' as _i8;
 import 'package:flutter/material.dart' as _i3;
 import 'package:flutter/src/foundation/diagnostics.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart'
+import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
     as _i13;
 import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i9;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
@@ -256,12 +256,12 @@ class MockPowerTraitProvider extends _i1.Mock
   String toString() => super.toString();
 }
 
-/// A class which mocks [BatteryLevelTraitProvider].
+/// A class which mocks [BatteryLevelProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBatteryLevelTraitProvider extends _i1.Mock
-    implements _i13.BatteryLevelTraitProvider {
-  MockBatteryLevelTraitProvider() {
+class MockBatteryLevelProvider extends _i1.Mock
+    implements _i13.BatteryLevelProvider {
+  MockBatteryLevelProvider() {
     _i1.throwOnMissingStub(this);
   }
 

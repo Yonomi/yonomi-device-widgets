@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class BatteryWidget extends StatelessWidget {
-  final BatteryLevelTraitProvider _batteryLevelTraitProvider;
+  final BatteryLevelProvider _batteryLevelProvider;
 
-  BatteryWidget(this._batteryLevelTraitProvider);
+  BatteryWidget(this._batteryLevelProvider);
 
   @override
   Widget build(BuildContext context) {
-    if (_batteryLevelTraitProvider.isLoading) {
+    if (_batteryLevelProvider.isLoading) {
       return CircularProgressIndicator();
-    } else if (_batteryLevelTraitProvider.isInErrorState) {
+    } else if (_batteryLevelProvider.isInErrorState) {
       return Icon(Icons.error);
     } else {
-      final batteryLevel = _batteryLevelTraitProvider.getBatteryLevel;
+      final batteryLevel = _batteryLevelProvider.getBatteryLevel;
       return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Row(children: <Widget>[
               Text(
-                _batteryLevelTraitProvider.displayName,
+                _batteryLevelProvider.displayName,
                 style: Theme.of(context).textTheme.headline6,
                 textAlign: TextAlign.left,
               ),

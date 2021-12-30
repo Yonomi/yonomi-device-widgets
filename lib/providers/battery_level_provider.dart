@@ -3,7 +3,7 @@ import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/widget_state.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-class BatteryLevelTraitProvider extends ChangeNotifier {
+class BatteryLevelProvider extends ChangeNotifier {
   Device? _deviceDetail;
 
   late String _deviceId;
@@ -14,7 +14,7 @@ class BatteryLevelTraitProvider extends ChangeNotifier {
 
   String _latestErrorMsg = "An error occurred.";
 
-  BatteryLevelTraitProvider(Request request, String deviceId,
+  BatteryLevelProvider(Request request, String deviceId,
       {GetDeviceDetailsMethod getDetails =
           DevicesRepository.getDeviceDetails}) {
     this._deviceId = deviceId;

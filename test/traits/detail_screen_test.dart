@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
@@ -36,7 +36,7 @@ Widget createDetailScreenWhenLoading(
       mockTraitDetailProvider,
       MockLockProvider(),
       MockPowerTraitProvider(),
-      MockBatteryLevelTraitProvider());
+      MockBatteryLevelProvider());
 }
 
 Widget createDetailScreenWidgetForTrait(
@@ -59,8 +59,7 @@ Widget createDetailScreenWidgetForTrait(
   when(mockPowerTraitProvider.isInErrorState).thenReturn(false);
   when(mockPowerTraitProvider.getOnOffState).thenReturn(false);
 
-  BatteryLevelTraitProvider mockBatteryTraitProvider =
-      MockBatteryLevelTraitProvider();
+  BatteryLevelProvider mockBatteryTraitProvider = MockBatteryLevelProvider();
   when(mockBatteryTraitProvider.isLoading).thenReturn(false);
   when(mockBatteryTraitProvider.isInErrorState).thenReturn(false);
   when(mockBatteryTraitProvider.getBatteryLevel).thenReturn(90);
@@ -76,7 +75,7 @@ MaterialApp createMaterialApp(
     TraitDetailProvider mockTraitBasedNotifier,
     LockProvider mockLockProvider,
     PowerTraitProvider mockPowerTraitProvider,
-    BatteryLevelTraitProvider mockBatteryLevelProvider) {
+    BatteryLevelProvider mockBatteryLevelProvider) {
   return MaterialApp(
     home: Column(children: [
       MultiProvider(
@@ -86,7 +85,7 @@ MaterialApp createMaterialApp(
           ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
           ChangeNotifierProvider<PowerTraitProvider>.value(
               value: mockPowerTraitProvider),
-          ChangeNotifierProvider<BatteryLevelTraitProvider>.value(
+          ChangeNotifierProvider<BatteryLevelProvider>.value(
               value: mockBatteryLevelProvider),
         ],
         child: DetailScreenWidget(req, deviceId),
@@ -99,7 +98,7 @@ MaterialApp createMaterialApp(
   TraitDetailProvider,
   LockProvider,
   PowerTraitProvider,
-  BatteryLevelTraitProvider,
+  BatteryLevelProvider,
   BuildContext
 ])
 void main() {
