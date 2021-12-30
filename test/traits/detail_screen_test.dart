@@ -221,7 +221,7 @@ void main() {
             .widget<Text>((find.textContaining('Battery Level: 50')))
             .style
             ?.color,
-        Colors.white);
+        WidgetStyleConstants.darkTextColor);
   });
 
   testWidgets(
