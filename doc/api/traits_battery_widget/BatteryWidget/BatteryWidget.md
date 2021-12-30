@@ -10,7 +10,7 @@
 
 
 
-BatteryWidget([BatteryLevelTraitProvider](../../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
+BatteryWidget([BatteryLevelProvider](../../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
 
 
 
@@ -19,7 +19,7 @@ BatteryWidget([BatteryLevelTraitProvider](../../providers_battery_level_trait_pr
 ## Implementation
 
 ```dart
-BatteryWidget(this._batteryLevelTraitProvider,
+BatteryWidget(this._batteryLevelProvider,
     {Color iconColor = WidgetStyleConstants.deviceIconColor,
     Color textColor = Colors.white}) {
   this._iconColor = iconColor;
