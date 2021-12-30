@@ -12,7 +12,7 @@
 
 
 [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) createTraitWidget
-([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name)
+([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait)
 
 
 
@@ -24,42 +24,28 @@
 ## Implementation
 
 ```dart
-Widget createTraitWidget(String name) {
-  switch (name) {
-    case 'lock':
+Widget createTraitWidget(Trait trait) {
+  switch (trait.runtimeType) {
+    case LockTrait:
       return Consumer<LockProvider>(builder: (_, lockProvider, child) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: LockWidget(lockProvider),
         );
       });
-    case 'power':
+    case PowerTrait:
       return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: PowerWidget(powerProvider),
         );
       });
-    case 'battery_level':
+    case BatteryLevelTrait:
       return Consumer<BatteryLevelTraitProvider>(
           builder: (_, batteryLevelProvider, child) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              BatteryLevelIcon(
-                batteryLevelProvider.getBatteryLevel,
-                size: 20.0,
-                color: Colors.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                    'Battery Level: ${batteryLevelProvider.getBatteryLevel}%',
-                    style: TextStyle(fontSize: 20, color: _getBatteryLevelColor(batteryLevelProvider.getBatteryLevel))),
-              ),
-            ],
-          ),
+          child: BatteryWidget(batteryLevelProvider),
         );
       });
     default:
@@ -73,7 +59,7 @@ Widget createTraitWidget(String name) {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(name, style: TextStyle(fontSize: 20)),
+              child: Text(trait.name, style: TextStyle(fontSize: 20)),
             ),
           ],
         ),

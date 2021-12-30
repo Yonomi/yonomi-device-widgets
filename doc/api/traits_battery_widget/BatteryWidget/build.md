@@ -65,13 +65,13 @@ Widget build(BuildContext context) {
   } else if (_batteryLevelTraitProvider.isInErrorState) {
     return Icon(Icons.error);
   } else {
+    final batteryLevel = _batteryLevelTraitProvider.getBatteryLevel;
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Row(children: <Widget>[
             Text(
-              (_batteryLevelTraitProvider.deviceDetail?.displayName ??
-                  'BATTERY'),
+              _batteryLevelTraitProvider.displayName,
               style: Theme.of(context).textTheme.headline6,
               textAlign: TextAlign.left,
             ),
@@ -79,14 +79,13 @@ Widget build(BuildContext context) {
           SizedBox(
             height: 10,
           ),
-          Row(children: [
+          Row(children: <Widget>[
             Text(
-              '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
+              '$batteryLevel% Battery',
               style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.normal,
-                  color: _getBatteryLevelColor(
-                      _batteryLevelTraitProvider.getBatteryLevel)),
+                  color: _getBatteryLevelColor(batteryLevel)),
             )
           ]),
           SizedBox(
@@ -94,10 +93,10 @@ Widget build(BuildContext context) {
           ),
           Container(
             child: SizedBox(
-              width: 100,
-              height: 100,
+              width: 100.0,
+              height: 100.0,
               child: BatteryLevelIcon(
-                _batteryLevelTraitProvider.getBatteryLevel,
+                batteryLevel,
                 size: 100.0,
                 color: Colors.white,
               ),
@@ -107,7 +106,7 @@ Widget build(BuildContext context) {
             height: 10,
           ),
           Text(
-            "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
+            "Battery Level: $batteryLevel%",
             style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
           ),
         ]);

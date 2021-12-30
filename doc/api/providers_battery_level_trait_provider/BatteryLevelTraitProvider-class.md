@@ -43,6 +43,15 @@ _read-only_
 
 
 
+##### [displayName](../providers_battery_level_trait_provider/BatteryLevelTraitProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only_
+
+
+
 ##### [getBatteryLevel](../providers_battery_level_trait_provider/BatteryLevelTraitProvider/getBatteryLevel.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
