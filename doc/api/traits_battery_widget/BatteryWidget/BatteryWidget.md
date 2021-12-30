@@ -10,7 +10,7 @@
 
 
 
-BatteryWidget([BatteryLevelTraitProvider](../../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider)
+BatteryWidget([BatteryLevelProvider](../../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelProvider)
 
 
 
@@ -19,7 +19,7 @@ BatteryWidget([BatteryLevelTraitProvider](../../providers_battery_level_trait_pr
 ## Implementation
 
 ```dart
-BatteryWidget(this._batteryLevelTraitProvider);
+BatteryWidget(this._batteryLevelProvider);
 ```
 
 

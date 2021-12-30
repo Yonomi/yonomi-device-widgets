@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelTraitProvider](../providers_battery_level_trait_provider/BatteryLevelTraitProvider-class.md) _batteryLevelTraitProvider)
+[BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelProvider)
 
     
 

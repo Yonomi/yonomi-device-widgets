@@ -52,7 +52,7 @@ open coverage/html/index.html
  
 
 
-##### [battery_level_trait_provider](providers_battery_level_trait_provider/providers_battery_level_trait_provider-library.md)
+##### [battery_level_provider](providers_battery_level_provider/providers_battery_level_provider-library.md)
  
 
 
