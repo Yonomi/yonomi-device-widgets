@@ -36,6 +36,10 @@ class MockBatteryLevelTraitProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getBatteryLevel), returnValue: 0)
           as int);
   @override
+  String get displayName =>
+      (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
+          as String);
+  @override
   bool get isLoading =>
       (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
           as bool);

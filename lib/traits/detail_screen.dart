@@ -9,8 +9,8 @@ import 'package:yonomi_device_widgets/traits/expandable/battery_expand_widget.da
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'expandable/device_expand_widget.dart';
 import 'expandable/lock_expand_widget.dart';

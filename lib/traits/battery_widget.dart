@@ -22,6 +22,7 @@ class BatteryWidget extends StatelessWidget {
     } else if (_batteryLevelTraitProvider.isInErrorState) {
       return Icon(Icons.error);
     } else {
+      final batteryLevel = _batteryLevelTraitProvider.getBatteryLevel;
       return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -38,14 +39,13 @@ class BatteryWidget extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Row(children: [
+            Row(children: <Widget>[
               Text(
-                '${_batteryLevelTraitProvider.getBatteryLevel}% Battery',
+                '$batteryLevel% Battery',
                 style: TextStyle(
                     fontSize: 16,
                     fontStyle: FontStyle.normal,
-                    color: _getBatteryLevelColor(
-                        _batteryLevelTraitProvider.getBatteryLevel)),
+                    color: _getBatteryLevelColor(batteryLevel)),
               )
             ]),
             SizedBox(
@@ -53,10 +53,10 @@ class BatteryWidget extends StatelessWidget {
             ),
             Container(
               child: SizedBox(
-                width: 100,
-                height: 100,
+                width: 100.0,
+                height: 100.0,
                 child: BatteryLevelIcon(
-                  _batteryLevelTraitProvider.getBatteryLevel,
+                  batteryLevel,
                   size: 100.0,
                   color: _iconColor,
                 ),
@@ -66,7 +66,7 @@ class BatteryWidget extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%",
+              "Battery Level: $batteryLevel%",
               style: TextStyle(
                   fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
             ),

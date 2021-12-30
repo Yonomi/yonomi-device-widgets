@@ -4,9 +4,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
+import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
+import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
@@ -28,10 +30,13 @@ Widget createDetailScreenWhenLoading(
   TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
   when(mockTraitDetailProvider.isLoading).thenReturn(true);
 
-  LockProvider mockLockProvider = MockLockProvider();
-
-  return createMaterialApp(req, deviceId, mockTraitDetailProvider,
-      mockLockProvider, MockPowerTraitProvider());
+  return createMaterialApp(
+      req,
+      deviceId,
+      mockTraitDetailProvider,
+      MockLockProvider(),
+      MockPowerTraitProvider(),
+      MockBatteryLevelTraitProvider());
 }
 
 Widget createDetailScreenWidgetForTrait(
@@ -53,8 +58,15 @@ Widget createDetailScreenWidgetForTrait(
   when(mockPowerTraitProvider.isInErrorState).thenReturn(false);
   when(mockPowerTraitProvider.getOnOffState).thenReturn(false);
 
+  BatteryLevelTraitProvider mockBatteryTraitProvider =
+      MockBatteryLevelTraitProvider();
+  when(mockBatteryTraitProvider.isLoading).thenReturn(false);
+  when(mockBatteryTraitProvider.isInErrorState).thenReturn(false);
+  when(mockBatteryTraitProvider.getBatteryLevel).thenReturn(90);
+  when(mockBatteryTraitProvider.displayName).thenReturn('BATTERY');
+
   return createMaterialApp(req, deviceId, mockTraitDetailProvider,
-      mockLockProvider, mockPowerTraitProvider);
+      mockLockProvider, mockPowerTraitProvider, mockBatteryTraitProvider);
 }
 
 MaterialApp createMaterialApp(
@@ -62,7 +74,8 @@ MaterialApp createMaterialApp(
     String deviceId,
     TraitDetailProvider mockTraitBasedNotifier,
     LockProvider mockLockProvider,
-    PowerTraitProvider mockPowerTrait) {
+    PowerTraitProvider mockPowerTraitProvider,
+    BatteryLevelTraitProvider mockBatteryLevelProvider) {
   return MaterialApp(
     home: Column(children: [
       MultiProvider(
@@ -71,7 +84,9 @@ MaterialApp createMaterialApp(
               value: mockTraitBasedNotifier),
           ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
           ChangeNotifierProvider<PowerTraitProvider>.value(
-              value: mockPowerTrait),
+              value: mockPowerTraitProvider),
+          ChangeNotifierProvider<BatteryLevelTraitProvider>.value(
+              value: mockBatteryLevelProvider),
         ],
         child: DetailScreenWidget(req, deviceId),
       ),
@@ -79,8 +94,13 @@ MaterialApp createMaterialApp(
   );
 }
 
-@GenerateMocks(
-    [TraitDetailProvider, LockProvider, PowerTraitProvider, BuildContext])
+@GenerateMocks([
+  TraitDetailProvider,
+  LockProvider,
+  PowerTraitProvider,
+  BatteryLevelTraitProvider,
+  BuildContext
+])
 void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -108,6 +128,39 @@ void main() {
         PowerTrait(IsOnOff(true)), request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
+  });
+
+  testWidgets(
+      'For the Battery Level Trait, Detail screen should show the Battery Level Widget ',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+        BatteryLevelTrait(BatteryLevel(90)), request, testedDeviceId));
+
+    expect(find.byType(BatteryWidget), findsOneWidget);
+  });
+
+  testWidgets(
+      'For the Battery Level Trait, Detail screen should show the Battery Level Widget when battery low',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+        BatteryLevelTrait(BatteryLevel(1)), request, testedDeviceId));
+
+    expect(find.byType(BatteryWidget), findsOneWidget);
+  });
+
+  testWidgets(
+      'For the Battery Level Trait, Detail screen should show the Battery Level Widget when battery half full',
+      (WidgetTester tester) async {
+    Request request = Request('', {});
+    final String testedDeviceId = "";
+    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+        BatteryLevelTrait(BatteryLevel(50)), request, testedDeviceId));
+
+    expect(find.byType(BatteryWidget), findsOneWidget);
   });
 
   testWidgets(
