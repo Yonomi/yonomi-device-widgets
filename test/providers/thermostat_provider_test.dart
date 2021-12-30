@@ -33,17 +33,7 @@ void main() {
         .thenAnswer((_) async => null);
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              Device(
-                'someId',
-                'someDisplayName',
-                'someDescription',
-                'someManufacturerName',
-                'someModel',
-                'someFirmwareV',
-                GDateTime('value'),
-                GDateTime('value'),
-                [ThermostatTrait(TargetTemperature(23.1))],
-              ),
+              _getDevice(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -62,17 +52,7 @@ void main() {
     final mockSetModeFunction = MockSetMode();
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              Device(
-                'someId',
-                'someDisplayName',
-                'someDescription',
-                'someManufacturerName',
-                'someModel',
-                'someFirmwareV',
-                GDateTime('value'),
-                GDateTime('value'),
-                [ThermostatTrait(TargetTemperature(23.1))],
-              ),
+              _getDevice(23.1),
             ));
     when(mockSetModeFunction.call(any, any, any)).thenAnswer((_) async => null);
     ThermostatProvider thermostatProvider = ThermostatProvider(
@@ -92,17 +72,7 @@ void main() {
 
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              Device(
-                'deviceId',
-                'someDisplayName',
-                'someDescription',
-                'someManufacturerName',
-                'someModel',
-                'someFirmwareV',
-                GDateTime('value'),
-                GDateTime('value'),
-                [ThermostatTrait(TargetTemperature(23.1))],
-              ),
+              _getDevice(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -120,17 +90,7 @@ void main() {
     final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              Device(
-                'someId',
-                'someDisplayName',
-                'someDescription',
-                'someManufacturerName',
-                'someModel',
-                'someFirmwareV',
-                GDateTime('value'),
-                GDateTime('value'),
-                [ThermostatTrait(TargetTemperature(23.1))],
-              ),
+              _getDevice(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -142,4 +102,18 @@ void main() {
     expect(thermostatProvider.deviceDetail?.displayName, 'someDisplayName');
     expect(thermostatProvider.thermostatTargetTemperature, 23.1);
   });
+}
+
+Device _getDevice(double temp) {
+  return Device(
+    'someId',
+    'someDisplayName',
+    'someDescription',
+    'someManufacturerName',
+    'someModel',
+    'someFirmwareV',
+    GDateTime('value'),
+    GDateTime('value'),
+    [ThermostatTrait(TargetTemperature(temp))],
+  );
 }
