@@ -26,17 +26,18 @@
 ```dart
 Widget buildContainer(List<Trait> traits) {
   return Container(
-    alignment: Alignment.center,
-    child: Center(
-      child: Column(
-          children: traits.map((element) {
-        return Row(children: [
+      alignment: Alignment.center,
+      child: Center(
+          child: Column(children: [
+        Row(children: [
           SizedBox(width: 50),
-          createTraitWidget(element.name),
-        ]);
-      }).toList()),
-    ),
-  );
+          createTraitWidget(traits.first),
+        ]),
+        ...traits
+            .skip(1)
+            .map((trait) => createSlimTraitWidget(trait))
+            .toList(),
+      ])));
 }
 ```
 

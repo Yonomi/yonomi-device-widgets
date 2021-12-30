@@ -111,7 +111,16 @@ _inherited_
 
 
 
-##### [createTraitWidget](../traits_detail_screen/DetailScreenWidget/createTraitWidget.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) name) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [createSlimTraitWidget](../traits_detail_screen/DetailScreenWidget/createSlimTraitWidget.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+
+
+
+   
+
+
+
+
+##### [createTraitWidget](../traits_detail_screen/DetailScreenWidget/createTraitWidget.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
