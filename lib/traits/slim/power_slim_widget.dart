@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
-import 'package:yonomi_device_widgets/traits/expandable/device_expand_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 
-class PowerExpandWidget extends DeviceExpandWidget {
-  PowerExpandWidget(PowerTraitProvider _powerProvider,
+class PowerSlimWidget extends DeviceSlimWidget {
+  PowerSlimWidget(PowerTraitProvider _powerProvider,
       {Color? backgroundColor, Key? key})
       : super(
             leftIcon: PowerItemIcon(_powerProvider.getOnOffState,

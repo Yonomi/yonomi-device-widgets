@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
-import 'package:yonomi_device_widgets/traits/expandable/device_expand_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class LockExpandWidget extends DeviceExpandWidget {
-  LockExpandWidget(LockProvider _lockProvider,
-      {Color? backgroundColor, Key? key})
+class LockSlimWidget extends DeviceSlimWidget {
+  LockSlimWidget(LockProvider _lockProvider, {Color? backgroundColor, Key? key})
       : super(
             leftIcon: LockIcon(_lockProvider.isLocked,
                 size: 20.0,

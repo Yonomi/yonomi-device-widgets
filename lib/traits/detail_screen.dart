@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
-import 'package:yonomi_device_widgets/traits/expandable/battery_expand_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
-
-import 'expandable/device_expand_widget.dart';
-import 'expandable/lock_expand_widget.dart';
-import 'expandable/power_expand_widget.dart';
 
 class DetailScreen extends StatelessWidget {
   final Request request;
@@ -116,22 +114,21 @@ class DetailScreenWidget extends StatelessWidget {
     switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return LockExpandWidget(lockProvider,
-              backgroundColor: backgroundColor);
+          return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
         });
       case PowerTrait:
         return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
-          return PowerExpandWidget(powerProvider,
+          return PowerSlimWidget(powerProvider,
               backgroundColor: backgroundColor);
         });
       case BatteryLevelTrait:
         return Consumer<BatteryLevelProvider>(
             builder: (_, batteryLevelProvider, child) {
-          return BatteryExpandWidget(batteryLevelProvider,
+          return BatterySlimWidget(batteryLevelProvider,
               backgroundColor: backgroundColor);
         });
       default:
-        return DeviceExpandWidget(
+        return DeviceSlimWidget(
           backgroundColor: backgroundColor,
           leftIcon: UnknownItemIcon(
             size: 20.0,
@@ -141,61 +138,6 @@ class DetailScreenWidget extends StatelessWidget {
               style: TextStyle(
                   fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
         );
-    }
-  }
-
-  Widget createSlimTraitWidget(Trait trait) {
-    switch (trait.runtimeType) {
-      case BatteryLevelTrait:
-        return Consumer<BatteryLevelProvider>(
-            builder: (_, batteryLevelProvider, child) {
-          final batteryLevel = batteryLevelProvider.getBatteryLevel;
-
-          return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  BatteryLevelIcon(
-                    batteryLevelProvider.getBatteryLevel,
-                    size: 20.0,
-                    color: Colors.white,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Battery Level: $batteryLevel%',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: _getBatteryLevelColor(batteryLevel))),
-                  ),
-                ],
-              ));
-        });
-      default:
-        return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                UnknownItemIcon(
-                  size: 20.0,
-                  color: Colors.white,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(trait.name,
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                ),
-              ],
-            ));
-    }
-  }
-
-  Color _getBatteryLevelColor(int batteryLevel) {
-    if (batteryLevel >= WidgetStyleConstants.batteryFullMin) {
-      return WidgetStyleConstants.globalSuccessColor;
-    } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
-      return WidgetStyleConstants.globalWarningColor;
-    } else {
-      return Colors.white;
     }
   }
 }
