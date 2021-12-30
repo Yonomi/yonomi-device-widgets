@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
@@ -140,6 +141,61 @@ class DetailScreenWidget extends StatelessWidget {
               style: TextStyle(
                   fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
         );
+    }
+  }
+
+  Widget createSlimTraitWidget(Trait trait) {
+    switch (trait.runtimeType) {
+      case BatteryLevelTrait:
+        return Consumer<BatteryLevelTraitProvider>(
+            builder: (_, batteryLevelProvider, child) {
+          final batteryLevel = batteryLevelProvider.getBatteryLevel;
+
+          return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  BatteryLevelIcon(
+                    batteryLevelProvider.getBatteryLevel,
+                    size: 20.0,
+                    color: Colors.white,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Battery Level: $batteryLevel%',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: _getBatteryLevelColor(batteryLevel))),
+                  ),
+                ],
+              ));
+        });
+      default:
+        return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                UnknownItemIcon(
+                  size: 20.0,
+                  color: Colors.white,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(trait.name,
+                      style: TextStyle(fontSize: 20, color: Colors.white)),
+                ),
+              ],
+            ));
+    }
+  }
+
+  Color _getBatteryLevelColor(int batteryLevel) {
+    if (batteryLevel >= WidgetStyleConstants.batteryFullMin) {
+      return WidgetStyleConstants.globalSuccessColor;
+    } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
+      return WidgetStyleConstants.globalWarningColor;
+    } else {
+      return Colors.white;
     }
   }
 }
