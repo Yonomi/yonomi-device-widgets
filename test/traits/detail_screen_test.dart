@@ -14,86 +14,95 @@ import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'detail_screen_test.mocks.dart';
+import 'mixins/battery_widget_testing.dart';
+import 'mixins/device_testing.dart';
+import 'mixins/lock_widget_testing.dart';
+import 'mixins/power_widget_testing.dart';
 
-Device buildMockDevice(List<Trait> traits) {
-  var mockDevice = Device("TestedDeviceName", "", "", "", "", "",
-      GDateTime('stub'), GDateTime('stub'), traits);
-  return mockDevice;
-}
-
-Widget createDetailScreenWhenLoading(
-  Request req,
-  String deviceId,
-) {
-  TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
-  when(mockTraitDetailProvider.isLoading).thenReturn(true);
-
-  return createMaterialApp(req, deviceId, mockTraitDetailProvider,
-      MockLockProvider(), MockPowerTraitProvider(), MockBatteryLevelProvider());
-}
-
-Widget createDetailScreenWidgetForTrait(
-  List<Trait> traits,
-  Request req,
-  String deviceId,
-) {
-  TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
-  when(mockTraitDetailProvider.isLoading).thenReturn(false);
-  when(mockTraitDetailProvider.deviceDetail)
-      .thenReturn(buildMockDevice(traits));
-
-  LockProvider mockLockProvider = MockLockProvider();
-  when(mockLockProvider.loadingDetail).thenReturn(false);
-  when(mockLockProvider.loadingAction).thenReturn(false);
-  when(mockLockProvider.isLocked).thenReturn(false);
-
-  PowerTraitProvider mockPowerTraitProvider = MockPowerTraitProvider();
-  when(mockPowerTraitProvider.isBusy).thenReturn(false);
-  when(mockPowerTraitProvider.isInErrorState).thenReturn(false);
-  when(mockPowerTraitProvider.getOnOffState).thenReturn(false);
-
-  BatteryLevelProvider mockBatteryTraitProvider = MockBatteryLevelProvider();
-  when(mockBatteryTraitProvider.isLoading).thenReturn(false);
-  when(mockBatteryTraitProvider.isInErrorState).thenReturn(false);
-  final batteryLevel = traits
-      .firstWhere((trait) => trait is BatteryLevelTrait,
-          orElse: () => BatteryLevelTrait(BatteryLevel(90)))
-      .state
-      .value as int;
-  when(mockBatteryTraitProvider.getBatteryLevel).thenReturn(batteryLevel);
-  when(mockBatteryTraitProvider.displayName).thenReturn('BATTERY');
-
-  return createMaterialApp(req, deviceId, mockTraitDetailProvider,
-      mockLockProvider, mockPowerTraitProvider, mockBatteryTraitProvider);
-}
-
-MaterialApp createMaterialApp(
+class DetailScreenTest
+    with
+        DeviceTesting,
+        PowerWidgetTesting,
+        LockWidgetTesting,
+        BatteryWidgetTesting {
+  Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,
-    TraitDetailProvider mockTraitBasedNotifier,
-    LockProvider mockLockProvider,
-    PowerTraitProvider mockPowerTraitProvider,
-    BatteryLevelProvider mockBatteryLevelProvider) {
-  return MaterialApp(
-    home: Column(children: [
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider<TraitDetailProvider>.value(
-              value: mockTraitBasedNotifier),
-          ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
-          ChangeNotifierProvider<PowerTraitProvider>.value(
-              value: mockPowerTraitProvider),
-          ChangeNotifierProvider<BatteryLevelProvider>.value(
-              value: mockBatteryLevelProvider),
-        ],
-        child: DetailScreenWidget(req, deviceId),
-      ),
-    ]),
-  );
+  ) {
+    TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
+    when(mockTraitDetailProvider.isLoading).thenReturn(true);
+
+    return createMaterialApp(
+        req,
+        deviceId,
+        mockTraitDetailProvider,
+        MockLockProvider(),
+        MockPowerTraitProvider(),
+        MockBatteryLevelProvider());
+  }
+
+  Widget createDetailScreenWidgetForTraits(
+    List<Trait> traits,
+    Request req,
+    String deviceId,
+  ) {
+    TraitDetailProvider mockTraitDetailProvider = MockTraitDetailProvider();
+    when(mockTraitDetailProvider.isLoading).thenReturn(false);
+    when(mockTraitDetailProvider.deviceDetail).thenReturn(device(traits));
+
+    final lock = device([
+      traits.firstWhere((trait) => trait is LockTrait,
+          orElse: () => LockTrait(IsLocked(false)))
+    ]);
+    LockProvider mockLockProvider =
+        this.mockLockProvider(lock, isLocked: false);
+
+    final powerDevice = device([
+      traits.firstWhere((trait) => trait is PowerTrait,
+          orElse: () => PowerTrait(IsOnOff(false)))
+    ]);
+    PowerTraitProvider mockPowerTraitProvider =
+        this.mockPowerTraitProvider(powerDevice, onOffState: false);
+
+    final batteryLevelTrait = traits.firstWhere(
+        (trait) => trait is BatteryLevelTrait,
+        orElse: () => BatteryLevelTrait(BatteryLevel(90)));
+    final batteryDevice = device([batteryLevelTrait], name: 'BATTERY');
+    BatteryLevelProvider mockBatteryTraitProvider = this
+        .mockBatteryLevelProvider(batteryDevice,
+            batteryLevel: batteryLevelTrait.state.value);
+
+    return createMaterialApp(req, deviceId, mockTraitDetailProvider,
+        mockLockProvider, mockPowerTraitProvider, mockBatteryTraitProvider);
+  }
+
+  MaterialApp createMaterialApp(
+      Request req,
+      String deviceId,
+      TraitDetailProvider mockTraitBasedNotifier,
+      LockProvider mockLockProvider,
+      PowerTraitProvider mockPowerTraitProvider,
+      BatteryLevelProvider mockBatteryLevelProvider) {
+    return MaterialApp(
+      home: Column(children: [
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<TraitDetailProvider>.value(
+                value: mockTraitBasedNotifier),
+            ChangeNotifierProvider<LockProvider>.value(value: mockLockProvider),
+            ChangeNotifierProvider<PowerTraitProvider>.value(
+                value: mockPowerTraitProvider),
+            ChangeNotifierProvider<BatteryLevelProvider>.value(
+                value: mockBatteryLevelProvider),
+          ],
+          child: DetailScreenWidget(req, deviceId),
+        ),
+      ]),
+    );
+  }
 }
 
 @GenerateMocks([
@@ -104,9 +113,13 @@ MaterialApp createMaterialApp(
   BuildContext
 ])
 void main() {
+  final test = DetailScreenTest();
+  final String testedDeviceId = "";
+
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    await tester.pumpWidget(createDetailScreenWhenLoading(Request('', {}), ""));
+    await tester
+        .pumpWidget(test.createDetailScreenWhenLoading(Request('', {}), ""));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
@@ -114,8 +127,7 @@ void main() {
   testWidgets('For the Lock Trait, Detail screen should show the LockWidget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    final String testedDeviceId = "";
-    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [LockTrait(IsLocked(true))], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -125,8 +137,7 @@ void main() {
       'For the Power Trait, Detail screen should show the Power Widget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    final String testedDeviceId = "";
-    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [PowerTrait(IsOnOff(true))], request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
@@ -135,9 +146,8 @@ void main() {
   testWidgets(
       'For the Battery Level Trait, Detail screen should show the Battery Level Widget ',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
-    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [BatteryLevelTrait(BatteryLevel(90))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
@@ -146,9 +156,8 @@ void main() {
   testWidgets(
       'For the Battery Level Trait, Detail screen should show the Battery Level Widget when battery low',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
-    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [BatteryLevelTrait(BatteryLevel(1))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
@@ -157,9 +166,8 @@ void main() {
   testWidgets(
       'For the Battery Level Trait, Detail screen should show the Battery Level Widget when battery half full',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
-    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [BatteryLevelTrait(BatteryLevel(50))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
@@ -168,9 +176,8 @@ void main() {
   testWidgets(
       'For any Unknown/Unsupported Trait, Detail screen should show the UnknownItemIcon widget',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
-    await tester.pumpWidget(createDetailScreenWidgetForTrait(
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [UnknownTrait('unknown')], request, testedDeviceId));
 
     expect(find.byType(UnknownItemIcon), findsOneWidget);
@@ -179,10 +186,9 @@ void main() {
   testWidgets(
       'For a device with multiple traits, Detail screen should show a primary trait and additional traits',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
+    final request = Request('', {});
 
-    await tester.pumpWidget(createDetailScreenWidgetForTrait([
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       LockTrait(IsLocked(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(100))
@@ -203,10 +209,9 @@ void main() {
   testWidgets(
       'For a device with multiple traits, Detail screen should show a primary trait and additional traits with middle battery life',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
+    final request = Request('', {});
 
-    await tester.pumpWidget(createDetailScreenWidgetForTrait([
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       LockTrait(IsLocked(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(50))
@@ -227,10 +232,9 @@ void main() {
   testWidgets(
       'For a device with multiple traits, Detail screen should show a primary trait and additional traits with low battery life',
       (WidgetTester tester) async {
-    Request request = Request('', {});
-    final String testedDeviceId = "";
+    final request = Request('', {});
 
-    await tester.pumpWidget(createDetailScreenWidgetForTrait([
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       LockTrait(IsLocked(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(1))
@@ -246,11 +250,5 @@ void main() {
             .style
             ?.color,
         WidgetStyleConstants.globalWarningColor);
-  });
-  test('Detail screen returns a multiprovider', () {
-    final detailScreen =
-        DetailScreen(request: Request('', {}), deviceId: 'deviceId');
-    expect(
-        detailScreen.build(MockBuildContext()), isInstanceOf<MultiProvider>());
   });
 }

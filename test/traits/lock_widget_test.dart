@@ -6,10 +6,12 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../components/lock_widget_test.mocks.dart';
+import 'mixins/device_testing.dart';
+import 'mixins/lock_widget_testing.dart';
+
+class LockWidgetTest with DeviceTesting, LockWidgetTesting {}
 
 MaterialApp createMaterialApp(LockProvider mockLockProvider) {
   return MaterialApp(
@@ -19,11 +21,13 @@ MaterialApp createMaterialApp(LockProvider mockLockProvider) {
 
 @GenerateMocks([LockProvider])
 void main() {
+  final test = LockWidgetTest();
+  final defaultLock = test.device([LockTrait(IsLocked(true))]);
+
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final mockLockProvider = MockLockProvider();
-    when(mockLockProvider.loadingDetail).thenReturn(true);
-    when(mockLockProvider.loadingAction).thenReturn(false);
+    final mockLockProvider =
+        test.mockLockProvider(defaultLock, loadingDetail: true);
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -32,10 +36,7 @@ void main() {
 
   testWidgets('When locked, should show lock icon ',
       (WidgetTester tester) async {
-    final mockLockProvider = MockLockProvider();
-    when(mockLockProvider.loadingDetail).thenReturn(false);
-    when(mockLockProvider.loadingAction).thenReturn(false);
-    when(mockLockProvider.isLocked).thenReturn(true);
+    final mockLockProvider = test.mockLockProvider(defaultLock, isLocked: true);
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -45,10 +46,7 @@ void main() {
 
   testWidgets('When unlocked, should show lock icon ',
       (WidgetTester tester) async {
-    final mockLockProvider = MockLockProvider();
-    when(mockLockProvider.loadingDetail).thenReturn(false);
-    when(mockLockProvider.loadingAction).thenReturn(false);
-    when(mockLockProvider.isLocked).thenReturn(false);
+    final mockLockProvider = test.mockLockProvider(defaultLock);
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -58,10 +56,8 @@ void main() {
 
   testWidgets('When action pending, should show loading icon ',
       (WidgetTester tester) async {
-    final mockLockProvider = MockLockProvider();
-    when(mockLockProvider.loadingDetail).thenReturn(false);
-    when(mockLockProvider.loadingAction).thenReturn(true);
-    when(mockLockProvider.isLocked).thenReturn(false);
+    final mockLockProvider =
+        test.mockLockProvider(defaultLock, loadingAction: true);
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -73,21 +69,11 @@ void main() {
   testWidgets(
       'When tapped in locked icon, should call lockprovider with unlock',
       (WidgetTester tester) async {
-    final mockLockProvider = MockLockProvider();
     final currentLock = true;
-    when(mockLockProvider.loadingDetail).thenReturn(false);
-    when(mockLockProvider.loadingAction).thenReturn(false);
-    when(mockLockProvider.isLocked).thenReturn(currentLock);
-    when(mockLockProvider.deviceDetail).thenReturn(Device(
-        'id',
-        'displayName',
-        'description',
-        'manufacturerName',
-        'model',
-        'serialNumber',
-        GDateTime('createdAt'),
-        GDateTime('updatedAt'),
-        [LockTrait(IsLocked(currentLock))]));
+    final mockLockProvider = test.mockLockProvider(
+        test.device([LockTrait(IsLocked(currentLock))]),
+        isLocked: currentLock);
+
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
     expect(find.byType(CupertinoSwitch), findsOneWidget);
     await tester.tap(find.byType(CupertinoSwitch));
