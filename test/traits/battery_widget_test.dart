@@ -1,7 +1,6 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
@@ -20,7 +19,6 @@ MaterialApp createMaterialApp(BatteryLevelProvider mockBatteryLevelProvider) {
   );
 }
 
-@GenerateMocks([BatteryLevelProvider])
 void main() {
   final test = BatteryWidgetTest();
 

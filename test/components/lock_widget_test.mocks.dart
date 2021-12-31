@@ -3,15 +3,17 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i4;
-import 'dart:ui' as _i7;
+import 'dart:ui' as _i9;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i3;
+import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i5;
+import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i2;
+import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i3;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
-    as _i5;
-import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
     as _i6;
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
+import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
+    as _i7;
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i8;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -21,76 +23,78 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeDevice_0 extends _i1.Fake implements _i2.Device {}
-
-class _FakeLockTrait_1 extends _i1.Fake implements _i2.LockTrait {}
-
 /// A class which mocks [LockProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLockProvider extends _i1.Mock implements _i3.LockProvider {
+class MockLockProvider extends _i1.Mock implements _i2.LockProvider {
   MockLockProvider() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  bool get loadingDetail =>
-      (super.noSuchMethod(Invocation.getter(#loadingDetail), returnValue: false)
-          as bool);
-  @override
-  set loadingDetail(bool? _loadingDetail) =>
-      super.noSuchMethod(Invocation.setter(#loadingDetail, _loadingDetail),
-          returnValueForMissingStub: null);
-  @override
-  bool get loadingAction =>
-      (super.noSuchMethod(Invocation.getter(#loadingAction), returnValue: false)
-          as bool);
-  @override
-  set loadingAction(bool? _loadingAction) =>
-      super.noSuchMethod(Invocation.setter(#loadingAction, _loadingAction),
-          returnValueForMissingStub: null);
-  @override
-  _i2.Device get deviceDetail =>
-      (super.noSuchMethod(Invocation.getter(#deviceDetail),
-          returnValue: _FakeDevice_0()) as _i2.Device);
-  @override
   bool get isLocked =>
       (super.noSuchMethod(Invocation.getter(#isLocked), returnValue: false)
           as bool);
+  @override
+  String get displayName =>
+      (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
+          as String);
+  @override
+  set setState(_i3.WidgetState? newState) =>
+      super.noSuchMethod(Invocation.setter(#setState, newState),
+          returnValueForMissingStub: null);
+  @override
+  bool get isLoading =>
+      (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
+          as bool);
+  @override
+  bool get isPerformingAction =>
+      (super.noSuchMethod(Invocation.getter(#isPerformingAction),
+          returnValue: false) as bool);
+  @override
+  bool get isBusy =>
+      (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
+          as bool);
+  @override
+  bool get isInErrorState => (super
+          .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
+      as bool);
+  @override
+  String get getErrorMessage =>
+      (super.noSuchMethod(Invocation.getter(#getErrorMessage), returnValue: '')
+          as String);
   @override
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i2.LockTrait getLockTrait() =>
-      (super.noSuchMethod(Invocation.method(#getLockTrait, []),
-          returnValue: _FakeLockTrait_1()) as _i2.LockTrait);
-  @override
-  _i4.Future<void> getDeviceDetail(String? deviceId,
-          {_i3.GetLockDetailsFunction? getLockDetails =
-              _i5.DevicesRepository.getLockDetails}) =>
-      (super.noSuchMethod(
-          Invocation.method(
-              #getDeviceDetail, [deviceId], {#getLockDetails: getLockDetails}),
-          returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
-  @override
   _i4.Future<void> setLockUnlockAction(String? deviceId, bool? setLock,
-          {_i3.GetLockDetailsFunction? lockDetails =
-              _i5.DevicesRepository.getLockDetails,
-          _i3.SendLockUnlockFunction? sendLockUnlock =
-              _i6.LockRepository.sendLockUnlockAction}) =>
+          {_i5.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails,
+          _i2.SendLockUnlockFunction? sendLockUnlock =
+              _i7.LockRepository.sendLockUnlockAction}) =>
       (super.noSuchMethod(
           Invocation.method(#setLockUnlockAction, [deviceId, setLock],
-              {#lockDetails: lockDetails, #sendLockUnlock: sendLockUnlock}),
+              {#getDetails: getDetails, #sendLockUnlock: sendLockUnlock}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  void addListener(_i7.VoidCallback? listener) =>
+  _i4.Future<_i8.Device?> fetchData(
+          {_i5.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#fetchData, [], {#getDetails: getDetails}),
+          returnValue: Future<_i8.Device?>.value()) as _i4.Future<_i8.Device?>);
+  @override
+  void setErrorState(String? errorMsg) =>
+      super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
+          returnValueForMissingStub: null);
+  @override
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i7.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

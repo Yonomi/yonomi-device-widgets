@@ -13,6 +13,7 @@ import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -73,7 +74,7 @@ class DetailScreenTest
     final batteryDevice = device([batteryLevelTrait], name: 'BATTERY');
     BatteryLevelProvider mockBatteryTraitProvider = this
         .mockBatteryLevelProvider(batteryDevice,
-            batteryLevel: batteryLevelTrait.state.value);
+            batteryLevel: batteryLevelTrait.state.value as int);
 
     return createMaterialApp(req, deviceId, mockTraitDetailProvider,
         mockLockProvider, mockPowerTraitProvider, mockBatteryTraitProvider);
@@ -196,13 +197,12 @@ void main() {
 
     expect(find.byType(LockWidget), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);
-    expect(find.byType(BatteryLevelIcon), findsOneWidget);
+    expect(find.byType(BatterySlimWidget), findsOneWidget);
 
-    expect(
-        tester
-            .widget<Text>((find.textContaining('Battery Level: 100')))
-            .style
-            ?.color,
+    final batteryWidget =
+        tester.widget<BatterySlimWidget>(find.byType(BatterySlimWidget));
+    expect(batteryWidget.headerText.data, contains('Battery Level: 100%'));
+    expect(batteryWidget.headerText.style?.color,
         WidgetStyleConstants.globalSuccessColor);
   });
 
@@ -219,13 +219,12 @@ void main() {
 
     expect(find.byType(LockWidget), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);
-    expect(find.byType(BatteryLevelIcon), findsOneWidget);
+    expect(find.byType(BatterySlimWidget), findsOneWidget);
 
-    expect(
-        tester
-            .widget<Text>((find.textContaining('Battery Level: 50')))
-            .style
-            ?.color,
+    final batteryWidget =
+        tester.widget<BatterySlimWidget>(find.byType(BatterySlimWidget));
+    expect(batteryWidget.headerText.data, contains('Battery Level: 50%'));
+    expect(batteryWidget.headerText.style?.color,
         WidgetStyleConstants.darkTextColor);
   });
 
@@ -242,13 +241,12 @@ void main() {
 
     expect(find.byType(LockWidget), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);
-    expect(find.byType(BatteryLevelIcon), findsOneWidget);
+    expect(find.byType(BatterySlimWidget), findsOneWidget);
 
-    expect(
-        tester
-            .widget<Text>((find.textContaining('Battery Level: 1')))
-            .style
-            ?.color,
+    final batteryWidget =
+        tester.widget<BatterySlimWidget>(find.byType(BatterySlimWidget));
+    expect(batteryWidget.headerText.data, contains('Battery Level: 1'));
+    expect(batteryWidget.headerText.style?.color,
         WidgetStyleConstants.globalWarningColor);
   });
 }

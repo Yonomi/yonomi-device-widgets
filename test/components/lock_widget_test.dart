@@ -41,7 +41,7 @@ void main() {
 
   testWidgets('Circular progress indicator should be shown when loading',
       (WidgetTester tester) async {
-    when(mockProvider.loadingDetail).thenReturn(true);
+    when(mockProvider.isLoading).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 
     expect(find.byWidgetPredicate((w) => w is CircularProgressIndicator),
@@ -49,8 +49,8 @@ void main() {
   });
 
   testWidgets('Lock Widget shows device name', (WidgetTester tester) async {
-    when(mockProvider.loadingDetail).thenReturn(false);
-    when(mockProvider.loadingAction).thenReturn(false);
+    when(mockProvider.isLoading).thenReturn(false);
+    when(mockProvider.isPerformingAction).thenReturn(false);
 
     when(mockProvider.isLocked).thenReturn(false);
 
@@ -62,8 +62,8 @@ void main() {
   testWidgets('Lock Widget shows Unlocked Icon when state is Unlocked',
       (WidgetTester tester) async {
     when(mockProvider.isLocked).thenReturn(false);
-    when(mockProvider.loadingDetail).thenReturn(false);
-    when(mockProvider.loadingAction).thenReturn(false);
+    when(mockProvider.isLoading).thenReturn(false);
+    when(mockProvider.isPerformingAction).thenReturn(false);
 
     await tester.pumpWidget(getAppWithLockWidget());
 
@@ -72,8 +72,8 @@ void main() {
 
   testWidgets('Lock Widget shows Locked Icon when state is Locked',
       (WidgetTester tester) async {
-    when(mockProvider.loadingDetail).thenReturn(false);
-    when(mockProvider.loadingAction).thenReturn(false);
+    when(mockProvider.isLoading).thenReturn(false);
+    when(mockProvider.isPerformingAction).thenReturn(false);
 
     when(mockProvider.isLocked).thenReturn(true);
 
@@ -84,8 +84,8 @@ void main() {
 
   testWidgets('Tapping on center Lock icon should run setLockUnlockAction',
       (WidgetTester tester) async {
-    when(mockProvider.loadingDetail).thenReturn(false);
-    when(mockProvider.loadingAction).thenReturn(false);
+    when(mockProvider.isLoading).thenReturn(false);
+    when(mockProvider.isPerformingAction).thenReturn(false);
     when(mockProvider.isLocked).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 

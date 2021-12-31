@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
@@ -18,7 +17,6 @@ MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
   );
 }
 
-@GenerateMocks([PowerTraitProvider])
 void main() {
   final test = PowerWidgetTest();
   final defaultDevice = test.device([PowerTrait(IsOnOff(true))]);

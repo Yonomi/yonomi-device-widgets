@@ -1,6 +1,7 @@
-import 'package:flutter/widgets.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
+
+import 'device_provider.dart';
 
 typedef SetPointActionFunction = Future<void> Function(
     Request request, String id, double temperature);
@@ -8,24 +9,18 @@ typedef SetPointActionFunction = Future<void> Function(
 typedef SetModeFunction = Future<void> Function(
     Request request, String id, GThermostatMode mode);
 
-typedef GetThermostatDetailsFunction = Future<Device> Function(
-  Request request,
-  String id,
-);
-
-class ThermostatProvider extends ChangeNotifier {
+class ThermostatProvider extends DeviceProvider {
   ThermostatProvider(Request request, String deviceId,
-      {GetThermostatDetailsFunction getThermostatDetails =
-          DevicesRepository.getThermostatDetails}) {
+      {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
+      : super(request, deviceId, getDetails: getDetails) {
     this._request = request;
-    getDeviceDetail(deviceId, getThermostatDetails: getThermostatDetails);
   }
 
+  static const _DEFAULT_DISPLAY_NAME = 'THERMOSTAT';
   late Request _request;
-  Device? _deviceDetail;
 
   ThermostatTrait? getThermostatTrait() {
-    return _deviceDetail?.traits.first as ThermostatTrait?;
+    return deviceDetail?.traits.first as ThermostatTrait?;
   }
 
   Future<void> setPointAction(String deviceId, double temperature,
@@ -39,15 +34,9 @@ class ThermostatProvider extends ChangeNotifier {
     setMode(_request, deviceId, mode);
   }
 
-  Future<void> getDeviceDetail(String deviceId,
-      {GetThermostatDetailsFunction getThermostatDetails =
-          DevicesRepository.getThermostatDetails}) async {
-    _deviceDetail = await getThermostatDetails(_request, deviceId);
-    notifyListeners();
-  }
-
-  Device? get deviceDetail => _deviceDetail;
-
   double get thermostatTargetTemperature =>
       getThermostatTrait()?.state.value ?? 0;
+
+  @override
+  String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 }

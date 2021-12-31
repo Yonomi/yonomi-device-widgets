@@ -37,7 +37,7 @@ void main() {
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
-        getThermostatDetails: mockGetThermostatDetailsFunction);
+        getDetails: mockGetThermostatDetailsFunction);
 
     await thermostatProvider.setPointAction('DeviceId', 22.0,
         setPoint: mockSetPointActionFunction);
@@ -57,7 +57,7 @@ void main() {
     when(mockSetModeFunction.call(any, any, any)).thenAnswer((_) async => null);
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
-        getThermostatDetails: mockGetThermostatDetailsFunction);
+        getDetails: mockGetThermostatDetailsFunction);
 
     await thermostatProvider.setThermostatMode('DeviceId', GThermostatMode.AUTO,
         setMode: mockSetModeFunction);
@@ -76,9 +76,9 @@ void main() {
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
-        getThermostatDetails: mockGetThermostatDetailsFunction);
-    await thermostatProvider.getDeviceDetail('deviceId',
-        getThermostatDetails: mockGetThermostatDetailsFunction);
+        getDetails: mockGetThermostatDetailsFunction);
+    await thermostatProvider.fetchData(
+        getDetails: mockGetThermostatDetailsFunction);
 
     verify(mockGetThermostatDetailsFunction.call(request, 'deviceId'))
         .called(2);
@@ -94,10 +94,10 @@ void main() {
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
-        getThermostatDetails: mockGetThermostatDetailsFunction);
+        getDetails: mockGetThermostatDetailsFunction);
 
-    await thermostatProvider.getDeviceDetail('deviceId',
-        getThermostatDetails: mockGetThermostatDetailsFunction);
+    await thermostatProvider.fetchData(
+        getDetails: mockGetThermostatDetailsFunction);
 
     expect(thermostatProvider.deviceDetail?.displayName, 'someDisplayName');
     expect(thermostatProvider.thermostatTargetTemperature, 23.1);

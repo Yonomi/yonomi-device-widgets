@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
@@ -19,7 +18,6 @@ MaterialApp createMaterialApp(LockProvider mockLockProvider) {
   );
 }
 
-@GenerateMocks([LockProvider])
 void main() {
   final test = LockWidgetTest();
   final defaultLock = test.device([LockTrait(IsLocked(true))]);
@@ -27,7 +25,7 @@ void main() {
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
     final mockLockProvider =
-        test.mockLockProvider(defaultLock, loadingDetail: true);
+        test.mockLockProvider(defaultLock, isLoading: true);
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -57,7 +55,7 @@ void main() {
   testWidgets('When action pending, should show loading icon ',
       (WidgetTester tester) async {
     final mockLockProvider =
-        test.mockLockProvider(defaultLock, loadingAction: true);
+        test.mockLockProvider(defaultLock, isPerformingAction: true);
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);

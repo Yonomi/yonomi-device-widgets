@@ -18,6 +18,11 @@ class BatterySlimWidget extends DeviceSlimWidget {
                       _batteryLevelTraitProvider.getBatteryLevel))),
         );
 
+  @override
+  Widget build(BuildContext context) {
+    return CircularProgressIndicator();
+  }
+
   static BatteryLevelIcon _getBatteryLevelIcon(int batteryLevel) {
     return BatteryLevelIcon(
       batteryLevel,

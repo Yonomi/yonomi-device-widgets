@@ -16,7 +16,7 @@ class LockSlimWidget extends DeviceSlimWidget {
               },
               value: _lockProvider.isLocked,
             ),
-            headerText: Text(_lockProvider.deviceDetail.displayName,
+            headerText: Text(_lockProvider.deviceDetail?.displayName ?? 'LOCK',
                 style: TextStyle(
                     fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
             backgroundColor: backgroundColor,
@@ -24,6 +24,6 @@ class LockSlimWidget extends DeviceSlimWidget {
 
   static void _lockTap(LockProvider provider) {
     bool setLock = !provider.isLocked;
-    provider.setLockUnlockAction(provider.deviceDetail.id, setLock);
+    provider.setLockUnlockAction(provider.deviceDetail?.id ?? '', setLock);
   }
 }

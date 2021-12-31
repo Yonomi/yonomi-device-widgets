@@ -1,71 +1,58 @@
-import 'package:flutter/widgets.dart';
+import 'package:yonomi_device_widgets/providers/device_provider.dart';
+import 'package:yonomi_device_widgets/providers/widget_state.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
-
-typedef GetLockDetailsFunction = Future<Device> Function(
-    Request request, String id);
 
 typedef SendLockUnlockFunction = Future<void> Function(
     Request request, String id, bool lockUnlock);
 
-class LockProvider extends ChangeNotifier {
-  bool loadingDetail = false;
-  bool loadingAction = false;
-
+class LockProvider extends DeviceProvider {
   static const int _MAX_RETRIES = 10;
+  static const _DEFAULT_DISPLAY_NAME = 'LOCK';
 
   LockProvider(Request request, String deviceId,
-      {GetLockDetailsFunction getLockDetails =
-          DevicesRepository.getLockDetails}) {
+      {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
+      : super(request, deviceId, getDetails: getDetails) {
     _request = request;
-    getDeviceDetail(deviceId, getLockDetails: getLockDetails);
   }
 
-  late Request _request;
-  late Device _deviceDetail;
+  late final Request _request;
 
-  Device get deviceDetail => _deviceDetail;
+  bool get isLocked => getLockTrait()?.state.value ?? false;
 
-  bool get isLocked => getLockTrait().state.value;
-
-  LockTrait getLockTrait() {
-    return _deviceDetail.traits
+  LockTrait? getLockTrait() {
+    return deviceDetail?.traits
         .skipWhile((trait) => !(trait is LockTrait))
         .first as LockTrait;
   }
 
-  Future<void> getDeviceDetail(String deviceId,
-      {GetLockDetailsFunction getLockDetails =
-          DevicesRepository.getLockDetails}) async {
-    loadingDetail = true;
-    notifyListeners();
-
-    _deviceDetail = await getLockDetails(_request, deviceId);
-
-    loadingDetail = false;
-    notifyListeners();
-  }
-
   Future<void> setLockUnlockAction(String deviceId, bool setLock,
-      {GetLockDetailsFunction lockDetails = DevicesRepository.getLockDetails,
+      {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendLockUnlockFunction sendLockUnlock =
           LockRepository.sendLockUnlockAction}) async {
-    if (!loadingAction) {
-      loadingAction = true;
-      notifyListeners();
+    if (!isPerformingAction) {
+      setState = WidgetState.performingAction;
 
-      await sendLockUnlock(_request, deviceId, setLock);
+      try {
+        await sendLockUnlock(_request, deviceId, setLock);
 
-      int numRetries = 0;
-      while (
-          getLockTrait().state.value != setLock && numRetries < _MAX_RETRIES) {
-        // Wait more time
-        _deviceDetail = await lockDetails(_request, deviceId);
-        await Future.delayed(Duration(milliseconds: 750));
-        numRetries++;
+        int numRetries = 0;
+        while (getLockTrait()?.state.value != setLock &&
+            numRetries < _MAX_RETRIES) {
+          // Wait more time
+          await getDetails(_request, deviceId);
+          await Future.delayed(Duration(milliseconds: 750));
+          numRetries++;
+        }
+
+        setState = WidgetState.idle;
+      } catch (error) {
+        setErrorState(error.toString());
+        await Future.delayed(Duration(seconds: 1))
+            .then((_) => setState = WidgetState.idle);
       }
-
-      loadingAction = false;
-      notifyListeners();
     }
   }
+
+  @override
+  String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 }
