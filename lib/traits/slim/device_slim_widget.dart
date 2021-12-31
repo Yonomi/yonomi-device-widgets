@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/providers/device_provider.dart';
 
 class DeviceSlimWidget extends StatelessWidget {
-  final Icon leftIcon;
+  final Widget leftIcon;
   final Text headerText;
   final Widget? rightIcon;
   final Widget? content;
   final Color? backgroundColor;
+  final DeviceProvider? provider;
 
   DeviceSlimWidget(
-      {required this.leftIcon,
+      {this.provider,
+      required this.leftIcon,
       required this.headerText,
       this.rightIcon,
       this.content,
@@ -18,8 +21,14 @@ class DeviceSlimWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: <Widget>[(content != null ? _expandableTile() : _tile())]);
+    if (provider?.isLoading ?? false) {
+      return CircularProgressIndicator();
+    } else if (provider?.isInErrorState ?? false) {
+      return Icon(Icons.error);
+    } else {
+      return Column(
+          children: <Widget>[(content != null ? _expandableTile() : _tile())]);
+    }
   }
 
   Widget _expandableTile() {

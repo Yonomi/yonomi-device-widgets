@@ -8,6 +8,7 @@ class PowerSlimWidget extends DeviceSlimWidget {
   PowerSlimWidget(PowerTraitProvider _powerProvider,
       {Color? backgroundColor, Key? key})
       : super(
+            provider: _powerProvider,
             leftIcon: PowerItemIcon(_powerProvider.getOnOffState,
                 size: 20.0,
                 color: WidgetStyleConstants.deviceDetailIconColorActive),

@@ -7,6 +7,7 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 class LockSlimWidget extends DeviceSlimWidget {
   LockSlimWidget(LockProvider _lockProvider, {Color? backgroundColor, Key? key})
       : super(
+            provider: _lockProvider,
             leftIcon: LockIcon(_lockProvider.isLocked,
                 size: 20.0,
                 color: WidgetStyleConstants.deviceDetailIconColorActive),

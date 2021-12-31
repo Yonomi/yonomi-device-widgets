@@ -7,6 +7,7 @@ class BatterySlimWidget extends DeviceSlimWidget {
   BatterySlimWidget(_batteryLevelTraitProvider,
       {Color? backgroundColor, Key? key})
       : super(
+          provider: _batteryLevelTraitProvider,
           backgroundColor: backgroundColor,
           leftIcon:
               _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
@@ -17,11 +18,6 @@ class BatterySlimWidget extends DeviceSlimWidget {
                   color: _getBatteryLevelTextColor(
                       _batteryLevelTraitProvider.getBatteryLevel))),
         );
-
-  @override
-  Widget build(BuildContext context) {
-    return CircularProgressIndicator();
-  }
 
   static BatteryLevelIcon _getBatteryLevelIcon(int batteryLevel) {
     return BatteryLevelIcon(
