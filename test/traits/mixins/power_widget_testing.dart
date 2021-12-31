@@ -11,12 +11,15 @@ mixin PowerWidgetTesting {
       {bool isBusy = false,
       bool isInErrorState = false,
       String errorMessage = '',
-      bool onOffState = true}) {
+      bool onOffState = true,
+      bool isPerformingAction = false}) {
     final mockPowerTraitProvider = MockPowerTraitProvider();
     when(mockPowerTraitProvider.isBusy).thenReturn(isBusy);
     when(mockPowerTraitProvider.isInErrorState).thenReturn(isInErrorState);
     when(mockPowerTraitProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockPowerTraitProvider.getOnOffState).thenReturn(onOffState);
+    when(mockPowerTraitProvider.isPerformingAction)
+        .thenReturn(isPerformingAction);
 
     return mockPowerTraitProvider;
   }

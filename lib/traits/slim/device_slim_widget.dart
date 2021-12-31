@@ -21,7 +21,7 @@ class DeviceSlimWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (provider?.isLoading ?? false) {
+    if ((provider?.isLoading ?? false)) {
       return CircularProgressIndicator();
     } else if (provider?.isInErrorState ?? false) {
       return Icon(Icons.error);
@@ -34,7 +34,9 @@ class DeviceSlimWidget extends StatelessWidget {
   Widget _expandableTile() {
     return ExpansionTile(
       childrenPadding: EdgeInsets.all(8.0),
-      leading: leftIcon,
+      leading: (provider?.isPerformingAction ?? false)
+          ? CircularProgressIndicator()
+          : leftIcon,
       trailing: rightIcon,
       backgroundColor: backgroundColor,
       title: headerText,
@@ -47,7 +49,9 @@ class DeviceSlimWidget extends StatelessWidget {
   Widget _tile() {
     return ListTile(
       tileColor: backgroundColor,
-      leading: leftIcon,
+      leading: (provider?.isPerformingAction ?? false)
+          ? CircularProgressIndicator()
+          : leftIcon,
       trailing: rightIcon,
       title: headerText,
       horizontalTitleGap: 0.0,

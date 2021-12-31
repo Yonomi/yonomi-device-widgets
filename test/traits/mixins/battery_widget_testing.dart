@@ -15,6 +15,7 @@ mixin BatteryWidgetTesting {
     when(mockBatteryLevelProvider.deviceDetail).thenReturn(device);
     when(mockBatteryLevelProvider.displayName).thenReturn('BATTERY');
     when(mockBatteryLevelProvider.getBatteryLevel).thenReturn(batteryLevel);
+    when(mockBatteryLevelProvider.isPerformingAction).thenReturn(false);
 
     return mockBatteryLevelProvider;
   }

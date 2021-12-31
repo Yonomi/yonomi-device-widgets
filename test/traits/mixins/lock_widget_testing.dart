@@ -10,11 +10,13 @@ mixin LockWidgetTesting {
   MockLockProvider mockLockProvider(Device device,
       {bool isLoading = false,
       bool isPerformingAction = false,
-      bool isLocked = false}) {
+      bool isLocked = false,
+      bool isInErrorState = false}) {
     final mockLockProvider = MockLockProvider();
     when(mockLockProvider.isLoading).thenReturn(isLoading);
     when(mockLockProvider.isPerformingAction).thenReturn(isPerformingAction);
     when(mockLockProvider.isLocked).thenReturn(isLocked);
+    when(mockLockProvider.isInErrorState).thenReturn(isInErrorState);
     when(mockLockProvider.deviceDetail).thenReturn(device);
 
     return mockLockProvider;
