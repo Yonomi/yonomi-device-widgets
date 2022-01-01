@@ -9,17 +9,20 @@ import 'power_widget_testing.mocks.dart';
 mixin PowerWidgetTesting {
   MockPowerTraitProvider mockPowerTraitProvider(Device device,
       {bool isBusy = false,
+      bool isLoading = false,
       bool isInErrorState = false,
       String errorMessage = '',
       bool onOffState = true,
       bool isPerformingAction = false}) {
     final mockPowerTraitProvider = MockPowerTraitProvider();
+    when(mockPowerTraitProvider.isLoading).thenReturn(isLoading);
     when(mockPowerTraitProvider.isBusy).thenReturn(isBusy);
     when(mockPowerTraitProvider.isInErrorState).thenReturn(isInErrorState);
     when(mockPowerTraitProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockPowerTraitProvider.getOnOffState).thenReturn(onOffState);
     when(mockPowerTraitProvider.isPerformingAction)
         .thenReturn(isPerformingAction);
+    when(mockPowerTraitProvider.deviceDetail).thenReturn(device);
 
     return mockPowerTraitProvider;
   }

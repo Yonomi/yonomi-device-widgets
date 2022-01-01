@@ -5,19 +5,19 @@ import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class LockSlimWidget extends DeviceSlimWidget {
-  LockSlimWidget(LockProvider _lockProvider, {Color? backgroundColor, Key? key})
+  LockSlimWidget(LockProvider lockProvider, {Color? backgroundColor, Key? key})
       : super(
-            provider: _lockProvider,
-            leftIcon: LockIcon(_lockProvider.isLocked,
+            provider: lockProvider,
+            leftIcon: LockIcon(lockProvider.isLocked,
                 size: 20.0,
                 color: WidgetStyleConstants.deviceDetailIconColorActive),
             rightIcon: CupertinoSwitch(
               onChanged: (bool value) {
-                _lockTap(_lockProvider);
+                _lockTap(lockProvider);
               },
-              value: _lockProvider.isLocked,
+              value: lockProvider.isLocked,
             ),
-            headerText: Text(_lockProvider.deviceDetail?.displayName ?? 'LOCK',
+            headerText: Text(lockProvider.deviceDetail?.displayName ?? 'LOCK',
                 style: TextStyle(
                     fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
             backgroundColor: backgroundColor,

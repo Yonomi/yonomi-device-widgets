@@ -53,11 +53,8 @@ class PowerTraitProvider extends DeviceProvider {
   }
 
   PowerTrait? getPowerTrait() {
-    try {
-      return deviceDetail?.traits.first as PowerTrait?;
-    } catch (error) {
-      return null;
-    }
+    return deviceDetail?.traits.firstWhere((element) => element is PowerTrait,
+        orElse: null) as PowerTrait;
   }
 
   bool get getOnOffState {

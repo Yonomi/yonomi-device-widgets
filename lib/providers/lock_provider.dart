@@ -21,8 +21,7 @@ class LockProvider extends DeviceProvider {
 
   LockTrait? getLockTrait() {
     return deviceDetail?.traits
-        .skipWhile((trait) => !(trait is LockTrait))
-        .first as LockTrait;
+        .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait;
   }
 
   Future<void> setLockUnlockAction(String deviceId, bool setLock,

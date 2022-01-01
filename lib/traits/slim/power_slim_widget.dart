@@ -5,22 +5,22 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 
 class PowerSlimWidget extends DeviceSlimWidget {
-  PowerSlimWidget(PowerTraitProvider _powerProvider,
+  PowerSlimWidget(PowerTraitProvider powerProvider,
       {Color? backgroundColor, Key? key})
       : super(
-            provider: _powerProvider,
-            leftIcon: PowerItemIcon(_powerProvider.getOnOffState,
+            provider: powerProvider,
+            leftIcon: PowerItemIcon(powerProvider.getOnOffState,
                 size: 20.0,
                 color: WidgetStyleConstants.deviceDetailIconColorActive),
             rightIcon: CupertinoSwitch(
               activeColor: WidgetStyleConstants.traitDetailSwitchPressedColor,
               onChanged: (bool onOff) {
-                _powerProvider.sendPowerOnOffAction(onOff);
+                powerProvider.sendPowerOnOffAction(onOff);
               },
-              value: _powerProvider.getOnOffState,
+              value: powerProvider.getOnOffState,
             ),
             headerText: Text(
-                _powerProvider.getPowerTrait()?.name ?? 'Power Switch',
+                powerProvider.deviceDetail?.displayName ?? 'POWER',
                 style: TextStyle(
                     fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
             backgroundColor: backgroundColor,
