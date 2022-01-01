@@ -10,7 +10,7 @@
 
 
 
-ThermostatProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetThermostatDetailsFunction](../../providers_thermostat_provider/GetThermostatDetailsFunction.md) getThermostatDetails = DevicesRepository.getThermostatDetails})
+ThermostatProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
 
 
@@ -20,10 +20,9 @@ ThermostatProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) re
 
 ```dart
 ThermostatProvider(Request request, String deviceId,
-    {GetThermostatDetailsFunction getThermostatDetails =
-        DevicesRepository.getThermostatDetails}) {
+    {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
+    : super(request, deviceId, getDetails: getDetails) {
   this._request = request;
-  getDeviceDetail(deviceId, getThermostatDetails: getThermostatDetails);
 }
 ```
 

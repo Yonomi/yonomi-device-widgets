@@ -60,7 +60,7 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return _lockProvider.loadingDetail
+  return _lockProvider.isLoading
       ? Center(child: CircularProgressIndicator())
       : Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +84,7 @@ Widget build(BuildContext context) {
                 child: SizedBox(
                     width: 100,
                     height: 100,
-                    child: _lockProvider.loadingAction
+                    child: _lockProvider.isPerformingAction
                         ? CircularProgressIndicator()
                         : _lockProvider.isLocked
                             ? LockIcon(true, size: 100.0, color: _iconColor)

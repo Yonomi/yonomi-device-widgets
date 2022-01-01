@@ -12,7 +12,7 @@
 
 
 [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> sendPowerOnOffAction
-([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) desiredOnOffState, {[GetDeviceDetailsMethod](../../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendPowerMethod](../../providers_power_trait_provider/SendPowerMethod.md) sendPowerMethod = PowerRepository.sendPowerAction})
+([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) desiredOnOffState, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendPowerMethod](../../providers_power_trait_provider/SendPowerMethod.md) sendPowerMethod = PowerRepository.sendPowerAction})
 
 
 
@@ -32,23 +32,23 @@ Future<void> sendPowerOnOffAction(bool desiredOnOffState,
     SendPowerMethod sendPowerMethod =
         PowerRepository.sendPowerAction}) async {
   if (!isPerformingAction) {
-    _setState = WidgetState.performingAction;
+    setState = WidgetState.performingAction;
 
     try {
       await sendPowerMethod(_request, this._deviceId, desiredOnOffState);
 
       int numRetries = 0;
       while (getOnOffState != desiredOnOffState && numRetries < MAX_RETRIES) {
-        _deviceDetail = await getDetails(_request, _deviceId);
+        await getDetails(_request, _deviceId);
 
         await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
         numRetries++;
       }
-      _setState = WidgetState.idle;
+      setState = WidgetState.idle;
     } catch (error) {
-      _setErrorState(error.toString());
+      setErrorState(error.toString());
       await Future.delayed(Duration(seconds: 1))
-          .then((_) => _setState = WidgetState.idle);
+          .then((_) => setState = WidgetState.idle);
     }
   }
 }

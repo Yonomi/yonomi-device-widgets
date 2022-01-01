@@ -48,15 +48,15 @@ open coverage/html/index.html
  
 
 
-##### [battery_expand_widget](traits_expandable_battery_expand_widget/traits_expandable_battery_expand_widget-library.md)
- 
-
-
 ##### [battery_level_icon](assets_traits_battery_level_icon/assets_traits_battery_level_icon-library.md)
  
 
 
 ##### [battery_level_provider](providers_battery_level_provider/providers_battery_level_provider-library.md)
+ 
+
+
+##### [battery_slim_widget](traits_slim_battery_slim_widget/traits_slim_battery_slim_widget-library.md)
  
 
 
@@ -76,19 +76,19 @@ open coverage/html/index.html
  
 
 
-##### [device_expand_widget](traits_expandable_device_expand_widget/traits_expandable_device_expand_widget-library.md)
- 
-
-
 ##### [device_item_icon](assets_traits_device_item_icon/assets_traits_device_item_icon-library.md)
  
 
 
-##### [lock](devices_lock/devices_lock-library.md)
+##### [device_provider](providers_device_provider/providers_device_provider-library.md)
  
 
 
-##### [lock_expand_widget](traits_expandable_lock_expand_widget/traits_expandable_lock_expand_widget-library.md)
+##### [device_slim_widget](traits_slim_device_slim_widget/traits_slim_device_slim_widget-library.md)
+ 
+
+
+##### [lock](devices_lock/devices_lock-library.md)
  
 
 
@@ -100,7 +100,7 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_slim_widget](traits_slim_lock_slim_widget/traits_slim_lock_slim_widget-library.md)
  
 
 
@@ -108,15 +108,19 @@ open coverage/html/index.html
  
 
 
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+ 
+
+
 ##### [modes_toolbar](components_modes_toolbar/components_modes_toolbar-library.md)
  
 
 
-##### [power_expand_widget](traits_expandable_power_expand_widget/traits_expandable_power_expand_widget-library.md)
+##### [power_item_icon](assets_traits_power_item_icon/assets_traits_power_item_icon-library.md)
  
 
 
-##### [power_item_icon](assets_traits_power_item_icon/assets_traits_power_item_icon-library.md)
+##### [power_slim_widget](traits_slim_power_slim_widget/traits_slim_power_slim_widget-library.md)
  
 
 

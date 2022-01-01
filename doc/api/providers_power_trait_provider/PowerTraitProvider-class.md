@@ -18,6 +18,7 @@
 
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html)
+- [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)
 - PowerTraitProvider
 
 
@@ -27,29 +28,38 @@
 
 ## Constructors
 
-[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
 
 ## Properties
 
-##### [deviceDetail](../providers_power_trait_provider/PowerTraitProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
+##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
    
-_read-only_
+_read-only, inherited_
 
 
 
-##### [getErrorMessage](../providers_power_trait_provider/PowerTraitProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [displayName](../providers_power_trait_provider/PowerTraitProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only, override_
+
+
+
+##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
 Get the error message whenever this ChangeNotifier had an error
-See also: <a href="../providers_power_trait_provider/PowerTraitProvider/isInErrorState.md">isInErrorState</a>   
-_read-only_
+See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
+_read-only, inherited_
 
 
 
@@ -80,40 +90,40 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [isBusy](../providers_power_trait_provider/PowerTraitProvider/isBusy.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isBusy](../providers_device_provider/DeviceProvider/isBusy.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 To know if this ChangeNotifier is busy from fetching data or running an action   
-_read-only_
+_read-only, inherited_
 
 
 
-##### [isInErrorState](../providers_power_trait_provider/PowerTraitProvider/isInErrorState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isInErrorState](../providers_device_provider/DeviceProvider/isInErrorState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 To know if this ChangeNotifier had an error
-see <a href="../providers_power_trait_provider/PowerTraitProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
-_read-only_
+see <a href="../providers_device_provider/DeviceProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
+_read-only, inherited_
 
 
 
-##### [isLoading](../providers_power_trait_provider/PowerTraitProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isLoading](../providers_device_provider/DeviceProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 To know if this ChangeNotifier is fetching device data   
-_read-only_
+_read-only, inherited_
 
 
 
-##### [isPerformingAction](../providers_power_trait_provider/PowerTraitProvider/isPerformingAction.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isPerformingAction](../providers_device_provider/DeviceProvider/isPerformingAction.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
 To know if this ChangeNotifier is performing an action   
-_read-only_
+_read-only, inherited_
 
 
 
@@ -123,6 +133,15 @@ _read-only_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [setState](../providers_device_provider/DeviceProvider/setState.md) &#8592; [WidgetState](../providers_widget_state/WidgetState.md)
+
+
+
+   
+_write-only, inherited_
 
 
 
@@ -150,12 +169,12 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_power_trait_provider/PowerTraitProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDeviceDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?>
 
 
 
-Fetches device data. When loaded, get the data with <code>getDeviceDetails</code> [...](../providers_power_trait_provider/PowerTraitProvider/fetchData.md)  
-
+   
+_inherited_
 
 
 
@@ -196,12 +215,21 @@ _inherited_
 
 
 
-##### [sendPowerOnOffAction](../providers_power_trait_provider/PowerTraitProvider/sendPowerOnOffAction.md)([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) desiredOnOffState, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendPowerMethod](../providers_power_trait_provider/SendPowerMethod.md) sendPowerMethod = PowerRepository.sendPowerAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [sendPowerOnOffAction](../providers_power_trait_provider/PowerTraitProvider/sendPowerOnOffAction.md)([bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) desiredOnOffState, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendPowerMethod](../providers_power_trait_provider/SendPowerMethod.md) sendPowerMethod = PowerRepository.sendPowerAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
 Run the "makePowerActionRequest" mutation on this device [...](../providers_power_trait_provider/PowerTraitProvider/sendPowerOnOffAction.md)  
 
+
+
+
+##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
+
+
+
+   
+_inherited_
 
 
 

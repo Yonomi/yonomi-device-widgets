@@ -10,7 +10,7 @@
 
 
 
-BatteryLevelProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+BatteryLevelProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
 
 
@@ -20,12 +20,8 @@ BatteryLevelProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) 
 
 ```dart
 BatteryLevelProvider(Request request, String deviceId,
-    {GetDeviceDetailsMethod getDetails =
-        DevicesRepository.getDeviceDetails}) {
-  this._deviceId = deviceId;
-  this._request = request;
-  fetchData(getDeviceDetails: getDetails);
-}
+    {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
+    : super(request, deviceId, getDetails: getDetails);
 ```
 
 

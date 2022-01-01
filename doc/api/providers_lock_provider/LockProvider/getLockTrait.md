@@ -11,7 +11,7 @@
 
 
 
-[LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html) getLockTrait
+[LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)? getLockTrait
 ()
 
 
@@ -24,10 +24,9 @@
 ## Implementation
 
 ```dart
-LockTrait getLockTrait() {
-  return _deviceDetail.traits
-      .skipWhile((trait) => !(trait is LockTrait))
-      .first as LockTrait;
+LockTrait? getLockTrait() {
+  return deviceDetail?.traits
+      .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait;
 }
 ```
 

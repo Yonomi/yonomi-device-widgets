@@ -10,7 +10,7 @@
 
 
 
-PowerTraitProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+PowerTraitProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
 
 
@@ -23,10 +23,9 @@ PowerTraitProvider(
   Request request,
   String deviceId, {
   GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
-}) {
-  _request = request;
-  _deviceId = deviceId;
-  fetchData(getDeviceDetails: getDetails);
+}) : super(request, deviceId, getDetails: getDetails) {
+  this._deviceId = deviceId;
+  this._request = request;
 }
 ```
 
