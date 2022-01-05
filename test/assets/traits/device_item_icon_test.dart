@@ -16,7 +16,7 @@ void main() {
   testWidgets('should render correct thermostat trait icon',
       (WidgetTester tester) async {
     final thermostatDevice = [
-      ThermostatTrait('thermostat', TargetTemperature(22))
+      ThermostatTrait(TargetTemperature(22))
     ];
     await tester.pumpWidget(createIconWidget(thermostatDevice));
     expect(find.widgetWithText(Center, '22'), findsOneWidget);
@@ -25,7 +25,7 @@ void main() {
   testWidgets('should render n/a if target temperature is null',
       (WidgetTester tester) async {
     final thermostatDevice = [
-      ThermostatTrait('thermostat', TargetTemperature(null))
+      ThermostatTrait(TargetTemperature(null))
     ];
     await tester.pumpWidget(createIconWidget(thermostatDevice));
     expect(find.widgetWithText(Center, 'N/A'), findsOneWidget);
@@ -33,23 +33,44 @@ void main() {
 
   testWidgets('should render correct Lock trait icon when unlocked',
       (WidgetTester tester) async {
-    final lockDevice = [LockTrait('lockunlock', IsLocked(false))];
+    final lockDevice = [LockTrait(IsLocked(false))];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.unlock), findsOneWidget);
   });
 
   testWidgets('should render correct Lock trait icon when locked',
       (WidgetTester tester) async {
-    final lockDevice = [LockTrait('lockunlock', IsLocked(true))];
+    final lockDevice = [LockTrait(IsLocked(true))];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.lock), findsOneWidget);
   });
 
   testWidgets('should render correct Power trait icon',
       (WidgetTester tester) async {
-    final powerDevice = [PowerTrait('power', IsOnOff(true))];
+    final powerDevice = [PowerTrait(IsOnOff(true))];
     await tester.pumpWidget(createIconWidget(powerDevice));
     expect(find.byIcon(BootstrapIcons.power), findsOneWidget);
+  });
+
+  testWidgets('should render full Battery trait icon',
+      (WidgetTester tester) async {
+    final batteryLevelDevice = [BatteryLevelTrait(BatteryLevel(100))];
+    await tester.pumpWidget(createIconWidget(batteryLevelDevice));
+    expect(find.byIcon(BootstrapIcons.battery_full), findsOneWidget);
+  });
+
+  testWidgets('should render half Battery trait icon',
+      (WidgetTester tester) async {
+    final batteryLevelDevice = [BatteryLevelTrait(BatteryLevel(50))];
+    await tester.pumpWidget(createIconWidget(batteryLevelDevice));
+    expect(find.byIcon(BootstrapIcons.battery_half), findsOneWidget);
+  });
+
+  testWidgets('should render empty Battery trait icon',
+      (WidgetTester tester) async {
+    final batteryLevelDevice = [BatteryLevelTrait(BatteryLevel(0))];
+    await tester.pumpWidget(createIconWidget(batteryLevelDevice));
+    expect(find.byIcon(BootstrapIcons.battery), findsOneWidget);
   });
 
   testWidgets('should render unknown icon if trait not found',

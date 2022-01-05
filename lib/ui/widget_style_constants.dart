@@ -1,8 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class WidgetStyleConstants {
+  static const Color globalWarningColor = Color(0xFFF19953);
+
+  static const Color globalSuccessColor = Color(0xFF01A299);
+
   static const Color modesButtonUnpressedColor = Color(0xFFDFE0E4);
 
   static const Color modesButtonPressedColor = Color(0xFF5D657A);
@@ -34,4 +36,8 @@ class WidgetStyleConstants {
   static const double defaultDeviceWidgetSize = 175.0;
 
   static const Color traitDetailSwitchPressedColor = Color(0xFF01A299);
+
+  static const int batteryLowMax = 15;
+
+  static const int batteryFullMin = 75;
 }

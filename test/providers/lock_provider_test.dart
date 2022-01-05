@@ -20,16 +20,7 @@ void main() {
   test('Calling setLockUnlockAction calls repository method', () async {
     Request request = Request("", {});
     final mockLockDetailsMethod = MockGetLockDetails();
-    final device = Device(
-        'id',
-        'name',
-        'description',
-        'manufacturerName',
-        'model',
-        null,
-        GDateTime('value'),
-        GDateTime('value'),
-        [LockTrait('name', IsLocked(true))]);
+    final device = _getDevice(true);
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
@@ -48,16 +39,7 @@ void main() {
       () async {
     Request request = Request("", {});
     final mockLockDetailsMethod = MockGetLockDetails();
-    final device = Device(
-        'id',
-        'name',
-        'description',
-        'manufacturerName',
-        'model',
-        null,
-        GDateTime('value'),
-        GDateTime('value'),
-        [LockTrait('name', IsLocked(false))]);
+    final device = _getDevice(false);
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
@@ -75,16 +57,7 @@ void main() {
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
     final mockLockDetailsMethod = MockGetLockDetails();
-    final device = Device(
-        'test',
-        'name',
-        'description',
-        'manufacturerName',
-        'model',
-        null,
-        GDateTime('value'),
-        GDateTime('value'),
-        [LockTrait('name', IsLocked(true))]);
+    final device = _getDevice(true);
     when(mockLockDetailsMethod.call(request, 'test'))
         .thenAnswer((_) => Future.value(device));
     LockProvider lockProvider =
@@ -102,17 +75,7 @@ void main() {
     GetLockDetailsFunction mockLockDetailsMethod = MockGetLockDetails();
     when(mockLockDetailsMethod.call(request, 'deviceId'))
         .thenAnswer((_) => Future.value(
-              Device(
-                "someId",
-                "someDisplayName",
-                "someDescription",
-                "someManufacturerName",
-                "someModel",
-                "someFirmwareV",
-                GDateTime('value'),
-                GDateTime('value'),
-                [],
-              ),
+              _getDevice(true),
             ));
     LockProvider lockProvider = LockProvider(request, 'deviceId',
         getLockDetails: mockLockDetailsMethod);
@@ -120,6 +83,11 @@ void main() {
     await lockProvider.getDeviceDetail('deviceId',
         getLockDetails: mockLockDetailsMethod);
 
-    expect(lockProvider.deviceDetail.displayName, 'someDisplayName');
+    expect(lockProvider.deviceDetail.displayName, 'name');
   });
+}
+
+Device _getDevice(bool isLocked) {
+  return Device('id', 'name', 'description', 'manufacturerName', 'model', null,
+      GDateTime('value'), GDateTime('value'), [LockTrait(IsLocked(isLocked))]);
 }

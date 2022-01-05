@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
+[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) ([PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
 
     
 

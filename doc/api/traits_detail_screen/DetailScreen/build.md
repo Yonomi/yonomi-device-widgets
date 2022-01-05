@@ -68,6 +68,8 @@ Widget build(BuildContext context) {
           create: (context) => LockProvider(request, deviceId)),
       ChangeNotifierProvider(
           create: (context) => PowerTraitProvider(request, deviceId)),
+      ChangeNotifierProvider(
+          create: (context) => BatteryLevelProvider(request, deviceId)),
     ],
     child: DetailScreenWidget(request, deviceId),
   );

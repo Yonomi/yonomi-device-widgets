@@ -27,7 +27,7 @@
 
 ## Constructors
 
-[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) (@[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, @[required](https://pub.dev/documentation/meta/1.7.0/meta/required-constant.html) [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+[PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider/PowerTraitProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
@@ -117,24 +117,6 @@ _read-only_
 
 
 
-##### [MAX_RETRIES](../providers_power_trait_provider/PowerTraitProvider/MAX_RETRIES.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
-_final_
-
-
-
-##### [RETRY_DELAY_MS](../providers_power_trait_provider/PowerTraitProvider/RETRY_DELAY_MS.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
-_final_
-
-
-
 ##### [runtimeType](https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html) &#8594; [Type](https://api.flutter.dev/flutter/dart-core/Type-class.html)
 
 
@@ -168,7 +150,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_power_trait_provider/PowerTraitProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDeviceDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?>
+##### [fetchData](../providers_power_trait_provider/PowerTraitProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_power_trait_provider/GetDeviceDetailsMethod.md) getDeviceDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -243,6 +225,26 @@ The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/op
 _inherited_
 
 
+
+
+
+
+## Constants
+
+##### [MAX_RETRIES](../providers_power_trait_provider/PowerTraitProvider/MAX_RETRIES-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
+
+
+
+
+##### [RETRY_DELAY_MS](../providers_power_trait_provider/PowerTraitProvider/RETRY_DELAY_MS-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
 
 
 

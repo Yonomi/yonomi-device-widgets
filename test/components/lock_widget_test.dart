@@ -1,6 +1,5 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -24,7 +23,7 @@ void main() {
       null,
       GDateTime('value'),
       GDateTime('value'),
-      [LockTrait('name', IsLocked(true))]);
+      [LockTrait(IsLocked(true))]);
 
   Widget getAppWithLockWidget() {
     return MaterialApp(

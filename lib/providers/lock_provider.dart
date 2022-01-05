@@ -11,7 +11,7 @@ class LockProvider extends ChangeNotifier {
   bool loadingDetail = false;
   bool loadingAction = false;
 
-  final int _MAX_RETRIES = 10;
+  static const int _MAX_RETRIES = 10;
 
   LockProvider(Request request, String deviceId,
       {GetLockDetailsFunction getLockDetails =

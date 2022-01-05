@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class PowerWidget extends StatelessWidget {
-  PowerTraitProvider _powerTraitProvider;
+  final PowerTraitProvider _powerTraitProvider;
 
-  PowerWidget(@required this._powerTraitProvider);
+  PowerWidget(this._powerTraitProvider);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +17,7 @@ class PowerWidget extends StatelessWidget {
       _showToast(context, _powerTraitProvider.getErrorMessage);
       return Icon(Icons.error);
     } else {
+      final onOffState = _powerTraitProvider.getOnOffState;
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -37,9 +37,8 @@ class PowerWidget extends StatelessWidget {
               child: SizedBox(
                   width: 100,
                   height: 100,
-                  child: _powerTraitProvider.getOnOffState
-                      ? PowerItemIcon(true, size: 100.0, color: Colors.white)
-                      : PowerItemIcon(false, size: 100.0, color: Colors.white)),
+                  child: PowerItemIcon(onOffState,
+                      size: 100.0, color: Colors.white)),
             ),
           ),
           SizedBox(

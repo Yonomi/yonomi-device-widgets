@@ -33,6 +33,8 @@ static Widget getIcon(List<Trait> traits) {
       return ThermostatIcon(thermostatState: determiningTrait.state.value);
     case PowerTrait:
       return PowerItemIcon(determiningTrait.state.value);
+    case BatteryLevelTrait:
+      return BatteryLevelIcon(determiningTrait.state.value);
     default:
       return UnknownItemIcon();
   }

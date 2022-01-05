@@ -32,14 +32,6 @@ class MockPowerTraitProvider extends _i1.Mock
   }
 
   @override
-  int get MAX_RETRIES =>
-      (super.noSuchMethod(Invocation.getter(#MAX_RETRIES), returnValue: 0)
-          as int);
-  @override
-  int get RETRY_DELAY_MS =>
-      (super.noSuchMethod(Invocation.getter(#RETRY_DELAY_MS), returnValue: 0)
-          as int);
-  @override
   bool get getOnOffState =>
       (super.noSuchMethod(Invocation.getter(#getOnOffState), returnValue: false)
           as bool);
@@ -59,10 +51,6 @@ class MockPowerTraitProvider extends _i1.Mock
   bool get isInErrorState => (super
           .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
       as bool);
-  @override
-  set setErrorMessage(String? errorMsg) =>
-      super.noSuchMethod(Invocation.setter(#setErrorMessage, errorMsg),
-          returnValueForMissingStub: null);
   @override
   String get getErrorMessage =>
       (super.noSuchMethod(Invocation.getter(#getErrorMessage), returnValue: '')

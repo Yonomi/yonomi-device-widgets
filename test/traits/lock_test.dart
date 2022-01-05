@@ -87,7 +87,7 @@ void main() {
         'serialNumber',
         GDateTime('createdAt'),
         GDateTime('updatedAt'),
-        [LockTrait('LOCK', IsLocked(currentLock))]));
+        [LockTrait(IsLocked(currentLock))]));
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
     expect(find.byType(CupertinoSwitch), findsOneWidget);
     await tester.tap(find.byType(CupertinoSwitch));

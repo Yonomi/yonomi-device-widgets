@@ -48,6 +48,18 @@ open coverage/html/index.html
  
 
 
+##### [battery_level_icon](assets_traits_battery_level_icon/assets_traits_battery_level_icon-library.md)
+ 
+
+
+##### [battery_level_provider](providers_battery_level_provider/providers_battery_level_provider-library.md)
+ 
+
+
+##### [battery_widget](traits_battery_widget/traits_battery_widget-library.md)
+ 
+
+
 ##### [color_constants](ui_color_constants/ui_color_constants-library.md)
  
 
@@ -125,6 +137,10 @@ open coverage/html/index.html
 
 
 ##### [unknown_item_icon](assets_traits_unknown_item_icon/assets_traits_unknown_item_icon-library.md)
+ 
+
+
+##### [widget_state](providers_widget_state/providers_widget_state-library.md)
  
 
 

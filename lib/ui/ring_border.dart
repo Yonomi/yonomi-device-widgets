@@ -15,8 +15,7 @@ import 'package:flutter/material.dart';
 ///    describe a circle.
 class RingBorder extends CircleBorder {
   const RingBorder({BorderSide side = BorderSide.none})
-      : assert(side != null),
-        super(side: side);
+      : super(side: side);
 
   @override
   RingBorder copyWith({BorderSide? side}) {
