@@ -108,6 +108,37 @@ void main() {
 
     expect(lockProvider.isLocked, false);
   });
+
+  test("""When an error occurs running an action, we are notified
+        an error occurred using isInErrorState and get
+        an error message with getErrorMessage.""", () async {
+    Request request = Request("", {});
+    String deviceId = 'aDeviceId';
+
+    String exceptionMesssage = 'Throwing an exception';
+
+    MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
+        MockGetDeviceDetailsMethod();
+
+    MockSendLockUnlock mockSendLockUnlock = MockSendLockUnlock();
+    when(mockSendLockUnlock.call(request, deviceId, true))
+        .thenAnswer((_) => throw (exceptionMesssage));
+
+    final lockProvider =
+        LockProvider(request, deviceId, getDetails: mockDeviceDetailsMethod);
+
+    lockProvider.setLockUnlockAction(deviceId, true,
+        getDetails: mockDeviceDetailsMethod,
+        sendLockUnlock: mockSendLockUnlock);
+
+    await Future.delayed(Duration(milliseconds: 100));
+
+    expect(lockProvider.isInErrorState, equals(true));
+    expect(lockProvider.getErrorMessage, equals(exceptionMesssage));
+
+    await Future.delayed(Duration(seconds: 1));
+    expect(lockProvider.isInErrorState, equals(false));
+  });
 }
 
 Device _getDevice(bool isLocked) {

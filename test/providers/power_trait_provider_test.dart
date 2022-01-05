@@ -192,6 +192,9 @@ void main() {
 
       expect(powerProvider.isInErrorState, equals(true));
       expect(powerProvider.getErrorMessage, equals(exceptionMesssage));
+
+      await Future.delayed(Duration(seconds: 1));
+      expect(powerProvider.isInErrorState, equals(false));
     });
   });
 }
