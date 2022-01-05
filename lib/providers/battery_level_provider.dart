@@ -24,7 +24,7 @@ class BatteryLevelProvider extends ChangeNotifier {
 
   Device? get deviceDetail => _deviceDetail;
 
-  Future<Device?> fetchData(
+  Future<void> fetchData(
       {GetDeviceDetailsMethod getDeviceDetails =
           DevicesRepository.getDeviceDetails}) async {
     _setState = WidgetState.loading;
@@ -36,8 +36,6 @@ class BatteryLevelProvider extends ChangeNotifier {
       _setErrorState(error.toString());
       return null;
     }
-
-    return deviceDetail;
   }
 
   set _setState(WidgetState newState) {

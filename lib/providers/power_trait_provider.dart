@@ -34,7 +34,7 @@ class PowerTraitProvider extends ChangeNotifier {
   /// Fetches device data. When loaded, get the data with [getDeviceDetails]
   ///
   /// @throws ServerException for any errors returned by the platform
-  Future<Device?> fetchData(
+  Future<void> fetchData(
       {GetDeviceDetailsMethod getDeviceDetails =
           DevicesRepository.getDeviceDetails}) async {
     _setState = WidgetState.loading;
@@ -46,8 +46,6 @@ class PowerTraitProvider extends ChangeNotifier {
       _setErrorState(error.toString());
       return null;
     }
-
-    return deviceDetail;
   }
 
   /// Run the "makePowerActionRequest" mutation on this device
