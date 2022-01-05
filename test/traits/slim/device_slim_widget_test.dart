@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
@@ -30,6 +31,19 @@ MaterialApp createMaterialApp(TestWidget testWidget) {
 void main() {
   final test = DeviceSlimWidgetTest();
   final device = test.device([UnknownTrait('name')]);
+
+  testWidgets(
+      'When a widget is loading a circular progress indicator is displayed',
+      (WidgetTester tester) async {
+    final provider = test.mockBatteryLevelProvider(device);
+    when(provider.isLoading).thenReturn(true);
+
+    final testWidget = TestWidget(provider);
+    await tester.pumpWidget(createMaterialApp(testWidget));
+
+    expect(provider.isLoading, equals(true));
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
 
   testWidgets(
       'When a widget has detailed content an expandable widget is provided',
