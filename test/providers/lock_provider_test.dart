@@ -6,7 +6,6 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'lock_provider_test.mocks.dart';
-import 'trait_detail_provider_test.mocks.dart';
 
 class GetDeviceDetailsMethod extends Mock {
   Future<Device> call(Request request, String id);
@@ -25,8 +24,8 @@ void main() {
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
-    LockProvider lockProvider = LockProvider(request, 'deviceId',
-        getDetails: mockLockDetailsMethod);
+    LockProvider lockProvider =
+        LockProvider(request, 'deviceId', getDetails: mockLockDetailsMethod);
     await lockProvider.setLockUnlockAction('deviceId', true,
         getDetails: mockLockDetailsMethod,
         sendLockUnlock: mockSendLockUnlockMethod);
@@ -44,8 +43,8 @@ void main() {
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
-    LockProvider lockProvider = LockProvider(request, 'deviceId',
-        getDetails: mockLockDetailsMethod);
+    LockProvider lockProvider =
+        LockProvider(request, 'deviceId', getDetails: mockLockDetailsMethod);
 
     await lockProvider.setLockUnlockAction('deviceId', true,
         getDetails: mockLockDetailsMethod,
@@ -77,8 +76,8 @@ void main() {
         .thenAnswer((_) => Future.value(
               _getDevice(true),
             ));
-    LockProvider lockProvider = LockProvider(request, 'deviceId',
-        getDetails: mockLockDetailsMethod);
+    LockProvider lockProvider =
+        LockProvider(request, 'deviceId', getDetails: mockLockDetailsMethod);
 
     await lockProvider.fetchData(getDetails: mockLockDetailsMethod);
 

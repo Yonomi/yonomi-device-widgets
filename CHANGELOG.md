@@ -1,3 +1,29 @@
+# [2.4.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.3.0...v2.4.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* **battery_level_trait_provider.dart:** Make match power provider though we probably should handle this differently ([805dac2](https://github.com/Yonomi/yonomi-device-widgets/commit/805dac2a8a7b83b0b19a006d12c4629f4131ca01))
+* **battery_level_trait_provider.dart:** Now correctly report the battery level ([6cf915e](https://github.com/Yonomi/yonomi-device-widgets/commit/6cf915e5150a07e13ea3f600a01968c8bc516afd))
+* **battery_widget.dart:** add a percent sign for battery ([5a0d398](https://github.com/Yonomi/yonomi-device-widgets/commit/5a0d39892254186942594169b2fffb6651d1bf86))
+* **battery_widget.dart:** Add text battery level ([33c87d5](https://github.com/Yonomi/yonomi-device-widgets/commit/33c87d5a4222c459e86254bc4cff029f41c82a2d))
+* **battery_widget.dart:** Make battery widget battery level text on next line ([27c059f](https://github.com/Yonomi/yonomi-device-widgets/commit/27c059f3ceb5a09d65c3d72e1d939153226444fb))
+* **battery_widget.dart,battery_widget_test.dart:** Correctly display name and battery level on the actual widget of a battery trait primary object ([5fd31f1](https://github.com/Yonomi/yonomi-device-widgets/commit/5fd31f1413f754c7da98c4299c4c2b2194727e58))
+* **detail_screen.dart:** Correct look and feel on battery trait ([1d35f97](https://github.com/Yonomi/yonomi-device-widgets/commit/1d35f9765fc1dfce8210d88eaece6ce7bac03e43))
+* **lib/traits/battery_widget.dart:** Correct widget text to match figma ([f24c319](https://github.com/Yonomi/yonomi-device-widgets/commit/f24c3190f94075dd0fec9bb52cdc7dd62e57e81b))
+* **widget_style_constants.dart-detail_screen.dart:** Add correct accent colors according to figma ([460405c](https://github.com/Yonomi/yonomi-device-widgets/commit/460405c5a79e9174043b859d2066ad6c38e2d999))
+
+
+### Features
+
+* **battery_level_icon.dart,battery_level_provider.dart,battery_widget.dart,widget_style_constants.dart,battery_widget_test.dart,battery_widget_test.mocks.dart:** Add battery icon display content ([55bdf09](https://github.com/Yonomi/yonomi-device-widgets/commit/55bdf091116780e581aa976759de397a3838a316))
+* **detail_screen.dart,pubspec.yaml:** Use accordions for subtraits ([e501169](https://github.com/Yonomi/yonomi-device-widgets/commit/e501169f5f6d14a52468fc05995e5d6678b80b38))
+
+
+### Reverts
+
+* Revert "build(pubspec.yaml): Fix to use material icons for accordion" ([6a1c304](https://github.com/Yonomi/yonomi-device-widgets/commit/6a1c304ebc2192ea8c00875b5ccb5dddcdda91fb))
+
 # [2.3.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.2.0...v2.3.0) (2021-12-17)
 
 

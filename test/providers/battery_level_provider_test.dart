@@ -26,6 +26,7 @@ void main() {
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
+      expect(batteryLevelProvider.displayName, 'BATTERY');
       expect(batteryLevelProvider.isLoading, equals(true));
       expect(batteryLevelProvider.isInErrorState, equals(false),
           reason: 'is in error state');
@@ -44,6 +45,7 @@ void main() {
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
+      expect(batteryLevelProvider.displayName, 'name');
       expect(batteryLevelProvider.isLoading, equals(false),
           reason: 'is in loading state');
       expect(batteryLevelProvider.isInErrorState, equals(false),

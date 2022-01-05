@@ -1,6 +1,6 @@
 name: yonomi_device_widgets
 description: Yonomi Device Widgets
-version: 2.3.0
+version: 2.4.0
 homepage: https://www.yonomi.co
 
 environment:
@@ -14,10 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.5.0
-  yonomi_platform_sdk:
-    git:
-      url: git://github.com/Yonomi/yonomi-sdk-dart.git
-      ref: DX-252_battery_level_trait
+  yonomi_platform_sdk: ^2.3.0
 
 dev_dependencies:
   mockito: ^5.0.15
