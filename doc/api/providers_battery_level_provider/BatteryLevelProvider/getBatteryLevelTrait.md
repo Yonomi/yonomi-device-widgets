@@ -30,7 +30,7 @@ BatteryLevelTrait? getBatteryLevelTrait() {
             .firstWhere((trait) => trait.runtimeType == BatteryLevelTrait)
         as BatteryLevelTrait?;
   } catch (error) {
-    return null;
+    _setErrorState(error.toString());
   }
 }
 ```

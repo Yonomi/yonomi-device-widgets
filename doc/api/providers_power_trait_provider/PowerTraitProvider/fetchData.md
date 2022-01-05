@@ -36,7 +36,6 @@ Future<void> fetchData(
     _setState = WidgetState.idle;
   } catch (error) {
     _setErrorState(error.toString());
-    return null;
   }
 }
 ```

@@ -28,7 +28,7 @@ PowerTrait? getPowerTrait() {
   try {
     return _deviceDetail?.traits.first as PowerTrait?;
   } catch (error) {
-    return null;
+    _setErrorState(error.toString());
   }
 }
 ```
