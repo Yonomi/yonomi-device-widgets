@@ -22,7 +22,7 @@ LockProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request,
 LockProvider(Request request, String deviceId,
     {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
     : super(request, deviceId, getDetails: getDetails) {
-  _request = request;
+  this._request = request;
 }
 ```
 
