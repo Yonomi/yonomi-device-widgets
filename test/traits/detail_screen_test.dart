@@ -13,6 +13,8 @@ import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -191,12 +193,16 @@ void main() {
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       LockTrait(IsLocked(false)),
       UnknownTrait('unknown'),
-      BatteryLevelTrait(BatteryLevel(100))
+      BatteryLevelTrait(BatteryLevel(100)),
+      PowerTrait(IsOnOff(true)),
+      LockTrait(IsLocked(false))
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
     expect(find.byType(UnknownItemIcon), findsOneWidget);
     expect(find.byType(BatterySlimWidget), findsOneWidget);
+    expect(find.byType(LockSlimWidget), findsOneWidget);
+    expect(find.byType(PowerSlimWidget), findsOneWidget);
 
     final batteryWidget =
         tester.widget<BatterySlimWidget>(find.byType(BatterySlimWidget));
