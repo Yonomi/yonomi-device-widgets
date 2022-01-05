@@ -34,7 +34,6 @@ class BatteryLevelProvider extends ChangeNotifier {
       _setState = WidgetState.idle;
     } catch (error) {
       _setErrorState(error.toString());
-      return null;
     }
   }
 
@@ -59,7 +58,7 @@ class BatteryLevelProvider extends ChangeNotifier {
               .firstWhere((trait) => trait.runtimeType == BatteryLevelTrait)
           as BatteryLevelTrait?;
     } catch (error) {
-      return null;
+      _setErrorState(error.toString());
     }
   }
 

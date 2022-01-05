@@ -44,7 +44,6 @@ class PowerTraitProvider extends ChangeNotifier {
       _setState = WidgetState.idle;
     } catch (error) {
       _setErrorState(error.toString());
-      return null;
     }
   }
 
@@ -82,7 +81,7 @@ class PowerTraitProvider extends ChangeNotifier {
     try {
       return _deviceDetail?.traits.first as PowerTrait?;
     } catch (error) {
-      return null;
+      _setErrorState(error.toString());
     }
   }
 
