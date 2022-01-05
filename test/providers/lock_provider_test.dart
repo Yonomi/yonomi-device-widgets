@@ -81,7 +81,32 @@ void main() {
 
     await lockProvider.fetchData(getDetails: mockLockDetailsMethod);
 
-    expect(lockProvider.deviceDetail?.displayName, 'name');
+    expect(lockProvider.displayName, 'name');
+    expect(lockProvider.isLoading, equals(false));
+    expect(lockProvider.isInErrorState, equals(false));
+    expect(lockProvider.isBusy, equals(false));
+    expect(lockProvider.isPerformingAction, equals(false));
+    expect(lockProvider.isLocked, true);
+  });
+
+  test("""When loading device data, we are notified that it is loading
+        through isLoading.""", () {
+    Request request = Request("", {});
+    Device device = _getDevice(true);
+
+    final mockLockDetailsMethod = MockGetDeviceDetailsMethod();
+    when(mockLockDetailsMethod.call(request, device.id))
+        .thenAnswer((_) => Future.value(device));
+    LockProvider lockProvider =
+        LockProvider(request, device.id, getDetails: mockLockDetailsMethod);
+
+    expect(lockProvider.isLoading, equals(true), reason: 'isLoading');
+    expect(lockProvider.displayName, 'LOCK');
+    expect(lockProvider.isInErrorState, equals(false));
+    expect(lockProvider.isBusy, equals(true));
+    expect(lockProvider.isPerformingAction, equals(false));
+
+    expect(lockProvider.isLocked, false);
   });
 }
 

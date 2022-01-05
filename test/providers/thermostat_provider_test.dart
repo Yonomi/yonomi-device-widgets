@@ -99,8 +99,12 @@ void main() {
     await thermostatProvider.fetchData(
         getDetails: mockGetThermostatDetailsFunction);
 
-    expect(thermostatProvider.deviceDetail?.displayName, 'someDisplayName');
     expect(thermostatProvider.thermostatTargetTemperature, 23.1);
+    expect(thermostatProvider.displayName, 'someDisplayName');
+    expect(thermostatProvider.isLoading, equals(false));
+    expect(thermostatProvider.isInErrorState, equals(false));
+    expect(thermostatProvider.isBusy, equals(false));
+    expect(thermostatProvider.isPerformingAction, equals(false));
   });
 }
 

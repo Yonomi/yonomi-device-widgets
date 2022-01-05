@@ -71,6 +71,7 @@ void main() {
       expect(powerProvider.isBusy, equals(false), reason: 'is in busy state');
       expect(powerProvider.isInErrorState, equals(false),
           reason: 'is in error state');
+      expect(powerProvider.displayName, equals('name'));
     });
 
     test("""When performing action, we are notified that it is performing
@@ -156,10 +157,12 @@ void main() {
         throw (exceptionMesssage);
       });
 
-      PowerTraitProvider powerProvider = await PowerTraitProvider(request, deviceId,
+      PowerTraitProvider powerProvider = await PowerTraitProvider(
+          request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       expect(powerProvider.isInErrorState, equals(true));
+      expect(powerProvider.displayName, equals('POWER'));
       expect(powerProvider.getErrorMessage, equals(exceptionMesssage));
     });
 

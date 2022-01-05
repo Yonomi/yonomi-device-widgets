@@ -12,7 +12,7 @@ class LockProvider extends DeviceProvider {
   LockProvider(Request request, String deviceId,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
       : super(request, deviceId, getDetails: getDetails) {
-    _request = request;
+    this._request = request;
   }
 
   late final Request _request;
@@ -21,7 +21,7 @@ class LockProvider extends DeviceProvider {
 
   LockTrait? getLockTrait() {
     return deviceDetail?.traits
-        .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait;
+        .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait?;
   }
 
   Future<void> setLockUnlockAction(String deviceId, bool setLock,
