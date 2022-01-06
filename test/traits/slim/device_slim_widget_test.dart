@@ -33,7 +33,20 @@ void main() {
   final device = test.device([UnknownTrait('name')]);
 
   testWidgets(
-      'When a widget is loading a circular progress indicator is displayed',
+      'When a content widget is loading a circular progress indicator is displayed',
+      (WidgetTester tester) async {
+    final provider = test.mockBatteryLevelProvider(device);
+    when(provider.isLoading).thenReturn(true);
+
+    final testWidget = TestWidget(provider, Text('Content'));
+    await tester.pumpWidget(createMaterialApp(testWidget));
+
+    expect(provider.isLoading, equals(true));
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets(
+      'When a no content widget is loading a circular progress indicator is displayed',
       (WidgetTester tester) async {
     final provider = test.mockBatteryLevelProvider(device);
     when(provider.isLoading).thenReturn(true);

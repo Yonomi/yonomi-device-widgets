@@ -256,4 +256,12 @@ void main() {
     expect(batteryWidget.headerText.style?.color,
         WidgetStyleConstants.globalWarningColor);
   });
+
+  testWidgets('Detail screen returns a multiprovider',
+      (WidgetTester tester) async {
+    final detailScreen =
+        DetailScreen(request: Request('', {}), deviceId: 'deviceId');
+    expect(
+        detailScreen.build(MockBuildContext()), isInstanceOf<MultiProvider>());
+  });
 }
