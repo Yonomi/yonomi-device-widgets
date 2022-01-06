@@ -30,7 +30,7 @@
 
 ## Constructors
 
-[BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget/BatterySlimWidget.md) (dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget/BatterySlimWidget.md) (dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 

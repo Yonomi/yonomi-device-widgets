@@ -10,7 +10,7 @@
 
 
 
-BatterySlimWidget(dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+BatterySlimWidget(dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
 
 
@@ -20,9 +20,10 @@ BatterySlimWidget(dynamic _batteryLevelTraitProvider, {[Color](https://api.flutt
 
 ```dart
 BatterySlimWidget(_batteryLevelTraitProvider,
-    {Color? backgroundColor, Key? key})
+    {Color? backgroundColor, Widget? content, Key? key})
     : super(
         provider: _batteryLevelTraitProvider,
+        content: content,
         backgroundColor: backgroundColor,
         leftIcon:
             _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
@@ -32,6 +33,7 @@ BatterySlimWidget(_batteryLevelTraitProvider,
                 fontSize: 20,
                 color: _getBatteryLevelTextColor(
                     _batteryLevelTraitProvider.getBatteryLevel))),
+        key: key,
       );
 ```
 

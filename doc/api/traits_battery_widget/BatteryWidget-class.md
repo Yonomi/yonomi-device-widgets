@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
+[BatteryWidget](../traits_battery_widget/BatteryWidget/BatteryWidget.md) ([BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) iconSize = 100.0, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 

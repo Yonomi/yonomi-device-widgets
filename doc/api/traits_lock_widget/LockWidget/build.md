@@ -82,14 +82,15 @@ Widget build(BuildContext context) {
             Container(
               child: Center(
                 child: SizedBox(
-                    width: 100,
-                    height: 100,
+                    width: _iconSize,
+                    height: _iconSize,
                     child: _lockProvider.isPerformingAction
                         ? CircularProgressIndicator()
                         : _lockProvider.isLocked
-                            ? LockIcon(true, size: 100.0, color: _iconColor)
+                            ? LockIcon(true,
+                                size: _iconSize, color: _iconColor)
                             : LockIcon(false,
-                                size: 100.0, color: _iconColor)),
+                                size: _iconSize, color: _iconColor)),
               ),
             ),
             SizedBox(

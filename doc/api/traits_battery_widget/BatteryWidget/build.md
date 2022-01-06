@@ -63,7 +63,10 @@ Widget build(BuildContext context) {
   if (_batteryLevelProvider.isLoading) {
     return CircularProgressIndicator();
   } else if (_batteryLevelProvider.isInErrorState) {
-    return Icon(Icons.error);
+    return Icon(
+      Icons.error,
+      color: WidgetStyleConstants.globalWarningColor,
+    );
   } else {
     final batteryLevel = _batteryLevelProvider.getBatteryLevel;
     return Column(
@@ -96,11 +99,11 @@ Widget build(BuildContext context) {
           ),
           Container(
             child: SizedBox(
-              width: 100.0,
-              height: 100.0,
+              width: _iconSize,
+              height: _iconSize,
               child: BatteryLevelIcon(
                 batteryLevel,
-                size: 100.0,
+                size: _iconSize,
                 color: _iconColor,
               ),
             ),

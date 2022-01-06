@@ -10,7 +10,7 @@
 
 
 
-PowerWidget([PowerTraitProvider](../../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceIconColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = Colors.white})
+PowerWidget([PowerTraitProvider](../../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) iconSize = 100.0, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
 
 
@@ -20,10 +20,14 @@ PowerWidget([PowerTraitProvider](../../providers_power_trait_provider/PowerTrait
 
 ```dart
 PowerWidget(this._powerTraitProvider,
-    {Color iconColor = WidgetStyleConstants.deviceIconColor,
-    Color textColor = Colors.white}) {
+    {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+    Color textColor = WidgetStyleConstants.darkTextColor,
+    double iconSize = 100.0,
+    Key? key})
+    : super(key: key) {
   this._iconColor = iconColor;
   this._textColor = textColor;
+  this._iconSize = iconSize;
 }
 ```
 
