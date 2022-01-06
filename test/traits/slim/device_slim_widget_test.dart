@@ -8,8 +8,10 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/battery_widget_testing.dart';
 import '../mixins/device_testing.dart';
+import '../mixins/power_widget_testing.dart';
 
-class DeviceSlimWidgetTest with DeviceTesting, BatteryWidgetTesting {}
+class DeviceSlimWidgetTest
+    with DeviceTesting, BatteryWidgetTesting, PowerWidgetTesting {}
 
 class TestWidget extends DeviceSlimWidget {
   TestWidget(DeviceProvider provider, [Widget? content])
@@ -33,15 +35,18 @@ void main() {
   final device = test.device([UnknownTrait('name')]);
 
   testWidgets(
-      'When a content widget is loading a circular progress indicator is displayed',
+      'When a content widget is performing an action a circular progress indicator is displayed',
       (WidgetTester tester) async {
-    final provider = test.mockBatteryLevelProvider(device);
-    when(provider.isLoading).thenReturn(true);
+    final device = test.device([PowerTrait(IsOnOff(false))]);
+    final provider = test.mockPowerTraitProvider(device);
+
+    when(provider.isLoading).thenReturn(false);
+    when(provider.isPerformingAction).thenReturn(true);
 
     final testWidget = TestWidget(provider, Text('Content'));
     await tester.pumpWidget(createMaterialApp(testWidget));
 
-    expect(provider.isLoading, equals(true));
+    expect(provider.isPerformingAction, equals(true));
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
