@@ -20,7 +20,7 @@ abstract class DeviceProvider extends ChangeNotifier {
     fetchData(getDetails: getDetails);
   }
 
-  Future<Device?> fetchData(
+  Future<void> fetchData(
       {GetDeviceDetailsMethod getDetails =
           DevicesRepository.getDeviceDetails}) async {
     setState = WidgetState.loading;
@@ -30,10 +30,7 @@ abstract class DeviceProvider extends ChangeNotifier {
       setState = WidgetState.idle;
     } catch (error) {
       setErrorState(error.toString());
-      return null;
     }
-
-    return _deviceDetail;
   }
 
   set setState(WidgetState newState) {

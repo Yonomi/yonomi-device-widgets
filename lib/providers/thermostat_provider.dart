@@ -20,7 +20,9 @@ class ThermostatProvider extends DeviceProvider {
   late Request _request;
 
   ThermostatTrait? getThermostatTrait() {
-    return deviceDetail?.traits.first as ThermostatTrait?;
+    return deviceDetail?.traits
+            .firstWhere((trait) => trait.runtimeType == ThermostatTrait)
+        as ThermostatTrait?;
   }
 
   Future<void> setPointAction(String deviceId, double temperature,

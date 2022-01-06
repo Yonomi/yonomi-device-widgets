@@ -22,15 +22,13 @@ class TraitDetailProvider extends ChangeNotifier {
     fetchData(getDetails: getDetails);
   }
 
-  Future<Device?> fetchData(
+  Future<void> fetchData(
       {GetDetailsFunction getDetails =
           DevicesRepository.getDeviceDetails}) async {
     setLoading = true;
 
     _deviceDetail = await getDetails(_request, _deviceId);
     setLoading = false;
-
-    return _deviceDetail;
   }
 
   set setLoading(bool newLoading) {

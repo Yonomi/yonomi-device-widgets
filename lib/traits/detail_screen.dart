@@ -29,11 +29,11 @@ class DetailScreen extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<TraitDetailProvider>(
             create: (context) => TraitDetailProvider(request, deviceId)),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LockProvider>(
             create: (context) => LockProvider(request, deviceId)),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<PowerTraitProvider>(
             create: (context) => PowerTraitProvider(request, deviceId)),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<BatteryLevelProvider>(
             create: (context) => BatteryLevelProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
