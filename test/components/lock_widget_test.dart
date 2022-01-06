@@ -44,8 +44,7 @@ void main() {
     when(mockProvider.isLoading).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 
-    expect(find.byWidgetPredicate((w) => w is CircularProgressIndicator),
-        findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
   testWidgets('Lock Widget shows device name', (WidgetTester tester) async {
@@ -92,5 +91,16 @@ void main() {
     await tester.tap(find.byIcon(BootstrapIcons.lock));
 
     verify(mockProvider.setLockUnlockAction(any, any)).called(1);
+  });
+
+  testWidgets(
+      'Circular progress indicator should be shown when performing action',
+      (WidgetTester tester) async {
+    when(mockProvider.isLoading).thenReturn(false);
+    when(mockProvider.isPerformingAction).thenReturn(true);
+    when(mockProvider.isLocked).thenReturn(true);
+    await tester.pumpWidget(getAppWithLockWidget());
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 }
