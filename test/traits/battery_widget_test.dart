@@ -65,7 +65,7 @@ void main() {
     expect(find.byType(BatteryLevelIcon), findsOneWidget);
     expect(find.byIcon(BootstrapIcons.battery_half), findsOneWidget);
     expect(tester.widget<Text>((find.textContaining(' Battery'))).style?.color,
-        Colors.white);
+        WidgetStyleConstants.darkTextColor);
   });
 
   testWidgets('When battery level is high, should show full battery icon',

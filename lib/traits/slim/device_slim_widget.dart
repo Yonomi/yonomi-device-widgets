@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class DeviceSlimWidget extends StatelessWidget {
   final Widget leftIcon;
@@ -42,6 +43,8 @@ class DeviceSlimWidget extends StatelessWidget {
       title: headerText,
       tilePadding: EdgeInsets.all(0.0),
       children: [content!],
+      collapsedIconColor: WidgetStyleConstants.globalSuccessColor,
+      iconColor: WidgetStyleConstants.deviceIconColor,
       key: key,
     );
   }

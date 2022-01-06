@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
@@ -126,7 +125,13 @@ class DetailScreenWidget extends StatelessWidget {
         return Consumer<BatteryLevelProvider>(
             builder: (_, batteryLevelProvider, child) {
           return BatterySlimWidget(batteryLevelProvider,
-              backgroundColor: backgroundColor);
+              backgroundColor: backgroundColor,
+              content: BatteryWidget(
+                batteryLevelProvider,
+                iconSize: 100.0,
+                textColor: WidgetStyleConstants.darkTextColor,
+                iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
+              ));
         });
       default:
         return DeviceSlimWidget(

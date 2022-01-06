@@ -7,12 +7,17 @@ class BatteryWidget extends StatelessWidget {
   final BatteryLevelProvider _batteryLevelProvider;
   late final Color _iconColor;
   late final Color _textColor;
+  late final double _iconSize;
 
   BatteryWidget(this._batteryLevelProvider,
-      {Color iconColor = WidgetStyleConstants.deviceIconColor,
-      Color textColor = Colors.white}) {
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.darkTextColor,
+      double iconSize = 100.0,
+      Key? key})
+      : super(key: key) {
     this._iconColor = iconColor;
     this._textColor = textColor;
+    this._iconSize = iconSize;
   }
 
   @override
@@ -20,7 +25,10 @@ class BatteryWidget extends StatelessWidget {
     if (_batteryLevelProvider.isLoading) {
       return CircularProgressIndicator();
     } else if (_batteryLevelProvider.isInErrorState) {
-      return Icon(Icons.error);
+      return Icon(
+        Icons.error,
+        color: WidgetStyleConstants.globalWarningColor,
+      );
     } else {
       final batteryLevel = _batteryLevelProvider.getBatteryLevel;
       return Column(
@@ -53,11 +61,11 @@ class BatteryWidget extends StatelessWidget {
             ),
             Container(
               child: SizedBox(
-                width: 100.0,
-                height: 100.0,
+                width: _iconSize,
+                height: _iconSize,
                 child: BatteryLevelIcon(
                   batteryLevel,
-                  size: 100.0,
+                  size: _iconSize,
                   color: _iconColor,
                 ),
               ),

@@ -8,12 +8,17 @@ class PowerWidget extends StatelessWidget {
   final PowerTraitProvider _powerTraitProvider;
   late final Color _iconColor;
   late final Color _textColor;
+  late final double _iconSize;
 
   PowerWidget(this._powerTraitProvider,
-      {Color iconColor = WidgetStyleConstants.deviceIconColor,
-      Color textColor = Colors.white}) {
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.darkTextColor,
+      double iconSize = 100.0,
+      Key? key})
+      : super(key: key) {
     this._iconColor = iconColor;
     this._textColor = textColor;
+    this._iconSize = iconSize;
   }
 
   @override
@@ -45,10 +50,10 @@ class PowerWidget extends StatelessWidget {
           Container(
             child: Center(
               child: SizedBox(
-                  width: 100,
-                  height: 100,
+                  width: _iconSize,
+                  height: _iconSize,
                   child: PowerItemIcon(onOffState,
-                      size: 100.0, color: _iconColor)),
+                      size: _iconSize, color: _iconColor)),
             ),
           ),
           SizedBox(

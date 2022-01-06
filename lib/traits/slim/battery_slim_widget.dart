@@ -5,9 +5,10 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class BatterySlimWidget extends DeviceSlimWidget {
   BatterySlimWidget(_batteryLevelTraitProvider,
-      {Color? backgroundColor, Key? key})
+      {Color? backgroundColor, Widget? content, Key? key})
       : super(
           provider: _batteryLevelTraitProvider,
+          content: content,
           backgroundColor: backgroundColor,
           leftIcon:
               _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
@@ -17,6 +18,7 @@ class BatterySlimWidget extends DeviceSlimWidget {
                   fontSize: 20,
                   color: _getBatteryLevelTextColor(
                       _batteryLevelTraitProvider.getBatteryLevel))),
+          key: key,
         );
 
   static BatteryLevelIcon _getBatteryLevelIcon(int batteryLevel) {

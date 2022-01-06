@@ -8,12 +8,17 @@ class LockWidget extends StatelessWidget {
   final LockProvider _lockProvider;
   late final Color _iconColor;
   late final Color _textColor;
+  late final double _iconSize;
 
   LockWidget(this._lockProvider,
-      {Color iconColor = WidgetStyleConstants.deviceIconColor,
-      Color textColor = Colors.white}) {
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.darkTextColor,
+      double iconSize = 100,
+      Key? key})
+      : super(key: key) {
     this._iconColor = iconColor;
     this._textColor = textColor;
+    this._iconSize = iconSize;
   }
 
   @override
@@ -40,14 +45,15 @@ class LockWidget extends StatelessWidget {
               Container(
                 child: Center(
                   child: SizedBox(
-                      width: 100,
-                      height: 100,
+                      width: _iconSize,
+                      height: _iconSize,
                       child: _lockProvider.isPerformingAction
                           ? CircularProgressIndicator()
                           : _lockProvider.isLocked
-                              ? LockIcon(true, size: 100.0, color: _iconColor)
+                              ? LockIcon(true,
+                                  size: _iconSize, color: _iconColor)
                               : LockIcon(false,
-                                  size: 100.0, color: _iconColor)),
+                                  size: _iconSize, color: _iconColor)),
                 ),
               ),
               SizedBox(
