@@ -205,6 +205,15 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T state, T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+_inherited_
+
+
+
 ##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
@@ -253,26 +262,6 @@ The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/op
 _inherited_
 
 
-
-
-
-
-## Constants
-
-##### [MAX_RETRIES](../providers_power_trait_provider/PowerTraitProvider/MAX_RETRIES-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
-
-
-
-
-##### [RETRY_DELAY_MS](../providers_power_trait_provider/PowerTraitProvider/RETRY_DELAY_MS-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
 
 
 
