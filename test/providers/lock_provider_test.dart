@@ -17,23 +17,6 @@ class SendLockUnlock extends Mock {
 
 @GenerateMocks([GetDeviceDetailsMethod, SendLockUnlock])
 void main() {
-  test('Calling setLockUnlockAction calls repository method', () async {
-    Request request = Request("", {});
-    final mockLockDetailsMethod = MockGetDeviceDetailsMethod();
-    final device = _getDevice(true);
-    when(mockLockDetailsMethod.call(request, "deviceId"))
-        .thenAnswer((_) => Future.value(device));
-    final mockSendLockUnlockMethod = MockSendLockUnlock();
-    LockProvider lockProvider =
-        LockProvider(request, 'deviceId', getDetails: mockLockDetailsMethod);
-    await lockProvider.setLockUnlockAction('deviceId', true,
-        getDetails: mockLockDetailsMethod,
-        sendLockUnlock: mockSendLockUnlockMethod);
-    verify(mockLockDetailsMethod(request, 'deviceId')).called(1);
-
-    verify(mockSendLockUnlockMethod(request, 'deviceId', true)).called(1);
-  });
-
   test(
       'setLockUnlockAction will retry calling repository method multiple times if state value has not yet changed',
       () async {

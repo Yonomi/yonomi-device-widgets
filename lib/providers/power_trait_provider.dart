@@ -1,13 +1,10 @@
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
-import 'package:yonomi_device_widgets/providers/widget_state.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef SendPowerMethod = Future<void> Function(
     Request request, String id, bool onOff);
 
 class PowerTraitProvider extends DeviceProvider {
-  static const int MAX_RETRIES = 10;
-  static const int RETRY_DELAY_MS = 750;
   static const _DEFAULT_DISPLAY_NAME = 'POWER';
 
   late String _deviceId;
@@ -30,26 +27,9 @@ class PowerTraitProvider extends DeviceProvider {
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendPowerMethod sendPowerMethod =
           PowerRepository.sendPowerAction}) async {
-    if (!isPerformingAction) {
-      setState = WidgetState.performingAction;
-
-      try {
-        await sendPowerMethod(_request, this._deviceId, desiredOnOffState);
-
-        int numRetries = 0;
-        while (getOnOffState != desiredOnOffState && numRetries < MAX_RETRIES) {
-          await getDetails(_request, _deviceId);
-
-          await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
-          numRetries++;
-        }
-        setState = WidgetState.idle;
-      } catch (error) {
-        setErrorState(error.toString());
-        await Future.delayed(Duration(seconds: 1))
-            .then((_) => setState = WidgetState.idle);
-      }
-    }
+    return performAction<bool>(getOnOffState, desiredOnOffState,
+        () => sendPowerMethod(_request, this._deviceId, desiredOnOffState),
+        getDetails: getDetails);
   }
 
   PowerTrait? getPowerTrait() {

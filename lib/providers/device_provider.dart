@@ -6,6 +6,9 @@ typedef GetDeviceDetailsMethod = Future<Device> Function(
     Request request, String id);
 
 abstract class DeviceProvider extends ChangeNotifier {
+  static const int MAX_RETRIES = 10;
+  static const int RETRY_DELAY_MS = 750;
+
   late String _deviceId;
   late Request _request;
   WidgetState _state = WidgetState.idle;
@@ -48,6 +51,32 @@ abstract class DeviceProvider extends ChangeNotifier {
   set _setErrorMessage(String errorMsg) {
     if (errorMsg.isEmpty) errorMsg = "An error occurred.";
     _latestErrorMsg = errorMsg;
+  }
+
+  Future<void> performAction<T>(T state, T desiredState, Function action,
+      {GetDeviceDetailsMethod getDetails =
+          DevicesRepository.getDeviceDetails}) async {
+    if (!isPerformingAction) {
+      setState = WidgetState.performingAction;
+
+      try {
+        await action.call();
+
+        int numRetries = 0;
+        while (state != desiredState && numRetries < MAX_RETRIES) {
+          await getDetails(_request, _deviceId);
+
+          await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
+          numRetries++;
+        }
+
+        setState = WidgetState.idle;
+      } catch (error) {
+        setErrorState(error.toString());
+        await Future.delayed(Duration(seconds: 1))
+            .then((_) => setState = WidgetState.idle);
+      }
+    }
   }
 
   String get displayName;

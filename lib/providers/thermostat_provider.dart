@@ -28,12 +28,14 @@ class ThermostatProvider extends DeviceProvider {
   Future<void> setPointAction(String deviceId, double temperature,
       {SetPointActionFunction setPoint =
           ThermostatRepository.setPointThermostat}) async {
-    setPoint(_request, deviceId, temperature);
+    return performAction<double>(thermostatTargetTemperature, temperature,
+        () => setPoint(_request, deviceId, temperature));
   }
 
   Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
       {SetModeFunction setMode = ThermostatRepository.setMode}) async {
-    setMode(_request, deviceId, mode);
+    return performAction<GThermostatMode?>(getThermostatTrait()?.state.value,
+        mode, () => setMode(_request, deviceId, mode));
   }
 
   double get thermostatTargetTemperature =>
