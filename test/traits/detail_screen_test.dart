@@ -204,6 +204,8 @@ void main() {
     expect(find.byType(LockSlimWidget), findsOneWidget);
     expect(find.byType(PowerSlimWidget), findsOneWidget);
 
+    expect(find.byType(MultiProvider), findsOneWidget);
+
     final batteryWidget =
         tester.widget<BatterySlimWidget>(find.byType(BatterySlimWidget));
     expect(batteryWidget.headerText.data, contains('Battery Level: 100%'));

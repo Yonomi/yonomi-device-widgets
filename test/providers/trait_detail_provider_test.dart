@@ -35,5 +35,6 @@ void main() {
 
     verify(mockGetDetailsMethod(request, 'test')).called(2);
     expect(traitBasedNotifier.deviceDetail!.displayName, equals("name"));
+    expect(traitBasedNotifier.isLoading, equals(false));
   });
 }
