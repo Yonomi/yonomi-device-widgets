@@ -26,7 +26,7 @@
 ```dart
 PowerTrait? getPowerTrait() {
   return deviceDetail?.traits.firstWhere((element) => element is PowerTrait,
-      orElse: null) as PowerTrait;
+      orElse: null) as PowerTrait?;
 }
 ```
 

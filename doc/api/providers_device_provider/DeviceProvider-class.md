@@ -165,7 +165,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;[Device](https://yonomi.co/yonomi-sdk/Device-class.html)?>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
