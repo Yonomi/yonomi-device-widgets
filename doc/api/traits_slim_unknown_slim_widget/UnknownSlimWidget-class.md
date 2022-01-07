@@ -1,7 +1,7 @@
 
 
 
-# DeviceSlimWidget class
+# UnknownSlimWidget class
 
 
 
@@ -20,22 +20,17 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- DeviceSlimWidget
+- [DeviceSlimWidget](../traits_slim_device_slim_widget/DeviceSlimWidget-class.md)
+- UnknownSlimWidget
 
 
 
-**Implementers**
-
-- [BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget-class.md)
-- [LockSlimWidget](../traits_slim_lock_slim_widget/LockSlimWidget-class.md)
-- [PowerSlimWidget](../traits_slim_power_slim_widget/PowerSlimWidget-class.md)
-- [UnknownSlimWidget](../traits_slim_unknown_slim_widget/UnknownSlimWidget-class.md)
 
 
 
 ## Constructors
 
-[DeviceSlimWidget](../traits_slim_device_slim_widget/DeviceSlimWidget/DeviceSlimWidget.md) ({[DeviceProvider](../providers_device_provider/DeviceProvider-class.md)? provider, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) leftIcon, required [Text](https://api.flutter.dev/flutter/widgets/Text-class.html) headerText, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? rightIcon, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[UnknownSlimWidget](../traits_slim_unknown_slim_widget/UnknownSlimWidget/UnknownSlimWidget.md) ([String](https://api.flutter.dev/flutter/dart-core/String-class.html) headerText, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
@@ -47,7 +42,7 @@
 
 
    
-_final_
+_final, inherited_
 
 
 
@@ -56,7 +51,7 @@ _final_
 
 
    
-_final_
+_final, inherited_
 
 
 
@@ -74,7 +69,7 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 
    
-_final_
+_final, inherited_
 
 
 
@@ -92,7 +87,7 @@ _final, inherited_
 
 
    
-_final_
+_final, inherited_
 
 
 
@@ -101,7 +96,7 @@ _final_
 
 
    
-_final_
+_final, inherited_
 
 
 
@@ -110,7 +105,7 @@ _final_
 
 
    
-_final_
+_final, inherited_
 
 
 
@@ -131,7 +126,7 @@ _read-only, inherited_
 
 
 Describes the part of the user interface represented by this widget. [...](../traits_slim_device_slim_widget/DeviceSlimWidget/build.md)  
-_override_
+_inherited_
 
 
 

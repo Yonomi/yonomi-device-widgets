@@ -104,11 +104,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
@@ -157,6 +157,10 @@ open coverage/html/index.html
 
 
 ##### [unknown_item_icon](assets_traits_unknown_item_icon/assets_traits_unknown_item_icon-library.md)
+ 
+
+
+##### [unknown_slim_widget](traits_slim_unknown_slim_widget/traits_slim_unknown_slim_widget-library.md)
  
 
 
