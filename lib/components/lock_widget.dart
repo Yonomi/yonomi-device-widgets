@@ -50,7 +50,7 @@ class LockWidget extends StatelessWidget {
   }
 
   Widget getLockStateIcon(LockProvider lockProvider) {
-    return (lockProvider.isLoading || lockProvider.isPerformingAction)
+    return (lockProvider.isBusy)
         ? Center(child: CircularProgressIndicator())
         : DeviceItemIcon.buildLockUnlockIcon(
             lockProvider.isLocked,

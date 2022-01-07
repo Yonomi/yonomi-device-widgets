@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../../components/lock_widget_test.mocks.dart';
+import 'lock_widget_testing.mocks.dart';
 
 @GenerateMocks([LockProvider])
 mixin LockWidgetTesting {
@@ -15,6 +15,7 @@ mixin LockWidgetTesting {
     final mockLockProvider = MockLockProvider();
     when(mockLockProvider.isLoading).thenReturn(isLoading);
     when(mockLockProvider.isPerformingAction).thenReturn(isPerformingAction);
+    when(mockLockProvider.isBusy).thenReturn(isPerformingAction || isLoading);
     when(mockLockProvider.isLocked).thenReturn(isLocked);
     when(mockLockProvider.isInErrorState).thenReturn(isInErrorState);
     when(mockLockProvider.deviceDetail).thenReturn(device);

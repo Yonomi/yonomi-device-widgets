@@ -1,7 +1,6 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/components/lock_widget.dart';
@@ -9,9 +8,8 @@ import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'lock_widget_test.mocks.dart';
+import '../traits/mixins/lock_widget_testing.mocks.dart';
 
-@GenerateMocks([LockProvider])
 void main() {
   final mockProvider = MockLockProvider();
   final device = Device(
@@ -37,6 +35,7 @@ void main() {
     when(mockProvider.deviceDetail).thenReturn(device);
     when(mockProvider.setLockUnlockAction(any, any))
         .thenAnswer((_) => Future.value());
+    when(mockProvider.isBusy).thenReturn(false);
   });
 
   testWidgets('Circular progress indicator should be shown when loading',
@@ -85,6 +84,7 @@ void main() {
       (WidgetTester tester) async {
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(false);
+    when(mockProvider.isBusy).thenReturn(false);
     when(mockProvider.isLocked).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 
@@ -99,6 +99,7 @@ void main() {
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(true);
     when(mockProvider.isLocked).thenReturn(true);
+    when(mockProvider.isBusy).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
