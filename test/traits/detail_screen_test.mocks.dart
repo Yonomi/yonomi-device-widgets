@@ -3,27 +3,26 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i5;
-import 'dart:ui' as _i8;
+import 'dart:ui' as _i7;
 
 import 'package:flutter/material.dart' as _i2;
 import 'package:flutter/src/foundation/diagnostics.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
-    as _i15;
-import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i11;
-import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i9;
+    as _i14;
+import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i10;
+import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i8;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
-    as _i13;
+    as _i12;
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart'
     as _i4;
-import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i10;
+import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i9;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
-    as _i7;
+    as _i6;
 import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
-    as _i12;
+    as _i11;
 import 'package:yonomi_platform_sdk/src/repository/traits/power_repository.dart'
-    as _i14;
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i6;
+    as _i13;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -75,18 +74,19 @@ class MockTraitDetailProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i5.Future<_i6.Device?> fetchData(
+  _i5.Future<void> fetchData(
           {_i4.GetDetailsFunction? getDetails =
-              _i7.DevicesRepository.getDeviceDetails}) =>
+              _i6.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
-          returnValue: Future<_i6.Device?>.value()) as _i5.Future<_i6.Device?>);
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  void addListener(_i8.VoidCallback? listener) =>
+  void addListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i8.VoidCallback? listener) =>
+  void removeListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -103,7 +103,7 @@ class MockTraitDetailProvider extends _i1.Mock
 /// A class which mocks [LockProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLockProvider extends _i1.Mock implements _i9.LockProvider {
+class MockLockProvider extends _i1.Mock implements _i8.LockProvider {
   MockLockProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -117,7 +117,7 @@ class MockLockProvider extends _i1.Mock implements _i9.LockProvider {
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);
   @override
-  set setState(_i10.WidgetState? newState) =>
+  set setState(_i9.WidgetState? newState) =>
       super.noSuchMethod(Invocation.setter(#setState, newState),
           returnValueForMissingStub: null);
   @override
@@ -146,32 +146,42 @@ class MockLockProvider extends _i1.Mock implements _i9.LockProvider {
           as bool);
   @override
   _i5.Future<void> setLockUnlockAction(String? deviceId, bool? setLock,
-          {_i11.GetDeviceDetailsMethod? getDetails =
-              _i7.DevicesRepository.getDeviceDetails,
-          _i9.SendLockUnlockFunction? sendLockUnlock =
-              _i12.LockRepository.sendLockUnlockAction}) =>
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails,
+          _i8.SendLockUnlockFunction? sendLockUnlock =
+              _i11.LockRepository.sendLockUnlockAction}) =>
       (super.noSuchMethod(
           Invocation.method(#setLockUnlockAction, [deviceId, setLock],
               {#getDetails: getDetails, #sendLockUnlock: sendLockUnlock}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  _i5.Future<_i6.Device?> fetchData(
-          {_i11.GetDeviceDetailsMethod? getDetails =
-              _i7.DevicesRepository.getDeviceDetails}) =>
+  _i5.Future<void> fetchData(
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
-          returnValue: Future<_i6.Device?>.value()) as _i5.Future<_i6.Device?>);
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
   void setErrorState(String? errorMsg) =>
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  void addListener(_i8.VoidCallback? listener) =>
+  _i5.Future<void> performAction<T>(T? state, T? desiredState, Function? action,
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#performAction, [state, desiredState, action],
+              {#getDetails: getDetails}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
+  void addListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i8.VoidCallback? listener) =>
+  void removeListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -189,7 +199,7 @@ class MockLockProvider extends _i1.Mock implements _i9.LockProvider {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPowerTraitProvider extends _i1.Mock
-    implements _i13.PowerTraitProvider {
+    implements _i12.PowerTraitProvider {
   MockPowerTraitProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -203,7 +213,7 @@ class MockPowerTraitProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);
   @override
-  set setState(_i10.WidgetState? newState) =>
+  set setState(_i9.WidgetState? newState) =>
       super.noSuchMethod(Invocation.setter(#setState, newState),
           returnValueForMissingStub: null);
   @override
@@ -232,32 +242,42 @@ class MockPowerTraitProvider extends _i1.Mock
           as bool);
   @override
   _i5.Future<void> sendPowerOnOffAction(bool? desiredOnOffState,
-          {_i11.GetDeviceDetailsMethod? getDetails =
-              _i7.DevicesRepository.getDeviceDetails,
-          _i13.SendPowerMethod? sendPowerMethod =
-              _i14.PowerRepository.sendPowerAction}) =>
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails,
+          _i12.SendPowerMethod? sendPowerMethod =
+              _i13.PowerRepository.sendPowerAction}) =>
       (super.noSuchMethod(
           Invocation.method(#sendPowerOnOffAction, [desiredOnOffState],
               {#getDetails: getDetails, #sendPowerMethod: sendPowerMethod}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  _i5.Future<_i6.Device?> fetchData(
-          {_i11.GetDeviceDetailsMethod? getDetails =
-              _i7.DevicesRepository.getDeviceDetails}) =>
+  _i5.Future<void> fetchData(
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
-          returnValue: Future<_i6.Device?>.value()) as _i5.Future<_i6.Device?>);
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
   void setErrorState(String? errorMsg) =>
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  void addListener(_i8.VoidCallback? listener) =>
+  _i5.Future<void> performAction<T>(T? state, T? desiredState, Function? action,
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#performAction, [state, desiredState, action],
+              {#getDetails: getDetails}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
+  void addListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i8.VoidCallback? listener) =>
+  void removeListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -275,7 +295,7 @@ class MockPowerTraitProvider extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBatteryLevelProvider extends _i1.Mock
-    implements _i15.BatteryLevelProvider {
+    implements _i14.BatteryLevelProvider {
   MockBatteryLevelProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -289,7 +309,7 @@ class MockBatteryLevelProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);
   @override
-  set setState(_i10.WidgetState? newState) =>
+  set setState(_i9.WidgetState? newState) =>
       super.noSuchMethod(Invocation.setter(#setState, newState),
           returnValueForMissingStub: null);
   @override
@@ -317,22 +337,32 @@ class MockBatteryLevelProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i5.Future<_i6.Device?> fetchData(
-          {_i11.GetDeviceDetailsMethod? getDetails =
-              _i7.DevicesRepository.getDeviceDetails}) =>
+  _i5.Future<void> fetchData(
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
-          returnValue: Future<_i6.Device?>.value()) as _i5.Future<_i6.Device?>);
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
   void setErrorState(String? errorMsg) =>
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  void addListener(_i8.VoidCallback? listener) =>
+  _i5.Future<void> performAction<T>(T? state, T? desiredState, Function? action,
+          {_i10.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#performAction, [state, desiredState, action],
+              {#getDetails: getDetails}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
+  void addListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i8.VoidCallback? listener) =>
+  void removeListener(_i7.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

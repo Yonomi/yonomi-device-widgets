@@ -3,20 +3,19 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i4;
-import 'dart:ui' as _i10;
+import 'dart:ui' as _i9;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i8;
+import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i7;
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart'
     as _i2;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i3;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
-    as _i9;
+    as _i8;
 import 'package:yonomi_platform_sdk/src/repository/devices/thermostat_repository.dart'
     as _i5;
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart'
     as _i6;
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i7;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -90,22 +89,32 @@ class MockThermostatProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  _i4.Future<_i7.Device?> fetchData(
-          {_i8.GetDeviceDetailsMethod? getDetails =
-              _i9.DevicesRepository.getDeviceDetails}) =>
+  _i4.Future<void> fetchData(
+          {_i7.GetDeviceDetailsMethod? getDetails =
+              _i8.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
-          returnValue: Future<_i7.Device?>.value()) as _i4.Future<_i7.Device?>);
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
   void setErrorState(String? errorMsg) =>
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  void addListener(_i10.VoidCallback? listener) =>
+  _i4.Future<void> performAction<T>(T? state, T? desiredState, Function? action,
+          {_i7.GetDeviceDetailsMethod? getDetails =
+              _i8.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#performAction, [state, desiredState, action],
+              {#getDetails: getDetails}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

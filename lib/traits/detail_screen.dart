@@ -9,9 +9,9 @@ import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -134,15 +134,9 @@ class DetailScreenWidget extends StatelessWidget {
               ));
         });
       default:
-        return DeviceSlimWidget(
+        return UnknownSlimWidget(
+          trait.name,
           backgroundColor: backgroundColor,
-          leftIcon: UnknownItemIcon(
-            size: 20.0,
-            color: WidgetStyleConstants.deviceDetailIconColorActive,
-          ),
-          headerText: Text(trait.name,
-              style: TextStyle(
-                  fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
         );
     }
   }
