@@ -1,40 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef GetDetailsFunction = Future<Device> Function(
     Request request, String id);
 
-class TraitDetailProvider extends ChangeNotifier {
-  bool _loadingDetail = false;
-
-  late String _deviceId;
-
-  late Request _request;
-
-  Device? _deviceDetail;
-
-  Device? get deviceDetail => _deviceDetail;
-
+class TraitDetailProvider extends DeviceProvider {
   TraitDetailProvider(Request request, String deviceId,
-      {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails}) {
-    _request = request;
-    _deviceId = deviceId;
+      {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails})
+      : super(request, deviceId) {
     fetchData(getDetails: getDetails);
   }
 
-  Future<void> fetchData(
-      {GetDetailsFunction getDetails =
-          DevicesRepository.getDeviceDetails}) async {
-    setLoading = true;
-
-    _deviceDetail = await getDetails(_request, _deviceId);
-    setLoading = false;
-  }
-
-  set setLoading(bool newLoading) {
-    _loadingDetail = newLoading;
-    notifyListeners();
-  }
-
-  bool get isLoading => _loadingDetail;
+  @override
+  String get displayName => deviceDetail?.displayName ?? 'TRAIT';
 }
