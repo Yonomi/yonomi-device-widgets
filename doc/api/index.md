@@ -48,6 +48,10 @@ open coverage/html/index.html
  
 
 
+##### [base_slim_widget](traits_slim_base_slim_widget/traits_slim_base_slim_widget-library.md)
+ 
+
+
 ##### [battery_level_icon](assets_traits_battery_level_icon/assets_traits_battery_level_icon-library.md)
  
 
@@ -84,10 +88,6 @@ open coverage/html/index.html
  
 
 
-##### [device_slim_widget](traits_slim_device_slim_widget/traits_slim_device_slim_widget-library.md)
- 
-
-
 ##### [lock](devices_lock/devices_lock-library.md)
  
 
@@ -104,11 +104,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 

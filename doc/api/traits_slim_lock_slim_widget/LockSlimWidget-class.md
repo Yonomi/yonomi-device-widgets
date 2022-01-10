@@ -20,7 +20,7 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- [DeviceSlimWidget](../traits_slim_device_slim_widget/DeviceSlimWidget-class.md)
+- [BaseSlimWidget](../traits_slim_base_slim_widget/BaseSlimWidget-class.md)
 - LockSlimWidget
 
 
@@ -37,7 +37,7 @@
 
 ## Properties
 
-##### [backgroundColor](../traits_slim_device_slim_widget/DeviceSlimWidget/backgroundColor.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
+##### [backgroundColor](../traits_slim_base_slim_widget/BaseSlimWidget/backgroundColor.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
 
 
 
@@ -46,7 +46,7 @@ _final, inherited_
 
 
 
-##### [content](../traits_slim_device_slim_widget/DeviceSlimWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+##### [content](../traits_slim_base_slim_widget/BaseSlimWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
 
 
 
@@ -64,7 +64,7 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 
 
-##### [headerText](../traits_slim_device_slim_widget/DeviceSlimWidget/headerText.md) &#8594; [Text](https://api.flutter.dev/flutter/widgets/Text-class.html)
+##### [headerText](../traits_slim_base_slim_widget/BaseSlimWidget/headerText.md) &#8594; [Text](https://api.flutter.dev/flutter/widgets/Text-class.html)
 
 
 
@@ -82,7 +82,7 @@ _final, inherited_
 
 
 
-##### [leftIcon](../traits_slim_device_slim_widget/DeviceSlimWidget/leftIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [leftIcon](../traits_slim_base_slim_widget/BaseSlimWidget/leftIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -91,7 +91,7 @@ _final, inherited_
 
 
 
-##### [provider](../traits_slim_device_slim_widget/DeviceSlimWidget/provider.md) &#8594; [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)?
+##### [provider](../traits_slim_base_slim_widget/BaseSlimWidget/provider.md) &#8594; [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)?
 
 
 
@@ -100,7 +100,7 @@ _final, inherited_
 
 
 
-##### [rightIcon](../traits_slim_device_slim_widget/DeviceSlimWidget/rightIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+##### [rightIcon](../traits_slim_base_slim_widget/BaseSlimWidget/rightIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
 
 
 
@@ -121,11 +121,11 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_slim_device_slim_widget/DeviceSlimWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](../traits_slim_base_slim_widget/BaseSlimWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_slim_device_slim_widget/DeviceSlimWidget/build.md)  
+Describes the part of the user interface represented by this widget. [...](../traits_slim_base_slim_widget/BaseSlimWidget/build.md)  
 _inherited_
 
 
