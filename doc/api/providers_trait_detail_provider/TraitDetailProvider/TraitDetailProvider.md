@@ -20,9 +20,8 @@ TraitDetailProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) r
 
 ```dart
 TraitDetailProvider(Request request, String deviceId,
-    {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails}) {
-  _request = request;
-  _deviceId = deviceId;
+    {GetDetailsFunction getDetails = DevicesRepository.getDeviceDetails})
+    : super(request, deviceId) {
   fetchData(getDetails: getDetails);
 }
 ```

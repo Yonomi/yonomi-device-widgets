@@ -32,11 +32,17 @@ Widget createTraitWidgetHeader(String name) {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                LockIcon(lockProvider.isLocked, size: 20.0),
+                LockIcon(
+                  lockProvider.isLocked,
+                  size: 20.0,
+                  color: WidgetStyleConstants.deviceDetailIconColorActive,
+                ),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(lockProvider.getLockTrait().name,
-                        style: TextStyle(fontSize: 20, color: Colors.black))),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: WidgetStyleConstants.darkTextColor))),
               ],
             ));
       });
@@ -46,13 +52,17 @@ Widget createTraitWidgetHeader(String name) {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                PowerItemIcon(powerProvider.getOnOffState, size: 20.0),
+                PowerItemIcon(powerProvider.getOnOffState,
+                    size: 20.0,
+                    color: WidgetStyleConstants.deviceDetailIconColorActive),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                         (powerProvider.getPowerTrait()?.name ??
                             'Power Switch'),
-                        style: TextStyle(fontSize: 20))),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: WidgetStyleConstants.darkTextColor))),
               ],
             ));
       });
@@ -66,15 +76,13 @@ Widget createTraitWidgetHeader(String name) {
               BatteryLevelIcon(
                 batteryLevelTraitProvider.getBatteryLevel,
                 size: 20.0,
+                color: WidgetStyleConstants.deviceDetailIconColorActive,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                     'Battery Level: ${batteryLevelTraitProvider.getBatteryLevel}%',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: _getBatteryLevelColor(
-                            batteryLevelTraitProvider.getBatteryLevel))),
+                    style: TextStyle(fontSize: 20, color: _getBatteryLevelColor(batteryLevelTraitProvider.getBatteryLevel))),
               ),
             ],
           ),
@@ -87,11 +95,14 @@ Widget createTraitWidgetHeader(String name) {
           children: [
             UnknownItemIcon(
               size: 20.0,
+              color: WidgetStyleConstants.deviceDetailIconColorActive,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(name,
-                  style: TextStyle(fontSize: 20, color: Colors.black)),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: WidgetStyleConstants.darkTextColor)),
             ),
           ],
         ),

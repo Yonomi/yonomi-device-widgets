@@ -118,6 +118,15 @@ _read / write_
 
 
 
+##### [darkTextColor](../ui_widget_style_constants/WidgetStyleConstants/darkTextColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
 ##### [defaultArcColor](../ui_widget_style_constants/WidgetStyleConstants/defaultArcColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
 
 

@@ -91,7 +91,16 @@ void main() {
 
     final modeButton = tester.widget<ModeIconButton>(modeIconButtonFinder);
 
-    expect(modeButton.style!.shape!.resolve(pressed), isA<RingBorder>());
+    final border = modeButton.style!.shape!.resolve(pressed);
+    expect(border, isA<RingBorder>());
+
+    final horizontalDim = border?.dimensions.horizontal;
+    final verticalDim = border?.dimensions.vertical;
+
+    final scaleBorder = border?.scale(2);
+
+    expect(horizontalDim! * 2, equals(scaleBorder?.dimensions.horizontal));
+    expect(verticalDim! * 2, equals(scaleBorder?.dimensions.vertical));
   });
 
   testWidgets(

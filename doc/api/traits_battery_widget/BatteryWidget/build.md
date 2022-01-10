@@ -63,7 +63,10 @@ Widget build(BuildContext context) {
   if (_batteryLevelProvider.isLoading) {
     return CircularProgressIndicator();
   } else if (_batteryLevelProvider.isInErrorState) {
-    return Icon(Icons.error);
+    return Icon(
+      Icons.error,
+      color: WidgetStyleConstants.globalWarningColor,
+    );
   } else {
     final batteryLevel = _batteryLevelProvider.getBatteryLevel;
     return Column(
@@ -71,8 +74,11 @@ Widget build(BuildContext context) {
         children: <Widget>[
           Row(children: <Widget>[
             Text(
-              _batteryLevelProvider.displayName,
-              style: Theme.of(context).textTheme.headline6,
+              'BATTERY',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: _textColor),
               textAlign: TextAlign.left,
             ),
           ]),
@@ -93,12 +99,12 @@ Widget build(BuildContext context) {
           ),
           Container(
             child: SizedBox(
-              width: 100.0,
-              height: 100.0,
+              width: _iconSize,
+              height: _iconSize,
               child: BatteryLevelIcon(
                 batteryLevel,
-                size: 100.0,
-                color: Colors.white,
+                size: _iconSize,
+                color: _iconColor,
               ),
             ),
           ),
@@ -107,7 +113,8 @@ Widget build(BuildContext context) {
           ),
           Text(
             "Battery Level: $batteryLevel%",
-            style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
+            style: TextStyle(
+                fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
           ),
         ]);
   }

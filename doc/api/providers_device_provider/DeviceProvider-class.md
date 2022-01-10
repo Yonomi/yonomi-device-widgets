@@ -24,24 +24,47 @@
 
 **Implementers**
 
-- [UnknownProvider](../providers_unknown_provider/UnknownProvider-class.md)
+- [BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md)
+- [LockProvider](../providers_lock_provider/LockProvider-class.md)
+- [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md)
+- [ThermostatProvider](../providers_thermostat_provider/ThermostatProvider-class.md)
+- [TraitDetailProvider](../providers_trait_detail_provider/TraitDetailProvider-class.md)
 
 
 
 ## Constructors
 
-[DeviceProvider](../providers_device_provider/DeviceProvider/DeviceProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetails](../providers_device_provider/GetDeviceDetails.md) getDetails = DevicesRepository.getDeviceDetails})
+[DeviceProvider](../providers_device_provider/DeviceProvider/DeviceProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
 
 ## Properties
 
-##### [deviceDetails](../providers_device_provider/DeviceProvider/deviceDetails.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)
+##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
    
+_read-only_
+
+
+
+##### [displayName](../providers_device_provider/DeviceProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+Get the error message whenever this ChangeNotifier had an error
+See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
 _read-only_
 
 
@@ -64,29 +87,39 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [loadingAction](../providers_device_provider/DeviceProvider/loadingAction.md) &#8596; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isBusy](../providers_device_provider/DeviceProvider/isBusy.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-   
-_read / write_
+To know if this ChangeNotifier is busy from fetching data or running an action   
+_read-only_
 
 
 
-##### [loadingDetail](../providers_device_provider/DeviceProvider/loadingDetail.md) &#8596; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isInErrorState](../providers_device_provider/DeviceProvider/isInErrorState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-   
-_read / write_
+To know if this ChangeNotifier had an error
+see <a href="../providers_device_provider/DeviceProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
+_read-only_
 
 
 
-##### [request](../providers_device_provider/DeviceProvider/request.md) &#8594; [Request](https://yonomi.co/yonomi-sdk/Request-class.html)
+##### [isLoading](../providers_device_provider/DeviceProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-   
+To know if this ChangeNotifier is fetching device data   
+_read-only_
+
+
+
+##### [isPerformingAction](../providers_device_provider/DeviceProvider/isPerformingAction.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier is performing an action   
 _read-only_
 
 
@@ -97,6 +130,15 @@ _read-only_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [setState](../providers_device_provider/DeviceProvider/setState.md) &#8592; [WidgetState](../providers_widget_state/WidgetState.md)
+
+
+
+   
+_write-only_
 
 
 
@@ -124,7 +166,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [getDeviceDetails](../providers_device_provider/DeviceProvider/getDeviceDetails.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetails](../providers_device_provider/GetDeviceDetails.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -151,6 +193,15 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T state, T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+
+
+
+
 ##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
@@ -158,6 +209,15 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 Remove a previously registered closure from the list of closures that are
 notified when the object changes. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)  
 _inherited_
+
+
+
+##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
+
+
+
+   
+
 
 
 
@@ -181,6 +241,26 @@ The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/op
 _inherited_
 
 
+
+
+
+
+## Constants
+
+##### [MAX_RETRIES](../providers_device_provider/DeviceProvider/MAX_RETRIES-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
+
+
+
+
+##### [RETRY_DELAY_MS](../providers_device_provider/DeviceProvider/RETRY_DELAY_MS-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+
+
+
+   
 
 
 

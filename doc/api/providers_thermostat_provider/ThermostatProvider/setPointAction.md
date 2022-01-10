@@ -27,7 +27,8 @@
 Future<void> setPointAction(String deviceId, double temperature,
     {SetPointActionFunction setPoint =
         ThermostatRepository.setPointThermostat}) async {
-  setPoint(_request, deviceId, temperature);
+  return performAction<double>(thermostatTargetTemperature, temperature,
+      () => setPoint(_request, deviceId, temperature));
 }
 ```
 

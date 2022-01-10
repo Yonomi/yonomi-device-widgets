@@ -2,15 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class LockWidget extends StatelessWidget {
-  late final LockProvider _lockProvider;
+  final LockProvider _lockProvider;
+  late final Color _iconColor;
+  late final Color _textColor;
+  late final double _iconSize;
 
-  LockWidget(this._lockProvider);
+  LockWidget(this._lockProvider,
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.darkTextColor,
+      double iconSize = 100,
+      Key? key})
+      : super(key: key) {
+    this._iconColor = iconColor;
+    this._textColor = textColor;
+    this._iconSize = iconSize;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return _lockProvider.loadingDetail
+    return _lockProvider.isLoading
         ? Center(child: CircularProgressIndicator())
         : Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -19,7 +32,10 @@ class LockWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'LOCK',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(color: _textColor),
                   ),
                 ],
               ),
@@ -29,14 +45,15 @@ class LockWidget extends StatelessWidget {
               Container(
                 child: Center(
                   child: SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: _lockProvider.loadingAction
+                      width: _iconSize,
+                      height: _iconSize,
+                      child: _lockProvider.isPerformingAction
                           ? CircularProgressIndicator()
                           : _lockProvider.isLocked
-                              ? LockIcon(true, size: 100.0, color: Colors.white)
+                              ? LockIcon(true,
+                                  size: _iconSize, color: _iconColor)
                               : LockIcon(false,
-                                  size: 100.0, color: Colors.white)),
+                                  size: _iconSize, color: _iconColor)),
                 ),
               ),
               SizedBox(
@@ -54,6 +71,6 @@ class LockWidget extends StatelessWidget {
 
   void _lockTap(LockProvider provider) {
     bool setLock = !provider.isLocked;
-    provider.setLockUnlockAction(provider.deviceDetail.id, setLock);
+    provider.setLockUnlockAction(provider.deviceDetail?.id ?? '', setLock);
   }
 }

@@ -25,7 +25,7 @@
 
 ```dart
 Widget getLockStateIcon(LockProvider lockProvider) {
-  return (lockProvider.loadingDetail || lockProvider.loadingAction)
+  return (lockProvider.isBusy)
       ? Center(child: CircularProgressIndicator())
       : DeviceItemIcon.buildLockUnlockIcon(
           lockProvider.isLocked,

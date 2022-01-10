@@ -5,15 +5,30 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class BatteryWidget extends StatelessWidget {
   final BatteryLevelProvider _batteryLevelProvider;
+  late final Color _iconColor;
+  late final Color _textColor;
+  late final double _iconSize;
 
-  BatteryWidget(this._batteryLevelProvider);
+  BatteryWidget(this._batteryLevelProvider,
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.darkTextColor,
+      double iconSize = 100.0,
+      Key? key})
+      : super(key: key) {
+    this._iconColor = iconColor;
+    this._textColor = textColor;
+    this._iconSize = iconSize;
+  }
 
   @override
   Widget build(BuildContext context) {
     if (_batteryLevelProvider.isLoading) {
       return CircularProgressIndicator();
     } else if (_batteryLevelProvider.isInErrorState) {
-      return Icon(Icons.error);
+      return Icon(
+        Icons.error,
+        color: WidgetStyleConstants.globalWarningColor,
+      );
     } else {
       final batteryLevel = _batteryLevelProvider.getBatteryLevel;
       return Column(
@@ -21,8 +36,11 @@ class BatteryWidget extends StatelessWidget {
           children: <Widget>[
             Row(children: <Widget>[
               Text(
-                _batteryLevelProvider.displayName,
-                style: Theme.of(context).textTheme.headline6,
+                'BATTERY',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
                 textAlign: TextAlign.left,
               ),
             ]),
@@ -43,12 +61,12 @@ class BatteryWidget extends StatelessWidget {
             ),
             Container(
               child: SizedBox(
-                width: 100.0,
-                height: 100.0,
+                width: _iconSize,
+                height: _iconSize,
                 child: BatteryLevelIcon(
                   batteryLevel,
-                  size: 100.0,
-                  color: Colors.white,
+                  size: _iconSize,
+                  color: _iconColor,
                 ),
               ),
             ),
@@ -57,7 +75,8 @@ class BatteryWidget extends StatelessWidget {
             ),
             Text(
               "Battery Level: $batteryLevel%",
-              style: TextStyle(fontSize: 22, fontStyle: FontStyle.normal),
+              style: TextStyle(
+                  fontSize: 22, fontStyle: FontStyle.normal, color: _textColor),
             ),
           ]);
     }
@@ -69,7 +88,7 @@ class BatteryWidget extends StatelessWidget {
     } else if (batteryLevel <= WidgetStyleConstants.batteryLowMax) {
       return WidgetStyleConstants.globalWarningColor;
     } else {
-      return Colors.white;
+      return _textColor;
     }
   }
 }

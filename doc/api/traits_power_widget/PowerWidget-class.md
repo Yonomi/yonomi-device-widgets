@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) ([PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider)
+[PowerWidget](../traits_power_widget/PowerWidget/PowerWidget.md) ([PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md) _powerTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) iconSize = 100.0, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 

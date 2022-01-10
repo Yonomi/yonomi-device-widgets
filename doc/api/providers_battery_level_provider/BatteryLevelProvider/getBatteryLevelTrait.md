@@ -25,13 +25,9 @@
 
 ```dart
 BatteryLevelTrait? getBatteryLevelTrait() {
-  try {
-    return _deviceDetail?.traits
-            .firstWhere((trait) => trait.runtimeType == BatteryLevelTrait)
-        as BatteryLevelTrait?;
-  } catch (error) {
-    _setErrorState(error.toString());
-  }
+  return deviceDetail?.traits
+          .firstWhere((trait) => trait.runtimeType == BatteryLevelTrait)
+      as BatteryLevelTrait?;
 }
 ```
 

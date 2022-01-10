@@ -48,11 +48,19 @@ open coverage/html/index.html
  
 
 
+##### [base_slim_widget](traits_slim_base_slim_widget/traits_slim_base_slim_widget-library.md)
+ 
+
+
 ##### [battery_level_icon](assets_traits_battery_level_icon/assets_traits_battery_level_icon-library.md)
  
 
 
 ##### [battery_level_provider](providers_battery_level_provider/providers_battery_level_provider-library.md)
+ 
+
+
+##### [battery_slim_widget](traits_slim_battery_slim_widget/traits_slim_battery_slim_widget-library.md)
  
 
 
@@ -76,11 +84,11 @@ open coverage/html/index.html
  
 
 
-##### [lock](devices_lock/devices_lock-library.md)
+##### [device_provider](providers_device_provider/providers_device_provider-library.md)
  
 
 
-##### [lock](traits_lock/traits_lock-library.md)
+##### [lock](devices_lock/devices_lock-library.md)
  
 
 
@@ -89,6 +97,14 @@ open coverage/html/index.html
 
 
 ##### [lock_provider](providers_lock_provider/providers_lock_provider-library.md)
+ 
+
+
+##### [lock_slim_widget](traits_slim_lock_slim_widget/traits_slim_lock_slim_widget-library.md)
+ 
+
+
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
@@ -101,6 +117,10 @@ open coverage/html/index.html
 
 
 ##### [power_item_icon](assets_traits_power_item_icon/assets_traits_power_item_icon-library.md)
+ 
+
+
+##### [power_slim_widget](traits_slim_power_slim_widget/traits_slim_power_slim_widget-library.md)
  
 
 
@@ -137,6 +157,10 @@ open coverage/html/index.html
 
 
 ##### [unknown_item_icon](assets_traits_unknown_item_icon/assets_traits_unknown_item_icon-library.md)
+ 
+
+
+##### [unknown_slim_widget](traits_slim_unknown_slim_widget/traits_slim_unknown_slim_widget-library.md)
  
 
 

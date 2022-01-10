@@ -111,24 +111,6 @@ _inherited_
 
 
 
-##### [createSlimTraitWidget](../traits_detail_screen/DetailScreenWidget/createSlimTraitWidget.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
-
-
-
-##### [createTraitWidget](../traits_detail_screen/DetailScreenWidget/createTraitWidget.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-
-
-
-
 ##### [debugDescribeChildren](https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[DiagnosticsNode](https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html)>
 
 

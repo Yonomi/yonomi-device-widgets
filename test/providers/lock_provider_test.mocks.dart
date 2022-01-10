@@ -19,11 +19,12 @@ import 'lock_provider_test.dart' as _i3;
 
 class _FakeDevice_0 extends _i1.Fake implements _i2.Device {}
 
-/// A class which mocks [GetLockDetails].
+/// A class which mocks [GetDeviceDetailsMethod].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetLockDetails extends _i1.Mock implements _i3.GetLockDetails {
-  MockGetLockDetails() {
+class MockGetDeviceDetailsMethod extends _i1.Mock
+    implements _i3.GetDeviceDetailsMethod {
+  MockGetDeviceDetailsMethod() {
     _i1.throwOnMissingStub(this);
   }
 

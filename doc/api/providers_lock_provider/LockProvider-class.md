@@ -18,6 +18,7 @@
 
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html)
+- [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)
 - LockProvider
 
 
@@ -27,19 +28,38 @@
 
 ## Constructors
 
-[LockProvider](../providers_lock_provider/LockProvider/LockProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) getLockDetails = DevicesRepository.getLockDetails})
+[LockProvider](../providers_lock_provider/LockProvider/LockProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
 
 ## Properties
 
-##### [deviceDetail](../providers_lock_provider/LockProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)
+##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
    
-_read-only_
+_read-only, inherited_
+
+
+
+##### [displayName](../providers_lock_provider/LockProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only, override_
+
+
+
+##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+Get the error message whenever this ChangeNotifier had an error
+See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
+_read-only, inherited_
 
 
 
@@ -61,6 +81,34 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
+##### [isBusy](../providers_device_provider/DeviceProvider/isBusy.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier is busy from fetching data or running an action   
+_read-only, inherited_
+
+
+
+##### [isInErrorState](../providers_device_provider/DeviceProvider/isInErrorState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier had an error
+see <a href="../providers_device_provider/DeviceProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
+_read-only, inherited_
+
+
+
+##### [isLoading](../providers_device_provider/DeviceProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier is fetching device data   
+_read-only, inherited_
+
+
+
 ##### [isLocked](../providers_lock_provider/LockProvider/isLocked.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
@@ -70,21 +118,12 @@ _read-only_
 
 
 
-##### [loadingAction](../providers_lock_provider/LockProvider/loadingAction.md) &#8596; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isPerformingAction](../providers_device_provider/DeviceProvider/isPerformingAction.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-   
-_read / write_
-
-
-
-##### [loadingDetail](../providers_lock_provider/LockProvider/loadingDetail.md) &#8596; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
-
-
-
-   
-_read / write_
+To know if this ChangeNotifier is performing an action   
+_read-only, inherited_
 
 
 
@@ -94,6 +133,15 @@ _read / write_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [setState](../providers_device_provider/DeviceProvider/setState.md) &#8592; [WidgetState](../providers_widget_state/WidgetState.md)
+
+
+
+   
+_write-only, inherited_
 
 
 
@@ -121,16 +169,16 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [getDeviceDetail](../providers_lock_provider/LockProvider/getDeviceDetail.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) getLockDetails = DevicesRepository.getLockDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
    
+_inherited_
 
 
 
-
-##### [getLockTrait](../providers_lock_provider/LockProvider/getLockTrait.md)() [LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)
+##### [getLockTrait](../providers_lock_provider/LockProvider/getLockTrait.md)() [LockTrait](https://yonomi.co/yonomi-sdk/LockTrait-class.html)?
 
 
 
@@ -157,6 +205,15 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T state, T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+_inherited_
+
+
+
 ##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
@@ -167,7 +224,16 @@ _inherited_
 
 
 
-##### [setLockUnlockAction](../providers_lock_provider/LockProvider/setLockUnlockAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setLock, {[GetLockDetailsFunction](../providers_lock_provider/GetLockDetailsFunction.md) lockDetails = DevicesRepository.getLockDetails, [SendLockUnlockFunction](../providers_lock_provider/SendLockUnlockFunction.md) sendLockUnlock = LockRepository.sendLockUnlockAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
+
+
+
+   
+_inherited_
+
+
+
+##### [setLockUnlockAction](../providers_lock_provider/LockProvider/setLockUnlockAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) setLock, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendLockUnlockFunction](../providers_lock_provider/SendLockUnlockFunction.md) sendLockUnlock = LockRepository.sendLockUnlockAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
