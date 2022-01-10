@@ -28,6 +28,7 @@
 - [LockProvider](../providers_lock_provider/LockProvider-class.md)
 - [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md)
 - [ThermostatProvider](../providers_thermostat_provider/ThermostatProvider-class.md)
+- [TraitDetailProvider](../providers_trait_detail_provider/TraitDetailProvider-class.md)
 
 
 

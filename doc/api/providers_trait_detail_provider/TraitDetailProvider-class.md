@@ -18,6 +18,7 @@
 
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html)
+- [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)
 - TraitDetailProvider
 
 
@@ -34,12 +35,31 @@
 
 ## Properties
 
-##### [deviceDetail](../providers_trait_detail_provider/TraitDetailProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
+##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
 
    
-_read-only_
+_read-only, inherited_
+
+
+
+##### [displayName](../providers_trait_detail_provider/TraitDetailProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only, override_
+
+
+
+##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+Get the error message whenever this ChangeNotifier had an error
+See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
+_read-only, inherited_
 
 
 
@@ -61,12 +81,40 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [isLoading](../providers_trait_detail_provider/TraitDetailProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [isBusy](../providers_device_provider/DeviceProvider/isBusy.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 
 
-   
-_read-only_
+To know if this ChangeNotifier is busy from fetching data or running an action   
+_read-only, inherited_
+
+
+
+##### [isInErrorState](../providers_device_provider/DeviceProvider/isInErrorState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier had an error
+see <a href="../providers_device_provider/DeviceProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
+_read-only, inherited_
+
+
+
+##### [isLoading](../providers_device_provider/DeviceProvider/isLoading.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier is fetching device data   
+_read-only, inherited_
+
+
+
+##### [isPerformingAction](../providers_device_provider/DeviceProvider/isPerformingAction.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+To know if this ChangeNotifier is performing an action   
+_read-only, inherited_
 
 
 
@@ -79,12 +127,12 @@ _read-only, inherited_
 
 
 
-##### [setLoading](../providers_trait_detail_provider/TraitDetailProvider/setLoading.md) &#8592; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+##### [setState](../providers_device_provider/DeviceProvider/setState.md) &#8592; [WidgetState](../providers_widget_state/WidgetState.md)
 
 
 
    
-_write-only_
+_write-only, inherited_
 
 
 
@@ -112,12 +160,12 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_trait_detail_provider/TraitDetailProvider/fetchData.md)({[GetDetailsFunction](../providers_trait_detail_provider/GetDetailsFunction.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
    
-
+_inherited_
 
 
 
@@ -139,12 +187,30 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T state, T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+_inherited_
+
+
+
 ##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
 
 Remove a previously registered closure from the list of closures that are
 notified when the object changes. [...](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)  
+_inherited_
+
+
+
+##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
+
+
+
+   
 _inherited_
 
 
