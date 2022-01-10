@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
-import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class BatterySlimWidget extends DeviceSlimWidget {
+class BatterySlimWidget extends BaseSlimWidget {
   BatterySlimWidget(_batteryLevelTraitProvider,
       {Color? backgroundColor, Widget? content, Key? key})
       : super(

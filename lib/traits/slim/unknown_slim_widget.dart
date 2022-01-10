@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
-import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class UnknownSlimWidget extends DeviceSlimWidget {
+class UnknownSlimWidget extends BaseSlimWidget {
   UnknownSlimWidget(String headerText, {Color? backgroundColor, Key? key})
       : super(
             leftIcon: UnknownItemIcon(

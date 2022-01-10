@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
-import 'package:yonomi_device_widgets/traits/slim/device_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/battery_widget_testing.dart';
@@ -13,7 +13,7 @@ import '../mixins/power_widget_testing.dart';
 class DeviceSlimWidgetTest
     with DeviceTesting, BatteryWidgetTesting, PowerWidgetTesting {}
 
-class TestWidget extends DeviceSlimWidget {
+class TestWidget extends BaseSlimWidget {
   TestWidget(DeviceProvider provider, [Widget? content])
       : super(
             leftIcon: UnknownItemIcon(),

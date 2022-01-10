@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class DeviceSlimWidget extends StatelessWidget {
+class BaseSlimWidget extends StatelessWidget {
   final Widget leftIcon;
   final Text headerText;
   final Widget? rightIcon;
@@ -10,7 +10,7 @@ class DeviceSlimWidget extends StatelessWidget {
   final Color? backgroundColor;
   final DeviceProvider? provider;
 
-  DeviceSlimWidget(
+  BaseSlimWidget(
       {this.provider,
       required this.leftIcon,
       required this.headerText,
