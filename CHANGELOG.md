@@ -1,3 +1,18 @@
+# [2.5.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.4.0...v2.5.0) (2022-01-10)
+
+
+### Bug Fixes
+
+* **battery_widget.dart,detail_screen.dart,lock.dart,power_widget.dart,widget_style_constants.dart:** Make icons and text colors on widgets and icons customizable ([d4510a4](https://github.com/Yonomi/yonomi-device-widgets/commit/d4510a4f04f3caf6b877da56e42c0e9fb7998487))
+* **battery_widget.dart,detail_screen.dart,lock.dart,power_widget.dart,widget_style_constants.dart:** Make icons and text colors on widgets and icons customizable ([29734b2](https://github.com/Yonomi/yonomi-device-widgets/commit/29734b29b09bd148e10fde9ff5a05fe3ef741cc1))
+* **detail_screen.dart:** Add accordion import that seemed to get lost somewhere ([160408a](https://github.com/Yonomi/yonomi-device-widgets/commit/160408ab67a08f39097c50d53defe40b1d8effc4))
+* **detail_screen.dart:** Update styling to better match figma ([cb661c0](https://github.com/Yonomi/yonomi-device-widgets/commit/cb661c02679ad42ca94167348426b0b4163e81a3))
+
+
+### Features
+
+* Add slim lock for multi trait list ([b0f8176](https://github.com/Yonomi/yonomi-device-widgets/commit/b0f81760702f8204cb77d18270d18192774a6f39))
+
 # [2.4.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.3.0...v2.4.0) (2022-01-05)
 
 
