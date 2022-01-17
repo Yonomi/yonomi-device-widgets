@@ -88,6 +88,10 @@ open coverage/html/index.html
  
 
 
+##### [device_widget_factory](traits_device_widget_factory/traits_device_widget_factory-library.md)
+ 
+
+
 ##### [lock](devices_lock/devices_lock-library.md)
  
 
@@ -104,11 +108,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
