@@ -88,6 +88,10 @@ open coverage/html/index.html
  
 
 
+##### [device_widget_builder](traits_device_widget_builder/traits_device_widget_builder-library.md)
+ 
+
+
 ##### [device_widget_factory](traits_device_widget_factory/traits_device_widget_factory-library.md)
  
 
