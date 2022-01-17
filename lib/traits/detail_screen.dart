@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
-import 'package:yonomi_device_widgets/traits/lock_widget.dart';
-import 'package:yonomi_device_widgets/traits/power_widget.dart';
-import 'package:yonomi_device_widgets/traits/battery_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/device_widget_factory.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -90,54 +83,33 @@ class DetailScreenWidget extends StatelessWidget {
       Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
     switch (trait.runtimeType) {
       case LockTrait:
-        return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return LockWidget(lockProvider,
-              iconColor: iconColor, textColor: textColor);
-        });
+        return DeviceWidgetFactory.produceWidget<LockProvider>(
+            iconColor: iconColor, textColor: textColor);
       case PowerTrait:
-        return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
-          return PowerWidget(powerProvider,
-              iconColor: iconColor, textColor: textColor);
-        });
+        return DeviceWidgetFactory.produceWidget<PowerTraitProvider>(
+            iconColor: iconColor, textColor: textColor);
       case BatteryLevelTrait:
-        return Consumer<BatteryLevelProvider>(
-            builder: (_, batteryLevelProvider, child) {
-          return BatteryWidget(batteryLevelProvider,
-              iconColor: iconColor, textColor: textColor);
-        });
+        return DeviceWidgetFactory.produceWidget<BatteryLevelProvider>(
+            iconColor: iconColor, textColor: textColor);
       default:
-        return UnknownItemIcon(color: iconColor);
+        return DeviceWidgetFactory.produceWidget(iconColor: iconColor);
     }
   }
 
   Widget _createTraitListWidget(Trait trait, {backgroundColor = Colors.white}) {
     switch (trait.runtimeType) {
       case LockTrait:
-        return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
-        });
+        return DeviceWidgetFactory.produceSlimWidget<LockProvider>(
+            backgroundColor: backgroundColor);
       case PowerTrait:
-        return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
-          return PowerSlimWidget(powerProvider,
-              backgroundColor: backgroundColor);
-        });
+        return DeviceWidgetFactory.produceSlimWidget<PowerTraitProvider>(
+            backgroundColor: backgroundColor);
       case BatteryLevelTrait:
-        return Consumer<BatteryLevelProvider>(
-            builder: (_, batteryLevelProvider, child) {
-          return BatterySlimWidget(batteryLevelProvider,
-              backgroundColor: backgroundColor,
-              content: BatteryWidget(
-                batteryLevelProvider,
-                iconSize: 100.0,
-                textColor: WidgetStyleConstants.darkTextColor,
-                iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
-              ));
-        });
+        return DeviceWidgetFactory.produceSlimWidget<BatteryLevelProvider>(
+            backgroundColor: backgroundColor);
       default:
-        return UnknownSlimWidget(
-          trait.name,
-          backgroundColor: backgroundColor,
-        );
+        return DeviceWidgetFactory.produceSlimWidget(
+            name: trait.name, backgroundColor: backgroundColor);
     }
   }
 }
