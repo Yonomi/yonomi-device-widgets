@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/widget_state.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -53,19 +55,20 @@ abstract class DeviceProvider extends ChangeNotifier {
     _latestErrorMsg = errorMsg;
   }
 
-  Future<void> performAction<T>(T state, T desiredState, Function action,
+  Future<void> performAction<T>(
+      T desiredState, Function getState, Function action,
       {GetDeviceDetailsMethod getDetails =
           DevicesRepository.getDeviceDetails}) async {
     if (!isPerformingAction) {
       setState = WidgetState.performingAction;
 
       try {
-        await action.call();
-
+        await action();
         int numRetries = 0;
+        T state = getState();
         while (state != desiredState && numRetries < MAX_RETRIES) {
-          await getDetails(_request, _deviceId);
-
+          _deviceDetail = await getDetails(_request, _deviceId);
+          state = getState();
           await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
           numRetries++;
         }
