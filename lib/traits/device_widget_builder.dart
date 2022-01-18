@@ -7,13 +7,14 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DeviceWidgetBuilder {
-  final primaryTraitWidgets = <Widget>[];
-  final traitWidgets = <Widget>[];
+  final _primaryTraitWidgets = <Widget>[];
+  final _traitWidgets = <Widget>[];
 
   DeviceWidgetBuilder withPrimaryTrait(Trait trait,
       {padding = const EdgeInsets.all(8.0),
       margins = const EdgeInsets.only(bottom: 8.0)}) {
-    primaryTraitWidgets.add(_card(_createTraitWidget(trait), padding, margins));
+    _primaryTraitWidgets
+        .add(_card(_createTraitWidget(trait), padding, margins));
 
     return this;
   }
@@ -22,7 +23,7 @@ class DeviceWidgetBuilder {
       {EdgeInsets padding = const EdgeInsets.all(8.0),
       EdgeInsets margins =
           const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
-    traitWidgets.add(_card(_createTraitListWidget(trait), padding, margins));
+    _traitWidgets.add(_card(_createTraitListWidget(trait), padding, margins));
 
     return this;
   }
@@ -40,7 +41,7 @@ class DeviceWidgetBuilder {
 
   Widget build() {
     return Column(
-      children: [...primaryTraitWidgets, ...traitWidgets],
+      children: [..._primaryTraitWidgets, ..._traitWidgets],
     );
   }
 

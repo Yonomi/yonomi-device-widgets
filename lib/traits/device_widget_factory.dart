@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
@@ -12,6 +11,7 @@ import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/unknown_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class DeviceWidgetFactory<T> {
@@ -37,7 +37,7 @@ class DeviceWidgetFactory<T> {
               iconColor: iconColor, textColor: textColor);
         });
       default:
-        return UnknownItemIcon(color: iconColor);
+        return UnknownWidget(name: name, iconColor: iconColor);
     }
   }
 
