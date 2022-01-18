@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/widget_state.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
