@@ -187,7 +187,7 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T state, T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
