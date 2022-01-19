@@ -28,7 +28,7 @@ DeviceWidgetBuilder withTrait(trait,
     {EdgeInsets padding = const EdgeInsets.all(8.0),
     EdgeInsets margins =
         const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
-  traitWidgets.add(_card(_createTraitListWidget(trait), padding, margins));
+  _traitWidgets.add(_card(_createTraitListWidget(trait), padding, margins));
 
   return this;
 }

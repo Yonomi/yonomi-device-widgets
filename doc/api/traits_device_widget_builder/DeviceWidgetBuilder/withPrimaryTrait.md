@@ -27,7 +27,8 @@
 DeviceWidgetBuilder withPrimaryTrait(Trait trait,
     {padding = const EdgeInsets.all(8.0),
     margins = const EdgeInsets.only(bottom: 8.0)}) {
-  primaryTraitWidgets.add(_card(_createTraitWidget(trait), padding, margins));
+  _primaryTraitWidgets
+      .add(_card(_createTraitWidget(trait), padding, margins));
 
   return this;
 }
