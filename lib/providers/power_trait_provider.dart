@@ -27,7 +27,7 @@ class PowerTraitProvider extends DeviceProvider {
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendPowerMethod sendPowerMethod =
           PowerRepository.sendPowerAction}) async {
-    return performAction<bool>(getOnOffState, desiredOnOffState,
+    return performAction<bool>(desiredOnOffState, () => getOnOffState,
         () => sendPowerMethod(_request, this._deviceId, desiredOnOffState),
         getDetails: getDetails);
   }

@@ -57,7 +57,8 @@ class BaseSlimWidget extends StatelessWidget {
           : leftIcon,
       trailing: rightIcon,
       title: headerText,
-      horizontalTitleGap: 0.0,
+      horizontalTitleGap: 16.0,
+      contentPadding: EdgeInsets.all(0),
       key: key,
     );
   }

@@ -90,11 +90,12 @@ class MockLockProvider extends _i1.Mock implements _i2.LockProvider {
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  _i4.Future<void> performAction<T>(T? state, T? desiredState, Function? action,
+  _i4.Future<void> performAction<T>(
+          T? desiredState, Function? getState, Function? action,
           {_i5.GetDeviceDetailsMethod? getDetails =
               _i6.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
-          Invocation.method(#performAction, [state, desiredState, action],
+          Invocation.method(#performAction, [desiredState, getState, action],
               {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
