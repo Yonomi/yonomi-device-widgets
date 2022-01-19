@@ -26,7 +26,7 @@
 ```dart
 Widget build() {
   return Column(
-    children: [...primaryTraitWidgets, ...traitWidgets],
+    children: [..._primaryTraitWidgets, ..._traitWidgets],
   );
 }
 ```

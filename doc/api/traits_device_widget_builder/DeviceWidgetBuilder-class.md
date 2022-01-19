@@ -33,30 +33,12 @@ _read-only, inherited_
 
 
 
-##### [primaryTraitWidgets](../traits_device_widget_builder/DeviceWidgetBuilder/primaryTraitWidgets.md) &#8594; [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)>
-
-
-
-   
-_final_
-
-
-
 ##### [runtimeType](https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html) &#8594; [Type](https://api.flutter.dev/flutter/dart-core/Type-class.html)
 
 
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
-
-
-
-##### [traitWidgets](../traits_device_widget_builder/DeviceWidgetBuilder/traitWidgets.md) &#8594; [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)>
-
-
-
-   
-_final_
 
 
 

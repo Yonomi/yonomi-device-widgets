@@ -46,7 +46,7 @@ static Widget produceWidget<T extends DeviceProvider>(
             iconColor: iconColor, textColor: textColor);
       });
     default:
-      return UnknownItemIcon(color: iconColor);
+      return UnknownWidget(name: name, iconColor: iconColor);
   }
 }
 ```
