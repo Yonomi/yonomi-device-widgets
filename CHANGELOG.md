@@ -1,3 +1,11 @@
+## [2.5.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.5.0...v2.5.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* Align icons in trait list between expandables and non expandables ([cf17d1d](https://github.com/Yonomi/yonomi-device-widgets/commit/cf17d1d83d2e38dd549afcfb240a9b1625ef71bd))
+* Fix the lock icons not updating on actions ([1da3ac3](https://github.com/Yonomi/yonomi-device-widgets/commit/1da3ac312019d16b48e7bb093c95cb6b3f5cd33c))
+
 # [2.5.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.4.0...v2.5.0) (2022-01-10)
 
 

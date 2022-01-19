@@ -29,7 +29,8 @@ Future<void> setLockUnlockAction(String deviceId, bool setLock,
     SendLockUnlockFunction sendLockUnlock =
         LockRepository.sendLockUnlockAction}) async {
   return performAction<bool>(
-      isLocked, setLock, () => sendLockUnlock(_request, deviceId, setLock),
+      setLock, () => isLocked,
+      () => sendLockUnlock(_request, deviceId, setLock),
       getDetails: getDetails);
 }
 ```
