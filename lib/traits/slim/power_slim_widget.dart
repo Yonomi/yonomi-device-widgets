@@ -15,12 +15,12 @@ class PowerSlimWidget extends BaseSlimWidget {
             rightIcon: CupertinoSwitch(
               activeColor: WidgetStyleConstants.traitDetailSwitchPressedColor,
               onChanged: (bool onOff) {
-                powerProvider.sendPowerOnOffAction(onOff);
+                if (powerProvider.supportsToggle)
+                  powerProvider.sendPowerOnOffAction(onOff);
               },
               value: powerProvider.getOnOffState,
             ),
-            headerText: Text(
-                powerProvider.deviceDetail?.displayName ?? 'POWER',
+            headerText: Text(powerProvider.deviceDetail?.displayName ?? 'POWER',
                 style: TextStyle(
                     fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
             backgroundColor: backgroundColor,
