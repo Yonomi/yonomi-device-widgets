@@ -13,7 +13,9 @@ import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
 import 'package:yonomi_device_widgets/traits/unknown_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
@@ -42,7 +44,7 @@ class DeviceWidgetFactory<T> {
       case ThermostatProvider:
         return Consumer<ThermostatProvider>(
           builder: (_, thermostatProvider, child) {
-            return Text('${thermostatProvider.targetTemperature.toInt()}');
+            return ThermostatWidget(thermostatProvider, textColor: textColor);
           },
         );
       default:
@@ -76,13 +78,12 @@ class DeviceWidgetFactory<T> {
         });
       case ThermostatProvider:
         return Consumer<ThermostatProvider>(
-          builder: (_, thermostatProvider, child) {
-            return BaseSlimWidget(
-                leftIcon: Icon(BootstrapIcons.thermometer),
-                headerText: Text(
-                    'Target Temperature: ${thermostatProvider.targetTemperature.toInt()}'));
-          },
-        );
+            builder: (_, thermostatProvider, child) {
+          return ThermostatSlimWidget(
+            thermostatProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
       default:
         return UnknownSlimWidget(name ?? '', backgroundColor: backgroundColor);
     }

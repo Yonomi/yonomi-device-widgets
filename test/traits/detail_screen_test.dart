@@ -16,6 +16,8 @@ import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -105,7 +107,8 @@ class DetailScreenTest
       BatteryLevelProvider mockBatteryLevelProvider,
       ThermostatProvider mockThermostatProvider) {
     return MaterialApp(
-      home: Column(children: [
+      home: SingleChildScrollView(
+          child: Column(children: [
         MultiProvider(
           providers: [
             ChangeNotifierProvider<TraitDetailProvider>.value(
@@ -120,7 +123,7 @@ class DetailScreenTest
           ],
           child: DetailScreenWidget(req, deviceId),
         ),
-      ]),
+      ])),
     );
   }
 }
@@ -200,7 +203,8 @@ void main() {
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
         [ThermostatTrait(TargetTemperature(100.0))], request, testedDeviceId));
 
-    expect(find.text('100'), findsOneWidget);
+    expect(find.byType(ThermostatWidget), findsOneWidget);
+    expect(find.text('100°'), findsOneWidget);
   });
 
   testWidgets(
@@ -223,7 +227,8 @@ void main() {
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(100)),
       PowerTrait(IsOnOff(true)),
-      LockTrait(IsLocked(false))
+      LockTrait(IsLocked(false)),
+      ThermostatTrait(TargetTemperature(99))
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -231,6 +236,7 @@ void main() {
     expect(find.byType(BatterySlimWidget), findsOneWidget);
     expect(find.byType(LockSlimWidget), findsOneWidget);
     expect(find.byType(PowerSlimWidget), findsOneWidget);
+    expect(find.byType(ThermostatSlimWidget), findsOneWidget);
 
     expect(find.byType(MultiProvider), findsOneWidget);
 
@@ -239,6 +245,11 @@ void main() {
     expect(batteryWidget.headerText.data, contains('Battery Level: 100%'));
     expect(batteryWidget.headerText.style?.color,
         WidgetStyleConstants.globalSuccessColor);
+
+    final thermostatWidget =
+        tester.widget<ThermostatSlimWidget>(find.byType(ThermostatSlimWidget));
+    expect(
+        thermostatWidget.headerText.data, contains('Target Temperature: 99°'));
   });
 
   testWidgets(
