@@ -64,7 +64,7 @@ class DetailScreenTest
 
     final powerDevice = device([
       traits.firstWhere((trait) => trait is PowerTrait,
-          orElse: () => PowerTrait(IsOnOff(false)))
+          orElse: () => PowerTrait(IsOnOff(false), [SupportsToggle(true)]))
     ]);
     PowerTraitProvider mockPowerTraitProvider =
         this.mockPowerTraitProvider(powerDevice, onOffState: false);
@@ -139,8 +139,9 @@ void main() {
       'For the Power Trait, Detail screen should show the Power Widget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [PowerTrait(IsOnOff(true))], request, testedDeviceId));
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
+      PowerTrait(IsOnOff(true), [SupportsToggle(true)])
+    ], request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
   });
@@ -194,7 +195,7 @@ void main() {
       LockTrait(IsLocked(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(100)),
-      PowerTrait(IsOnOff(true)),
+      PowerTrait(IsOnOff(true), [SupportsToggle(true)]),
       LockTrait(IsLocked(false))
     ], request, testedDeviceId));
 

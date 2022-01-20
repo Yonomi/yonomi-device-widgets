@@ -47,7 +47,9 @@ void main() {
 
   testWidgets('should render correct Power trait icon',
       (WidgetTester tester) async {
-    final powerDevice = [PowerTrait(IsOnOff(true))];
+    final powerDevice = [
+      PowerTrait(IsOnOff(true), [SupportsToggle(true)])
+    ];
     await tester.pumpWidget(createIconWidget(powerDevice));
     expect(find.byIcon(BootstrapIcons.power), findsOneWidget);
   });

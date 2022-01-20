@@ -213,7 +213,7 @@ MockGetDeviceDetailsMethod _getMockDeviceDetailsMethod(
     GDateTime('value'),
     GDateTime('value'),
     [
-      PowerTrait(IsOnOff(false)),
+      PowerTrait(IsOnOff(false), [SupportsToggle(true)]),
     ],
   );
   when(mockDeviceDetailsMethod.call(request, deviceId))
