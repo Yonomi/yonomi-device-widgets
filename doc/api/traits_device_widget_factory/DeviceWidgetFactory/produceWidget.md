@@ -45,6 +45,12 @@ static Widget produceWidget<T extends DeviceProvider>(
         return BatteryWidget(batteryLevelProvider,
             iconColor: iconColor, textColor: textColor);
       });
+    case ThermostatProvider:
+      return Consumer<ThermostatProvider>(
+        builder: (_, thermostatProvider, child) {
+          return Text('${thermostatProvider.targetTemperature.toInt()}');
+        },
+      );
     default:
       return UnknownWidget(name: name, iconColor: iconColor);
   }

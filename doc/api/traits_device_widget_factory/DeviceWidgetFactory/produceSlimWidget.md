@@ -48,6 +48,15 @@ static Widget produceSlimWidget<T extends DeviceProvider>(
               iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
             ));
       });
+    case ThermostatProvider:
+      return Consumer<ThermostatProvider>(
+        builder: (_, thermostatProvider, child) {
+          return BaseSlimWidget(
+              leftIcon: Icon(BootstrapIcons.thermometer),
+              headerText: Text(
+                  'Target Temperature: ${thermostatProvider.targetTemperature.toInt()}'));
+        },
+      );
     default:
       return UnknownSlimWidget(name ?? '', backgroundColor: backgroundColor);
   }

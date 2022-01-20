@@ -136,7 +136,7 @@ _write-only, inherited_
 
 
 
-##### [thermostatTargetTemperature](../providers_thermostat_provider/ThermostatProvider/thermostatTargetTemperature.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+##### [targetTemperature](../providers_thermostat_provider/ThermostatProvider/targetTemperature.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
 
 
 
@@ -179,6 +179,15 @@ _inherited_
 
 
 ##### [getThermostatTrait](../providers_thermostat_provider/ThermostatProvider/getThermostatTrait.md)() [ThermostatTrait](https://yonomi.co/yonomi-sdk/ThermostatTrait-class.html)?
+
+
+
+   
+
+
+
+
+##### [getThermostatTraits](../providers_thermostat_provider/ThermostatProvider/getThermostatTraits.md)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[ThermostatTrait](https://yonomi.co/yonomi-sdk/ThermostatTrait-class.html)>
 
 
 

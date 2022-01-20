@@ -70,6 +70,8 @@ Widget build(BuildContext context) {
           create: (context) => PowerTraitProvider(request, deviceId)),
       ChangeNotifierProvider<BatteryLevelProvider>(
           create: (context) => BatteryLevelProvider(request, deviceId)),
+      ChangeNotifierProvider<ThermostatProvider>(
+          create: (context) => ThermostatProvider(request, deviceId)),
     ],
     child: DetailScreenWidget(request, deviceId),
   );
