@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/device_widget_builder.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -26,6 +27,8 @@ class DetailScreen extends StatelessWidget {
             create: (context) => PowerTraitProvider(request, deviceId)),
         ChangeNotifierProvider<BatteryLevelProvider>(
             create: (context) => BatteryLevelProvider(request, deviceId)),
+        ChangeNotifierProvider<ThermostatProvider>(
+            create: (context) => ThermostatProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );

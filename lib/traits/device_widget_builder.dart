@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/device_widget_factory.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -66,6 +67,9 @@ class DeviceWidgetBuilder {
       case BatteryLevelTrait:
         return DeviceWidgetFactory.produceWidget<BatteryLevelProvider>(
             iconColor: iconColor, textColor: textColor);
+      case ThermostatTrait:
+        return DeviceWidgetFactory.produceWidget<ThermostatProvider>(
+            iconColor: iconColor, textColor: textColor);
       default:
         return DeviceWidgetFactory.produceWidget(iconColor: iconColor);
     }
@@ -81,6 +85,9 @@ class DeviceWidgetBuilder {
             backgroundColor: backgroundColor);
       case BatteryLevelTrait:
         return DeviceWidgetFactory.produceSlimWidget<BatteryLevelProvider>(
+            backgroundColor: backgroundColor);
+      case ThermostatTrait:
+        return DeviceWidgetFactory.produceSlimWidget<ThermostatProvider>(
             backgroundColor: backgroundColor);
       default:
         return DeviceWidgetFactory.produceSlimWidget(

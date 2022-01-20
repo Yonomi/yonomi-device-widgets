@@ -7,6 +7,7 @@ import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
@@ -18,18 +19,21 @@ import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
+import '../components/modes_toolbar_test.mocks.dart';
 import 'detail_screen_test.mocks.dart';
 import 'mixins/battery_widget_testing.dart';
 import 'mixins/device_testing.dart';
 import 'mixins/lock_widget_testing.dart';
 import 'mixins/power_widget_testing.dart';
+import 'mixins/thermostat_widget_testing.dart';
 
 class DetailScreenTest
     with
         DeviceTesting,
         PowerWidgetTesting,
         LockWidgetTesting,
-        BatteryWidgetTesting {
+        BatteryWidgetTesting,
+        ThermostatWidgetTesting {
   Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,
@@ -43,7 +47,8 @@ class DetailScreenTest
         mockTraitDetailProvider,
         MockLockProvider(),
         MockPowerTraitProvider(),
-        MockBatteryLevelProvider());
+        MockBatteryLevelProvider(),
+        MockThermostatProvider());
   }
 
   Widget createDetailScreenWidgetForTraits(
@@ -77,8 +82,18 @@ class DetailScreenTest
         .mockBatteryLevelProvider(batteryDevice,
             batteryLevel: batteryLevelTrait.state.value as int);
 
-    return createMaterialApp(req, deviceId, mockTraitDetailProvider,
-        mockLockProvider, mockPowerTraitProvider, mockBatteryTraitProvider);
+    final thermostatTraits = traits.whereType<ThermostatTrait>().toList();
+    final thermostatDevice = device(thermostatTraits, name: 'THERMOSTAT');
+    ThermostatProvider mockThermostatProvider =
+        this.mockThermostatProvider(thermostatDevice);
+    return createMaterialApp(
+        req,
+        deviceId,
+        mockTraitDetailProvider,
+        mockLockProvider,
+        mockPowerTraitProvider,
+        mockBatteryTraitProvider,
+        mockThermostatProvider);
   }
 
   MaterialApp createMaterialApp(
@@ -87,7 +102,8 @@ class DetailScreenTest
       TraitDetailProvider mockTraitBasedNotifier,
       LockProvider mockLockProvider,
       PowerTraitProvider mockPowerTraitProvider,
-      BatteryLevelProvider mockBatteryLevelProvider) {
+      BatteryLevelProvider mockBatteryLevelProvider,
+      ThermostatProvider mockThermostatProvider) {
     return MaterialApp(
       home: Column(children: [
         MultiProvider(
@@ -99,6 +115,8 @@ class DetailScreenTest
                 value: mockPowerTraitProvider),
             ChangeNotifierProvider<BatteryLevelProvider>.value(
                 value: mockBatteryLevelProvider),
+            ChangeNotifierProvider<ThermostatProvider>.value(
+                value: mockThermostatProvider),
           ],
           child: DetailScreenWidget(req, deviceId),
         ),
@@ -173,6 +191,16 @@ void main() {
         [BatteryLevelTrait(BatteryLevel(50))], request, testedDeviceId));
 
     expect(find.byType(BatteryWidget), findsOneWidget);
+  });
+
+  testWidgets(
+      'For the Thermostat Trait, Detail screen should show the target temperature',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+        [ThermostatTrait(TargetTemperature(100.0))], request, testedDeviceId));
+
+    expect(find.text('100'), findsOneWidget);
   });
 
   testWidgets(
