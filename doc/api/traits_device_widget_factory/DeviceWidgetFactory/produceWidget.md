@@ -48,7 +48,7 @@ static Widget produceWidget<T extends DeviceProvider>(
     case ThermostatProvider:
       return Consumer<ThermostatProvider>(
         builder: (_, thermostatProvider, child) {
-          return Text('${thermostatProvider.targetTemperature.toInt()}');
+          return ThermostatWidget(thermostatProvider, textColor: textColor);
         },
       );
     default:

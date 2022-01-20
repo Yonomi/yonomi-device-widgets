@@ -1,7 +1,7 @@
 
 
 
-# BaseSlimWidget class
+# ThermostatWidget class
 
 
 
@@ -20,46 +20,21 @@
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 - [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- BaseSlimWidget
+- ThermostatWidget
 
 
 
-**Implementers**
-
-- [BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget-class.md)
-- [LockSlimWidget](../traits_slim_lock_slim_widget/LockSlimWidget-class.md)
-- [PowerSlimWidget](../traits_slim_power_slim_widget/PowerSlimWidget-class.md)
-- [ThermostatSlimWidget](../traits_slim_thermostat_slim_widget/ThermostatSlimWidget-class.md)
-- [UnknownSlimWidget](../traits_slim_unknown_slim_widget/UnknownSlimWidget-class.md)
 
 
 
 ## Constructors
 
-[BaseSlimWidget](../traits_slim_base_slim_widget/BaseSlimWidget/BaseSlimWidget.md) ({[DeviceProvider](../providers_device_provider/DeviceProvider-class.md)? provider, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) leftIcon, required [Text](https://api.flutter.dev/flutter/widgets/Text-class.html) headerText, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? rightIcon, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[ThermostatWidget](../traits_thermostat_widget/ThermostatWidget/ThermostatWidget.md) ([ThermostatProvider](../providers_thermostat_provider/ThermostatProvider-class.md) _thermostatProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
 
 ## Properties
-
-##### [backgroundColor](../traits_slim_base_slim_widget/BaseSlimWidget/backgroundColor.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)?
-
-
-
-   
-_final_
-
-
-
-##### [content](../traits_slim_base_slim_widget/BaseSlimWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
-
-
-
-   
-_final_
-
-
 
 ##### [hashCode](https://api.flutter.dev/flutter/widgets/Widget/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
@@ -70,48 +45,12 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 
 
-##### [headerText](../traits_slim_base_slim_widget/BaseSlimWidget/headerText.md) &#8594; [Text](https://api.flutter.dev/flutter/widgets/Text-class.html)
-
-
-
-   
-_final_
-
-
-
 ##### [key](https://api.flutter.dev/flutter/widgets/Widget/key.html) &#8594; [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)?
 
 
 
 Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
-
-
-
-##### [leftIcon](../traits_slim_base_slim_widget/BaseSlimWidget/leftIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-
-
-
-   
-_final_
-
-
-
-##### [provider](../traits_slim_base_slim_widget/BaseSlimWidget/provider.md) &#8594; [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)?
-
-
-
-   
-_final_
-
-
-
-##### [rightIcon](../traits_slim_base_slim_widget/BaseSlimWidget/rightIcon.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
-
-
-
-   
-_final_
 
 
 
@@ -127,11 +66,11 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_slim_base_slim_widget/BaseSlimWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [build](../traits_thermostat_widget/ThermostatWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_slim_base_slim_widget/BaseSlimWidget/build.md)  
+Describes the part of the user interface represented by this widget. [...](../traits_thermostat_widget/ThermostatWidget/build.md)  
 _override_
 
 

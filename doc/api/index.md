@@ -112,11 +112,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
@@ -153,6 +153,14 @@ open coverage/html/index.html
 
 
 ##### [thermostat_provider](providers_thermostat_provider/providers_thermostat_provider-library.md)
+ 
+
+
+##### [thermostat_slim_widget](traits_slim_thermostat_slim_widget/traits_slim_thermostat_slim_widget-library.md)
+ 
+
+
+##### [thermostat_widget](traits_thermostat_widget/traits_thermostat_widget-library.md)
  
 
 
