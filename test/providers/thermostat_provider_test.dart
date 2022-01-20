@@ -84,24 +84,6 @@ void main() {
         .called(2);
   });
 
-  test(
-      'Calling getThermostatTraits without traits on device returns empty list',
-      () async {
-    Request request = Request('', {});
-    final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
-
-    when(mockGetThermostatDetailsFunction.call(any, any))
-        .thenAnswer((_) async => Future.value(_getDevice()));
-
-    ThermostatProvider thermostatProvider = ThermostatProvider(
-        request, 'deviceId',
-        getDetails: mockGetThermostatDetailsFunction);
-    expect(
-        thermostatProvider.getThermostatTraits(), equals(<ThermostatTrait>[]));
-
-    expect(thermostatProvider.targetTemperature, equals(0.0));
-  });
-
   test('Device data is set using DeviceRepository\'s return values', () async {
     Request request = Request('', {});
 
