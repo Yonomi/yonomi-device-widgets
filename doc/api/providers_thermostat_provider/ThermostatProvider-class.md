@@ -187,15 +187,6 @@ _inherited_
 
 
 
-##### [getThermostatTraits](../providers_thermostat_provider/ThermostatProvider/getThermostatTraits.md)() [List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[ThermostatTrait](https://yonomi.co/yonomi-sdk/ThermostatTrait-class.html)>
-
-
-
-   
-
-
-
-
 ##### [noSuchMethod](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)([Invocation](https://api.flutter.dev/flutter/dart-core/Invocation-class.html) invocation) dynamic
 
 

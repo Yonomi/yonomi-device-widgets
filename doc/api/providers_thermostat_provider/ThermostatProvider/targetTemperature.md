@@ -23,11 +23,7 @@
 ## Implementation
 
 ```dart
-double get targetTemperature => getThermostatTraits()
-    .firstWhere((trait) => trait.state is TargetTemperature,
-        orElse: () => ThermostatTrait(TargetTemperature(0.0)))
-    .state
-    .value;
+double get targetTemperature => (getThermostatTrait()?.state as TargetTemperature).value ?? 0.0;
 ```
 
 
