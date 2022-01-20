@@ -41,6 +41,10 @@ class PowerTraitProvider extends DeviceProvider {
     return getPowerTrait()?.state.value ?? false;
   }
 
+  bool get supportsToggle =>
+      getPowerTrait()?.properties.whereType<SupportsToggle>().first.value ??
+      false;
+
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 }
