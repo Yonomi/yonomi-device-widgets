@@ -33,7 +33,7 @@ void main() {
         .thenAnswer((_) async => null);
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -52,7 +52,7 @@ void main() {
     final mockSetModeFunction = MockSetMode();
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     when(mockSetModeFunction.call(any, any, any)).thenAnswer((_) async => null);
     ThermostatProvider thermostatProvider = ThermostatProvider(
@@ -72,7 +72,7 @@ void main() {
 
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -84,13 +84,31 @@ void main() {
         .called(2);
   });
 
+  test(
+      'Calling getThermostatTraits without traits on device returns empty list',
+      () async {
+    Request request = Request('', {});
+    final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
+
+    when(mockGetThermostatDetailsFunction.call(any, any))
+        .thenAnswer((_) async => Future.value(_getDevice()));
+
+    ThermostatProvider thermostatProvider = ThermostatProvider(
+        request, 'deviceId',
+        getDetails: mockGetThermostatDetailsFunction);
+    expect(
+        thermostatProvider.getThermostatTraits(), equals(<ThermostatTrait>[]));
+
+    expect(thermostatProvider.targetTemperature, equals(0.0));
+  });
+
   test('Device data is set using DeviceRepository\'s return values', () async {
     Request request = Request('', {});
 
     final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -108,7 +126,7 @@ void main() {
   });
 }
 
-Device _getDevice(double temp) {
+Device _getThermostat(double temp) {
   return Device(
     'someId',
     'someDisplayName',
@@ -119,5 +137,19 @@ Device _getDevice(double temp) {
     GDateTime('value'),
     GDateTime('value'),
     [ThermostatTrait(TargetTemperature(temp))],
+  );
+}
+
+Device _getDevice() {
+  return Device(
+    'someId',
+    'someDisplayName',
+    'someDescription',
+    'someManufacturerName',
+    'someModel',
+    'someFirmwareV',
+    GDateTime('value'),
+    GDateTime('value'),
+    [],
   );
 }
