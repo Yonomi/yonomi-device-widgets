@@ -50,13 +50,12 @@ static Widget produceSlimWidget<T extends DeviceProvider>(
       });
     case ThermostatProvider:
       return Consumer<ThermostatProvider>(
-        builder: (_, thermostatProvider, child) {
-          return BaseSlimWidget(
-              leftIcon: Icon(BootstrapIcons.thermometer),
-              headerText: Text(
-                  'Target Temperature: ${thermostatProvider.targetTemperature.toInt()}'));
-        },
-      );
+          builder: (_, thermostatProvider, child) {
+        return ThermostatSlimWidget(
+          thermostatProvider,
+          backgroundColor: backgroundColor,
+        );
+      });
     default:
       return UnknownSlimWidget(name ?? '', backgroundColor: backgroundColor);
   }
