@@ -21,7 +21,7 @@ class ThermostatProvider extends DeviceProvider {
 
   ThermostatTrait? getThermostatTrait() {
     return deviceDetail?.traits
-            .firstWhere((trait) => trait.runtimeType == ThermostatTrait)
+            .firstWhere((trait) => trait is ThermostatTrait)
         as ThermostatTrait?;
   }
 
@@ -40,7 +40,8 @@ class ThermostatProvider extends DeviceProvider {
         () => setMode(_request, deviceId, mode));
   }
 
-  double get targetTemperature => (getThermostatTrait()?.state as TargetTemperature).value ?? 0.0;
+  double get targetTemperature =>
+      (getThermostatTrait()?.state as TargetTemperature?)?.value ?? 0.0;
 
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
