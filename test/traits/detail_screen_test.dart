@@ -18,6 +18,7 @@ import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
+import 'package:yonomi_device_widgets/traits/unknown_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -295,6 +296,18 @@ void main() {
     expect(batteryWidget.headerText.style?.color,
         WidgetStyleConstants.globalWarningColor);
   });
+
+  testWidgets(
+      'For a device with no traits, Detail screen should show an unknown trait display',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+
+    await tester.pumpWidget(
+        test.createDetailScreenWidgetForTraits([], request, testedDeviceId));
+
+    expect(find.byType(UnknownWidget), findsOneWidget);
+  });
+
 
   testWidgets('Detail screen returns a multiprovider',
       (WidgetTester tester) async {
