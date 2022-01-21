@@ -2,21 +2,20 @@
 // in yonomi_device_widgets/test/widgets/components/modes_toolbar_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i5;
-import 'dart:ui' as _i10;
+import 'dart:async' as _i4;
+import 'dart:ui' as _i9;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i8;
+import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i7;
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart'
     as _i2;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i3;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
-    as _i9;
+    as _i8;
 import 'package:yonomi_platform_sdk/src/repository/devices/thermostat_repository.dart'
-    as _i6;
+    as _i5;
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart'
-    as _i7;
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i4;
+    as _i6;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -72,55 +71,51 @@ class MockThermostatProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  List<_i4.ThermostatTrait> getThermostatTraits() =>
-      (super.noSuchMethod(Invocation.method(#getThermostatTraits, []),
-          returnValue: <_i4.ThermostatTrait>[]) as List<_i4.ThermostatTrait>);
-  @override
-  _i5.Future<void> setPointAction(String? deviceId, double? temperature,
+  _i4.Future<void> setPointAction(String? deviceId, double? temperature,
           {_i2.SetPointActionFunction? setPoint =
-              _i6.ThermostatRepository.setPointThermostat}) =>
+              _i5.ThermostatRepository.setPointThermostat}) =>
       (super.noSuchMethod(
           Invocation.method(
               #setPointAction, [deviceId, temperature], {#setPoint: setPoint}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  _i5.Future<void> setThermostatMode(
-          String? deviceId, _i7.GThermostatMode? mode,
-          {_i2.SetModeFunction? setMode = _i6.ThermostatRepository.setMode}) =>
+  _i4.Future<void> setThermostatMode(
+          String? deviceId, _i6.GThermostatMode? mode,
+          {_i2.SetModeFunction? setMode = _i5.ThermostatRepository.setMode}) =>
       (super.noSuchMethod(
           Invocation.method(
               #setThermostatMode, [deviceId, mode], {#setMode: setMode}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  _i5.Future<void> fetchData(
-          {_i8.GetDeviceDetailsMethod? getDetails =
-              _i9.DevicesRepository.getDeviceDetails}) =>
+  _i4.Future<void> fetchData(
+          {_i7.GetDeviceDetailsMethod? getDetails =
+              _i8.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
   void setErrorState(String? errorMsg) =>
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  _i5.Future<void> performAction<T>(
+  _i4.Future<void> performAction<T>(
           T? desiredState, Function? getState, Function? action,
-          {_i8.GetDeviceDetailsMethod? getDetails =
-              _i9.DevicesRepository.getDeviceDetails}) =>
+          {_i7.GetDeviceDetailsMethod? getDetails =
+              _i8.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#performAction, [desiredState, getState, action],
               {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  void addListener(_i10.VoidCallback? listener) =>
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
-import 'package:yonomi_device_widgets/providers/lock_provider.dart';
-import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
-import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/device_widget_factory.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -20,7 +16,7 @@ class DeviceWidgetBuilder {
     return this;
   }
 
-  DeviceWidgetBuilder withTrait(trait,
+  DeviceWidgetBuilder _withTrait(trait,
       {EdgeInsets padding = const EdgeInsets.all(8.0),
       EdgeInsets margins =
           const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
@@ -34,7 +30,7 @@ class DeviceWidgetBuilder {
       EdgeInsets margins =
           const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
     traits.forEach((trait) {
-      withTrait(trait, padding: padding, margins: margins);
+      _withTrait(trait, padding: padding, margins: margins);
     });
 
     return this;
@@ -59,38 +55,39 @@ class DeviceWidgetBuilder {
       Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
     switch (trait.runtimeType) {
       case LockTrait:
-        return DeviceWidgetFactory.produceWidget<LockProvider>(
+        return DeviceWidgetFactory.produceWidget<LockTrait>(
             iconColor: iconColor, textColor: textColor);
       case PowerTrait:
-        return DeviceWidgetFactory.produceWidget<PowerTraitProvider>(
+        return DeviceWidgetFactory.produceWidget<PowerTrait>(
             iconColor: iconColor, textColor: textColor);
       case BatteryLevelTrait:
-        return DeviceWidgetFactory.produceWidget<BatteryLevelProvider>(
+        return DeviceWidgetFactory.produceWidget<BatteryLevelTrait>(
             iconColor: iconColor, textColor: textColor);
       case ThermostatTrait:
-        return DeviceWidgetFactory.produceWidget<ThermostatProvider>(
+        return DeviceWidgetFactory.produceWidget<ThermostatTrait>(
             iconColor: iconColor, textColor: textColor);
       default:
-        return DeviceWidgetFactory.produceWidget(iconColor: iconColor);
+        return DeviceWidgetFactory.produceWidget<UnknownTrait>(
+            iconColor: iconColor);
     }
   }
 
   Widget _createTraitListWidget(Trait trait, {backgroundColor = Colors.white}) {
     switch (trait.runtimeType) {
       case LockTrait:
-        return DeviceWidgetFactory.produceSlimWidget<LockProvider>(
+        return DeviceWidgetFactory.produceSlimWidget<LockTrait>(
             backgroundColor: backgroundColor);
       case PowerTrait:
-        return DeviceWidgetFactory.produceSlimWidget<PowerTraitProvider>(
+        return DeviceWidgetFactory.produceSlimWidget<PowerTrait>(
             backgroundColor: backgroundColor);
       case BatteryLevelTrait:
-        return DeviceWidgetFactory.produceSlimWidget<BatteryLevelProvider>(
+        return DeviceWidgetFactory.produceSlimWidget<BatteryLevelTrait>(
             backgroundColor: backgroundColor);
       case ThermostatTrait:
-        return DeviceWidgetFactory.produceSlimWidget<ThermostatProvider>(
+        return DeviceWidgetFactory.produceSlimWidget<ThermostatTrait>(
             backgroundColor: backgroundColor);
       default:
-        return DeviceWidgetFactory.produceSlimWidget(
+        return DeviceWidgetFactory.produceSlimWidget<UnknownTrait>(
             name: trait.name, backgroundColor: backgroundColor);
     }
   }
