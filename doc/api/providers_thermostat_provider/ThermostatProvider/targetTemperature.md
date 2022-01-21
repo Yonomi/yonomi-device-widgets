@@ -23,7 +23,8 @@
 ## Implementation
 
 ```dart
-double get targetTemperature => (getThermostatTrait()?.state as TargetTemperature).value ?? 0.0;
+double get targetTemperature =>
+    (getThermostatTrait()?.state as TargetTemperature?)?.value ?? 0.0;
 ```
 
 
