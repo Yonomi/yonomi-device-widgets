@@ -1,7 +1,7 @@
 
 
 
-# produceSlimWidget&lt;T extends DeviceProvider> method
+# produceSlimWidget&lt;T extends Trait> method
 
 
 
@@ -12,7 +12,7 @@
 
 
 [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) produceSlimWidget
-&lt;T extends DeviceProvider>({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, dynamic backgroundColor = Colors.white})
+&lt;T extends Trait>({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, dynamic backgroundColor = Colors.white})
 
 
 
@@ -24,21 +24,21 @@
 ## Implementation
 
 ```dart
-static Widget produceSlimWidget<T extends DeviceProvider>(
+static Widget produceSlimWidget<T extends Trait>(
     {String? name, backgroundColor = Colors.white}) {
   switch (T) {
-    case LockProvider:
-      return Consumer<LockProvider>(builder: (_, lockProvider, child) {
+    case LockTrait:
+      return Consumer<LockProvider>(builder: (_, lockProvider, __) {
         return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
       });
-    case PowerTraitProvider:
-      return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
+    case PowerTrait:
+      return Consumer<PowerTraitProvider>(builder: (_, powerProvider, __) {
         return PowerSlimWidget(powerProvider,
             backgroundColor: backgroundColor);
       });
-    case BatteryLevelProvider:
+    case BatteryLevelTrait:
       return Consumer<BatteryLevelProvider>(
-          builder: (_, batteryLevelProvider, child) {
+          builder: (_, batteryLevelProvider, __) {
         return BatterySlimWidget(batteryLevelProvider,
             backgroundColor: backgroundColor,
             content: BatteryWidget(
@@ -48,9 +48,9 @@ static Widget produceSlimWidget<T extends DeviceProvider>(
               iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
             ));
       });
-    case ThermostatProvider:
+    case ThermostatTrait:
       return Consumer<ThermostatProvider>(
-          builder: (_, thermostatProvider, child) {
+          builder: (_, thermostatProvider, __) {
         return ThermostatSlimWidget(
           thermostatProvider,
           backgroundColor: backgroundColor,

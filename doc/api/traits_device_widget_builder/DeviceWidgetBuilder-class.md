@@ -81,15 +81,6 @@ _inherited_
 
 
 
-##### [withTrait](../traits_device_widget_builder/DeviceWidgetBuilder/withTrait.md)(dynamic trait, {[EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) padding = const EdgeInsets.all(8.0), [EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) margins = const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) [DeviceWidgetBuilder](../traits_device_widget_builder/DeviceWidgetBuilder-class.md)
-
-
-
-   
-
-
-
-
 ##### [withTraits](../traits_device_widget_builder/DeviceWidgetBuilder/withTraits.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits, {[EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) padding = const EdgeInsets.all(8.0), [EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) margins = const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) [DeviceWidgetBuilder](../traits_device_widget_builder/DeviceWidgetBuilder-class.md)
 
 

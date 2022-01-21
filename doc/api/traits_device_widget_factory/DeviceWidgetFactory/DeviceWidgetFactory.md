@@ -1,7 +1,7 @@
 
 
 
-# DeviceWidgetFactory&lt;T> constructor
+# DeviceWidgetFactory&lt;T extends Trait> constructor
 
 
 
@@ -10,7 +10,7 @@
 
 
 
-DeviceWidgetFactory&lt;T>()
+DeviceWidgetFactory&lt;T extends Trait>()
 
 
 

@@ -29,7 +29,7 @@ DeviceWidgetBuilder withTraits(List<Trait> traits,
     EdgeInsets margins =
         const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
   traits.forEach((trait) {
-    withTrait(trait, padding: padding, margins: margins);
+    _withTrait(trait, padding: padding, margins: margins);
   });
 
   return this;
