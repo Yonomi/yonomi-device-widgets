@@ -121,17 +121,3 @@ Device _getThermostat(double temp) {
     [ThermostatTrait(TargetTemperature(temp))],
   );
 }
-
-Device _getDevice() {
-  return Device(
-    'someId',
-    'someDisplayName',
-    'someDescription',
-    'someManufacturerName',
-    'someModel',
-    'someFirmwareV',
-    GDateTime('value'),
-    GDateTime('value'),
-    [],
-  );
-}
