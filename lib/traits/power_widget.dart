@@ -62,8 +62,7 @@ class PowerWidget extends StatelessWidget {
           CupertinoSwitch(
             activeColor: WidgetStyleConstants.traitDetailSwitchPressedColor,
             onChanged: (bool onOff) {
-              if (_powerTraitProvider.supportsToggle)
-                _powerTraitProvider.sendPowerOnOffAction(onOff);
+              _powerTraitProvider.sendPowerOnOffAction(onOff);
             },
             value: _powerTraitProvider.getOnOffState,
           ),

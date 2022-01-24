@@ -41,8 +41,12 @@ class PowerTraitProvider extends DeviceProvider {
     return getPowerTrait()?.state.value ?? false;
   }
 
-  bool get supportsToggle =>
-      getPowerTrait()?.properties.whereType<SupportsToggle>().first.value ??
+  bool get supportsDiscreteOnOff =>
+      getPowerTrait()
+          ?.properties
+          .whereType<SupportsDiscreteOnOff>()
+          .first
+          .value ??
       false;
 
   @override
