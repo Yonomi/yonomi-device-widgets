@@ -47,7 +47,7 @@ void main() {
       expect(find.byType(PowerSlimWidget), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsNothing);
       expect(find.byIcon(Icons.error), findsOneWidget);
-      // expect(find.text(errorMessage), findsOneWidget);
+      expect(find.text(errorMessage), findsOneWidget);
     });
 
     testWidgets('Should show a Switch widget with On state if device is On',
@@ -95,6 +95,24 @@ void main() {
       expect(find.byType(PowerSlimWidget), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsNothing);
       expect(find.byType(CupertinoSwitch), findsOneWidget);
+      verify(mockPowerTraitProvider.sendPowerOnOffAction(false)).called(1);
+    });
+
+    testWidgets(
+        "Should run PowerTraitProvider's sendPowerOnOffAction method when button is pressed",
+        (WidgetTester tester) async {
+      final mockPowerTraitProvider = test.mockPowerTraitProvider(defaultDevice,
+          onOffState: true, supportsDiscreteOnOff: false);
+
+      await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
+
+      await tester.tap(find.byType(IconButton));
+
+      expect(find.byType(PowerSlimWidget), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.byType(CupertinoSwitch), findsNothing);
+      expect(find.byType(IconButton), findsOneWidget);
+
       verify(mockPowerTraitProvider.sendPowerOnOffAction(false)).called(1);
     });
   });

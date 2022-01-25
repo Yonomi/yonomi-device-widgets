@@ -4,7 +4,6 @@ import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class PowerWidget extends StatelessWidget with ToastNotifications {
   final PowerTraitProvider _powerTraitProvider;
@@ -54,8 +53,12 @@ class PowerWidget extends StatelessWidget with ToastNotifications {
               child: SizedBox(
                   width: _iconSize,
                   height: _iconSize,
-                  child: PowerItemIcon(onOffState,
-                      size: _iconSize, color: _iconColor)),
+                  child: IconButton(
+                      icon: PowerItemIcon(onOffState,
+                          size: _iconSize, color: _iconColor),
+                      iconSize: _iconSize,
+                      onPressed: () => _powerTraitProvider.sendPowerOnOffAction(
+                          !_powerTraitProvider.getOnOffState))),
             ),
           ),
           SizedBox(
