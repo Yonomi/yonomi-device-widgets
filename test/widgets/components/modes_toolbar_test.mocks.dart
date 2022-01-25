@@ -35,9 +35,9 @@ class MockThermostatProvider extends _i1.Mock
   }
 
   @override
-  double get thermostatTargetTemperature =>
-      (super.noSuchMethod(Invocation.getter(#thermostatTargetTemperature),
-          returnValue: 0.0) as double);
+  double get targetTemperature => (super
+          .noSuchMethod(Invocation.getter(#targetTemperature), returnValue: 0.0)
+      as double);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')

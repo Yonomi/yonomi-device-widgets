@@ -136,7 +136,7 @@ _write-only, inherited_
 
 
 
-##### [thermostatTargetTemperature](../providers_thermostat_provider/ThermostatProvider/thermostatTargetTemperature.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+##### [targetTemperature](../providers_thermostat_provider/ThermostatProvider/targetTemperature.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
 
 
 

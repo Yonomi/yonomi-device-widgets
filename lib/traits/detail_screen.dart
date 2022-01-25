@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
+import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
-import 'package:yonomi_device_widgets/traits/lock_widget.dart';
-import 'package:yonomi_device_widgets/traits/power_widget.dart';
-import 'package:yonomi_device_widgets/traits/battery_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
-import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
-import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_device_widgets/traits/device_widget_builder.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -34,6 +27,8 @@ class DetailScreen extends StatelessWidget {
             create: (context) => PowerTraitProvider(request, deviceId)),
         ChangeNotifierProvider<BatteryLevelProvider>(
             create: (context) => BatteryLevelProvider(request, deviceId)),
+        ChangeNotifierProvider<ThermostatProvider>(
+            create: (context) => ThermostatProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );
@@ -62,82 +57,13 @@ class DetailScreenWidget extends StatelessWidget {
   }
 
   Widget buildContainer(List<Trait> traits) {
+    final displayTraits = (traits.isEmpty) ? [UnknownTrait('UNKNOWN')] : traits;
+    final deviceWidget = DeviceWidgetBuilder()
+        .withPrimaryTrait(displayTraits.first)
+        .withTraits(displayTraits.skip(1).toList())
+        .build();
+
     return Container(
-        alignment: Alignment.center,
-        child: Center(
-            child: Column(children: [
-          _card(_createTraitWidget(traits.first), const EdgeInsets.all(8.0),
-              const EdgeInsets.only(bottom: 8.0)),
-          ...traits.skip(1).map((trait) {
-            return _card(
-                _createTraitListWidget(trait),
-                const EdgeInsets.all(8.0),
-                const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0));
-          }).toList()
-        ])));
-  }
-
-  Widget _card(Widget content, EdgeInsets padding, EdgeInsets margins) {
-    return Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: Colors.white,
-        margin: margins,
-        child: Padding(padding: padding, child: content));
-  }
-
-  Widget _createTraitWidget(Trait trait,
-      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
-      Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
-    switch (trait.runtimeType) {
-      case LockTrait:
-        return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return LockWidget(lockProvider,
-              iconColor: iconColor, textColor: textColor);
-        });
-      case PowerTrait:
-        return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
-          return PowerWidget(powerProvider,
-              iconColor: iconColor, textColor: textColor);
-        });
-      case BatteryLevelTrait:
-        return Consumer<BatteryLevelProvider>(
-            builder: (_, batteryLevelProvider, child) {
-          return BatteryWidget(batteryLevelProvider,
-              iconColor: iconColor, textColor: textColor);
-        });
-      default:
-        return UnknownItemIcon(color: iconColor);
-    }
-  }
-
-  Widget _createTraitListWidget(Trait trait, {backgroundColor = Colors.white}) {
-    switch (trait.runtimeType) {
-      case LockTrait:
-        return Consumer<LockProvider>(builder: (_, lockProvider, child) {
-          return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
-        });
-      case PowerTrait:
-        return Consumer<PowerTraitProvider>(builder: (_, powerProvider, child) {
-          return PowerSlimWidget(powerProvider,
-              backgroundColor: backgroundColor);
-        });
-      case BatteryLevelTrait:
-        return Consumer<BatteryLevelProvider>(
-            builder: (_, batteryLevelProvider, child) {
-          return BatterySlimWidget(batteryLevelProvider,
-              backgroundColor: backgroundColor,
-              content: BatteryWidget(
-                batteryLevelProvider,
-                iconSize: 100.0,
-                textColor: WidgetStyleConstants.darkTextColor,
-                iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
-              ));
-        });
-      default:
-        return UnknownSlimWidget(
-          trait.name,
-          backgroundColor: backgroundColor,
-        );
-    }
+        alignment: Alignment.center, child: Center(child: deviceWidget));
   }
 }

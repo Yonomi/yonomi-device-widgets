@@ -25,19 +25,14 @@
 
 ```dart
 Widget buildContainer(List<Trait> traits) {
+  final displayTraits = (traits.isEmpty) ? [UnknownTrait('UNKNOWN')] : traits;
+  final deviceWidget = DeviceWidgetBuilder()
+      .withPrimaryTrait(displayTraits.first)
+      .withTraits(displayTraits.skip(1).toList())
+      .build();
+
   return Container(
-      alignment: Alignment.center,
-      child: Center(
-          child: Column(children: [
-        _card(_createTraitWidget(traits.first), const EdgeInsets.all(8.0),
-            const EdgeInsets.only(bottom: 8.0)),
-        ...traits.skip(1).map((trait) {
-          return _card(
-              _createTraitListWidget(trait),
-              const EdgeInsets.all(8.0),
-              const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0));
-        }).toList()
-      ])));
+      alignment: Alignment.center, child: Center(child: deviceWidget));
 }
 ```
 
