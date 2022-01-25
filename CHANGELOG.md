@@ -1,3 +1,20 @@
+# [2.6.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.5.1...v2.6.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* Fix unknown primary trait display to be same style as other primary traits on detail screen ([6a835bd](https://github.com/Yonomi/yonomi-device-widgets/commit/6a835bdb034c946730a513caedcb37df8a303eae))
+* Thermostat will have multiple states not multiple traits ([36b323b](https://github.com/Yonomi/yonomi-device-widgets/commit/36b323b205d6d6ee1e93b16f916dfc12f621d781))
+* Thermostats can have multiple traits and states so make sure target temp is returning the target temp state ([8ffe24e](https://github.com/Yonomi/yonomi-device-widgets/commit/8ffe24e969ee47835a70cb12af54bc68cacb72f3))
+* **detail_screen.dart:** Add additional test and fix what happens if a device for some reason has no traits ([0286c5b](https://github.com/Yonomi/yonomi-device-widgets/commit/0286c5bf6fc0b1a7306c4a5a416c22a4cda4e188))
+* **thermostat_provider.dart:** Fix thermostat trait casting to prevent type cast error ([51b556a](https://github.com/Yonomi/yonomi-device-widgets/commit/51b556a6cdafef9c18da61d217b1d64c55923517))
+
+
+### Features
+
+* Add cursory display of target temperature ([89ddaf2](https://github.com/Yonomi/yonomi-device-widgets/commit/89ddaf22edb57afb3afe677819c1547475f1c803))
+* Add simple display of target temperature ([c648bb6](https://github.com/Yonomi/yonomi-device-widgets/commit/c648bb6f27c8eab0e9fb9a994dedd8bf169065f7))
+
 ## [2.5.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.5.0...v2.5.1) (2022-01-19)
 
 
