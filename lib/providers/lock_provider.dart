@@ -15,13 +15,10 @@ class LockProvider extends DeviceProvider {
 
   late final Request _request;
 
-  bool get isLocked =>
-      getLockTrait()?.states.firstWhere((trait) => trait is IsLocked).value ??
-      false;
+  bool get isLocked => state<LockTrait, IsLocked>()?.value ?? false;
 
   LockTrait? getLockTrait() {
-    return deviceDetail?.traits
-        .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait?;
+    return trait<LockTrait>() as LockTrait?;
   }
 
   Future<void> setLockUnlockAction(String deviceId, bool setLock,

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/widget_state.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as sdk;
 
-typedef GetDeviceDetailsMethod = Future<Device> Function(
-    Request request, String id);
+typedef GetDeviceDetailsMethod = Future<sdk.Device> Function(
+    sdk.Request request, String id);
 
 abstract class DeviceProvider extends ChangeNotifier {
   static const int MAX_RETRIES = 10;
   static const int RETRY_DELAY_MS = 750;
 
   late String _deviceId;
-  late Request _request;
+  late sdk.Request _request;
   WidgetState _state = WidgetState.idle;
-  Device? _deviceDetail;
+  sdk.Device? _deviceDetail;
   String _latestErrorMsg = "An error occurred.";
 
-  DeviceProvider(Request request, String deviceId,
+  DeviceProvider(sdk.Request request, String deviceId,
       {GetDeviceDetailsMethod getDetails =
-          DevicesRepository.getDeviceDetails}) {
+          sdk.DevicesRepository.getDeviceDetails}) {
     this._deviceId = deviceId;
     this._request = request;
     fetchData(getDetails: getDetails);
@@ -25,7 +25,7 @@ abstract class DeviceProvider extends ChangeNotifier {
 
   Future<void> fetchData(
       {GetDeviceDetailsMethod getDetails =
-          DevicesRepository.getDeviceDetails}) async {
+          sdk.DevicesRepository.getDeviceDetails}) async {
     setState = WidgetState.loading;
 
     try {
@@ -41,7 +41,7 @@ abstract class DeviceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Device? get deviceDetail => _deviceDetail;
+  sdk.Device? get deviceDetail => _deviceDetail;
 
   void setErrorState(String errorMsg) {
     _setErrorMessage = errorMsg;
@@ -56,7 +56,7 @@ abstract class DeviceProvider extends ChangeNotifier {
   Future<void> performAction<T>(
       T desiredState, Function getState, Function action,
       {GetDeviceDetailsMethod getDetails =
-          DevicesRepository.getDeviceDetails}) async {
+          sdk.DevicesRepository.getDeviceDetails}) async {
     if (!isPerformingAction) {
       setState = WidgetState.performingAction;
 
@@ -78,6 +78,14 @@ abstract class DeviceProvider extends ChangeNotifier {
             .then((_) => setState = WidgetState.idle);
       }
     }
+  }
+
+  sdk.State? state<T extends sdk.Trait, S extends sdk.State>() {
+    return trait<T>()?.states.firstWhere((state) => state is S) ?? null;
+  }
+
+  sdk.Trait? trait<T extends sdk.Trait>() {
+    return deviceDetail?.traits.firstWhere((trait) => trait is T, orElse: null);
   }
 
   String get displayName;

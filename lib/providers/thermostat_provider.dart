@@ -20,9 +20,7 @@ class ThermostatProvider extends DeviceProvider {
   late Request _request;
 
   ThermostatTrait? getThermostatTrait() {
-    return deviceDetail?.traits
-            .firstWhere((trait) => trait is ThermostatTrait)
-        as ThermostatTrait?;
+    return trait<ThermostatTrait>() as ThermostatTrait?;
   }
 
   Future<void> setPointAction(String deviceId, double temperature,
@@ -41,10 +39,7 @@ class ThermostatProvider extends DeviceProvider {
   }
 
   double get targetTemperature =>
-      (getThermostatTrait()?.states.firstWhere(
-              (state) => state is TargetTemperature,
-              orElse: () => TargetTemperature(0.0)) as TargetTemperature?)
-          ?.value ??
+      state<ThermostatTrait, TargetTemperature>()?.value ??
       0.0;
 
   @override
