@@ -12,7 +12,7 @@ import '../mixins/power_widget_testing.dart';
 
 typedef CreateWidget = Widget Function(BuildContext context);
 
-class DeviceSlimWidgetTest
+class BaseSlimWidgetTest
     with DeviceTesting, BatteryWidgetTesting, PowerWidgetTesting {}
 
 class TestWidget extends BaseSlimWidget {
@@ -33,7 +33,7 @@ MaterialApp createMaterialApp(TestWidget testWidget) {
 }
 
 void main() {
-  final test = DeviceSlimWidgetTest();
+  final test = BaseSlimWidgetTest();
   final device = test.device([UnknownTrait('name')]);
 
   testWidgets(
