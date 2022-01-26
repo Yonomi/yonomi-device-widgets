@@ -81,7 +81,7 @@ abstract class DeviceProvider extends ChangeNotifier {
   }
 
   sdk.State? state<T extends sdk.Trait, S extends sdk.State>() {
-    return trait<T>()?.states.firstWhere((state) => state is S) ?? null;
+    return trait<T>()?.states.firstWhere((state) => state is S, orElse: null);
   }
 
   sdk.Trait? trait<T extends sdk.Trait>() {
