@@ -46,6 +46,7 @@ void main() {
         .called(1);
   });
 
+/*
   test('Calling setThermostatMode calls repository method', () async {
     Request request = Request('', {});
     final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
@@ -65,6 +66,7 @@ void main() {
     verify(mockSetModeFunction.call(request, 'DeviceId', GThermostatMode.AUTO))
         .called(1);
   });
+*/
 
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request('', {});
