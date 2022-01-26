@@ -118,6 +118,8 @@ Device _getThermostat(double temp) {
     'someFirmwareV',
     GDateTime('value'),
     GDateTime('value'),
-    [ThermostatTrait(TargetTemperature(temp))],
+    [
+      ThermostatTrait({TargetTemperature(temp)})
+    ],
   );
 }

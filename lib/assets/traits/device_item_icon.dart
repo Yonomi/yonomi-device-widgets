@@ -12,13 +12,22 @@ class DeviceItemIcon {
     Trait determiningTrait = traits[0];
     switch (determiningTrait.runtimeType) {
       case LockTrait:
-        return LockIcon(determiningTrait.state.value);
+        return LockIcon(determiningTrait.states
+            .firstWhere((state) => state is IsLocked)
+            .value);
       case ThermostatTrait:
-        return ThermostatIcon(thermostatState: determiningTrait.state.value);
+        return ThermostatIcon(
+            thermostatState: determiningTrait.states
+                .firstWhere((state) => state is TargetTemperature)
+                .value);
       case PowerTrait:
-        return PowerItemIcon(determiningTrait.state.value);
+        return PowerItemIcon(determiningTrait.states
+            .firstWhere((state) => state is IsOnOff)
+            .value);
       case BatteryLevelTrait:
-        return BatteryLevelIcon(determiningTrait.state.value);
+        return BatteryLevelIcon(determiningTrait.states
+            .firstWhere((state) => state is BatteryLevel)
+            .value);
       default:
         return UnknownItemIcon();
     }

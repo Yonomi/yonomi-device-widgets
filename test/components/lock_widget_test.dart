@@ -21,7 +21,7 @@ void main() {
       null,
       GDateTime('value'),
       GDateTime('value'),
-      [LockTrait(IsLocked(true))]);
+      [LockTrait(IsLocked(true), {})]);
 
   Widget getAppWithLockWidget() {
     return MaterialApp(

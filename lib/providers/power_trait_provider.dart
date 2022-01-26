@@ -38,7 +38,12 @@ class PowerTraitProvider extends DeviceProvider {
   }
 
   bool get getOnOffState {
-    return getPowerTrait()?.state.value ?? false;
+    return getPowerTrait()
+            ?.states
+            .firstWhere((state) => state is IsOnOff,
+                orElse: () => IsOnOff(false))
+            .value ??
+        false;
   }
 
   @override

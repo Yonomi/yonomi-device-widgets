@@ -36,12 +36,16 @@ class ThermostatProvider extends DeviceProvider {
       {SetModeFunction setMode = ThermostatRepository.setMode}) async {
     return performAction<GThermostatMode?>(
         mode,
-        () => getThermostatTrait()?.state.value,
+        () => getThermostatTrait()?.states.first.value,
         () => setMode(_request, deviceId, mode));
   }
 
   double get targetTemperature =>
-      (getThermostatTrait()?.state as TargetTemperature?)?.value ?? 0.0;
+      (getThermostatTrait()?.states.firstWhere(
+              (state) => state is TargetTemperature,
+              orElse: () => TargetTemperature(0.0)) as TargetTemperature?)
+          ?.value ??
+      0.0;
 
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
