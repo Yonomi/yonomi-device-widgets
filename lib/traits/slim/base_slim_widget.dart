@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 typedef CreateWidget = Widget Function(BuildContext context);
 
-class BaseSlimWidget extends StatelessWidget {
+class BaseSlimWidget extends StatelessWidget with ToastNotifications {
   final Widget leftIcon;
   final Text headerText;
   final Widget? rightIcon;
@@ -27,6 +28,8 @@ class BaseSlimWidget extends StatelessWidget {
     if ((provider?.isLoading ?? false)) {
       return CircularProgressIndicator();
     } else if (provider?.isInErrorState ?? false) {
+      showToast(
+          context, provider?.getErrorMessage ?? 'An unknown error occurred');
       return Icon(Icons.error);
     } else {
       return Column(
@@ -46,7 +49,7 @@ class BaseSlimWidget extends StatelessWidget {
       backgroundColor: backgroundColor,
       title: headerText,
       tilePadding: EdgeInsets.all(0.0),
-      children: [createContent!(context)],
+      children: [createContent!.call(context)],
       collapsedIconColor: WidgetStyleConstants.globalSuccessColor,
       iconColor: WidgetStyleConstants.deviceIconColor,
       key: key,
