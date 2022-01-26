@@ -77,7 +77,7 @@ class ThermostatWidget extends StatelessWidget {
               "Fan: ${_thermostatProvider.fanMode}",
               style: Theme.of(context)
                   .textTheme
-                  .headline2
+                  .headline6
                   ?.copyWith(color: _textColor),
             )));
   }
