@@ -42,6 +42,8 @@ class ThermostatProvider extends DeviceProvider {
       state<ThermostatTrait, TargetTemperature>()?.value ??
       0.0;
 
+  String get fanMode => state<ThermostatTrait, FanMode>()?.value ?? 'AUTO';
+
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 }

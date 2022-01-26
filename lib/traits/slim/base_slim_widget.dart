@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
+typedef CreateWidget = Widget Function(BuildContext context);
+
 class BaseSlimWidget extends StatelessWidget {
   final Widget leftIcon;
   final Text headerText;
   final Widget? rightIcon;
-  final Widget? content;
+  final CreateWidget? createContent;
   final Color? backgroundColor;
   final DeviceProvider? provider;
 
@@ -15,7 +17,7 @@ class BaseSlimWidget extends StatelessWidget {
       required this.leftIcon,
       required this.headerText,
       this.rightIcon,
-      this.content,
+      this.createContent,
       this.backgroundColor,
       Key? key})
       : super(key: key);
@@ -28,11 +30,13 @@ class BaseSlimWidget extends StatelessWidget {
       return Icon(Icons.error);
     } else {
       return Column(
-          children: <Widget>[(content != null ? _expandableTile() : _tile())]);
+          children: <Widget>[
+        (createContent != null ? _expandableTile(context) : _tile())
+      ]);
     }
   }
 
-  Widget _expandableTile() {
+  Widget _expandableTile(BuildContext context) {
     return ExpansionTile(
       childrenPadding: EdgeInsets.all(8.0),
       leading: (provider?.isPerformingAction ?? false)
@@ -42,7 +46,7 @@ class BaseSlimWidget extends StatelessWidget {
       backgroundColor: backgroundColor,
       title: headerText,
       tilePadding: EdgeInsets.all(0.0),
-      children: [content!],
+      children: [createContent!(context)],
       collapsedIconColor: WidgetStyleConstants.globalSuccessColor,
       iconColor: WidgetStyleConstants.deviceIconColor,
       key: key,

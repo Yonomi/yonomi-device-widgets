@@ -67,12 +67,12 @@ class DeviceWidgetFactory<T extends Trait> {
             builder: (_, batteryLevelProvider, __) {
           return BatterySlimWidget(batteryLevelProvider,
               backgroundColor: backgroundColor,
-              content: BatteryWidget(
-                batteryLevelProvider,
-                iconSize: 100.0,
-                textColor: WidgetStyleConstants.darkTextColor,
-                iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
-              ));
+              createContent: (context) => BatteryWidget(
+                    batteryLevelProvider,
+                    iconSize: 100.0,
+                    textColor: WidgetStyleConstants.darkTextColor,
+                    iconColor: WidgetStyleConstants.deviceDetailIconColorActive,
+                  ));
         });
       case ThermostatTrait:
         return Consumer<ThermostatProvider>(

@@ -17,5 +17,27 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                 style: TextStyle(
                     fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
             backgroundColor: backgroundColor,
+            createContent: (context) => Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Fan Mode: ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                  color: WidgetStyleConstants.darkTextColor),
+                        ),
+                        Text(thermostatProvider.fanMode,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                ?.copyWith(
+                                    color: WidgetStyleConstants.darkTextColor))
+                      ],
+                    )
+                  ],
+                ),
             key: key);
 }

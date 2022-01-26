@@ -14,11 +14,18 @@ mixin ThermostatWidgetTesting {
     when(mockThermostatProvider.deviceDetail).thenReturn(device);
     when(mockThermostatProvider.displayName).thenReturn('THERMOSTAT');
     when(mockThermostatProvider.isPerformingAction).thenReturn(false);
-    when(mockThermostatProvider.targetTemperature).thenReturn(device.traits
-        .firstWhere((trait) => trait is ThermostatTrait,
-            orElse: () => ThermostatTrait({TargetTemperature(70.0)}))
-        .states
+
+    final thermostatTrait = device.traits.firstWhere(
+            (trait) => trait is ThermostatTrait,
+            orElse: () =>
+                ThermostatTrait({TargetTemperature(70.0), FanMode('AUTO')}))
+        as ThermostatTrait?;
+    when(mockThermostatProvider.targetTemperature).thenReturn(thermostatTrait
+        ?.states
         .firstWhere((state) => state is TargetTemperature)
+        .value);
+    when(mockThermostatProvider.fanMode).thenReturn(thermostatTrait?.states
+        .firstWhere((state) => state is FanMode, orElse: () => FanMode('AUTO'))
         .value);
 
     return mockThermostatProvider;

@@ -59,10 +59,26 @@ class ThermostatWidget extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(
-          height: 30,
-        ),
+        _fanMode(context),
       ],
     );
+  }
+
+  Widget _fanMode(BuildContext context) {
+    return Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: _textColor)),
+        color: Colors.white,
+        margin: EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+        child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Fan: ${_thermostatProvider.fanMode}",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline2
+                  ?.copyWith(color: _textColor),
+            )));
   }
 }

@@ -10,18 +10,20 @@ import '../mixins/battery_widget_testing.dart';
 import '../mixins/device_testing.dart';
 import '../mixins/power_widget_testing.dart';
 
+typedef CreateWidget = Widget Function(BuildContext context);
+
 class DeviceSlimWidgetTest
     with DeviceTesting, BatteryWidgetTesting, PowerWidgetTesting {}
 
 class TestWidget extends BaseSlimWidget {
-  TestWidget(DeviceProvider provider, [Widget? content])
+  TestWidget(DeviceProvider provider, [CreateWidget? createContent])
       : super(
             leftIcon: UnknownItemIcon(),
             rightIcon: UnknownItemIcon(),
             provider: provider,
             backgroundColor: Colors.white,
             headerText: Text('Test Widget'),
-            content: content);
+            createContent: createContent);
 }
 
 MaterialApp createMaterialApp(TestWidget testWidget) {
@@ -43,7 +45,7 @@ void main() {
     when(provider.isLoading).thenReturn(false);
     when(provider.isPerformingAction).thenReturn(true);
 
-    final testWidget = TestWidget(provider, Text('Content'));
+    final testWidget = TestWidget(provider, (context) => Text('Content'));
     await tester.pumpWidget(createMaterialApp(testWidget));
 
     expect(provider.isPerformingAction, equals(true));
@@ -67,7 +69,7 @@ void main() {
       'When a widget has detailed content an expandable widget is provided',
       (WidgetTester tester) async {
     final provider = test.mockBatteryLevelProvider(device);
-    final testWidget = TestWidget(provider, Text('Content'));
+    final testWidget = TestWidget(provider, (context) => Text('Content'));
     await tester.pumpWidget(createMaterialApp(testWidget));
 
     expect(find.byType(ExpansionTile), findsOneWidget);

@@ -39,6 +39,10 @@ class MockThermostatProvider extends _i1.Mock
           .noSuchMethod(Invocation.getter(#targetTemperature), returnValue: 0.0)
       as double);
   @override
+  String get fanMode =>
+      (super.noSuchMethod(Invocation.getter(#fanMode), returnValue: '')
+          as String);
+  @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);
