@@ -21,14 +21,14 @@ class ThermostatProvider extends DeviceProvider {
 
   ThermostatTrait? getThermostatTrait() {
     return deviceDetail?.traits
-            .firstWhere((trait) => trait.runtimeType == ThermostatTrait)
+            .firstWhere((trait) => trait is ThermostatTrait)
         as ThermostatTrait?;
   }
 
   Future<void> setPointAction(String deviceId, double temperature,
       {SetPointActionFunction setPoint =
           ThermostatRepository.setPointThermostat}) async {
-    return performAction<double>(temperature, () => thermostatTargetTemperature,
+    return performAction<double>(temperature, () => targetTemperature,
         () => setPoint(_request, deviceId, temperature));
   }
 
@@ -40,8 +40,8 @@ class ThermostatProvider extends DeviceProvider {
         () => setMode(_request, deviceId, mode));
   }
 
-  double get thermostatTargetTemperature =>
-      getThermostatTrait()?.state.value ?? 0;
+  double get targetTemperature =>
+      (getThermostatTrait()?.state as TargetTemperature?)?.value ?? 0.0;
 
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;

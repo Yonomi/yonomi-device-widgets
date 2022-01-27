@@ -31,7 +31,7 @@ class ThermostatWidget extends StatelessWidget {
         Center(
             child: Arc(
           centerWidget: Text(
-            thermostatProvider.thermostatTargetTemperature.toInt().toString(),
+            thermostatProvider.targetTemperature.toInt().toString(),
             style: Theme.of(context).textTheme.headline2,
           ),
           initialValue: 20.0,

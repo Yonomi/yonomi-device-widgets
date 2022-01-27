@@ -33,7 +33,7 @@ void main() {
         .thenAnswer((_) async => null);
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -52,7 +52,7 @@ void main() {
     final mockSetModeFunction = MockSetMode();
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     when(mockSetModeFunction.call(any, any, any)).thenAnswer((_) async => null);
     ThermostatProvider thermostatProvider = ThermostatProvider(
@@ -72,7 +72,7 @@ void main() {
 
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -90,7 +90,7 @@ void main() {
     final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
     when(mockGetThermostatDetailsFunction.call(any, any))
         .thenAnswer((_) async => Future.value(
-              _getDevice(23.1),
+              _getThermostat(23.1),
             ));
     ThermostatProvider thermostatProvider = ThermostatProvider(
         request, 'deviceId',
@@ -99,7 +99,7 @@ void main() {
     await thermostatProvider.fetchData(
         getDetails: mockGetThermostatDetailsFunction);
 
-    expect(thermostatProvider.thermostatTargetTemperature, 23.1);
+    expect(thermostatProvider.targetTemperature, 23.1);
     expect(thermostatProvider.displayName, 'someDisplayName');
     expect(thermostatProvider.isLoading, equals(false));
     expect(thermostatProvider.isInErrorState, equals(false));
@@ -108,7 +108,7 @@ void main() {
   });
 }
 
-Device _getDevice(double temp) {
+Device _getThermostat(double temp) {
   return Device(
     'someId',
     'someDisplayName',

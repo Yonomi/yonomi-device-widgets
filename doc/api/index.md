@@ -88,6 +88,14 @@ open coverage/html/index.html
  
 
 
+##### [device_widget_builder](traits_device_widget_builder/traits_device_widget_builder-library.md)
+ 
+
+
+##### [device_widget_factory](traits_device_widget_factory/traits_device_widget_factory-library.md)
+ 
+
+
 ##### [lock](devices_lock/devices_lock-library.md)
  
 
@@ -104,11 +112,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
@@ -148,6 +156,14 @@ open coverage/html/index.html
  
 
 
+##### [thermostat_slim_widget](traits_slim_thermostat_slim_widget/traits_slim_thermostat_slim_widget-library.md)
+ 
+
+
+##### [thermostat_widget](traits_thermostat_widget/traits_thermostat_widget-library.md)
+ 
+
+
 ##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
  
 
@@ -165,6 +181,10 @@ open coverage/html/index.html
 
 
 ##### [unknown_slim_widget](traits_slim_unknown_slim_widget/traits_slim_unknown_slim_widget-library.md)
+ 
+
+
+##### [unknown_widget](traits_unknown_widget/traits_unknown_widget-library.md)
  
 
 
