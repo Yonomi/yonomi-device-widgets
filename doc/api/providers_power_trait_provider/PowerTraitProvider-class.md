@@ -145,6 +145,15 @@ _write-only, inherited_
 
 
 
+##### [supportsDiscreteOnOff](../providers_power_trait_provider/PowerTraitProvider/supportsDiscreteOnOff.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_read-only_
+
+
+
 
 ## Methods
 

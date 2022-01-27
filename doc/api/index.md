@@ -104,11 +104,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
@@ -149,6 +149,10 @@ open coverage/html/index.html
 
 
 ##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
+ 
+
+
+##### [toast_notifications](mixins_toast_notifications/mixins_toast_notifications-library.md)
  
 
 
