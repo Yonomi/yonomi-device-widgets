@@ -13,13 +13,15 @@ class PowerWidgetTest with DeviceTesting, PowerWidgetTesting {}
 
 MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
   return MaterialApp(
-    home: Column(children: [PowerWidget(mockPowerProvider)]),
+    home: Scaffold(body: Column(children: [PowerWidget(mockPowerProvider)])),
   );
 }
 
 void main() {
   final test = PowerWidgetTest();
-  final defaultDevice = test.device([PowerTrait(IsOnOff(true))]);
+  final defaultDevice = test.device([
+    PowerTrait(IsOnOff(true), [SupportsDiscreteOnOff(true)])
+  ]);
 
   group("For PowerWidget, ", () {
     testWidgets('When loading, should show CircularProgressIndicator ',
@@ -65,7 +67,8 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('Should show a Switch widget with Off state if device is Off',
+    testWidgets(
+        'Should show a Switch widget with Off state if device is Off when supportsDiscreteToggle',
         (WidgetTester tester) async {
       final mockPowerTraitProvider = test.mockPowerTraitProvider(defaultDevice);
 
@@ -81,6 +84,23 @@ void main() {
     });
 
     testWidgets(
+        'Should not show a Switch widget with Off state if device is Off when supportsDiscreteToggle is false',
+        (WidgetTester tester) async {
+      final mockPowerTraitProvider = test.mockPowerTraitProvider(defaultDevice,
+          supportsDiscreteOnOff: false);
+
+      await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
+
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.byType(CupertinoSwitch), findsNothing);
+      expect(
+          find.byWidgetPredicate(
+              (widget) => widget is CupertinoSwitch && widget.value == true,
+              description: 'Switch is On'),
+          findsNothing);
+    });
+
+    testWidgets(
         'Should run PowerTraitProvider\'s sendPowerOnOffAction method when Switch is pressed',
         (WidgetTester tester) async {
       final mockPowerTraitProvider =
@@ -92,6 +112,21 @@ void main() {
 
       expect(find.byType(CircularProgressIndicator), findsNothing);
       expect(find.byType(CupertinoSwitch), findsOneWidget);
+      verify(mockPowerTraitProvider.sendPowerOnOffAction(false)).called(1);
+    });
+
+    testWidgets(
+        'Should run PowerTraitProvider\'s sendPowerOnOffAction method when button is pressed',
+        (WidgetTester tester) async {
+      final mockPowerTraitProvider =
+          test.mockPowerTraitProvider(defaultDevice, onOffState: true);
+
+      await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
+
+      await tester.tap(find.byType(IconButton));
+
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.byType(IconButton), findsOneWidget);
       verify(mockPowerTraitProvider.sendPowerOnOffAction(false)).called(1);
     });
   });

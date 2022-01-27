@@ -168,6 +168,10 @@ open coverage/html/index.html
  
 
 
+##### [toast_notifications](mixins_toast_notifications/mixins_toast_notifications-library.md)
+ 
+
+
 ##### [trait_detail_provider](providers_trait_detail_provider/providers_trait_detail_provider-library.md)
  
 

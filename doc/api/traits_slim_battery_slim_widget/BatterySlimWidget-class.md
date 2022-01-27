@@ -30,7 +30,7 @@
 
 ## Constructors
 
-[BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget/BatterySlimWidget.md) (dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget/BatterySlimWidget.md) ([BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
@@ -163,6 +163,15 @@ _inherited_
 
 
 Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
+_inherited_
+
+
+
+##### [showToast](../mixins_toast_notifications/ToastNotifications/showToast.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) message) void
+
+
+
+   
 _inherited_
 
 

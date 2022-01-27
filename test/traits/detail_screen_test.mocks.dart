@@ -244,6 +244,10 @@ class MockPowerTraitProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getOnOffState), returnValue: false)
           as bool);
   @override
+  bool get supportsDiscreteOnOff =>
+      (super.noSuchMethod(Invocation.getter(#supportsDiscreteOnOff),
+          returnValue: false) as bool);
+  @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);

@@ -63,6 +63,7 @@ Widget build(BuildContext context) {
   if (_batteryLevelProvider.isLoading) {
     return CircularProgressIndicator();
   } else if (_batteryLevelProvider.isInErrorState) {
+    showToast(context, _batteryLevelProvider.getErrorMessage);
     return Icon(
       Icons.error,
       color: WidgetStyleConstants.globalWarningColor,

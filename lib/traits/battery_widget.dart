@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
+import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class BatteryWidget extends StatelessWidget {
+class BatteryWidget extends StatelessWidget with ToastNotifications {
   final BatteryLevelProvider _batteryLevelProvider;
   late final Color _iconColor;
   late final Color _textColor;
@@ -25,6 +26,7 @@ class BatteryWidget extends StatelessWidget {
     if (_batteryLevelProvider.isLoading) {
       return CircularProgressIndicator();
     } else if (_batteryLevelProvider.isInErrorState) {
+      showToast(context, _batteryLevelProvider.getErrorMessage);
       return Icon(
         Icons.error,
         color: WidgetStyleConstants.globalWarningColor,
