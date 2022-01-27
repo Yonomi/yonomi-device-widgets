@@ -7,25 +7,35 @@ import 'thermostat_widget_testing.mocks.dart';
 
 @GenerateMocks([ThermostatProvider])
 mixin ThermostatWidgetTesting {
-  MockThermostatProvider mockThermostatProvider(Device device) {
+  MockThermostatProvider mockThermostatProvider(Device device,
+      {bool isBusy = false,
+      bool isLoading = false,
+      bool isInErrorState = false,
+      bool isPerformingAction = false,
+      String errorMessage = '',
+      double targetTemperature = 70.0,
+      String fanMode = 'AUTO'}) {
     final mockThermostatProvider = MockThermostatProvider();
-    when(mockThermostatProvider.isLoading).thenReturn(false);
-    when(mockThermostatProvider.isInErrorState).thenReturn(false);
+    when(mockThermostatProvider.isLoading).thenReturn(isLoading);
+    when(mockThermostatProvider.isBusy).thenReturn(isBusy);
+    when(mockThermostatProvider.isInErrorState).thenReturn(isInErrorState);
+    when(mockThermostatProvider.getErrorMessage).thenReturn(errorMessage);
+    when(mockThermostatProvider.isPerformingAction).thenReturn(false);
     when(mockThermostatProvider.deviceDetail).thenReturn(device);
     when(mockThermostatProvider.displayName).thenReturn('THERMOSTAT');
-    when(mockThermostatProvider.isPerformingAction).thenReturn(false);
 
     final thermostatTrait = device.traits.firstWhere(
             (trait) => trait is ThermostatTrait,
             orElse: () =>
-                ThermostatTrait({TargetTemperature(70.0), FanMode('AUTO')}))
+                ThermostatTrait(
+                {TargetTemperature(targetTemperature), FanMode(fanMode)}, {}))
         as ThermostatTrait?;
     when(mockThermostatProvider.targetTemperature).thenReturn(thermostatTrait
         ?.states
         .firstWhere((state) => state is TargetTemperature)
         .value);
     when(mockThermostatProvider.fanMode).thenReturn(thermostatTrait?.states
-        .firstWhere((state) => state is FanMode, orElse: () => FanMode('AUTO'))
+        .firstWhere((state) => state is FanMode, orElse: () => FanMode(fanMode))
         .value);
 
     return mockThermostatProvider;

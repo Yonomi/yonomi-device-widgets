@@ -13,10 +13,16 @@ Widget createIconWidget(List<Trait> traits) {
 }
 
 void main() {
+  final availableFanModes = {
+    AvailableFanMode('Auto'),
+    AvailableFanMode('On'),
+    AvailableFanMode('Off')
+  };
+
   testWidgets('should render correct thermostat trait icon',
       (WidgetTester tester) async {
     final thermostatDevice = [
-      ThermostatTrait({TargetTemperature(22)})
+      ThermostatTrait({TargetTemperature(22)}, availableFanModes)
     ];
     await tester.pumpWidget(createIconWidget(thermostatDevice));
     expect(find.widgetWithText(Center, '22'), findsOneWidget);
@@ -25,7 +31,7 @@ void main() {
   testWidgets('should render n/a if target temperature is null',
       (WidgetTester tester) async {
     final thermostatDevice = [
-      ThermostatTrait({TargetTemperature(null)})
+      ThermostatTrait({TargetTemperature(null)}, availableFanModes)
     ];
     await tester.pumpWidget(createIconWidget(thermostatDevice));
     expect(find.widgetWithText(Center, 'N/A'), findsOneWidget);

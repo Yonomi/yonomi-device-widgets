@@ -121,7 +121,7 @@ Device _getThermostat(double temp) {
     GDateTime('value'),
     GDateTime('value'),
     [
-      ThermostatTrait({TargetTemperature(temp)})
+      ThermostatTrait({TargetTemperature(temp)}, {})
     ],
   );
 }

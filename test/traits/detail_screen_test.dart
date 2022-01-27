@@ -203,7 +203,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      ThermostatTrait({TargetTemperature(100.0)})
+      ThermostatTrait({TargetTemperature(100.0)}, {})
     ], request, testedDeviceId));
 
     expect(find.byType(ThermostatWidget), findsOneWidget);
@@ -231,7 +231,7 @@ void main() {
       BatteryLevelTrait(BatteryLevel(100)),
       PowerTrait(IsOnOff(true), {}),
       LockTrait(IsLocked(false), {}),
-      ThermostatTrait({TargetTemperature(99)})
+      ThermostatTrait({TargetTemperature(99)}, {})
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);

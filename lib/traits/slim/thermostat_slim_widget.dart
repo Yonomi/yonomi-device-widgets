@@ -36,7 +36,22 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                                 ?.copyWith(
                                     color: WidgetStyleConstants.darkTextColor))
                       ],
-                    )
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Available Fan Modes: ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                  color: WidgetStyleConstants.darkTextColor),
+                        ),
+                        Text(thermostatProvider.availableFanModes
+                            .map((mode) => mode.value)
+                            .join(', '))
+                      ],
+                    ),
                   ],
                 ),
             key: key);
