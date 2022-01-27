@@ -57,7 +57,7 @@ class DetailScreenTest
 
     final lock = device([
       traits.firstWhere((trait) => trait is LockTrait,
-          orElse: () => LockTrait(IsLocked(false)))
+          orElse: () => LockTrait(IsLocked(false), []))
     ]);
     LockProvider mockLockProvider =
         this.mockLockProvider(lock, isLocked: false);
@@ -131,7 +131,7 @@ void main() {
       (WidgetTester tester) async {
     Request request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [LockTrait(IsLocked(true))], request, testedDeviceId));
+        [LockTrait(IsLocked(true), [])], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
   });
@@ -193,11 +193,11 @@ void main() {
     final request = Request('', {});
 
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      LockTrait(IsLocked(false)),
+      LockTrait(IsLocked(false), []),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(100)),
       PowerTrait(IsOnOff(true), [SupportsDiscreteOnOff(true)]),
-      LockTrait(IsLocked(false))
+      LockTrait(IsLocked(false), [])
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -221,7 +221,7 @@ void main() {
     final request = Request('', {});
 
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      LockTrait(IsLocked(false)),
+      LockTrait(IsLocked(false), []),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(50))
     ], request, testedDeviceId));
@@ -243,7 +243,7 @@ void main() {
     final request = Request('', {});
 
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      LockTrait(IsLocked(false)),
+      LockTrait(IsLocked(false), []),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(1))
     ], request, testedDeviceId));

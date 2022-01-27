@@ -33,14 +33,14 @@ void main() {
 
   testWidgets('should render correct Lock trait icon when unlocked',
       (WidgetTester tester) async {
-    final lockDevice = [LockTrait(IsLocked(false))];
+    final lockDevice = [LockTrait(IsLocked(false), [])];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.unlock), findsOneWidget);
   });
 
   testWidgets('should render correct Lock trait icon when locked',
       (WidgetTester tester) async {
-    final lockDevice = [LockTrait(IsLocked(true))];
+    final lockDevice = [LockTrait(IsLocked(true), [])];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.lock), findsOneWidget);
   });
