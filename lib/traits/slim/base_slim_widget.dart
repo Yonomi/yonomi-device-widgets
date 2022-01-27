@@ -28,8 +28,7 @@ class BaseSlimWidget extends StatelessWidget with ToastNotifications {
     } else if (provider?.isInErrorState ?? false) {
       showToast(
           context,
-          provider?.getErrorMessage ??
-              'An error occurred with ${provider?.displayName}');
+          '${provider?.getErrorMessage ?? 'An error occurred'}');
       return Icon(Icons.error);
     } else {
       return Column(
