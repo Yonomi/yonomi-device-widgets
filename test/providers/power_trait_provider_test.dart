@@ -52,6 +52,7 @@ void main() {
           getDetails: mockDeviceDetailsMethod);
 
       expect(powerProvider.isLoading, equals(true));
+      expect(powerProvider.supportsDiscreteOnOff, isFalse);
     });
 
     test("""After successfully loading device data, should be in idle state
@@ -72,6 +73,7 @@ void main() {
       expect(powerProvider.isInErrorState, equals(false),
           reason: 'is in error state');
       expect(powerProvider.displayName, equals('name'));
+      expect(powerProvider.supportsDiscreteOnOff, isTrue);
     });
 
     test("""When performing action, we are notified that it is performing
