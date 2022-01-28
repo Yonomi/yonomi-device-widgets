@@ -163,8 +163,7 @@ void main() {
       'For the Power Trait, Detail screen should show the Power Widget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       PowerTrait(IsOnOff(true), {SupportsDiscreteOnOff(true)})
     ], request, testedDeviceId));
 
@@ -211,6 +210,18 @@ void main() {
 
     expect(find.byType(ThermostatWidget), findsOneWidget);
     expect(find.text('100°'), findsOneWidget);
+  });
+
+  testWidgets(
+      'For the Thermostat Trait, Detail screen should show the Fan Mode',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
+      ThermostatTrait({TargetTemperature(100.0)}, {})
+    ], request, testedDeviceId));
+
+    expect(find.byType(ThermostatWidget), findsOneWidget);
+    expect(find.text('Fan: AUTO'), findsOneWidget);
   });
 
   testWidgets(
