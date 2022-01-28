@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i4;
-import 'dart:ui' as _i8;
+import 'dart:ui' as _i9;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i5;
@@ -14,6 +14,7 @@ import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.da
     as _i6;
 import 'package:yonomi_platform_sdk/src/repository/traits/power_repository.dart'
     as _i7;
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i8;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -36,6 +37,10 @@ class MockPowerTraitProvider extends _i1.Mock
   bool get getOnOffState =>
       (super.noSuchMethod(Invocation.getter(#getOnOffState), returnValue: false)
           as bool);
+  @override
+  bool get supportsDiscreteOnOff =>
+      (super.noSuchMethod(Invocation.getter(#supportsDiscreteOnOff),
+          returnValue: false) as bool);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
@@ -102,11 +107,15 @@ class MockPowerTraitProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  void addListener(_i8.VoidCallback? listener) =>
+  Set<S> properties<T extends _i8.Trait, S extends _i8.Property<dynamic>>() =>
+      (super.noSuchMethod(Invocation.method(#properties, []),
+          returnValue: <S>{}) as Set<S>);
+  @override
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i8.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

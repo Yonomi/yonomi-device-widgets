@@ -40,6 +40,14 @@ class PowerTraitProvider extends DeviceProvider {
     return state<PowerTrait, IsOnOff>()?.value ?? false;
   }
 
+  bool get supportsDiscreteOnOff =>
+      getPowerTrait()
+          ?.properties
+          .whereType<SupportsDiscreteOnOff>()
+          .first
+          .value ??
+      false;
+
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 }

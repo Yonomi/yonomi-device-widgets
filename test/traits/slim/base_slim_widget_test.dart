@@ -39,7 +39,7 @@ void main() {
   testWidgets(
       'When a content widget is performing an action a circular progress indicator is displayed',
       (WidgetTester tester) async {
-    final device = test.device([PowerTrait(IsOnOff(false), {})]);
+    final device = test.device([PowerTrait(IsOnOff(false), {SupportsDiscreteOnOff(true)})]);
     final provider = test.mockPowerTraitProvider(device);
 
     when(provider.isLoading).thenReturn(false);

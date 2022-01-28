@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i4;
-import 'dart:ui' as _i7;
+import 'dart:ui' as _i8;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
@@ -12,6 +12,7 @@ import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i5;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i3;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
     as _i6;
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i7;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -89,11 +90,15 @@ class MockBatteryLevelProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
-  void addListener(_i7.VoidCallback? listener) =>
+  Set<S> properties<T extends _i7.Trait, S extends _i7.Property<dynamic>>() =>
+      (super.noSuchMethod(Invocation.method(#properties, []),
+          returnValue: <S>{}) as Set<S>);
+  @override
+  void addListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i7.VoidCallback? listener) =>
+  void removeListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

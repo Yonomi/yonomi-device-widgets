@@ -63,6 +63,9 @@ Widget build(BuildContext context) {
   if ((provider?.isLoading ?? false)) {
     return CircularProgressIndicator();
   } else if (provider?.isInErrorState ?? false) {
+    showToast(
+        context,
+        '${provider?.getErrorMessage ?? 'An error occurred'}');
     return Icon(Icons.error);
   } else {
     return Column(

@@ -72,7 +72,8 @@ class DetailScreenTest
 
     final powerDevice = device([
       traits.firstWhere((trait) => trait is PowerTrait,
-          orElse: () => PowerTrait(IsOnOff(false), {}))
+          orElse: () =>
+              PowerTrait(IsOnOff(false), {SupportsDiscreteOnOff(true)}))
     ]);
     PowerTraitProvider mockPowerTraitProvider =
         this.mockPowerTraitProvider(powerDevice, onOffState: false);
@@ -163,7 +164,9 @@ void main() {
       (WidgetTester tester) async {
     Request request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [PowerTrait(IsOnOff(true), {})], request, testedDeviceId));
+        [
+      PowerTrait(IsOnOff(true), {SupportsDiscreteOnOff(true)})
+    ], request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
   });
@@ -229,7 +232,7 @@ void main() {
       LockTrait(IsLocked(false), {}),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(100)),
-      PowerTrait(IsOnOff(true), {}),
+      PowerTrait(IsOnOff(true), {SupportsDiscreteOnOff(true)}),
       LockTrait(IsLocked(false), {}),
       ThermostatTrait({TargetTemperature(99)}, {})
     ], request, testedDeviceId));

@@ -53,20 +53,29 @@ class PowerWidget extends StatelessWidget with ToastNotifications {
               child: SizedBox(
                   width: _iconSize,
                   height: _iconSize,
-                  child: PowerItemIcon(onOffState,
-                      size: _iconSize, color: _iconColor)),
+                  child: IconButton(
+                      icon: PowerItemIcon(onOffState,
+                          size: _iconSize, color: _iconColor),
+                      iconSize: _iconSize,
+                      onPressed: () => _powerTraitProvider.sendPowerOnOffAction(
+                          !_powerTraitProvider.getOnOffState))),
             ),
           ),
           SizedBox(
             height: 10,
           ),
-          CupertinoSwitch(
-            activeColor: WidgetStyleConstants.traitDetailSwitchPressedColor,
-            onChanged: (bool onOff) {
-              _powerTraitProvider.sendPowerOnOffAction(onOff);
-            },
-            value: _powerTraitProvider.getOnOffState,
-          ),
+          (_powerTraitProvider.supportsDiscreteOnOff)
+              ? CupertinoSwitch(
+                  activeColor:
+                      WidgetStyleConstants.traitDetailSwitchPressedColor,
+                  onChanged: (bool onOff) {
+                    _powerTraitProvider.sendPowerOnOffAction(onOff);
+                  },
+                  value: _powerTraitProvider.getOnOffState,
+                )
+              : SizedBox(
+                  height: 10,
+                ),
         ],
       );
     }
