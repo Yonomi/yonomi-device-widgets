@@ -7,14 +7,17 @@ import 'thermostat_widget_testing.mocks.dart';
 
 @GenerateMocks([ThermostatProvider])
 mixin ThermostatWidgetTesting {
-  MockThermostatProvider mockThermostatProvider(Device device,
-      {bool isBusy = false,
-      bool isLoading = false,
-      bool isInErrorState = false,
-      bool isPerformingAction = false,
-      String errorMessage = '',
-      double targetTemperature = 70.0,
-      String fanMode = 'AUTO'}) {
+  MockThermostatProvider mockThermostatProvider(
+    Device device, {
+    bool isBusy = false,
+    bool isLoading = false,
+    bool isInErrorState = false,
+    bool isPerformingAction = false,
+    String errorMessage = '',
+    double targetTemperature = 70.0,
+    String fanMode = 'AUTO',
+    Set<AvailableFanMode> availableFanModes = const {},
+  }) {
     final mockThermostatProvider = MockThermostatProvider();
     when(mockThermostatProvider.isLoading).thenReturn(isLoading);
     when(mockThermostatProvider.isBusy).thenReturn(isBusy);
@@ -23,11 +26,12 @@ mixin ThermostatWidgetTesting {
     when(mockThermostatProvider.isPerformingAction).thenReturn(false);
     when(mockThermostatProvider.deviceDetail).thenReturn(device);
     when(mockThermostatProvider.displayName).thenReturn('THERMOSTAT');
+    when(mockThermostatProvider.availableFanModes)
+        .thenReturn(availableFanModes);
 
     final thermostatTrait = device.traits.firstWhere(
             (trait) => trait is ThermostatTrait,
-            orElse: () =>
-                ThermostatTrait(
+            orElse: () => ThermostatTrait(
                 {TargetTemperature(targetTemperature), FanMode(fanMode)}, {}))
         as ThermostatTrait?;
     when(mockThermostatProvider.targetTemperature).thenReturn(thermostatTrait
