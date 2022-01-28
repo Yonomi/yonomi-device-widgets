@@ -86,7 +86,10 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               childrenPadding: EdgeInsets.all(8.0),
               leading: (_thermostatProvider.isPerformingAction)
                   ? CircularProgressIndicator()
-                  : Icon(BootstrapIcons.fan),
+                  : Icon(
+                      BootstrapIcons.fan,
+                      color: _textColor,
+                    ),
               backgroundColor: Colors.white,
               title: Text(
               "Fan: ${_thermostatProvider.fanMode}",
@@ -100,7 +103,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                 Row(
                   children: [
                     Text(
-                      "Available Modes:",
+                      "Modes: ",
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -108,7 +111,10 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                     ),
                     Text(_thermostatProvider.availableFanModes
                         .map((e) => e.value)
-                        .join(', '))
+                          .join(', '),
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                          color: _textColor, fontWeight: FontWeight.normal),
+                    ),
                   ],
                 )
               ],

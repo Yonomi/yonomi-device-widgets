@@ -22,7 +22,7 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                     Row(
                       children: [
                         Text(
-                          'Fan Mode: ',
+                          'Fan: ',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -32,15 +32,16 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                         Text(thermostatProvider.fanMode,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyText1
+                                .headline6
                                 ?.copyWith(
-                                    color: WidgetStyleConstants.darkTextColor))
+                                    color: WidgetStyleConstants.darkTextColor,
+                                    fontWeight: FontWeight.normal)),
                       ],
                     ),
                     Row(
                       children: [
                         Text(
-                          'Available Fan Modes: ',
+                          'Fan Modes: ',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -49,7 +50,13 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                         ),
                         Text(thermostatProvider.availableFanModes
                             .map((mode) => mode.value)
-                            .join(', '))
+                                .join(', '),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    color: WidgetStyleConstants.darkTextColor,
+                                    fontWeight: FontWeight.normal))
                       ],
                     ),
                   ],
