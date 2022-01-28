@@ -12,7 +12,7 @@
 
 
 [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> fetchData
-({[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+({[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails})
 
 
 
@@ -26,7 +26,7 @@
 ```dart
 Future<void> fetchData(
     {GetDeviceDetailsMethod getDetails =
-        DevicesRepository.getDeviceDetails}) async {
+        sdk.DevicesRepository.getDeviceDetails}) async {
   setState = WidgetState.loading;
 
   try {

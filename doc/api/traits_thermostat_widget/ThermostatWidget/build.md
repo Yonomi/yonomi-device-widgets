@@ -60,40 +60,45 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      Row(
-        children: <Widget>[
-          Text(
-            _thermostatProvider.displayName,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                ?.copyWith(color: _textColor),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 30,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: _centerText(Theme.of(context)
-                .textTheme
-                .headline2
-                ?.copyWith(color: _textColor)),
-          )
-        ],
-      ),
-      SizedBox(
-        height: 30,
-      ),
-    ],
-  );
+  if (_thermostatProvider.isBusy) {
+    return CircularProgressIndicator();
+  } else if (_thermostatProvider.isInErrorState) {
+    showToast(context, _thermostatProvider.getErrorMessage);
+    return Icon(Icons.error);
+  } else {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Row(
+          children: <Widget>[
+            Text(
+              _thermostatProvider.displayName,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: _textColor),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: _centerText(Theme.of(context)
+                  .textTheme
+                  .headline2
+                  ?.copyWith(color: _textColor)),
+            )
+          ],
+        ),
+        _fanMode(context),
+      ],
+    );
+  }
 }
 ```
 

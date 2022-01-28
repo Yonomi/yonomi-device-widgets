@@ -25,9 +25,7 @@
 
 ```dart
 ThermostatTrait? getThermostatTrait() {
-  return deviceDetail?.traits
-          .firstWhere((trait) => trait is ThermostatTrait)
-      as ThermostatTrait?;
+  return trait<ThermostatTrait>() as ThermostatTrait?;
 }
 ```
 

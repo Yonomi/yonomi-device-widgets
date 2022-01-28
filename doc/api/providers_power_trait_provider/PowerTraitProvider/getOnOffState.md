@@ -24,7 +24,7 @@
 
 ```dart
 bool get getOnOffState {
-  return getPowerTrait()?.state.value ?? false;
+  return state<PowerTrait, IsOnOff>()?.value ?? false;
 }
 ```
 

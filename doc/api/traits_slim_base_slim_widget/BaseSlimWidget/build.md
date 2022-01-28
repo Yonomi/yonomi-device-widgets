@@ -64,12 +64,13 @@ Widget build(BuildContext context) {
     return CircularProgressIndicator();
   } else if (provider?.isInErrorState ?? false) {
     showToast(
-        context,
-        '${provider?.getErrorMessage ?? 'An error occurred'}');
+        context, provider?.getErrorMessage ?? 'An unknown error occurred');
     return Icon(Icons.error);
   } else {
     return Column(
-        children: <Widget>[(content != null ? _expandableTile() : _tile())]);
+        children: <Widget>[
+      (createContent != null ? _expandableTile(context) : _tile())
+    ]);
   }
 }
 ```

@@ -46,7 +46,7 @@ _final, inherited_
 
 
 
-##### [content](../traits_slim_base_slim_widget/BaseSlimWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+##### [createContent](../traits_slim_base_slim_widget/BaseSlimWidget/createContent.md) &#8594; [CreateWidget](../traits_slim_base_slim_widget/CreateWidget.md)?
 
 
 

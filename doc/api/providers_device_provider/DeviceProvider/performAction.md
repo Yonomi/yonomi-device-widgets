@@ -12,7 +12,7 @@
 
 
 [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void> performAction
-&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails})
 
 
 
@@ -27,7 +27,7 @@
 Future<void> performAction<T>(
     T desiredState, Function getState, Function action,
     {GetDeviceDetailsMethod getDetails =
-        DevicesRepository.getDeviceDetails}) async {
+        sdk.DevicesRepository.getDeviceDetails}) async {
   if (!isPerformingAction) {
     setState = WidgetState.performingAction;
 

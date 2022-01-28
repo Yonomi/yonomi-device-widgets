@@ -23,6 +23,9 @@
 - ThermostatWidget
 
 
+**Mixed in types**
+
+- [ToastNotifications](../mixins_toast_notifications/ToastNotifications-mixin.md)
 
 
 
@@ -108,6 +111,15 @@ _inherited_
 
 
 Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
+_inherited_
+
+
+
+##### [showToast](../mixins_toast_notifications/ToastNotifications/showToast.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) message) void
+
+
+
+   
 _inherited_
 
 

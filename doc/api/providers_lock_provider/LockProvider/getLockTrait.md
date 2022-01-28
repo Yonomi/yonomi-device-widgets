@@ -25,8 +25,7 @@
 
 ```dart
 LockTrait? getLockTrait() {
-  return deviceDetail?.traits
-      .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait?;
+  return trait<LockTrait>() as LockTrait?;
 }
 ```
 

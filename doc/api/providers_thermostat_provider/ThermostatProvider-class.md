@@ -35,6 +35,15 @@
 
 ## Properties
 
+##### [availableFanModes](../providers_thermostat_provider/ThermostatProvider/availableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode-class.html)>
+
+
+
+   
+_read-only_
+
+
+
 ##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
@@ -50,6 +59,15 @@ _read-only, inherited_
 
    
 _read-only, override_
+
+
+
+##### [fanMode](../providers_thermostat_provider/ThermostatProvider/fanMode.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only_
 
 
 
@@ -169,7 +187,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -205,7 +223,16 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+_inherited_
+
+
+
+##### [properties](../providers_device_provider/DeviceProvider/properties.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html), S extends [Property](https://yonomi.co/yonomi-sdk/Property-class.html)>() [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;S>
 
 
 
@@ -251,11 +278,29 @@ _inherited_
 
 
 
+##### [state](../providers_device_provider/DeviceProvider/state.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html), S extends [State](https://yonomi.co/yonomi-sdk/State-class.html)>() [State](https://yonomi.co/yonomi-sdk/State-class.html)?
+
+
+
+   
+_inherited_
+
+
+
 ##### [toString](https://api.flutter.dev/flutter/dart-core/Object/toString.html)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
 A string representation of this object. [...](https://api.flutter.dev/flutter/dart-core/Object/toString.html)  
+_inherited_
+
+
+
+##### [trait](../providers_device_provider/DeviceProvider/trait.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)>() [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)?
+
+
+
+   
 _inherited_
 
 

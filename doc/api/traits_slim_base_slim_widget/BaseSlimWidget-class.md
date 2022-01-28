@@ -39,7 +39,7 @@
 
 ## Constructors
 
-[BaseSlimWidget](../traits_slim_base_slim_widget/BaseSlimWidget/BaseSlimWidget.md) ({[DeviceProvider](../providers_device_provider/DeviceProvider-class.md)? provider, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) leftIcon, required [Text](https://api.flutter.dev/flutter/widgets/Text-class.html) headerText, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? rightIcon, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[BaseSlimWidget](../traits_slim_base_slim_widget/BaseSlimWidget/BaseSlimWidget.md) ({[DeviceProvider](../providers_device_provider/DeviceProvider-class.md)? provider, required [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) leftIcon, required [Text](https://api.flutter.dev/flutter/widgets/Text-class.html) headerText, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? rightIcon, [CreateWidget](../traits_slim_base_slim_widget/CreateWidget.md)? createContent, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
@@ -55,7 +55,7 @@ _final_
 
 
 
-##### [content](../traits_slim_base_slim_widget/BaseSlimWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+##### [createContent](../traits_slim_base_slim_widget/BaseSlimWidget/createContent.md) &#8594; [CreateWidget](../traits_slim_base_slim_widget/CreateWidget.md)?
 
 
 

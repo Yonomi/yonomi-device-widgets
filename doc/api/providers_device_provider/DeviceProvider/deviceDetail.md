@@ -23,7 +23,7 @@
 ## Implementation
 
 ```dart
-Device? get deviceDetail => _deviceDetail;
+sdk.Device? get deviceDetail => _deviceDetail;
 ```
 
 

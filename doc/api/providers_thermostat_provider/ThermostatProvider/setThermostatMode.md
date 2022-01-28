@@ -26,10 +26,7 @@
 ```dart
 Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
     {SetModeFunction setMode = ThermostatRepository.setMode}) async {
-  return performAction<GThermostatMode?>(
-      mode,
-      () => getThermostatTrait()?.state.value,
-      () => setMode(_request, deviceId, mode));
+  return Future.value();
 }
 ```
 

@@ -31,6 +31,50 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
               style: TextStyle(
                   fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
           backgroundColor: backgroundColor,
+          createContent: (context) => Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Fan: ',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            ?.copyWith(
+                                color: WidgetStyleConstants.darkTextColor),
+                      ),
+                      Text(thermostatProvider.fanMode,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                  color: WidgetStyleConstants.darkTextColor,
+                                  fontWeight: FontWeight.normal)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Fan Modes: ',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            ?.copyWith(
+                                color: WidgetStyleConstants.darkTextColor),
+                      ),
+                      Text(thermostatProvider.availableFanModes
+                          .map((mode) => mode.value)
+                              .join(', '),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                  color: WidgetStyleConstants.darkTextColor,
+                                  fontWeight: FontWeight.normal))
+                    ],
+                  ),
+                ],
+              ),
           key: key);
 ```
 
