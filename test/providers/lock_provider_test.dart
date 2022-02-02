@@ -70,6 +70,7 @@ void main() {
     expect(lockProvider.isBusy, equals(false));
     expect(lockProvider.isPerformingAction, equals(false));
     expect(lockProvider.isLocked, true);
+    expect(lockProvider.getLockTrait(), isA<LockTrait>());
   });
 
   test("""When loading device data, we are notified that it is loading
