@@ -23,7 +23,7 @@
 ## Implementation
 
 ```dart
-String get fanMode => state<ThermostatTrait, FanMode>()?.value ?? 'Unknown';
+String get fanMode => state<ThermostatTrait, FanMode>()?.value;
 ```
 
 
