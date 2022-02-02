@@ -51,6 +51,8 @@ void main() {
       expect(batteryLevelProvider.isInErrorState, equals(false),
           reason: 'is in error state');
       expect(batteryLevelProvider.getBatteryLevel, equals(100));
+      expect(batteryLevelProvider.getBatteryLevelTrait(),
+          isA<BatteryLevelTrait>());
     });
 
     test("""When an error occurs loading device data, we are notified

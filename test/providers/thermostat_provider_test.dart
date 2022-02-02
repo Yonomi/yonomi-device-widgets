@@ -107,6 +107,15 @@ void main() {
     expect(thermostatProvider.isInErrorState, equals(false));
     expect(thermostatProvider.isBusy, equals(false));
     expect(thermostatProvider.isPerformingAction, equals(false));
+    expect(thermostatProvider.trait<LockTrait>(), isA<UnknownTrait>());
+    expect(thermostatProvider.trait<ThermostatTrait>(), isA<ThermostatTrait>());
+    expect(thermostatProvider.getThermostatTrait(), isA<ThermostatTrait>());
+    expect(thermostatProvider.properties<ThermostatTrait, AvailableFanMode>(),
+        hasLength(3));
+    expect(thermostatProvider.properties<ThermostatTrait, SupportsIsJammed>(),
+        isEmpty);
+    expect(thermostatProvider.fanMode, equals('AUTO'));
+    expect(thermostatProvider.availableFanModes, hasLength(3));
   });
 }
 
@@ -121,7 +130,14 @@ Device _getThermostat(double temp) {
     GDateTime('value'),
     GDateTime('value'),
     [
-      ThermostatTrait({TargetTemperature(temp)}, {})
+      ThermostatTrait({
+        TargetTemperature(temp),
+        FanMode('AUTO')
+      }, {
+        AvailableFanMode('AUTO'),
+        AvailableFanMode('ON'),
+        AvailableFanMode('OFF')
+      })
     ],
   );
 }
