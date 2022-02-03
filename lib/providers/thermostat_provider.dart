@@ -26,7 +26,7 @@ class ThermostatProvider extends DeviceProvider {
   Future<void> setPointAction(String deviceId, double temperature,
       {SetPointActionFunction setPoint =
           ThermostatRepository.setPointThermostat}) async {
-    return performAction<double>(temperature, () => targetTemperature,
+    return performAction<double>(temperature, () => getTargetTemperatureState,
         () => setPoint(_request, deviceId, temperature));
   }
 
@@ -35,12 +35,12 @@ class ThermostatProvider extends DeviceProvider {
     return Future.value();
   }
 
-  double get targetTemperature =>
+  double get getTargetTemperatureState =>
       state<ThermostatTrait, TargetTemperature>()?.value ?? 0.0;
 
-  String get fanMode => state<ThermostatTrait, FanMode>()?.value;
+  String get getFanModeState => state<ThermostatTrait, FanMode>()?.value;
 
-  Set<AvailableFanMode> get availableFanModes =>
+  Set<AvailableFanMode> get getAvailableFanModes =>
       properties<ThermostatTrait, AvailableFanMode>();
 
   @override

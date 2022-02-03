@@ -23,7 +23,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
         color: style?.color,
       ),
       Text(
-        '${_thermostatProvider.targetTemperature.toInt()}\u{00B0}',
+        '${_thermostatProvider.getTargetTemperatureState.toInt()}\u{00B0}',
         style: style,
       )
     ]);
@@ -92,7 +92,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                     ),
               backgroundColor: Colors.white,
               title: Text(
-              "Fan: ${_thermostatProvider.fanMode}",
+                "Fan: ${_thermostatProvider.getFanModeState}",
               style: Theme.of(context)
                   .textTheme
                   .headline6
@@ -109,7 +109,8 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                           .headline6
                           ?.copyWith(color: _textColor),
                     ),
-                    Text(_thermostatProvider.availableFanModes
+                    Text(
+                      _thermostatProvider.getAvailableFanModes
                         .map((e) => e.value)
                           .join(', '),
                       style: Theme.of(context).textTheme.headline6?.copyWith(

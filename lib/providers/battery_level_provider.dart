@@ -12,7 +12,7 @@ class BatteryLevelProvider extends DeviceProvider {
     return trait<BatteryLevelTrait>() as BatteryLevelTrait?;
   }
 
-  int get getBatteryLevel {
+  int get getBatteryLevelState {
     return state<BatteryLevelTrait, BatteryLevel>()?.value ?? 0;
   }
 

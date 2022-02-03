@@ -32,9 +32,9 @@ class MockBatteryLevelProvider extends _i1.Mock
   }
 
   @override
-  int get getBatteryLevel =>
-      (super.noSuchMethod(Invocation.getter(#getBatteryLevel), returnValue: 0)
-          as int);
+  int get getBatteryLevelState =>
+      (super.noSuchMethod(Invocation.getter(#getBatteryLevelState),
+          returnValue: 0) as int);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')

@@ -105,7 +105,7 @@ void main() {
     await thermostatProvider.fetchData(
         getDetails: mockGetThermostatDetailsFunction);
 
-    expect(thermostatProvider.targetTemperature, 23.1);
+    expect(thermostatProvider.getTargetTemperatureState, 23.1);
     expect(thermostatProvider.displayName, 'someDisplayName');
     expect(thermostatProvider.isLoading, equals(false));
     expect(thermostatProvider.isInErrorState, equals(false));
@@ -118,8 +118,8 @@ void main() {
         hasLength(3));
     expect(thermostatProvider.properties<ThermostatTrait, SupportsIsJammed>(),
         isEmpty);
-    expect(thermostatProvider.fanMode, equals('AUTO'));
-    expect(thermostatProvider.availableFanModes, hasLength(3));
+    expect(thermostatProvider.getFanModeState, equals('AUTO'));
+    expect(thermostatProvider.getAvailableFanModes, hasLength(3));
   });
 }
 

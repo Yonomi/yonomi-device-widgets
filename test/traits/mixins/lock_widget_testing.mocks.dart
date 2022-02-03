@@ -32,9 +32,9 @@ class MockLockProvider extends _i1.Mock implements _i2.LockProvider {
   }
 
   @override
-  bool get isLocked =>
-      (super.noSuchMethod(Invocation.getter(#isLocked), returnValue: false)
-          as bool);
+  bool get getIsLockedState =>
+      (super.noSuchMethod(Invocation.getter(#getIsLockedState),
+          returnValue: false) as bool);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')

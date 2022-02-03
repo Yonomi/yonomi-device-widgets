@@ -13,13 +13,14 @@ class BatterySlimWidget extends BaseSlimWidget {
           createContent: createContent,
           backgroundColor: backgroundColor,
           leftIcon:
-              _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
+              _getBatteryLevelIcon(
+              _batteryLevelTraitProvider.getBatteryLevelState),
           headerText: Text(
-              'Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%',
+              'Battery Level: ${_batteryLevelTraitProvider.getBatteryLevelState}%',
               style: TextStyle(
                   fontSize: 20,
                   color: _getBatteryLevelTextColor(
-                      _batteryLevelTraitProvider.getBatteryLevel))),
+                      _batteryLevelTraitProvider.getBatteryLevelState))),
           key: key,
         );
 

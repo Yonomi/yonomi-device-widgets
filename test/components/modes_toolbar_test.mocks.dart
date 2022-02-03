@@ -36,16 +36,16 @@ class MockThermostatProvider extends _i1.Mock
   }
 
   @override
-  double get targetTemperature => (super
-          .noSuchMethod(Invocation.getter(#targetTemperature), returnValue: 0.0)
-      as double);
+  double get getTargetTemperatureState =>
+      (super.noSuchMethod(Invocation.getter(#getTargetTemperatureState),
+          returnValue: 0.0) as double);
   @override
-  String get fanMode =>
-      (super.noSuchMethod(Invocation.getter(#fanMode), returnValue: '')
+  String get getFanModeState =>
+      (super.noSuchMethod(Invocation.getter(#getFanModeState), returnValue: '')
           as String);
   @override
-  Set<_i3.AvailableFanMode> get availableFanModes =>
-      (super.noSuchMethod(Invocation.getter(#availableFanModes),
+  Set<_i3.AvailableFanMode> get getAvailableFanModes =>
+      (super.noSuchMethod(Invocation.getter(#getAvailableFanModes),
           returnValue: <_i3.AvailableFanMode>{}) as Set<_i3.AvailableFanMode>);
   @override
   String get displayName =>

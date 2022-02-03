@@ -69,7 +69,7 @@ void main() {
     expect(lockProvider.isInErrorState, equals(false));
     expect(lockProvider.isBusy, equals(false));
     expect(lockProvider.isPerformingAction, equals(false));
-    expect(lockProvider.isLocked, true);
+    expect(lockProvider.getIsLockedState, true);
     expect(lockProvider.getLockTrait(), isA<LockTrait>());
   });
 
@@ -90,7 +90,7 @@ void main() {
     expect(lockProvider.isBusy, equals(true));
     expect(lockProvider.isPerformingAction, equals(false));
 
-    expect(lockProvider.isLocked, false);
+    expect(lockProvider.getIsLockedState, false);
   });
 
   test("""When an error occurs running an action, we are notified

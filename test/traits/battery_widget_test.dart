@@ -38,7 +38,7 @@ void main() {
     final device = test.device(
         [BatteryLevelTrait(BatteryLevel(WidgetStyleConstants.batteryLowMax))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
-    when(mockBatteryLevelProvider.getBatteryLevel)
+    when(mockBatteryLevelProvider.getBatteryLevelState)
         .thenReturn(WidgetStyleConstants.batteryLowMax);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
@@ -56,7 +56,7 @@ void main() {
       (WidgetTester tester) async {
     final device = test.device([BatteryLevelTrait(BatteryLevel(50))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
-    when(mockBatteryLevelProvider.getBatteryLevel).thenReturn(50);
+    when(mockBatteryLevelProvider.getBatteryLevelState).thenReturn(50);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
 
@@ -73,7 +73,7 @@ void main() {
     final device = test.device(
         [BatteryLevelTrait(BatteryLevel(WidgetStyleConstants.batteryFullMin))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
-    when(mockBatteryLevelProvider.getBatteryLevel)
+    when(mockBatteryLevelProvider.getBatteryLevelState)
         .thenReturn(WidgetStyleConstants.batteryFullMin);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));

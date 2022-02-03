@@ -49,7 +49,7 @@ class LockWidget extends StatelessWidget {
                       height: _iconSize,
                       child: _lockProvider.isPerformingAction
                           ? CircularProgressIndicator()
-                          : _lockProvider.isLocked
+                          : _lockProvider.getIsLockedState
                               ? LockIcon(true,
                                   size: _iconSize, color: _iconColor)
                               : LockIcon(false,
@@ -63,14 +63,14 @@ class LockWidget extends StatelessWidget {
                 onChanged: (bool value) {
                   _lockTap(_lockProvider);
                 },
-                value: _lockProvider.isLocked,
+                value: _lockProvider.getIsLockedState,
               ),
             ],
           );
   }
 
   void _lockTap(LockProvider provider) {
-    bool setLock = !provider.isLocked;
+    bool setLock = !provider.getIsLockedState;
     provider.setLockUnlockAction(provider.deviceDetail?.id ?? '', setLock);
   }
 }
