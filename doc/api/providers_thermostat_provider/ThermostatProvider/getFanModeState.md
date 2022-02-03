@@ -23,7 +23,9 @@
 ## Implementation
 
 ```dart
-String get getFanModeState => state<ThermostatTrait, FanMode>()?.value;
+String get getFanModeState {
+  return getThermostatTrait()?.stateWhereType<FanMode>().value;
+}
 ```
 
 

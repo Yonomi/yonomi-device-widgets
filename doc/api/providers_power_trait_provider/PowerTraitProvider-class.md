@@ -223,15 +223,6 @@ _inherited_
 
 
 
-##### [properties](../providers_device_provider/DeviceProvider/properties.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html), S extends [Property](https://yonomi.co/yonomi-sdk/Property-class.html)>() [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;S>
-
-
-
-   
-_inherited_
-
-
-
 ##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
@@ -252,15 +243,6 @@ Run the "makePowerActionRequest" mutation on this device [...](../providers_powe
 
 
 ##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
-
-
-
-   
-_inherited_
-
-
-
-##### [state](../providers_device_provider/DeviceProvider/state.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html), S extends [State](https://yonomi.co/yonomi-sdk/State-class.html)>() [State](https://yonomi.co/yonomi-sdk/State-class.html)?
 
 
 

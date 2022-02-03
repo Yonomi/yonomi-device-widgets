@@ -24,7 +24,7 @@
 
 ```dart
 int get getBatteryLevelState {
-  return state<BatteryLevelTrait, BatteryLevel>()?.value ?? 0;
+  return getBatteryLevelTrait()?.stateWhereType<BatteryLevel>().value ?? 0;
 }
 ```
 

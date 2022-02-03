@@ -202,15 +202,6 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [properties](../providers_device_provider/DeviceProvider/properties.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html), S extends [Property](https://yonomi.co/yonomi-sdk/Property-class.html)>() [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;S>
-
-
-
-   
-
-
-
-
 ##### [removeListener](https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html)([VoidCallback](https://api.flutter.dev/flutter/dart-ui/VoidCallback.html) listener) void
 
 
@@ -222,15 +213,6 @@ _inherited_
 
 
 ##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
-
-
-
-   
-
-
-
-
-##### [state](../providers_device_provider/DeviceProvider/state.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html), S extends [State](https://yonomi.co/yonomi-sdk/State-class.html)>() [State](https://yonomi.co/yonomi-sdk/State-class.html)?
 
 
 

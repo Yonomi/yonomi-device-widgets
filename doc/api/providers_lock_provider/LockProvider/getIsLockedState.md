@@ -23,7 +23,8 @@
 ## Implementation
 
 ```dart
-bool get getIsLockedState => state<LockTrait, IsLocked>()?.value ?? false;
+bool get getIsLockedState =>
+    getLockTrait()?.stateWhereType<IsLocked>().value ?? false;
 ```
 
 

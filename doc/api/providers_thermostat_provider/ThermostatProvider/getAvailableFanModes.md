@@ -23,8 +23,9 @@
 ## Implementation
 
 ```dart
-Set<AvailableFanMode> get getAvailableFanModes =>
-    properties<ThermostatTrait, AvailableFanMode>();
+Set<AvailableFanMode> get getAvailableFanModes {
+  return getThermostatTrait()?.propertiesWhereType<AvailableFanMode>() ?? {};
+}
 ```
 
 
