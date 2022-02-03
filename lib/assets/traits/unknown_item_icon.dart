@@ -4,8 +4,8 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class UnknownItemIcon extends Icon {
   UnknownItemIcon(
-      {size = WidgetStyleConstants.defaultDeviceIconSize,
-      color = WidgetStyleConstants.deviceIconColor,
+      {double size = WidgetStyleConstants.defaultDeviceIconSize,
+      Color color = WidgetStyleConstants.deviceIconColor,
       Key? key})
       : super(BootstrapIcons.box, key: key, size: size, color: color);
 }

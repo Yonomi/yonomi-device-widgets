@@ -9,27 +9,31 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DeviceItemIcon {
   static Widget getIcon(List<Trait> traits) {
-    Trait determiningTrait = traits[0];
-    switch (determiningTrait.runtimeType) {
-      case LockTrait:
-        return LockIcon(determiningTrait.states
-            .firstWhere((state) => state is IsLocked)
-            .value);
-      case ThermostatTrait:
-        return ThermostatIcon(
-            thermostatState: determiningTrait.states
-                .firstWhere((state) => state is TargetTemperature)
-                .value);
-      case PowerTrait:
-        return PowerItemIcon(determiningTrait.states
-            .firstWhere((state) => state is IsOnOff)
-            .value);
-      case BatteryLevelTrait:
-        return BatteryLevelIcon(determiningTrait.states
-            .firstWhere((state) => state is BatteryLevel)
-            .value);
-      default:
-        return UnknownItemIcon();
+    try {
+      Trait determiningTrait = traits[0];
+      switch (determiningTrait.runtimeType) {
+        case LockTrait:
+          return LockIcon(determiningTrait.states
+              .firstWhere((state) => state is IsLocked)
+              .value);
+        case ThermostatTrait:
+          return ThermostatIcon(
+              thermostatState: determiningTrait.states
+                  .firstWhere((state) => state is TargetTemperature)
+                  .value);
+        case PowerTrait:
+          return PowerItemIcon(determiningTrait.states
+              .firstWhere((state) => state is IsOnOff)
+              .value);
+        case BatteryLevelTrait:
+          return BatteryLevelIcon(determiningTrait.states
+              .firstWhere((state) => state is BatteryLevel)
+              .value);
+        default:
+          return UnknownItemIcon();
+      }
+    } catch (e) {
+      return UnknownItemIcon();
     }
   }
 
