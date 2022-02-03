@@ -22,14 +22,14 @@ LockSlimWidget([LockProvider](../../providers_lock_provider/LockProvider-class.m
 LockSlimWidget(LockProvider lockProvider, {Color? backgroundColor, Key? key})
     : super(
           provider: lockProvider,
-          leftIcon: LockIcon(lockProvider.isLocked,
+          leftIcon: LockIcon(lockProvider.getIsLockedState,
               size: 20.0,
               color: WidgetStyleConstants.deviceDetailIconColorActive),
           rightIcon: CupertinoSwitch(
             onChanged: (bool value) {
               _lockTap(lockProvider);
             },
-            value: lockProvider.isLocked,
+            value: lockProvider.getIsLockedState,
           ),
           headerText: Text(lockProvider.deviceDetail?.displayName ?? 'LOCK',
               style: TextStyle(

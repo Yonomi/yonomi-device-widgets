@@ -82,7 +82,7 @@ Widget build(BuildContext context) {
       Center(
           child: Arc(
         centerWidget: Text(
-          thermostatProvider.targetTemperature.toInt().toString(),
+          thermostatProvider.getTargetTemperatureState.toInt().toString(),
           style: Theme.of(context).textTheme.headline2,
         ),
         initialValue: 20.0,

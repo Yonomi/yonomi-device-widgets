@@ -53,7 +53,7 @@ _read-only, override_
 
 
 
-##### [getBatteryLevel](../providers_battery_level_provider/BatteryLevelProvider/getBatteryLevel.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+##### [getBatteryLevelState](../providers_battery_level_provider/BatteryLevelProvider/getBatteryLevelState.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
 

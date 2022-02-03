@@ -85,12 +85,12 @@ Widget build(BuildContext context) {
                   child: GestureDetector(
                     child: getLockStateIcon(lockProvider),
                     onTap: () {
-                      bool setLock = !lockProvider.isLocked;
+                      bool setLock = !lockProvider.getIsLockedState;
                       lockProvider.setLockUnlockAction(
                           lockProvider.deviceDetail?.id ?? '', setLock);
                     },
                   )),
-              color: lockProvider.isLocked
+              color: lockProvider.getIsLockedState
                   ? WidgetStyleConstants.deviceDetailIconColorActive
                   : WidgetStyleConstants.deviceDetailIconColorInactive,
               initialValue: 0.0,

@@ -10,7 +10,7 @@
 
 
 
-UnknownItemIcon({dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+UnknownItemIcon({[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = WidgetStyleConstants.defaultDeviceIconSize, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
 
 
@@ -20,8 +20,8 @@ UnknownItemIcon({dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dyna
 
 ```dart
 UnknownItemIcon(
-    {size = WidgetStyleConstants.defaultDeviceIconSize,
-    color = WidgetStyleConstants.deviceIconColor,
+    {double size = WidgetStyleConstants.defaultDeviceIconSize,
+    Color color = WidgetStyleConstants.deviceIconColor,
     Key? key})
     : super(BootstrapIcons.box, key: key, size: size, color: color);
 ```

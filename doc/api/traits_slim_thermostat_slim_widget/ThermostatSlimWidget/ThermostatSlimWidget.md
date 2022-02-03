@@ -27,7 +27,7 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
               size: 20.0,
               color: WidgetStyleConstants.deviceDetailIconColorActive),
           headerText: Text(
-              'Target Temperature: ${thermostatProvider.targetTemperature.toInt()}\u{00B0}',
+              'Target Temperature: ${thermostatProvider.getTargetTemperatureState.toInt()}\u{00B0}',
               style: TextStyle(
                   fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
           backgroundColor: backgroundColor,
@@ -43,7 +43,7 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
                             ?.copyWith(
                                 color: WidgetStyleConstants.darkTextColor),
                       ),
-                      Text(thermostatProvider.fanMode,
+                      Text(thermostatProvider.getFanModeState,
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -62,7 +62,8 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
                             ?.copyWith(
                                 color: WidgetStyleConstants.darkTextColor),
                       ),
-                      Text(thermostatProvider.availableFanModes
+                      Text(
+                          thermostatProvider.getAvailableFanModes
                           .map((mode) => mode.value)
                               .join(', '),
                           style: Theme.of(context)

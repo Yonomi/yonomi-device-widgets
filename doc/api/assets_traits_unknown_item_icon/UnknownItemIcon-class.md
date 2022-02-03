@@ -30,7 +30,7 @@
 
 ## Constructors
 
-[UnknownItemIcon](../assets_traits_unknown_item_icon/UnknownItemIcon/UnknownItemIcon.md) ({dynamic size = WidgetStyleConstants.defaultDeviceIconSize, dynamic color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[UnknownItemIcon](../assets_traits_unknown_item_icon/UnknownItemIcon/UnknownItemIcon.md) ({[double](https://api.flutter.dev/flutter/dart-core/double-class.html) size = WidgetStyleConstants.defaultDeviceIconSize, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) color = WidgetStyleConstants.deviceIconColor, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 

@@ -35,15 +35,6 @@
 
 ## Properties
 
-##### [availableFanModes](../providers_thermostat_provider/ThermostatProvider/availableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode-class.html)>
-
-
-
-   
-_read-only_
-
-
-
 ##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
@@ -62,7 +53,7 @@ _read-only, override_
 
 
 
-##### [fanMode](../providers_thermostat_provider/ThermostatProvider/fanMode.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode-class.html)>
 
 
 
@@ -78,6 +69,24 @@ _read-only_
 Get the error message whenever this ChangeNotifier had an error
 See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
 _read-only, inherited_
+
+
+
+##### [getFanModeState](../providers_thermostat_provider/ThermostatProvider/getFanModeState.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getTargetTemperatureState](../providers_thermostat_provider/ThermostatProvider/getTargetTemperatureState.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+
+
+
+   
+_read-only_
 
 
 
@@ -151,15 +160,6 @@ _read-only, inherited_
 
    
 _write-only, inherited_
-
-
-
-##### [targetTemperature](../providers_thermostat_provider/ThermostatProvider/targetTemperature.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
-
-
-
-   
-_read-only_
 
 
 

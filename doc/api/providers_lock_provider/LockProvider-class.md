@@ -63,6 +63,15 @@ _read-only, inherited_
 
 
 
+##### [getIsLockedState](../providers_lock_provider/LockProvider/getIsLockedState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_read-only_
+
+
+
 ##### [hashCode](https://api.flutter.dev/flutter/dart-core/Object/hashCode.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
@@ -106,15 +115,6 @@ _read-only, inherited_
 
 To know if this ChangeNotifier is fetching device data   
 _read-only, inherited_
-
-
-
-##### [isLocked](../providers_lock_provider/LockProvider/isLocked.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
-
-
-
-   
-_read-only_
 
 
 
