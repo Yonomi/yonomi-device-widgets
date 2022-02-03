@@ -2,7 +2,6 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 Widget createIconWidget(List<Trait> traits) {
