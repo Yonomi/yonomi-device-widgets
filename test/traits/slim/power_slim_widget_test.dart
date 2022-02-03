@@ -17,7 +17,10 @@ MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
 
 void main() {
   final test = PowerWidgetTest();
-  final defaultDevice = test.device([PowerTrait(IsOnOff(true), {SupportsDiscreteOnOff(true)})]);
+  final defaultDevice = test.device([
+    PowerTrait(IsOnOff(true),
+        supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
+  ]);
 
   group("For PowerWidget, ", () {
     testWidgets('When loading, should show CircularProgressIndicator ',

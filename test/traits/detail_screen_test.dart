@@ -65,15 +65,16 @@ class DetailScreenTest
 
     final lock = device([
       traits.firstWhere((trait) => trait is LockTrait,
-          orElse: () => LockTrait(IsLocked(false), {}))
+          orElse: () => LockTrait(IsLocked(false),
+              supportsIsJammed: SupportsIsJammed(false)))
     ]);
     LockProvider mockLockProvider =
         this.mockLockProvider(lock, isLocked: false);
 
     final powerDevice = device([
       traits.firstWhere((trait) => trait is PowerTrait,
-          orElse: () =>
-              PowerTrait(IsOnOff(false), {SupportsDiscreteOnOff(true)}))
+          orElse: () => PowerTrait(IsOnOff(false),
+              supportsDiscreteOnOff: SupportsDiscreteOnOff(true)))
     ]);
     PowerTraitProvider mockPowerTraitProvider =
         this.mockPowerTraitProvider(powerDevice, onOffState: false);
@@ -154,7 +155,9 @@ void main() {
       (WidgetTester tester) async {
     Request request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [LockTrait(IsLocked(true), {})], request, testedDeviceId));
+        [LockTrait(IsLocked(true), supportsIsJammed: SupportsIsJammed(false))],
+        request,
+        testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
   });
@@ -164,7 +167,8 @@ void main() {
       (WidgetTester tester) async {
     Request request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      PowerTrait(IsOnOff(true), {SupportsDiscreteOnOff(true)})
+      PowerTrait(IsOnOff(true),
+          supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
     ], request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
@@ -205,7 +209,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      ThermostatTrait({TargetTemperature(100.0)}, {})
+      ThermostatTrait({TargetTemperature(100.0)}, availableFanModes: {})
     ], request, testedDeviceId));
 
     expect(find.byType(ThermostatWidget), findsOneWidget);
@@ -217,7 +221,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      ThermostatTrait({TargetTemperature(100.0)}, {})
+      ThermostatTrait({TargetTemperature(100.0)}, availableFanModes: {})
     ], request, testedDeviceId));
 
     expect(find.byType(ThermostatWidget), findsOneWidget);
@@ -240,12 +244,13 @@ void main() {
     final request = Request('', {});
 
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      LockTrait(IsLocked(false), {}),
+      LockTrait(IsLocked(false), supportsIsJammed: SupportsIsJammed(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(100)),
-      PowerTrait(IsOnOff(true), {SupportsDiscreteOnOff(true)}),
-      LockTrait(IsLocked(false), {}),
-      ThermostatTrait({TargetTemperature(99)}, {})
+      PowerTrait(IsOnOff(true),
+          supportsDiscreteOnOff: SupportsDiscreteOnOff(true)),
+      LockTrait(IsLocked(false), supportsIsJammed: SupportsIsJammed(false)),
+      ThermostatTrait({TargetTemperature(99)}, availableFanModes: {})
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -275,7 +280,7 @@ void main() {
     final request = Request('', {});
 
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      LockTrait(IsLocked(false), {}),
+      LockTrait(IsLocked(false), supportsIsJammed: SupportsIsJammed(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(50))
     ], request, testedDeviceId));
@@ -297,7 +302,7 @@ void main() {
     final request = Request('', {});
 
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      LockTrait(IsLocked(false), {}),
+      LockTrait(IsLocked(false), supportsIsJammed: SupportsIsJammed(false)),
       UnknownTrait('unknown'),
       BatteryLevelTrait(BatteryLevel(1))
     ], request, testedDeviceId));

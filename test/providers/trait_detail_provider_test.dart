@@ -25,7 +25,7 @@ void main() {
         null,
         GDateTime('value'),
         GDateTime('value'),
-        [LockTrait(IsLocked(true), {})]);
+        [LockTrait(IsLocked(true), supportsIsJammed: SupportsIsJammed(false))]);
     when(mockGetDetailsMethod.call(request, 'test'))
         .thenAnswer((_) => Future.value(device));
     TraitDetailProvider traitBasedNotifier =

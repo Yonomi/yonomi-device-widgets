@@ -3,27 +3,26 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i6;
-import 'dart:ui' as _i10;
+import 'dart:ui' as _i9;
 
 import 'package:flutter/material.dart' as _i2;
 import 'package:flutter/src/foundation/diagnostics.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
-    as _i15;
+    as _i14;
 import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i7;
-import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i11;
+import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i10;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
-    as _i13;
+    as _i12;
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart'
     as _i4;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i5;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
     as _i8;
 import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
-    as _i12;
+    as _i11;
 import 'package:yonomi_platform_sdk/src/repository/traits/power_repository.dart'
-    as _i14;
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i9;
+    as _i13;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -117,15 +116,11 @@ class MockTraitDetailProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  Set<S> properties<T extends _i9.Trait, S extends _i9.Property<dynamic>>() =>
-      (super.noSuchMethod(Invocation.method(#properties, []),
-          returnValue: <S>{}) as Set<S>);
-  @override
-  void addListener(_i10.VoidCallback? listener) =>
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -142,7 +137,7 @@ class MockTraitDetailProvider extends _i1.Mock
 /// A class which mocks [LockProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLockProvider extends _i1.Mock implements _i11.LockProvider {
+class MockLockProvider extends _i1.Mock implements _i10.LockProvider {
   MockLockProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -187,8 +182,8 @@ class MockLockProvider extends _i1.Mock implements _i11.LockProvider {
   _i6.Future<void> setLockUnlockAction(String? deviceId, bool? setLock,
           {_i7.GetDeviceDetailsMethod? getDetails =
               _i8.DevicesRepository.getDeviceDetails,
-          _i11.SendLockUnlockFunction? sendLockUnlock =
-              _i12.LockRepository.sendLockUnlockAction}) =>
+          _i10.SendLockUnlockFunction? sendLockUnlock =
+              _i11.LockRepository.sendLockUnlockAction}) =>
       (super.noSuchMethod(
           Invocation.method(#setLockUnlockAction, [deviceId, setLock],
               {#getDetails: getDetails, #sendLockUnlock: sendLockUnlock}),
@@ -217,15 +212,11 @@ class MockLockProvider extends _i1.Mock implements _i11.LockProvider {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  Set<S> properties<T extends _i9.Trait, S extends _i9.Property<dynamic>>() =>
-      (super.noSuchMethod(Invocation.method(#properties, []),
-          returnValue: <S>{}) as Set<S>);
-  @override
-  void addListener(_i10.VoidCallback? listener) =>
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -243,7 +234,7 @@ class MockLockProvider extends _i1.Mock implements _i11.LockProvider {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPowerTraitProvider extends _i1.Mock
-    implements _i13.PowerTraitProvider {
+    implements _i12.PowerTraitProvider {
   MockPowerTraitProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -292,8 +283,8 @@ class MockPowerTraitProvider extends _i1.Mock
   _i6.Future<void> sendPowerOnOffAction(bool? desiredOnOffState,
           {_i7.GetDeviceDetailsMethod? getDetails =
               _i8.DevicesRepository.getDeviceDetails,
-          _i13.SendPowerMethod? sendPowerMethod =
-              _i14.PowerRepository.sendPowerAction}) =>
+          _i12.SendPowerMethod? sendPowerMethod =
+              _i13.PowerRepository.sendPowerAction}) =>
       (super.noSuchMethod(
           Invocation.method(#sendPowerOnOffAction, [desiredOnOffState],
               {#getDetails: getDetails, #sendPowerMethod: sendPowerMethod}),
@@ -322,15 +313,11 @@ class MockPowerTraitProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  Set<S> properties<T extends _i9.Trait, S extends _i9.Property<dynamic>>() =>
-      (super.noSuchMethod(Invocation.method(#properties, []),
-          returnValue: <S>{}) as Set<S>);
-  @override
-  void addListener(_i10.VoidCallback? listener) =>
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
@@ -348,7 +335,7 @@ class MockPowerTraitProvider extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBatteryLevelProvider extends _i1.Mock
-    implements _i15.BatteryLevelProvider {
+    implements _i14.BatteryLevelProvider {
   MockBatteryLevelProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -412,15 +399,11 @@ class MockBatteryLevelProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  Set<S> properties<T extends _i9.Trait, S extends _i9.Property<dynamic>>() =>
-      (super.noSuchMethod(Invocation.method(#properties, []),
-          returnValue: <S>{}) as Set<S>);
-  @override
-  void addListener(_i10.VoidCallback? listener) =>
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

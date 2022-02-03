@@ -80,20 +80,9 @@ abstract class DeviceProvider extends ChangeNotifier {
     }
   }
 
-  sdk.State<dynamic>?
-      state<T extends sdk.Trait, S extends sdk.State<dynamic>>() {
-    return trait<T>()
-        ?.states
-        .firstWhere((state) => state is S, orElse: () => sdk.UnknownState());
-  }
-
   sdk.Trait? trait<T extends sdk.Trait>() {
     return deviceDetail?.traits.firstWhere((trait) => trait is T,
         orElse: () => sdk.UnknownTrait(displayName));
-  }
-
-  Set<S> properties<T extends sdk.Trait, S extends sdk.Property>() {
-    return trait<T>()?.properties.whereType<S>().toSet() ?? {};
   }
 
   String get displayName;

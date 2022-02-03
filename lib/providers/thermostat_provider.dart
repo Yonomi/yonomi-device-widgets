@@ -36,12 +36,15 @@ class ThermostatProvider extends DeviceProvider {
   }
 
   double get getTargetTemperatureState =>
-      state<ThermostatTrait, TargetTemperature>()?.value ?? 0.0;
+      getThermostatTrait()?.stateWhereType<TargetTemperature>().value ?? 0.0;
 
-  String get getFanModeState => state<ThermostatTrait, FanMode>()?.value;
+  String get getFanModeState {
+    return getThermostatTrait()?.stateWhereType<FanMode>().value;
+  }
 
-  Set<AvailableFanMode> get getAvailableFanModes =>
-      properties<ThermostatTrait, AvailableFanMode>();
+  Set<AvailableFanMode> get getAvailableFanModes {
+    return getThermostatTrait()?.propertiesWhereType<AvailableFanMode>() ?? {};
+  }
 
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;

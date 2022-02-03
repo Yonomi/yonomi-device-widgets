@@ -120,10 +120,6 @@ class MockThermostatProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  Set<S> properties<T extends _i3.Trait, S extends _i3.Property<dynamic>>() =>
-      (super.noSuchMethod(Invocation.method(#properties, []),
-          returnValue: <S>{}) as Set<S>);
-  @override
   void addListener(_i10.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);

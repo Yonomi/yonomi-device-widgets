@@ -114,10 +114,8 @@ void main() {
     expect(thermostatProvider.trait<LockTrait>(), isA<UnknownTrait>());
     expect(thermostatProvider.trait<ThermostatTrait>(), isA<ThermostatTrait>());
     expect(thermostatProvider.getThermostatTrait(), isA<ThermostatTrait>());
-    expect(thermostatProvider.properties<ThermostatTrait, AvailableFanMode>(),
+    expect(thermostatProvider.getAvailableFanModes,
         hasLength(3));
-    expect(thermostatProvider.properties<ThermostatTrait, SupportsIsJammed>(),
-        isEmpty);
     expect(thermostatProvider.getFanModeState, equals('AUTO'));
     expect(thermostatProvider.getAvailableFanModes, hasLength(3));
   });
@@ -137,7 +135,7 @@ Device _getThermostat(double temp) {
       ThermostatTrait({
         TargetTemperature(temp),
         FanMode('AUTO')
-      }, {
+      }, availableFanModes: {
         AvailableFanMode('AUTO'),
         AvailableFanMode('ON'),
         AvailableFanMode('OFF')

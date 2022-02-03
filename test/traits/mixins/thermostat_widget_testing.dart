@@ -32,13 +32,12 @@ mixin ThermostatWidgetTesting {
     final thermostatTrait = device.traits.firstWhere(
             (trait) => trait is ThermostatTrait,
             orElse: () => ThermostatTrait(
-                {TargetTemperature(targetTemperature), FanMode(fanMode)}, {}))
+                {TargetTemperature(targetTemperature), FanMode(fanMode)}))
         as ThermostatTrait?;
     when(mockThermostatProvider.getTargetTemperatureState).thenReturn(
-        thermostatTrait
-        ?.states
-        .firstWhere((state) => state is TargetTemperature)
-        .value);
+        thermostatTrait?.states
+            .firstWhere((state) => state is TargetTemperature)
+            .value);
     when(mockThermostatProvider.getFanModeState).thenReturn(thermostatTrait
         ?.states
         .firstWhere((state) => state is FanMode, orElse: () => FanMode(fanMode))
