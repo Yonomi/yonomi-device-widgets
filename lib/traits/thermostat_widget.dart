@@ -73,6 +73,8 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
   }
 
   Widget _fanMode(BuildContext context) {
+    final selectedFanMode = _thermostatProvider.getFanModeState;
+    final availableFanModes = _thermostatProvider.getAvailableFanModes.toList();
     return Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -92,11 +94,11 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                     ),
               backgroundColor: Colors.white,
               title: Text(
-                "Fan: ${_thermostatProvider.getFanModeState}",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: _textColor),
+                "Fan: $selectedFanMode",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
               ),
               tilePadding: EdgeInsets.all(0.0),
               children: [
@@ -109,13 +111,22 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                           .headline6
                           ?.copyWith(color: _textColor),
                     ),
-                    Text(
-                      _thermostatProvider.getAvailableFanModes
-                          .map((e) => e.name)
-                          .join(', '),
-                      style: Theme.of(context).textTheme.headline6?.copyWith(
-                          color: _textColor, fontWeight: FontWeight.normal),
-                    ),
+                    ...List<Widget>.generate(
+                      availableFanModes.length,
+                      (int index) {
+                        return ChoiceChip(
+                          label: Text('${availableFanModes[index].name}'),
+                          selected: selectedFanMode == availableFanModes[index],
+                          onSelected: (bool selected) {
+                            if (!selected) {
+                              _thermostatProvider.setFanMode(
+                                  _thermostatProvider.deviceDetail?.id ?? '',
+                                  availableFanModes[index]);
+                            }
+                          },
+                        );
+                      },
+                    ).toList(),
                   ],
                 )
               ],

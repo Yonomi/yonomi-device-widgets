@@ -40,13 +40,14 @@ class ThermostatProvider extends DeviceProvider {
 
   Future<void> setFanMode(String deviceId, AvailableFanMode fanMode,
       {SetFanModeFunction setFanMode = ThermostatRepository.setFanMode}) async {
-    return Future.value();
+    return performAction(fanMode, () => getFanModeState,
+        () => setFanMode(_request, deviceId, fanMode));
   }
 
   double get getTargetTemperatureState =>
       getThermostatTrait()?.stateWhereType<TargetTemperature>().value ?? 0.0;
 
-  String get getFanModeState {
+  AvailableFanMode get getFanModeState {
     return getThermostatTrait()?.stateWhereType<FanMode>().value;
   }
 
