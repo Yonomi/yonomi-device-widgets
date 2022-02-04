@@ -11,7 +11,7 @@
 
 
 
-[String](https://api.flutter.dev/flutter/dart-core/String-class.html) getFanModeState
+[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html) getFanModeState
   
 
 
@@ -23,7 +23,7 @@
 ## Implementation
 
 ```dart
-String get getFanModeState {
+AvailableFanMode get getFanModeState {
   return getThermostatTrait()?.stateWhereType<FanMode>().value;
 }
 ```

@@ -11,7 +11,7 @@
 
 
 
-[Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode-class.html)> getAvailableFanModes
+[Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)> getAvailableFanModes
   
 
 

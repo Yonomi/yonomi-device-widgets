@@ -53,7 +53,7 @@ _read-only, override_
 
 
 
-##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode-class.html)>
+##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)>
 
 
 
@@ -72,7 +72,7 @@ _read-only, inherited_
 
 
 
-##### [getFanModeState](../providers_thermostat_provider/ThermostatProvider/getFanModeState.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [getFanModeState](../providers_thermostat_provider/ThermostatProvider/getFanModeState.md) &#8594; [AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)
 
 
 
@@ -248,6 +248,15 @@ _inherited_
 
    
 _inherited_
+
+
+
+##### [setFanMode](../providers_thermostat_provider/ThermostatProvider/setFanMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html) fanMode, {[SetFanModeFunction](../providers_thermostat_provider/SetFanModeFunction.md) setFanMode = ThermostatRepository.setFanMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+
 
 
 
