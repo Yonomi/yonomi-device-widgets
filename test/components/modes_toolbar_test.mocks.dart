@@ -3,20 +3,19 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i5;
-import 'dart:ui' as _i10;
+import 'dart:ui' as _i9;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i8;
+import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i7;
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart'
     as _i2;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i4;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
-    as _i9;
+    as _i8;
 import 'package:yonomi_platform_sdk/src/repository/devices/thermostat_repository.dart'
     as _i6;
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart'
-    as _i7;
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i3;
+    as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -44,9 +43,9 @@ class MockThermostatProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getFanModeState), returnValue: '')
           as String);
   @override
-  Set<_i3.AvailableFanMode> get getAvailableFanModes =>
+  Set<_i3.GFanMode> get getAvailableFanModes =>
       (super.noSuchMethod(Invocation.getter(#getAvailableFanModes),
-          returnValue: <_i3.AvailableFanMode>{}) as Set<_i3.AvailableFanMode>);
+          returnValue: <_i3.GFanMode>{}) as Set<_i3.GFanMode>);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
@@ -90,7 +89,7 @@ class MockThermostatProvider extends _i1.Mock
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
   _i5.Future<void> setThermostatMode(
-          String? deviceId, _i7.GThermostatMode? mode,
+          String? deviceId, _i3.GThermostatMode? mode,
           {_i2.SetModeFunction? setMode = _i6.ThermostatRepository.setMode}) =>
       (super.noSuchMethod(
           Invocation.method(
@@ -98,9 +97,18 @@ class MockThermostatProvider extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
+  _i5.Future<void> setFanMode(String? deviceId, _i3.GFanMode? fanMode,
+          {_i2.SetFanModeFunction? setFanMode =
+              _i6.ThermostatRepository.setFanMode}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #setFanMode, [deviceId, fanMode], {#setFanMode: setFanMode}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
   _i5.Future<void> fetchData(
-          {_i8.GetDeviceDetailsMethod? getDetails =
-              _i9.DevicesRepository.getDeviceDetails}) =>
+          {_i7.GetDeviceDetailsMethod? getDetails =
+              _i8.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
@@ -112,19 +120,19 @@ class MockThermostatProvider extends _i1.Mock
   @override
   _i5.Future<void> performAction<T>(
           T? desiredState, Function? getState, Function? action,
-          {_i8.GetDeviceDetailsMethod? getDetails =
-              _i9.DevicesRepository.getDeviceDetails}) =>
+          {_i7.GetDeviceDetailsMethod? getDetails =
+              _i8.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#performAction, [desiredState, getState, action],
               {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  void addListener(_i10.VoidCallback? listener) =>
+  void addListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i10.VoidCallback? listener) =>
+  void removeListener(_i9.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override

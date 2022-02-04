@@ -50,7 +50,7 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                         ),
                         Text(
                             thermostatProvider.getAvailableFanModes
-                            .map((mode) => mode.value)
+                                .map((mode) => mode.name)
                                 .join(', '),
                             style: Theme.of(context)
                                 .textTheme

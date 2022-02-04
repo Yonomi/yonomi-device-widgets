@@ -111,7 +111,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                     ),
                     Text(
                       _thermostatProvider.getAvailableFanModes
-                        .map((e) => e.value)
+                          .map((e) => e.name)
                           .join(', '),
                       style: Theme.of(context).textTheme.headline6?.copyWith(
                           color: _textColor, fontWeight: FontWeight.normal),

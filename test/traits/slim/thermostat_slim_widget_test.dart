@@ -20,7 +20,7 @@ void main() {
   final test = ThermostatWidgetTest();
   final defaultDevice = test.device([
     ThermostatTrait({TargetTemperature(90.2), FanMode('AUTO')},
-        availableFanModes: {AvailableFanMode('ON'), AvailableFanMode('AUTO')})
+        availableFanModes: {AvailableFanMode.ON, AvailableFanMode.AUTO})
   ]);
 
   group("For ThermostatWidget, ", () {

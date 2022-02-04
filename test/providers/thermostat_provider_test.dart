@@ -136,9 +136,9 @@ Device _getThermostat(double temp) {
         TargetTemperature(temp),
         FanMode('AUTO')
       }, availableFanModes: {
-        AvailableFanMode('AUTO'),
-        AvailableFanMode('ON'),
-        AvailableFanMode('OFF')
+        AvailableFanMode.AUTO,
+        AvailableFanMode.ON,
+        AvailableFanMode.ECO
       })
     ],
   );
