@@ -14,9 +14,9 @@ Widget createIconWidget(List<Trait> traits) {
 
 void main() {
   final availableFanModes = {
-    AvailableFanMode('Auto'),
-    AvailableFanMode('On'),
-    AvailableFanMode('Off')
+    AvailableFanMode.AUTO,
+    AvailableFanMode.ON,
+    AvailableFanMode.ECO
   };
 
   testWidgets('should render correct thermostat trait icon',
