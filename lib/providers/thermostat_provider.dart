@@ -33,9 +33,10 @@ class ThermostatProvider extends DeviceProvider {
         () => setPoint(_request, deviceId, temperature));
   }
 
-  Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
+  Future<void> setThermostatMode(String deviceId, AvailableThermostatMode mode,
       {SetModeFunction setMode = ThermostatRepository.setMode}) async {
-    return Future.value();
+    return performAction(
+        mode, () => getModeState, () => setMode(_request, deviceId, mode));
   }
 
   Future<void> setFanMode(String deviceId, AvailableFanMode fanMode,
