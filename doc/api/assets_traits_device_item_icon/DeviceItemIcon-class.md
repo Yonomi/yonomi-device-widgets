@@ -88,6 +88,15 @@ _inherited_
 
 
 
+##### [findIconStateValue](../assets_traits_device_item_icon/DeviceItemIcon/findIconStateValue.md)&lt;T extends [State](https://yonomi.co/yonomi-sdk/State-class.html), S>([Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[State](https://yonomi.co/yonomi-sdk/State-class.html)> states) S
+
+
+
+   
+
+
+
+
 ##### [getIcon](../assets_traits_device_item_icon/DeviceItemIcon/getIcon.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 

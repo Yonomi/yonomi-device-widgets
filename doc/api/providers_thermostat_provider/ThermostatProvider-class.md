@@ -53,7 +53,7 @@ _read-only, override_
 
 
 
-##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode-class.html)>
+##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)>
 
 
 
