@@ -52,6 +52,16 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Text(
+                _thermostatProvider.getModeState.name,
+                style:
+                    TextStyle(color: WidgetStyleConstants.globalSuccessColor),
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
           SizedBox(
             height: 30,
           ),

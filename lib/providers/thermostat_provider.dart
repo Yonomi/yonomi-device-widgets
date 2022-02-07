@@ -44,6 +44,11 @@ class ThermostatProvider extends DeviceProvider {
         () => setFanMode(_request, deviceId, fanMode));
   }
 
+  AvailableThermostatMode get getModeState {
+    return getThermostatTrait()?.stateWhereType<ThermostatMode>().value ??
+        AvailableThermostatMode.OFF;
+  }
+
   double get getTargetTemperatureState =>
       getThermostatTrait()?.stateWhereType<TargetTemperature>().value ?? 0.0;
 
@@ -52,7 +57,11 @@ class ThermostatProvider extends DeviceProvider {
   }
 
   Set<AvailableFanMode> get getAvailableFanModes {
-    return getThermostatTrait()?.propertiesWhereType<AvailableFanMode>() ?? {};
+    return getThermostatTrait()?.availableFanModes ?? {};
+  }
+
+  Set<AvailableThermostatMode> get getAvailableThermostatModes {
+    return getThermostatTrait()?.availableThermostatModes ?? {};
   }
 
   @override
