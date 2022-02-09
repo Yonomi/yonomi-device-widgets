@@ -57,6 +57,23 @@ class MockSetMode extends _i1.Mock implements _i3.SetMode {
   String toString() => super.toString();
 }
 
+/// A class which mocks [SetFanMode].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSetFanMode extends _i1.Mock implements _i3.SetFanMode {
+  MockSetFanMode() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> call(_i2.Request? request, String? id, _i5.GFanMode? mode) =>
+      (super.noSuchMethod(Invocation.method(#call, [request, id, mode]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  String toString() => super.toString();
+}
+
 /// A class which mocks [GetThermostatDetails].
 ///
 /// See the documentation for Mockito's code generation for more information.

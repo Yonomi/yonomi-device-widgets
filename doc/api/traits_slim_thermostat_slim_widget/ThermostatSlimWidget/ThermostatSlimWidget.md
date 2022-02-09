@@ -43,7 +43,7 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
                             ?.copyWith(
                                 color: WidgetStyleConstants.darkTextColor),
                       ),
-                      Text(thermostatProvider.getFanModeState,
+                      Text(thermostatProvider.getFanModeState.name,
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -62,6 +62,7 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
                             ?.copyWith(
                                 color: WidgetStyleConstants.darkTextColor),
                       ),
+<<<<<<< HEAD
                       Text(
                           thermostatProvider.getAvailableFanModes
                               .map((mode) => mode.name)
@@ -72,6 +73,28 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
                               ?.copyWith(
                                   color: WidgetStyleConstants.darkTextColor,
                                   fontWeight: FontWeight.normal))
+=======
+                      ...List<Widget>.generate(
+                        thermostatProvider.getAvailableFanModes.length,
+                        (int index) {
+                          return ChoiceChip(
+                            label: Text(
+                                '${thermostatProvider.getAvailableFanModes.toList()[index].name}'),
+                            selected: thermostatProvider.getFanModeState ==
+                                thermostatProvider.getAvailableFanModes
+                                    .toList()[index],
+                            onSelected: (bool selected) {
+                              if (!selected) {
+                                thermostatProvider.setFanMode(
+                                    thermostatProvider.deviceDetail?.id ?? '',
+                                    thermostatProvider.getAvailableFanModes
+                                        .toList()[index]);
+                              }
+                            },
+                          );
+                        },
+                      ).toList(),
+>>>>>>> DX-249_set_fanMode
                     ],
                   ),
                 ],

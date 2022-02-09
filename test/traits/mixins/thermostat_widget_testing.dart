@@ -15,7 +15,7 @@ mixin ThermostatWidgetTesting {
     bool isPerformingAction = false,
     String errorMessage = '',
     double targetTemperature = 70.0,
-    String fanMode = 'AUTO',
+    AvailableFanMode fanMode = AvailableFanMode.AUTO,
     Set<AvailableFanMode> availableFanModes = const {},
   }) {
     final mockThermostatProvider = MockThermostatProvider();

@@ -8,14 +8,14 @@ import 'dart:ui' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i7;
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart'
-    as _i2;
+    as _i3;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i4;
 import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
     as _i8;
-import 'package:yonomi_platform_sdk/src/repository/devices/thermostat_repository.dart'
+import 'package:yonomi_platform_sdk/src/repository/traits/thermostat_repository.dart'
     as _i6;
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart'
-    as _i3;
+    as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -25,11 +25,13 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
+class _FakeGFanMode_0 extends _i1.Fake implements _i2.GFanMode {}
+
 /// A class which mocks [ThermostatProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockThermostatProvider extends _i1.Mock
-    implements _i2.ThermostatProvider {
+    implements _i3.ThermostatProvider {
   MockThermostatProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -39,13 +41,13 @@ class MockThermostatProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getTargetTemperatureState),
           returnValue: 0.0) as double);
   @override
-  String get getFanModeState =>
-      (super.noSuchMethod(Invocation.getter(#getFanModeState), returnValue: '')
-          as String);
+  _i2.GFanMode get getFanModeState =>
+      (super.noSuchMethod(Invocation.getter(#getFanModeState),
+          returnValue: _FakeGFanMode_0()) as _i2.GFanMode);
   @override
-  Set<_i3.GFanMode> get getAvailableFanModes =>
+  Set<_i2.GFanMode> get getAvailableFanModes =>
       (super.noSuchMethod(Invocation.getter(#getAvailableFanModes),
-          returnValue: <_i3.GFanMode>{}) as Set<_i3.GFanMode>);
+          returnValue: <_i2.GFanMode>{}) as Set<_i2.GFanMode>);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
@@ -80,7 +82,7 @@ class MockThermostatProvider extends _i1.Mock
           as bool);
   @override
   _i5.Future<void> setPointAction(String? deviceId, double? temperature,
-          {_i2.SetPointActionFunction? setPoint =
+          {_i3.SetPointActionFunction? setPoint =
               _i6.ThermostatRepository.setPointThermostat}) =>
       (super.noSuchMethod(
           Invocation.method(
@@ -89,11 +91,20 @@ class MockThermostatProvider extends _i1.Mock
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
   _i5.Future<void> setThermostatMode(
-          String? deviceId, _i3.GThermostatMode? mode,
-          {_i2.SetModeFunction? setMode = _i6.ThermostatRepository.setMode}) =>
+          String? deviceId, _i2.GThermostatMode? mode,
+          {_i3.SetModeFunction? setMode = _i6.ThermostatRepository.setMode}) =>
       (super.noSuchMethod(
           Invocation.method(
               #setThermostatMode, [deviceId, mode], {#setMode: setMode}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
+  _i5.Future<void> setFanMode(String? deviceId, _i2.GFanMode? fanMode,
+          {_i3.SetFanModeFunction? setFanMode =
+              _i6.ThermostatRepository.setFanMode}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #setFanMode, [deviceId, fanMode], {#setFanMode: setFanMode}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override

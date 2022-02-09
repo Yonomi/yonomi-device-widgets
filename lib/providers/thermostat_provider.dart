@@ -9,6 +9,9 @@ typedef SetPointActionFunction = Future<void> Function(
 typedef SetModeFunction = Future<void> Function(
     Request request, String id, GThermostatMode mode);
 
+typedef SetFanModeFunction = Future<void> Function(
+    Request request, String id, AvailableFanMode mode);
+
 class ThermostatProvider extends DeviceProvider {
   ThermostatProvider(Request request, String deviceId,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails})
@@ -35,10 +38,16 @@ class ThermostatProvider extends DeviceProvider {
     return Future.value();
   }
 
+  Future<void> setFanMode(String deviceId, AvailableFanMode fanMode,
+      {SetFanModeFunction setFanMode = ThermostatRepository.setFanMode}) async {
+    return performAction(fanMode, () => getFanModeState,
+        () => setFanMode(_request, deviceId, fanMode));
+  }
+
   double get getTargetTemperatureState =>
       getThermostatTrait()?.stateWhereType<TargetTemperature>().value ?? 0.0;
 
-  String get getFanModeState {
+  AvailableFanMode get getFanModeState {
     return getThermostatTrait()?.stateWhereType<FanMode>().value;
   }
 
