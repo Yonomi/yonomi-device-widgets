@@ -138,6 +138,7 @@ void main() {
     expect(thermostatProvider.getAvailableFanModes, hasLength(3));
     expect(thermostatProvider.getFanModeState, equals(AvailableFanMode.AUTO));
     expect(thermostatProvider.getAvailableFanModes, hasLength(3));
+    expect(thermostatProvider.getAvailableThermostatModes, hasLength(3));
   });
 }
 
@@ -157,7 +158,12 @@ Device _getThermostat(double temp) {
         FanMode(AvailableFanMode.AUTO)
       }, {
         AvailableFanModes(
-            {AvailableFanMode.AUTO, AvailableFanMode.ON, AvailableFanMode.ECO})
+            {AvailableFanMode.AUTO, AvailableFanMode.ON, AvailableFanMode.ECO}),
+        AvailableThermostatModes({
+          AvailableThermostatMode.AUTO,
+          AvailableThermostatMode.COOL,
+          AvailableThermostatMode.HEAT
+        })
       })
     ],
   );
