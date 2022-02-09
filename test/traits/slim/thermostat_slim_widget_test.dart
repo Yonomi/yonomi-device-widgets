@@ -19,8 +19,12 @@ class ThermostatWidgetTest with DeviceTesting, ThermostatWidgetTesting {}
 void main() {
   final test = ThermostatWidgetTest();
   final defaultDevice = test.device([
-    ThermostatTrait({TargetTemperature(90.2), FanMode(AvailableFanMode.AUTO)},
-        availableFanModes: {AvailableFanMode.ON, AvailableFanMode.AUTO})
+    ThermostatTrait({
+      TargetTemperature(90.2),
+      FanMode(AvailableFanMode.AUTO)
+    }, {
+      AvailableFanModes({AvailableFanMode.ON, AvailableFanMode.AUTO})
+    })
   ]);
 
   group("For ThermostatWidget, ", () {

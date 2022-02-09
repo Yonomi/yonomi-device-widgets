@@ -25,7 +25,9 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeGFanMode_0 extends _i1.Fake implements _i2.GFanMode {}
+class _FakeGThermostatMode_0 extends _i1.Fake implements _i2.GThermostatMode {}
+
+class _FakeGFanMode_1 extends _i1.Fake implements _i2.GFanMode {}
 
 /// A class which mocks [ThermostatProvider].
 ///
@@ -37,17 +39,25 @@ class MockThermostatProvider extends _i1.Mock
   }
 
   @override
+  _i2.GThermostatMode get getModeState =>
+      (super.noSuchMethod(Invocation.getter(#getModeState),
+          returnValue: _FakeGThermostatMode_0()) as _i2.GThermostatMode);
+  @override
   double get getTargetTemperatureState =>
       (super.noSuchMethod(Invocation.getter(#getTargetTemperatureState),
           returnValue: 0.0) as double);
   @override
   _i2.GFanMode get getFanModeState =>
       (super.noSuchMethod(Invocation.getter(#getFanModeState),
-          returnValue: _FakeGFanMode_0()) as _i2.GFanMode);
+          returnValue: _FakeGFanMode_1()) as _i2.GFanMode);
   @override
   Set<_i2.GFanMode> get getAvailableFanModes =>
       (super.noSuchMethod(Invocation.getter(#getAvailableFanModes),
           returnValue: <_i2.GFanMode>{}) as Set<_i2.GFanMode>);
+  @override
+  Set<_i2.GThermostatMode> get getAvailableThermostatModes =>
+      (super.noSuchMethod(Invocation.getter(#getAvailableThermostatModes),
+          returnValue: <_i2.GThermostatMode>{}) as Set<_i2.GThermostatMode>);
   @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')

@@ -17,7 +17,7 @@ dependencies:
   yonomi_platform_sdk:
     git:
       url: https://github.com/Yonomi/yonomi-sdk-dart
-      ref: DX-246_display_mode
+      ref: DX-248_display_fanMode
 
 dev_dependencies:
   mockito: ^5.0.15

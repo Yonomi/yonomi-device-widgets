@@ -16,7 +16,9 @@ mixin ThermostatWidgetTesting {
     String errorMessage = '',
     double targetTemperature = 70.0,
     AvailableFanMode fanMode = AvailableFanMode.AUTO,
+    AvailableThermostatMode mode = AvailableThermostatMode.AUTO,
     Set<AvailableFanMode> availableFanModes = const {},
+    Set<AvailableThermostatMode> availableThermostatModes = const {},
   }) {
     final mockThermostatProvider = MockThermostatProvider();
     when(mockThermostatProvider.isLoading).thenReturn(isLoading);
@@ -26,13 +28,23 @@ mixin ThermostatWidgetTesting {
     when(mockThermostatProvider.isPerformingAction).thenReturn(false);
     when(mockThermostatProvider.deviceDetail).thenReturn(device);
     when(mockThermostatProvider.displayName).thenReturn('THERMOSTAT');
+    when(mockThermostatProvider.getFanModeState).thenReturn(fanMode);
+    when(mockThermostatProvider.getModeState).thenReturn(mode);
     when(mockThermostatProvider.getAvailableFanModes)
         .thenReturn(availableFanModes);
+    when(mockThermostatProvider.getAvailableThermostatModes)
+        .thenReturn(availableThermostatModes);
 
     final thermostatTrait = device.traits.firstWhere(
             (trait) => trait is ThermostatTrait,
             orElse: () => ThermostatTrait(
-                {TargetTemperature(targetTemperature), FanMode(fanMode)}))
+                {
+                  TargetTemperature(targetTemperature),
+                  FanMode(fanMode)
+                }, {
+                  AvailableFanModes(availableFanModes),
+                  AvailableThermostatModes(availableThermostatModes)
+                }))
         as ThermostatTrait?;
     when(mockThermostatProvider.getTargetTemperatureState).thenReturn(
         thermostatTrait?.states

@@ -19,8 +19,8 @@ MaterialApp createMaterialApp(ThermostatProvider mockThermostatProvider) {
 void main() {
   final test = ThermostatWidgetTest();
   final defaultDevice = test.device([
-    ThermostatTrait({TargetTemperature(92.0), FanMode(AvailableFanMode.AUTO)},
-        availableFanModes: {})
+    ThermostatTrait(
+        {TargetTemperature(92.0), FanMode(AvailableFanMode.AUTO)}, {})
   ]);
 
   testWidgets('When loading, should show CircularProgressIndicator ',

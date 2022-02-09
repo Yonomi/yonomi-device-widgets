@@ -67,14 +67,8 @@ void main() {
     await thermostatProvider.setThermostatMode('DeviceId', GThermostatMode.AUTO,
         setMode: mockSetModeFunction);
 
-    // TODO: Uncomment this test when setThermostatMode is implemented
-    /*
     verify(mockSetModeFunction.call(request, 'DeviceId', GThermostatMode.AUTO))
         .called(1);
-    */
-
-    verifyNever(
-        mockSetModeFunction.call(request, 'DeviceId', GThermostatMode.AUTO));
   });
 
   test('Calling setFanMode calls repository method', () async {
@@ -141,8 +135,7 @@ void main() {
     expect(thermostatProvider.trait<LockTrait>(), isA<UnknownTrait>());
     expect(thermostatProvider.trait<ThermostatTrait>(), isA<ThermostatTrait>());
     expect(thermostatProvider.getThermostatTrait(), isA<ThermostatTrait>());
-    expect(thermostatProvider.getAvailableFanModes,
-        hasLength(3));
+    expect(thermostatProvider.getAvailableFanModes, hasLength(3));
     expect(thermostatProvider.getFanModeState, equals(AvailableFanMode.AUTO));
     expect(thermostatProvider.getAvailableFanModes, hasLength(3));
   });
@@ -162,10 +155,9 @@ Device _getThermostat(double temp) {
       ThermostatTrait({
         TargetTemperature(temp),
         FanMode(AvailableFanMode.AUTO)
-      }, availableFanModes: {
-        AvailableFanMode.AUTO,
-        AvailableFanMode.ON,
-        AvailableFanMode.ECO
+      }, {
+        AvailableFanModes(
+            {AvailableFanMode.AUTO, AvailableFanMode.ON, AvailableFanMode.ECO})
       })
     ],
   );
