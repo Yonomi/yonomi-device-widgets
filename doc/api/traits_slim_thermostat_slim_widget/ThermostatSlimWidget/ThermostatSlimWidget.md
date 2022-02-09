@@ -33,68 +33,97 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
           backgroundColor: backgroundColor,
           createContent: (context) => Column(
                 children: [
-                  Row(
+                  Wrap(
+                      spacing: 5.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Modes: ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  ?.copyWith(
+                                      color:
+                                          WidgetStyleConstants.darkTextColor),
+                            )),
+                        ...List<Widget>.generate(
+                          thermostatProvider
+                              .getAvailableThermostatModes.length,
+                          (int index) {
+                            final availableModes = thermostatProvider
+                                .getAvailableThermostatModes
+                                .toList();
+                            return ChoiceChip(
+                              visualDensity: VisualDensity.comfortable,
+                              padding:
+                                  EdgeInsets.only(right: -1.0, left: -1.0),
+                              labelPadding:
+                                  EdgeInsets.only(right: 5.0, left: 5.0),
+                              label: Text('${availableModes[index].name}'),
+                              selected: thermostatProvider.getModeState ==
+                                  thermostatProvider
+                                      .getAvailableThermostatModes
+                                      .toList()[index],
+                              onSelected: (bool selected) {
+                                if (selected) {
+                                  thermostatProvider.setThermostatMode(
+                                      thermostatProvider.deviceDetail?.id ??
+                                          '',
+                                      availableModes[index]);
+                                }
+                              },
+                              key: Key(
+                                  'modeChip-${availableModes[index].name}'),
+                            );
+                          },
+                        ).toList(),
+                      ]),
+                  Wrap(
+                    spacing: 5.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      Text(
-                        'Fan: ',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6
-                            ?.copyWith(
-                                color: WidgetStyleConstants.darkTextColor),
-                      ),
-                      Text(thermostatProvider.getFanModeState.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6
-                              ?.copyWith(
-                                  color: WidgetStyleConstants.darkTextColor,
-                                  fontWeight: FontWeight.normal)),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Fan Modes: ',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6
-                            ?.copyWith(
-                                color: WidgetStyleConstants.darkTextColor),
-                      ),
-<<<<<<< HEAD
-                      Text(
-                          thermostatProvider.getAvailableFanModes
-                              .map((mode) => mode.name)
-                              .join(', '),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6
-                              ?.copyWith(
-                                  color: WidgetStyleConstants.darkTextColor,
-                                  fontWeight: FontWeight.normal))
-=======
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Fan Modes: ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    color:
+                                        WidgetStyleConstants.darkTextColor),
+                          )),
                       ...List<Widget>.generate(
                         thermostatProvider.getAvailableFanModes.length,
                         (int index) {
+                          final availableFanModes = thermostatProvider
+                              .getAvailableFanModes
+                              .toList();
                           return ChoiceChip(
-                            label: Text(
-                                '${thermostatProvider.getAvailableFanModes.toList()[index].name}'),
-                            selected: thermostatProvider.getFanModeState ==
-                                thermostatProvider.getAvailableFanModes
-                                    .toList()[index],
-                            onSelected: (bool selected) {
-                              if (!selected) {
-                                thermostatProvider.setFanMode(
-                                    thermostatProvider.deviceDetail?.id ?? '',
-                                    thermostatProvider.getAvailableFanModes
-                                        .toList()[index]);
-                              }
-                            },
-                          );
+                              visualDensity: VisualDensity.comfortable,
+                              padding:
+                                  EdgeInsets.only(right: -1.0, left: -1.0),
+                              labelPadding:
+                                  EdgeInsets.only(right: 5.0, left: 5.0),
+                              label: Text('${availableFanModes[index].name}'),
+                              selected: thermostatProvider.getFanModeState ==
+                                  thermostatProvider.getAvailableFanModes
+                                      .toList()[index],
+                              onSelected: (bool selected) {
+                                if (selected) {
+                                  thermostatProvider.setFanMode(
+                                      thermostatProvider.deviceDetail?.id ??
+                                          '',
+                                      thermostatProvider.getAvailableFanModes
+                                          .toList()[index]);
+                                }
+                              },
+                              key: Key(
+                                  'fanModeChip-${availableFanModes[index].name}'));
                         },
                       ).toList(),
->>>>>>> DX-249_set_fanMode
                     ],
                   ),
                 ],

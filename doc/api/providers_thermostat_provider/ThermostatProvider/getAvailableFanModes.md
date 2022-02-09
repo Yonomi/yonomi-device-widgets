@@ -24,7 +24,7 @@
 
 ```dart
 Set<AvailableFanMode> get getAvailableFanModes {
-  return getThermostatTrait()?.propertiesWhereType<AvailableFanMode>() ?? {};
+  return getThermostatTrait()?.availableFanModes ?? {};
 }
 ```
 

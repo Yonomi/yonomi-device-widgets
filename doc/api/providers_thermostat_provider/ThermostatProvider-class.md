@@ -62,6 +62,15 @@ _read-only_
 
 
 
+##### [getAvailableThermostatModes](../providers_thermostat_provider/ThermostatProvider/getAvailableThermostatModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableThermostatMode](https://yonomi.co/yonomi-sdk/AvailableThermostatMode.html)>
+
+
+
+   
+_read-only_
+
+
+
 ##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
@@ -73,6 +82,15 @@ _read-only, inherited_
 
 
 ##### [getFanModeState](../providers_thermostat_provider/ThermostatProvider/getFanModeState.md) &#8594; [AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getModeState](../providers_thermostat_provider/ThermostatProvider/getModeState.md) &#8594; [AvailableThermostatMode](https://yonomi.co/yonomi-sdk/AvailableThermostatMode.html)
 
 
 
@@ -269,7 +287,7 @@ _inherited_
 
 
 
-##### [setThermostatMode](../providers_thermostat_provider/ThermostatProvider/setThermostatMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [GThermostatMode](https://yonomi.co/third_party_yonomi_graphql_schema_schema.docs.schema.gql/GThermostatMode-class.html) mode, {[SetModeFunction](../providers_thermostat_provider/SetModeFunction.md) setMode = ThermostatRepository.setMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [setThermostatMode](../providers_thermostat_provider/ThermostatProvider/setThermostatMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [AvailableThermostatMode](https://yonomi.co/yonomi-sdk/AvailableThermostatMode.html) mode, {[SetModeFunction](../providers_thermostat_provider/SetModeFunction.md) setMode = ThermostatRepository.setMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 

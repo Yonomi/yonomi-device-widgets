@@ -81,9 +81,18 @@ Widget build(BuildContext context) {
             ),
           ],
         ),
-        SizedBox(
-          height: 30,
+        Row(
+          children: <Widget>[
+            Text(
+              _thermostatProvider.getModeState.name,
+              style:
+                  TextStyle(color: WidgetStyleConstants.globalSuccessColor),
+              textAlign: TextAlign.left,
+            ),
+          ],
         ),
+        SizedBox(height: 8.0),
+        _modeBar(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
