@@ -112,30 +112,37 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               ),
               tilePadding: EdgeInsets.all(0.0),
               children: [
-                Row(
+                Wrap(
+                  spacing: 5.0,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Text(
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
                       "Modes: ",
                       style: Theme.of(context)
                           .textTheme
                           .headline6
                           ?.copyWith(color: _textColor),
-                    ),
-                    ...List<Widget>.generate(
+                        )),
+                    ...List<ChoiceChip>.generate(
                       availableFanModes.length,
                       (int index) {
                         return ChoiceChip(
-                          labelPadding: EdgeInsets.only(right: 5.0, left: 5.0),
-                          label: Text('${availableFanModes[index].name}'),
-                          selected: selectedFanMode == availableFanModes[index],
-                          onSelected: (bool selected) {
-                            if (selected) {
-                              _thermostatProvider.setFanMode(
-                                  _thermostatProvider.deviceDetail?.id ?? '',
-                                  availableFanModes[index]);
-                            }
-                          },
-                        );
+                            labelPadding:
+                                EdgeInsets.only(right: 5.0, left: 5.0),
+                            label: Text('${availableFanModes[index].name}'),
+                            selected:
+                                selectedFanMode == availableFanModes[index],
+                            onSelected: (bool selected) {
+                              if (selected) {
+                                _thermostatProvider.setFanMode(
+                                    _thermostatProvider.deviceDetail?.id ?? '',
+                                    availableFanModes[index]);
+                              }
+                            },
+                            key: Key(
+                                'fanModeChip-${availableFanModes[index].name}'));
                       },
                     ).toList(),
                   ],
@@ -206,18 +213,18 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
         );
       default:
         return SizedBox(
-          child: Text(
-            mode.name.characters.first.toUpperCase(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: color,
-              fontWeight: FontWeight.bold,
-              fontSize: iconSize - 6,
+            child: Text(
+              mode.name.characters.first.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.bold,
+                fontSize: iconSize - 6,
+              ),
+              semanticsLabel: mode.name,
             ),
-            semanticsLabel: mode.name,
-          ),
-          width: iconSize,
-        );
+            width: iconSize,
+            key: Key('defaultModeIcon-${mode.name}'));
     }
   }
 }

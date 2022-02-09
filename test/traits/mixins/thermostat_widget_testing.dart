@@ -1,3 +1,4 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
@@ -28,24 +29,24 @@ mixin ThermostatWidgetTesting {
     when(mockThermostatProvider.isPerformingAction).thenReturn(false);
     when(mockThermostatProvider.deviceDetail).thenReturn(device);
     when(mockThermostatProvider.displayName).thenReturn('THERMOSTAT');
-    when(mockThermostatProvider.getFanModeState).thenReturn(fanMode);
-    when(mockThermostatProvider.getModeState).thenReturn(mode);
-    when(mockThermostatProvider.getAvailableFanModes)
-        .thenReturn(availableFanModes);
-    when(mockThermostatProvider.getAvailableThermostatModes)
-        .thenReturn(availableThermostatModes);
 
-    final thermostatTrait = device.traits.firstWhere(
-            (trait) => trait is ThermostatTrait,
-            orElse: () => ThermostatTrait(
-                {
+    when(mockThermostatProvider.setThermostatMode(device.id, any))
+        .thenAnswer((_) => Future.value());
+
+    when(mockThermostatProvider.setFanMode(device.id, any))
+        .thenAnswer((_) => Future.value());
+
+    final thermostatTrait =
+        device.traits.firstWhere((trait) => trait is ThermostatTrait,
+            orElse: () => ThermostatTrait({
                   TargetTemperature(targetTemperature),
                   FanMode(fanMode)
                 }, {
                   AvailableFanModes(availableFanModes),
                   AvailableThermostatModes(availableThermostatModes)
-                }))
-        as ThermostatTrait?;
+                })) as ThermostatTrait?;
+    when(mockThermostatProvider.getThermostatTrait())
+        .thenReturn(thermostatTrait);
     when(mockThermostatProvider.getTargetTemperatureState).thenReturn(
         thermostatTrait?.states
             .firstWhere((state) => state is TargetTemperature)
@@ -54,6 +55,14 @@ mixin ThermostatWidgetTesting {
         ?.states
         .firstWhere((state) => state is FanMode, orElse: () => FanMode(fanMode))
         .value);
+    when(mockThermostatProvider.getModeState).thenReturn(thermostatTrait?.states
+        .firstWhere((state) => state is ThermostatMode,
+            orElse: () => ThermostatMode(mode))
+        .value);
+    when(mockThermostatProvider.getAvailableFanModes)
+        .thenReturn(availableFanModes);
+    when(mockThermostatProvider.getAvailableThermostatModes)
+        .thenReturn(availableThermostatModes);
 
     return mockThermostatProvider;
   }
