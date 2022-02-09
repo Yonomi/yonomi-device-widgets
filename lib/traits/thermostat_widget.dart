@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class ThermostatWidget extends StatelessWidget with ToastNotifications {
   final ThermostatProvider _thermostatProvider;
@@ -52,9 +53,18 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               ),
             ],
           ),
-          SizedBox(
-            height: 30,
+          Row(
+            children: <Widget>[
+              Text(
+                _thermostatProvider.getModeState.name,
+                style:
+                    TextStyle(color: WidgetStyleConstants.globalSuccessColor),
+                textAlign: TextAlign.left,
+              ),
+            ],
           ),
+          SizedBox(height: 8.0),
+          _modeBar(context),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -115,10 +125,11 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                       availableFanModes.length,
                       (int index) {
                         return ChoiceChip(
+                          labelPadding: EdgeInsets.only(right: 5.0, left: 5.0),
                           label: Text('${availableFanModes[index].name}'),
                           selected: selectedFanMode == availableFanModes[index],
                           onSelected: (bool selected) {
-                            if (!selected) {
+                            if (selected) {
                               _thermostatProvider.setFanMode(
                                   _thermostatProvider.deviceDetail?.id ?? '',
                                   availableFanModes[index]);
@@ -134,5 +145,79 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               iconColor: WidgetStyleConstants.deviceIconColor,
               key: key,
             )));
+  }
+
+  Widget _modeBar(BuildContext context) {
+    final selectedMode = _thermostatProvider.getModeState;
+    final availableModes =
+        _thermostatProvider.getAvailableThermostatModes.toList();
+
+    return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List<Widget>.generate(
+          availableModes.length,
+          (int index) {
+            Color color = (availableModes[index] == selectedMode)
+                ? WidgetStyleConstants.globalSuccessColor
+                : _textColor;
+            return ChoiceChip(
+              label: _modeBarIcon(availableModes[index], color),
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.all(8.0),
+              selected: selectedMode == availableModes[index],
+              shape: CircleBorder(side: BorderSide(width: 2, color: color)),
+              onSelected: (bool selected) {
+                if (selected) {
+                  _thermostatProvider.setThermostatMode(
+                      _thermostatProvider.deviceDetail?.id ?? '',
+                      availableModes[index]);
+                }
+              },
+            );
+          },
+        ));
+  }
+
+  Widget _modeBarIcon(AvailableThermostatMode mode, Color color) {
+    final iconSize = 30.0;
+    switch (mode) {
+      case AvailableThermostatMode.COOL:
+        return Icon(Icons.ac_unit,
+            color: color, size: iconSize, semanticLabel: mode.name);
+      case AvailableThermostatMode.HEAT:
+        return Icon(Icons.whatshot,
+            color: color, size: iconSize, semanticLabel: mode.name);
+      case AvailableThermostatMode.OFF:
+        return Icon(BootstrapIcons.power,
+            color: color, size: iconSize, semanticLabel: mode.name);
+      case AvailableThermostatMode.FANONLY:
+        return Icon(BootstrapIcons.fan,
+            color: color, size: iconSize, semanticLabel: mode.name);
+      case AvailableThermostatMode.AIRFLOW:
+        return Icon(Icons.air,
+            color: color, size: iconSize, semanticLabel: mode.name);
+      case AvailableThermostatMode.DEHUMIDIFY:
+        return Icon(
+          Icons.water,
+          color: color,
+          size: iconSize,
+          semanticLabel: mode.name,
+        );
+      default:
+        return SizedBox(
+          child: Text(
+            mode.name.characters.first.toUpperCase(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: color,
+              fontWeight: FontWeight.bold,
+              fontSize: iconSize - 6,
+            ),
+            semanticsLabel: mode.name,
+          ),
+          width: iconSize,
+        );
+    }
   }
 }

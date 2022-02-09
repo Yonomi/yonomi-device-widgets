@@ -33,15 +33,21 @@ class ThermostatProvider extends DeviceProvider {
         () => setPoint(_request, deviceId, temperature));
   }
 
-  Future<void> setThermostatMode(String deviceId, GThermostatMode mode,
+  Future<void> setThermostatMode(String deviceId, AvailableThermostatMode mode,
       {SetModeFunction setMode = ThermostatRepository.setMode}) async {
-    return Future.value();
+    return performAction(
+        mode, () => getModeState, () => setMode(_request, deviceId, mode));
   }
 
   Future<void> setFanMode(String deviceId, AvailableFanMode fanMode,
       {SetFanModeFunction setFanMode = ThermostatRepository.setFanMode}) async {
     return performAction(fanMode, () => getFanModeState,
         () => setFanMode(_request, deviceId, fanMode));
+  }
+
+  AvailableThermostatMode get getModeState {
+    return getThermostatTrait()?.stateWhereType<ThermostatMode>().value ??
+        AvailableThermostatMode.OFF;
   }
 
   double get getTargetTemperatureState =>
@@ -52,7 +58,11 @@ class ThermostatProvider extends DeviceProvider {
   }
 
   Set<AvailableFanMode> get getAvailableFanModes {
-    return getThermostatTrait()?.propertiesWhereType<AvailableFanMode>() ?? {};
+    return getThermostatTrait()?.availableFanModes ?? {};
+  }
+
+  Set<AvailableThermostatMode> get getAvailableThermostatModes {
+    return getThermostatTrait()?.availableThermostatModes ?? {};
   }
 
   @override

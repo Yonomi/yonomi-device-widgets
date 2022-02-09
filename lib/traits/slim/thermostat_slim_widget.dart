@@ -19,25 +19,36 @@ class ThermostatSlimWidget extends BaseSlimWidget {
             backgroundColor: backgroundColor,
             createContent: (context) => Column(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Fan: ',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6
-                              ?.copyWith(
-                                  color: WidgetStyleConstants.darkTextColor),
-                        ),
-                        Text(thermostatProvider.getFanModeState.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                ?.copyWith(
-                                    color: WidgetStyleConstants.darkTextColor,
-                                    fontWeight: FontWeight.normal)),
-                      ],
-                    ),
+                    Row(children: [
+                      Text(
+                        'Modes: ',
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                            color: WidgetStyleConstants.darkTextColor),
+                      ),
+                      ...List<Widget>.generate(
+                        thermostatProvider.getAvailableThermostatModes.length,
+                        (int index) {
+                          return ChoiceChip(
+                            labelPadding:
+                                EdgeInsets.only(right: 5.0, left: 5.0),
+                            label: Text(
+                                '${thermostatProvider.getAvailableThermostatModes.toList()[index].name}'),
+                            selected: thermostatProvider.getModeState ==
+                                thermostatProvider.getAvailableThermostatModes
+                                    .toList()[index],
+                            onSelected: (bool selected) {
+                              if (selected) {
+                                thermostatProvider.setThermostatMode(
+                                    thermostatProvider.deviceDetail?.id ?? '',
+                                    thermostatProvider
+                                        .getAvailableThermostatModes
+                                        .toList()[index]);
+                              }
+                            },
+                          );
+                        },
+                      ).toList(),
+                    ]),
                     Row(
                       children: [
                         Text(
@@ -52,13 +63,15 @@ class ThermostatSlimWidget extends BaseSlimWidget {
                           thermostatProvider.getAvailableFanModes.length,
                           (int index) {
                             return ChoiceChip(
+                              labelPadding:
+                                  EdgeInsets.only(right: 5.0, left: 5.0),
                               label: Text(
                                   '${thermostatProvider.getAvailableFanModes.toList()[index].name}'),
                               selected: thermostatProvider.getFanModeState ==
                                   thermostatProvider.getAvailableFanModes
                                       .toList()[index],
                               onSelected: (bool selected) {
-                                if (!selected) {
+                                if (selected) {
                                   thermostatProvider.setFanMode(
                                       thermostatProvider.deviceDetail?.id ?? '',
                                       thermostatProvider.getAvailableFanModes
