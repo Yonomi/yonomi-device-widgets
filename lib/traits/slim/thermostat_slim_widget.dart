@@ -25,6 +25,14 @@ class ThermostatSlimWidget extends BaseSlimWidget {
   static Widget _content(
       BuildContext context, ThermostatProvider thermostatProvider) {
     return Column(children: [
+      Row(children: [
+        Text(
+            'Ambient Temperature: ${thermostatProvider.getAmbientTemperatureState.toInt()}\u{00B0}',
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(color: WidgetStyleConstants.darkTextColor))
+      ]),
       _chipList<AvailableThermostatMode>(
           context,
           'Modes: ',
