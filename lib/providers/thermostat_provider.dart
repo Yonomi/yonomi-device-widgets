@@ -53,6 +53,9 @@ class ThermostatProvider extends DeviceProvider {
   double get getTargetTemperatureState =>
       getThermostatTrait()?.stateWhereType<TargetTemperature>().value ?? 0.0;
 
+  double get getAmbientTemperatureState =>
+      getThermostatTrait()?.stateWhereType<AmbientTemperature>().value ?? 0.0;
+
   AvailableFanMode get getFanModeState {
     return getThermostatTrait()?.stateWhereType<FanMode>().value;
   }

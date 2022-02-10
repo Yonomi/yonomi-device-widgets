@@ -209,11 +209,13 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      ThermostatTrait({TargetTemperature(100.0)}, {})
+      ThermostatTrait({TargetTemperature(100.0), AmbientTemperature(80.0)}, {})
     ], request, testedDeviceId));
 
     expect(find.byType(ThermostatWidget), findsOneWidget);
     expect(find.text('100°'), findsOneWidget);
+    expect(find.byType(ThermostatWidget), findsOneWidget);
+    expect(find.text('80°'), findsOneWidget);
   });
 
   testWidgets(
@@ -221,7 +223,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      ThermostatTrait({TargetTemperature(100.0)}, {})
+      ThermostatTrait({TargetTemperature(100.0), AmbientTemperature(80.0)}, {})
     ], request, testedDeviceId));
 
     expect(find.byType(ThermostatWidget), findsOneWidget);
@@ -250,7 +252,7 @@ void main() {
       PowerTrait(IsOnOff(true),
           supportsDiscreteOnOff: SupportsDiscreteOnOff(true)),
       LockTrait(IsLocked(false), supportsIsJammed: SupportsIsJammed(false)),
-      ThermostatTrait({TargetTemperature(99)}, {})
+      ThermostatTrait({TargetTemperature(99), AmbientTemperature(89)}, {})
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
