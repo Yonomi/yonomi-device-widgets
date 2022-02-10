@@ -8,14 +8,14 @@ class LockSlimWidget extends BaseSlimWidget {
   LockSlimWidget(LockProvider lockProvider, {Color? backgroundColor, Key? key})
       : super(
             provider: lockProvider,
-            leftIcon: LockIcon(lockProvider.isLocked,
+            leftIcon: LockIcon(lockProvider.getIsLockedState,
                 size: 20.0,
                 color: WidgetStyleConstants.deviceDetailIconColorActive),
             rightIcon: CupertinoSwitch(
               onChanged: (bool value) {
                 _lockTap(lockProvider);
               },
-              value: lockProvider.isLocked,
+              value: lockProvider.getIsLockedState,
             ),
             headerText: Text(lockProvider.deviceDetail?.displayName ?? 'LOCK',
                 style: TextStyle(
@@ -24,7 +24,7 @@ class LockSlimWidget extends BaseSlimWidget {
             key: key);
 
   static void _lockTap(LockProvider provider) {
-    bool setLock = !provider.isLocked;
+    bool setLock = !provider.getIsLockedState;
     provider.setLockUnlockAction(provider.deviceDetail?.id ?? '', setLock);
   }
 }

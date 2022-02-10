@@ -30,6 +30,18 @@
 
 
 
+## Typedefs
+
+
+    ##### [CreateWidget](../traits_slim_battery_slim_widget/CreateWidget.md) = [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) Function([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context)
+    
+
+
+       
+    
+
+
+
 
 
 

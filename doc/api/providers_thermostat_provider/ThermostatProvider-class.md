@@ -53,6 +53,24 @@ _read-only, override_
 
 
 
+##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)>
+
+
+
+   
+_read-only_
+
+
+
+##### [getAvailableThermostatModes](../providers_thermostat_provider/ThermostatProvider/getAvailableThermostatModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableThermostatMode](https://yonomi.co/yonomi-sdk/AvailableThermostatMode.html)>
+
+
+
+   
+_read-only_
+
+
+
 ##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
@@ -60,6 +78,33 @@ _read-only, override_
 Get the error message whenever this ChangeNotifier had an error
 See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
 _read-only, inherited_
+
+
+
+##### [getFanModeState](../providers_thermostat_provider/ThermostatProvider/getFanModeState.md) &#8594; [AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getModeState](../providers_thermostat_provider/ThermostatProvider/getModeState.md) &#8594; [AvailableThermostatMode](https://yonomi.co/yonomi-sdk/AvailableThermostatMode.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getTargetTemperatureState](../providers_thermostat_provider/ThermostatProvider/getTargetTemperatureState.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+
+
+
+   
+_read-only_
 
 
 
@@ -136,15 +181,6 @@ _write-only, inherited_
 
 
 
-##### [targetTemperature](../providers_thermostat_provider/ThermostatProvider/targetTemperature.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
-
-
-
-   
-_read-only_
-
-
-
 
 ## Methods
 
@@ -169,7 +205,7 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
 
-##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [fetchData](../providers_device_provider/DeviceProvider/fetchData.md)({[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -205,7 +241,7 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 
-##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [performAction](../providers_device_provider/DeviceProvider/performAction.md)&lt;T>(T desiredState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) getState, [Function](https://api.flutter.dev/flutter/dart-core/Function-class.html) action, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -233,6 +269,15 @@ _inherited_
 
 
 
+##### [setFanMode](../providers_thermostat_provider/ThermostatProvider/setFanMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html) fanMode, {[SetFanModeFunction](../providers_thermostat_provider/SetFanModeFunction.md) setFanMode = ThermostatRepository.setFanMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+
+
+
+   
+
+
+
+
 ##### [setPointAction](../providers_thermostat_provider/ThermostatProvider/setPointAction.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) temperature, {[SetPointActionFunction](../providers_thermostat_provider/SetPointActionFunction.md) setPoint = ThermostatRepository.setPointThermostat}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
@@ -242,7 +287,7 @@ _inherited_
 
 
 
-##### [setThermostatMode](../providers_thermostat_provider/ThermostatProvider/setThermostatMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [GThermostatMode](https://yonomi.co/third_party_yonomi_graphql_schema_schema.docs.schema.gql/GThermostatMode-class.html) mode, {[SetModeFunction](../providers_thermostat_provider/SetModeFunction.md) setMode = ThermostatRepository.setMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
+##### [setThermostatMode](../providers_thermostat_provider/ThermostatProvider/setThermostatMode.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, [AvailableThermostatMode](https://yonomi.co/yonomi-sdk/AvailableThermostatMode.html) mode, {[SetModeFunction](../providers_thermostat_provider/SetModeFunction.md) setMode = ThermostatRepository.setMode}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
@@ -256,6 +301,15 @@ _inherited_
 
 
 A string representation of this object. [...](https://api.flutter.dev/flutter/dart-core/Object/toString.html)  
+_inherited_
+
+
+
+##### [trait](../providers_device_provider/DeviceProvider/trait.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)>() [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)?
+
+
+
+   
 _inherited_
 
 

@@ -69,7 +69,8 @@ void main() {
     expect(lockProvider.isInErrorState, equals(false));
     expect(lockProvider.isBusy, equals(false));
     expect(lockProvider.isPerformingAction, equals(false));
-    expect(lockProvider.isLocked, true);
+    expect(lockProvider.getIsLockedState, true);
+    expect(lockProvider.getLockTrait(), isA<LockTrait>());
   });
 
   test("""When loading device data, we are notified that it is loading
@@ -89,7 +90,7 @@ void main() {
     expect(lockProvider.isBusy, equals(true));
     expect(lockProvider.isPerformingAction, equals(false));
 
-    expect(lockProvider.isLocked, false);
+    expect(lockProvider.getIsLockedState, false);
   });
 
   test("""When an error occurs running an action, we are notified
@@ -126,7 +127,7 @@ void main() {
 
 Device _getDevice(bool isLocked) {
   return Device('id', 'name', 'description', 'manufacturerName', 'model', null,
-      GDateTime('value'),
-      GDateTime('value'),
-      [LockTrait(IsLocked(isLocked), [])]);
+      GDateTime('value'), GDateTime('value'), [
+    LockTrait(IsLocked(isLocked), supportsIsJammed: SupportsIsJammed(false))
+  ]);
 }

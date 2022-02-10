@@ -33,13 +33,11 @@ class PowerTraitProvider extends DeviceProvider {
   }
 
   PowerTrait? getPowerTrait() {
-    return deviceDetail?.traits.firstWhere((element) => element is PowerTrait,
-        orElse: null) as PowerTrait?;
+    return trait<PowerTrait>() as PowerTrait?;
   }
 
-  bool get getOnOffState {
-    return getPowerTrait()?.state.value ?? false;
-  }
+  bool get getOnOffState =>
+      getPowerTrait()?.stateWhereType<IsOnOff>().value ?? false;
 
   bool get supportsDiscreteOnOff =>
       getPowerTrait()

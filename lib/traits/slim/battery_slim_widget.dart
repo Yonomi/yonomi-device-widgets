@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
-import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
+typedef CreateWidget = Widget Function(BuildContext context);
+
 class BatterySlimWidget extends BaseSlimWidget {
-  BatterySlimWidget(BatteryLevelProvider _batteryLevelTraitProvider,
-      {Color? backgroundColor, Widget? content, Key? key})
+  BatterySlimWidget(_batteryLevelTraitProvider,
+      {Color? backgroundColor, CreateWidget? createContent, Key? key})
       : super(
           provider: _batteryLevelTraitProvider,
-          content: content,
+          createContent: createContent,
           backgroundColor: backgroundColor,
           leftIcon:
-              _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
+              _getBatteryLevelIcon(
+              _batteryLevelTraitProvider.getBatteryLevelState),
           headerText: Text(
-              'Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%',
+              'Battery Level: ${_batteryLevelTraitProvider.getBatteryLevelState}%',
               style: TextStyle(
                   fontSize: 20,
                   color: _getBatteryLevelTextColor(
-                      _batteryLevelTraitProvider.getBatteryLevel))),
+                      _batteryLevelTraitProvider.getBatteryLevelState))),
           key: key,
         );
 

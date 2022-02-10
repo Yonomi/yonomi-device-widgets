@@ -24,7 +24,7 @@
 
 ```dart
 double get targetTemperature =>
-    (getThermostatTrait()?.state as TargetTemperature?)?.value ?? 0.0;
+    state<ThermostatTrait, TargetTemperature>()?.value ?? 0.0;
 ```
 
 

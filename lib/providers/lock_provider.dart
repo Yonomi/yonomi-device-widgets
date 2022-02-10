@@ -15,19 +15,18 @@ class LockProvider extends DeviceProvider {
 
   late final Request _request;
 
-  bool get isLocked => getLockTrait()?.state.value ?? false;
+  bool get getIsLockedState =>
+      getLockTrait()?.stateWhereType<IsLocked>().value ?? false;
 
   LockTrait? getLockTrait() {
-    return deviceDetail?.traits
-        .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait?;
+    return trait<LockTrait>() as LockTrait?;
   }
 
   Future<void> setLockUnlockAction(String deviceId, bool setLock,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendLockUnlockFunction sendLockUnlock =
           LockRepository.sendLockUnlockAction}) async {
-    return performAction<bool>(
-        setLock, () => isLocked,
+    return performAction<bool>(setLock, () => getIsLockedState,
         () => sendLockUnlock(_request, deviceId, setLock),
         getDetails: getDetails);
   }

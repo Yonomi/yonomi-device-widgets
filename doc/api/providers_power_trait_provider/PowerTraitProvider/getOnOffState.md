@@ -23,9 +23,8 @@
 ## Implementation
 
 ```dart
-bool get getOnOffState {
-  return getPowerTrait()?.state.value ?? false;
-}
+bool get getOnOffState =>
+    getPowerTrait()?.stateWhereType<IsOnOff>().value ?? false;
 ```
 
 

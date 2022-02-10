@@ -10,7 +10,7 @@
 
 
 
-BatterySlimWidget([BatteryLevelProvider](../../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+BatterySlimWidget(dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [CreateWidget](../../traits_slim_battery_slim_widget/CreateWidget.md)? createContent, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
 
 
@@ -19,20 +19,21 @@ BatterySlimWidget([BatteryLevelProvider](../../providers_battery_level_provider/
 ## Implementation
 
 ```dart
-BatterySlimWidget(BatteryLevelProvider _batteryLevelTraitProvider,
-    {Color? backgroundColor, Widget? content, Key? key})
+BatterySlimWidget(_batteryLevelTraitProvider,
+    {Color? backgroundColor, CreateWidget? createContent, Key? key})
     : super(
         provider: _batteryLevelTraitProvider,
-        content: content,
+        createContent: createContent,
         backgroundColor: backgroundColor,
         leftIcon:
-            _getBatteryLevelIcon(_batteryLevelTraitProvider.getBatteryLevel),
+            _getBatteryLevelIcon(
+            _batteryLevelTraitProvider.getBatteryLevelState),
         headerText: Text(
-            'Battery Level: ${_batteryLevelTraitProvider.getBatteryLevel}%',
+            'Battery Level: ${_batteryLevelTraitProvider.getBatteryLevelState}%',
             style: TextStyle(
                 fontSize: 20,
                 color: _getBatteryLevelTextColor(
-                    _batteryLevelTraitProvider.getBatteryLevel))),
+                    _batteryLevelTraitProvider.getBatteryLevelState))),
         key: key,
       );
 ```

@@ -15,6 +15,10 @@ class SetMode extends Mock {
   Future<void> call(Request request, String id, GThermostatMode mode);
 }
 
+class SetFanMode extends Mock {
+  Future<void> call(Request request, String id, AvailableFanMode mode);
+}
+
 class GetThermostatDetails extends Mock {
   Future<Device> call(Request request, String id);
 }
@@ -22,6 +26,7 @@ class GetThermostatDetails extends Mock {
 @GenerateMocks([
   SetPoint,
   SetMode,
+  SetFanMode,
   GetThermostatDetails,
 ])
 void main() {
@@ -66,6 +71,28 @@ void main() {
         .called(1);
   });
 
+  test('Calling setFanMode calls repository method', () async {
+    Request request = Request('', {});
+    final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
+    final mockSetFanModeFunction = MockSetFanMode();
+    when(mockGetThermostatDetailsFunction.call(any, any))
+        .thenAnswer((_) async => Future.value(
+              _getThermostat(23.1),
+            ));
+    when(mockSetFanModeFunction.call(any, any, any))
+        .thenAnswer((_) async => null);
+    ThermostatProvider thermostatProvider = ThermostatProvider(
+        request, 'deviceId',
+        getDetails: mockGetThermostatDetailsFunction);
+
+    await thermostatProvider.setFanMode('DeviceId', AvailableFanMode.AUTO,
+        setFanMode: mockSetFanModeFunction);
+
+    verify(mockSetFanModeFunction.call(
+            request, 'DeviceId', AvailableFanMode.AUTO))
+        .called(1);
+  });
+
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request('', {});
     final mockGetThermostatDetailsFunction = MockGetThermostatDetails();
@@ -99,12 +126,19 @@ void main() {
     await thermostatProvider.fetchData(
         getDetails: mockGetThermostatDetailsFunction);
 
-    expect(thermostatProvider.targetTemperature, 23.1);
+    expect(thermostatProvider.getTargetTemperatureState, 23.1);
     expect(thermostatProvider.displayName, 'someDisplayName');
     expect(thermostatProvider.isLoading, equals(false));
     expect(thermostatProvider.isInErrorState, equals(false));
     expect(thermostatProvider.isBusy, equals(false));
     expect(thermostatProvider.isPerformingAction, equals(false));
+    expect(thermostatProvider.trait<LockTrait>(), isA<UnknownTrait>());
+    expect(thermostatProvider.trait<ThermostatTrait>(), isA<ThermostatTrait>());
+    expect(thermostatProvider.getThermostatTrait(), isA<ThermostatTrait>());
+    expect(thermostatProvider.getAvailableFanModes, hasLength(3));
+    expect(thermostatProvider.getFanModeState, equals(AvailableFanMode.AUTO));
+    expect(thermostatProvider.getAvailableFanModes, hasLength(3));
+    expect(thermostatProvider.getAvailableThermostatModes, hasLength(3));
   });
 }
 
@@ -118,6 +152,19 @@ Device _getThermostat(double temp) {
     'someFirmwareV',
     GDateTime('value'),
     GDateTime('value'),
-    [ThermostatTrait(TargetTemperature(temp))],
+    [
+      ThermostatTrait({
+        TargetTemperature(temp),
+        FanMode(AvailableFanMode.AUTO)
+      }, {
+        AvailableFanModes(
+            {AvailableFanMode.AUTO, AvailableFanMode.ON, AvailableFanMode.ECO}),
+        AvailableThermostatModes({
+          AvailableThermostatMode.AUTO,
+          AvailableThermostatMode.COOL,
+          AvailableThermostatMode.HEAT
+        })
+      })
+    ],
   );
 }

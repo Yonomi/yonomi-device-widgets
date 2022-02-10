@@ -9,13 +9,11 @@ class BatteryLevelProvider extends DeviceProvider {
       : super(request, deviceId, getDetails: getDetails);
 
   BatteryLevelTrait? getBatteryLevelTrait() {
-    return deviceDetail?.traits
-            .firstWhere((trait) => trait.runtimeType == BatteryLevelTrait)
-        as BatteryLevelTrait?;
+    return trait<BatteryLevelTrait>() as BatteryLevelTrait?;
   }
 
-  int get getBatteryLevel {
-    return getBatteryLevelTrait()?.state.value ?? 0;
+  int get getBatteryLevelState {
+    return getBatteryLevelTrait()?.stateWhereType<BatteryLevel>().value ?? 0;
   }
 
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;

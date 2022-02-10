@@ -69,7 +69,7 @@ Widget build(BuildContext context) {
       color: WidgetStyleConstants.globalWarningColor,
     );
   } else {
-    final batteryLevel = _batteryLevelProvider.getBatteryLevel;
+    final batteryLevel = _batteryLevelProvider.getBatteryLevelState;
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[

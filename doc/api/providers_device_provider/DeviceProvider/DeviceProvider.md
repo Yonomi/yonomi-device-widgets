@@ -10,7 +10,7 @@
 
 
 
-DeviceProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
+DeviceProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails})
 
 
 
@@ -19,9 +19,9 @@ DeviceProvider([Request](https://yonomi.co/yonomi-sdk/Request-class.html) reques
 ## Implementation
 
 ```dart
-DeviceProvider(Request request, String deviceId,
+DeviceProvider(sdk.Request request, String deviceId,
     {GetDeviceDetailsMethod getDetails =
-        DevicesRepository.getDeviceDetails}) {
+        sdk.DevicesRepository.getDeviceDetails}) {
   this._deviceId = deviceId;
   this._request = request;
   fetchData(getDetails: getDetails);

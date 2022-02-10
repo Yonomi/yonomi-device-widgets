@@ -30,7 +30,7 @@ void main() {
       expect(batteryLevelProvider.isLoading, equals(true));
       expect(batteryLevelProvider.isInErrorState, equals(false),
           reason: 'is in error state');
-      expect(batteryLevelProvider.getBatteryLevel, equals(0));
+      expect(batteryLevelProvider.getBatteryLevelState, equals(0));
     });
 
     test("""After successfully loading device data, should be in idle state
@@ -50,7 +50,9 @@ void main() {
           reason: 'is in loading state');
       expect(batteryLevelProvider.isInErrorState, equals(false),
           reason: 'is in error state');
-      expect(batteryLevelProvider.getBatteryLevel, equals(100));
+      expect(batteryLevelProvider.getBatteryLevelState, equals(100));
+      expect(batteryLevelProvider.getBatteryLevelTrait(),
+          isA<BatteryLevelTrait>());
     });
 
     test("""When an error occurs loading device data, we are notified
@@ -75,7 +77,7 @@ void main() {
 
       expect(batteryLevelProvider.isInErrorState, equals(true));
       expect(batteryLevelProvider.getErrorMessage, equals(exceptionMesssage));
-      expect(batteryLevelProvider.getBatteryLevel, equals(0));
+      expect(batteryLevelProvider.getBatteryLevelState, equals(0));
     });
   });
 }

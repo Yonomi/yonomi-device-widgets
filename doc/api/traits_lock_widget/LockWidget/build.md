@@ -86,7 +86,7 @@ Widget build(BuildContext context) {
                     height: _iconSize,
                     child: _lockProvider.isPerformingAction
                         ? CircularProgressIndicator()
-                        : _lockProvider.isLocked
+                        : _lockProvider.getIsLockedState
                             ? LockIcon(true,
                                 size: _iconSize, color: _iconColor)
                             : LockIcon(false,
@@ -100,7 +100,7 @@ Widget build(BuildContext context) {
               onChanged: (bool value) {
                 _lockTap(_lockProvider);
               },
-              value: _lockProvider.isLocked,
+              value: _lockProvider.getIsLockedState,
             ),
           ],
         );

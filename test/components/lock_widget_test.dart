@@ -21,7 +21,7 @@ void main() {
       null,
       GDateTime('value'),
       GDateTime('value'),
-      [LockTrait(IsLocked(true), [])]);
+      [LockTrait(IsLocked(true), supportsIsJammed: SupportsIsJammed(false))]);
 
   Widget getAppWithLockWidget() {
     return MaterialApp(
@@ -50,7 +50,7 @@ void main() {
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(false);
 
-    when(mockProvider.isLocked).thenReturn(false);
+    when(mockProvider.getIsLockedState).thenReturn(false);
 
     await tester.pumpWidget(getAppWithLockWidget());
 
@@ -59,7 +59,7 @@ void main() {
 
   testWidgets('Lock Widget shows Unlocked Icon when state is Unlocked',
       (WidgetTester tester) async {
-    when(mockProvider.isLocked).thenReturn(false);
+    when(mockProvider.getIsLockedState).thenReturn(false);
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(false);
 
@@ -73,7 +73,7 @@ void main() {
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(false);
 
-    when(mockProvider.isLocked).thenReturn(true);
+    when(mockProvider.getIsLockedState).thenReturn(true);
 
     await tester.pumpWidget(getAppWithLockWidget());
 
@@ -85,7 +85,7 @@ void main() {
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(false);
     when(mockProvider.isBusy).thenReturn(false);
-    when(mockProvider.isLocked).thenReturn(true);
+    when(mockProvider.getIsLockedState).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 
     await tester.tap(find.byIcon(BootstrapIcons.lock));
@@ -98,7 +98,7 @@ void main() {
       (WidgetTester tester) async {
     when(mockProvider.isLoading).thenReturn(false);
     when(mockProvider.isPerformingAction).thenReturn(true);
-    when(mockProvider.isLocked).thenReturn(true);
+    when(mockProvider.getIsLockedState).thenReturn(true);
     when(mockProvider.isBusy).thenReturn(true);
     await tester.pumpWidget(getAppWithLockWidget());
 

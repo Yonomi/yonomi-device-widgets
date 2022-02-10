@@ -30,7 +30,7 @@
 
 ## Constructors
 
-[BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget/BatterySlimWidget.md) ([BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md) _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)? content, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget/BatterySlimWidget.md) (dynamic _batteryLevelTraitProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor, [CreateWidget](../traits_slim_battery_slim_widget/CreateWidget.md)? createContent, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
@@ -46,7 +46,7 @@ _final, inherited_
 
 
 
-##### [content](../traits_slim_base_slim_widget/BaseSlimWidget/content.md) &#8594; [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)?
+##### [createContent](../traits_slim_base_slim_widget/BaseSlimWidget/createContent.md) &#8594; [CreateWidget](../traits_slim_base_slim_widget/CreateWidget.md)?
 
 
 

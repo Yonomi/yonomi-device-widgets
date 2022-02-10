@@ -23,8 +23,8 @@
 ## Implementation
 
 ```dart
-typedef GetDeviceDetailsMethod = Future<Device> Function(
-    Request request, String id);
+typedef GetDeviceDetailsMethod = Future<sdk.Device> Function(
+    sdk.Request request, String id);
 ```
 
 

@@ -22,6 +22,7 @@
 - [BaseSlimWidget](../traits_slim_base_slim_widget/BaseSlimWidget-class.md)
 - [BatteryWidget](../traits_battery_widget/BatteryWidget-class.md)
 - [PowerWidget](../traits_power_widget/PowerWidget-class.md)
+- [ThermostatWidget](../traits_thermostat_widget/ThermostatWidget-class.md)
 
 
 ## Properties
