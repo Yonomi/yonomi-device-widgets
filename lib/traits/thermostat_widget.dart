@@ -131,42 +131,45 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
   }
 
   Widget _centerTempText(BuildContext context) {
-    final TextStyle? targetTempStyle =
+    final TextStyle? targetTextStyle =
         Theme.of(context).textTheme.headline2?.copyWith(color: _textColor);
 
-    final TextStyle? ambientTempStyle =
+    final TextStyle? ambientTextStyle =
         Theme.of(context).textTheme.headline4?.copyWith(color: _textColor);
+
+    final TextStyle? subtitleTextStyle =
+        Theme.of(context).textTheme.headline6?.copyWith(color: _textColor);
 
     return Column(children: [
       Row(children: [
         Icon(
           BootstrapIcons.thermometer,
-          size: targetTempStyle?.height,
-          color: targetTempStyle?.color,
+          size: targetTextStyle?.height,
+          color: targetTextStyle?.color,
         ),
         Text(
           '${_thermostatProvider.getTargetTemperatureState.toInt()}\u{00B0}',
-          style: targetTempStyle,
+          style: targetTextStyle,
         )
       ]),
       Text(
         'TARGET',
-        style: targetTempStyle,
+        style: subtitleTextStyle,
       ),
       Row(children: [
         Icon(
           BootstrapIcons.thermometer,
-          size: ambientTempStyle?.height,
-          color: ambientTempStyle?.color,
+          size: ambientTextStyle?.height,
+          color: ambientTextStyle?.color,
         ),
         Text(
           '${_thermostatProvider.getAmbientTemperatureState.toInt()}\u{00B0}',
-          style: ambientTempStyle,
+          style: ambientTextStyle,
         )
       ]),
       Text(
         'AMBIENT',
-        style: ambientTempStyle,
+        style: subtitleTextStyle,
       ),
     ]);
   }
