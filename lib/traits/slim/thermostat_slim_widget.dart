@@ -93,7 +93,7 @@ class ThermostatSlimWidget extends BaseSlimWidget {
         ]);
   }
 
-  static Future<void> _doTap<T>(
+  static Future<void>? _doTap<T>(
       ThermostatProvider thermostatProvider, T value) {
     final deviceId = thermostatProvider.deviceDetail?.id ?? '';
     switch (T) {
@@ -103,8 +103,6 @@ class ThermostatSlimWidget extends BaseSlimWidget {
       case AvailableFanMode:
         return thermostatProvider.setFanMode(
             deviceId, value as AvailableFanMode);
-      default:
-        return Future.value();
     }
   }
 }
