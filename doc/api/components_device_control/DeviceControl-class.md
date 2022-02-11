@@ -29,9 +29,9 @@
 
 ## Constructors
 
-[DeviceControl](../components_device_control/DeviceControl/DeviceControl.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff})
+[DeviceControl](../components_device_control/DeviceControl/DeviceControl.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff, required dynamic onChangedCallback})
 
-   _const_ 
+    
 
 
 ## Properties
@@ -51,6 +51,15 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 Controls how one widget replaces another widget in the tree. [...](https://api.flutter.dev/flutter/widgets/Widget/key.html)  
 _final, inherited_
+
+
+
+##### [onChangedCallback](../components_device_control/DeviceControl/onChangedCallback.md) &#8594; dynamic
+
+
+
+   
+_final_
 
 
 

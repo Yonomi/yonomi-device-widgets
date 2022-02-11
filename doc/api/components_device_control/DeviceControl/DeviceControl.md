@@ -9,8 +9,8 @@
     *[<Null safety>](https://dart.dev/null-safety)*
 
 
-const
-DeviceControl({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff})
+
+DeviceControl({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff, required dynamic onChangedCallback})
 
 
 
@@ -19,9 +19,10 @@ DeviceControl({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)?
 ## Implementation
 
 ```dart
-const DeviceControl({
+DeviceControl({
   Key? key,
   required this.onOff,
+  required this.onChangedCallback,
 }) : super(key: key);
 ```
 

@@ -88,7 +88,8 @@ Widget build(BuildContext context) {
         initialValue: 20.0,
         onFinalSetPoint: (double temperature) {
           print('Printing temperature');
-          // thermostatProvider.setPointAction(deviceId, temperature);
+          thermostatProvider.setPointAction(
+              thermostatProvider.deviceDetail?.id ?? '', temperature);
           // data.setPointAction(deviceId, temperature);
         },
         maxValue: 50,
@@ -96,7 +97,11 @@ Widget build(BuildContext context) {
       SizedBox(
         height: 30,
       ),
-      DeviceControl(onOff: true)
+      DeviceControl(
+        onOff: true,
+        onChangedCallback: (bool value) =>
+            print('Device Control changed to $value'),
+      )
     ],
   );
 }
