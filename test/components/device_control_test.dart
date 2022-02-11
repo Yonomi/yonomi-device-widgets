@@ -2,11 +2,13 @@ import 'package:yonomi_device_widgets/components/device_control.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget createDeviceControlWidget(bool initialValue) {
+Widget createDeviceControlWidget(bool initialValue,
+    {void Function(bool)? callback}) {
   return MaterialApp(
     home: Scaffold(
       body: DeviceControl(
         onOff: initialValue,
+        onChangedCallback: callback ?? (value) => print(value),
       ),
     ),
   );
@@ -35,5 +37,23 @@ void main() {
     await tester.pumpWidget(createDeviceControlWidget(false));
 
     expect(find.widgetWithText(DeviceControl, 'Off'), findsOneWidget);
+  });
+
+  testWidgets('Switch should toggle', (WidgetTester tester) async {
+    var toggledValue = false;
+    ValueChanged<bool>? endValueCallback(bool value) {
+      toggledValue = value;
+    }
+
+    await tester.pumpWidget(
+        createDeviceControlWidget(false, callback: endValueCallback));
+
+    expect(find.widgetWithText(DeviceControl, 'Off'), findsOneWidget,
+        reason: 'Device Off not found');
+
+    await tester.tap(find.byType(Switch));
+    await tester.pumpAndSettle();
+
+    expect(toggledValue, isTrue, reason: 'Device callback not called');
   });
 }
