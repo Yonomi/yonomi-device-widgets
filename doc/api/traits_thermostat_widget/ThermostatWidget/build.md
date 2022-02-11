@@ -70,26 +70,10 @@ Widget build(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Row(
-          children: <Widget>[
-            Text(
-              _thermostatProvider.displayName,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: _textColor),
-              textAlign: TextAlign.center,
-            ),
-          ],
+          children: <Widget>[_displayName(context)],
         ),
         Row(
-          children: <Widget>[
-            Text(
-              _thermostatProvider.getModeState.name,
-              style:
-                  TextStyle(color: WidgetStyleConstants.globalSuccessColor),
-              textAlign: TextAlign.left,
-            ),
-          ],
+          children: <Widget>[_modeStateText(context)],
         ),
         SizedBox(height: 8.0),
         _modeBar(context),
@@ -97,10 +81,7 @@ Widget build(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: _centerText(Theme.of(context)
-                  .textTheme
-                  .headline2
-                  ?.copyWith(color: _textColor)),
+              child: _centerTempText(context),
             )
           ],
         ),
