@@ -128,6 +128,6 @@ void main() {
 Device _getDevice(bool isLocked) {
   return Device('id', 'name', 'description', 'manufacturerName', 'model', null,
       GDateTime('value'), GDateTime('value'), [
-    LockTrait(IsLocked(isLocked), supportsIsJammed: SupportsIsJammed(false))
+    LockTrait({IsLocked(isLocked)}, {SupportsIsJammed(false)})
   ]);
 }
