@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[DeviceControl](../components_device_control/DeviceControl/DeviceControl.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff, required dynamic onChangedCallback})
+[DeviceControl](../components_device_control/DeviceControl/DeviceControl.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff, [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)>? onChangedCallback})
 
     
 
@@ -54,7 +54,7 @@ _final, inherited_
 
 
 
-##### [onChangedCallback](../components_device_control/DeviceControl/onChangedCallback.md) &#8594; dynamic
+##### [onChangedCallback](../components_device_control/DeviceControl/onChangedCallback.md) &#8594; [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)>?
 
 
 

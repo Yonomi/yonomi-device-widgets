@@ -27,7 +27,7 @@ ThermostatSlimWidget(ThermostatProvider thermostatProvider,
               size: 20.0,
               color: WidgetStyleConstants.deviceDetailIconColorActive),
           headerText: Text(
-              'Target Temperature: ${thermostatProvider.getTargetTemperatureState.toInt()}\u{00B0}',
+              'Target Temperature: ${thermostatProvider.getTargetTemperatureState?.toInt() ?? "--"}\u{00B0}',
               style: TextStyle(
                   fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
           backgroundColor: backgroundColor,

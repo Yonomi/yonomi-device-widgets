@@ -10,7 +10,7 @@
 
 
 
-DeviceControl({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff, required dynamic onChangedCallback})
+DeviceControl({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html) onOff, [ValueChanged](https://api.flutter.dev/flutter/foundation/ValueChanged.html)&lt;[bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)>? onChangedCallback})
 
 
 
@@ -22,7 +22,7 @@ DeviceControl({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)?
 DeviceControl({
   Key? key,
   required this.onOff,
-  required this.onChangedCallback,
+  this.onChangedCallback,
 }) : super(key: key);
 ```
 
