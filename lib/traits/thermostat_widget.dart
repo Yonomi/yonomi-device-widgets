@@ -148,7 +148,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
           color: targetTextStyle?.color,
         ),
         Text(
-          '${_thermostatProvider.getTargetTemperatureState.toInt()}\u{00B0}',
+          '${_thermostatProvider.getTargetTemperatureState?.toInt() ?? "--"}\u{00B0}',
           style: targetTextStyle,
         )
       ]),
@@ -163,7 +163,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
           color: ambientTextStyle?.color,
         ),
         Text(
-          '${_thermostatProvider.getAmbientTemperatureState.toInt()}\u{00B0}',
+          '${_thermostatProvider.getAmbientTemperatureState?.toInt() ?? "--"}\u{00B0}',
           style: ambientTextStyle,
         )
       ]),

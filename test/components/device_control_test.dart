@@ -8,7 +8,7 @@ Widget createDeviceControlWidget(bool initialValue,
     home: Scaffold(
       body: DeviceControl(
         onOff: initialValue,
-        onChangedCallback: callback ?? (value) => print(value),
+        onChangedCallback: callback,
       ),
     ),
   );

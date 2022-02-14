@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class DeviceControl extends StatelessWidget {
   final bool onOff;
 
-  final onChangedCallback;
+  final ValueChanged<bool>? onChangedCallback;
 
   DeviceControl({
     Key? key,
     required this.onOff,
-    required this.onChangedCallback,
+    this.onChangedCallback,
   }) : super(key: key);
 
   @override

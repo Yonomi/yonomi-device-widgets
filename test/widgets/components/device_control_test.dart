@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Widget createDeviceControlWidget(bool initialValue,
-    {void Function(bool)? callback}) {
+    {ValueChanged<bool>? callback}) {
   return MaterialApp(
     home: Scaffold(
       body: DeviceControl(
         onOff: initialValue,
-        onChangedCallback: callback ?? (value) => print(value),
+        onChangedCallback: callback,
       ),
     ),
   );
