@@ -53,6 +53,15 @@ _read-only, override_
 
 
 
+##### [getAmbientTemperatureState](../providers_thermostat_provider/ThermostatProvider/getAmbientTemperatureState.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)?
+
+
+
+   
+_read-only_
+
+
+
 ##### [getAvailableFanModes](../providers_thermostat_provider/ThermostatProvider/getAvailableFanModes.md) &#8594; [Set](https://api.flutter.dev/flutter/dart-core/Set-class.html)&lt;[AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)>
 
 
@@ -99,7 +108,7 @@ _read-only_
 
 
 
-##### [getTargetTemperatureState](../providers_thermostat_provider/ThermostatProvider/getTargetTemperatureState.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+##### [getTargetTemperatureState](../providers_thermostat_provider/ThermostatProvider/getTargetTemperatureState.md) &#8594; [double](https://api.flutter.dev/flutter/dart-core/double-class.html)?
 
 
 

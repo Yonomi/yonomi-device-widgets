@@ -19,8 +19,7 @@ void main() {
   testWidgets('should render correct thermostat trait icon',
       (WidgetTester tester) async {
     final thermostatDevice = [
-      ThermostatTrait({TargetTemperature(22)},
-          {availableFanModes})
+      ThermostatTrait({TargetTemperature(22)}, {availableFanModes})
     ];
     await tester.pumpWidget(createIconWidget(thermostatDevice));
     expect(find.widgetWithText(Center, '22'), findsOneWidget);
@@ -29,8 +28,7 @@ void main() {
   testWidgets('should render n/a if target temperature is null',
       (WidgetTester tester) async {
     final thermostatDevice = [
-      ThermostatTrait({TargetTemperature(null)},
-          {availableFanModes})
+      ThermostatTrait({TargetTemperature(null)}, {availableFanModes})
     ];
     await tester.pumpWidget(createIconWidget(thermostatDevice));
     expect(find.widgetWithText(Center, 'N/A'), findsOneWidget);
@@ -39,7 +37,7 @@ void main() {
   testWidgets('should render correct Lock trait icon when unlocked',
       (WidgetTester tester) async {
     final lockDevice = [
-      LockTrait(IsLocked(false), supportsIsJammed: SupportsIsJammed(false))
+      LockTrait({IsLocked(false)}, {SupportsIsJammed(false)})
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.unlock), findsOneWidget);
@@ -48,7 +46,7 @@ void main() {
   testWidgets('should render correct Lock trait icon when locked',
       (WidgetTester tester) async {
     final lockDevice = [
-      LockTrait(IsLocked(true), supportsIsJammed: SupportsIsJammed(false))
+      LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.lock), findsOneWidget);
@@ -57,7 +55,7 @@ void main() {
   testWidgets('should render Unknown icon when state is not IsLocked',
       (WidgetTester tester) async {
     final lockDevice = [
-      LockTrait(UnknownState(), supportsIsJammed: SupportsIsJammed(false))
+      LockTrait({UnknownState()}, {SupportsIsJammed(false)})
     ];
     await tester.pumpWidget(createIconWidget(lockDevice));
     expect(find.byIcon(BootstrapIcons.box), findsOneWidget);

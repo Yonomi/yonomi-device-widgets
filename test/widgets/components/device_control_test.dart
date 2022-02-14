@@ -2,11 +2,13 @@ import 'package:yonomi_device_widgets/components/device_control.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget createDeviceControlWidget(bool initialValue) {
+Widget createDeviceControlWidget(bool initialValue,
+    {ValueChanged<bool>? callback}) {
   return MaterialApp(
     home: Scaffold(
       body: DeviceControl(
         onOff: initialValue,
+        onChangedCallback: callback,
       ),
     ),
   );

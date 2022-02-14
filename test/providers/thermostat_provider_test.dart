@@ -127,6 +127,7 @@ void main() {
         getDetails: mockGetThermostatDetailsFunction);
 
     expect(thermostatProvider.getTargetTemperatureState, 23.1);
+    expect(thermostatProvider.getAmbientTemperatureState, 27.1);
     expect(thermostatProvider.displayName, 'someDisplayName');
     expect(thermostatProvider.isLoading, equals(false));
     expect(thermostatProvider.isInErrorState, equals(false));
@@ -155,7 +156,8 @@ Device _getThermostat(double temp) {
     [
       ThermostatTrait({
         TargetTemperature(temp),
-        FanMode(AvailableFanMode.AUTO)
+        FanMode(AvailableFanMode.AUTO),
+        AmbientTemperature(temp + 4.0),
       }, {
         AvailableFanModes(
             {AvailableFanMode.AUTO, AvailableFanMode.ON, AvailableFanMode.ECO}),

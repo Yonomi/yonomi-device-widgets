@@ -82,13 +82,15 @@ Widget build(BuildContext context) {
       Center(
           child: Arc(
         centerWidget: Text(
-          thermostatProvider.getTargetTemperatureState.toInt().toString(),
+          thermostatProvider.getTargetTemperatureState?.toInt().toString() ??
+              'N/A',
           style: Theme.of(context).textTheme.headline2,
         ),
         initialValue: 20.0,
         onFinalSetPoint: (double temperature) {
           print('Printing temperature');
-          // thermostatProvider.setPointAction(deviceId, temperature);
+          thermostatProvider.setPointAction(
+              thermostatProvider.deviceDetail?.id ?? '', temperature);
           // data.setPointAction(deviceId, temperature);
         },
         maxValue: 50,
@@ -96,7 +98,11 @@ Widget build(BuildContext context) {
       SizedBox(
         height: 30,
       ),
-      DeviceControl(onOff: true)
+      DeviceControl(
+        onOff: true,
+        onChangedCallback: (bool value) =>
+            print('Device Control changed to $value'),
+      )
     ],
   );
 }
