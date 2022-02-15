@@ -9,16 +9,19 @@ class LockWidget extends StatelessWidget {
   final LockProvider _lockProvider;
   late final Color _iconColor;
   late final Color _textColor;
+  late final Color _warningTextColor;
   late final double _iconSize;
 
   LockWidget(this._lockProvider,
       {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
       Color textColor = WidgetStyleConstants.darkTextColor,
+      Color warningTextColor = WidgetStyleConstants.globalWarningColor,
       double iconSize = 100,
       Key? key})
       : super(key: key) {
     this._iconColor = iconColor;
     this._textColor = textColor;
+    this._warningTextColor = warningTextColor;
     this._iconSize = iconSize;
   }
 
@@ -40,9 +43,7 @@ class LockWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               Container(
                 child: Center(
                   child: SizedBox(
@@ -57,9 +58,7 @@ class LockWidget extends StatelessWidget {
                                   size: _iconSize, color: _iconColor)),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               CupertinoSwitch(
                 onChanged: (bool value) {
                   _lockTap(_lockProvider);
@@ -67,7 +66,9 @@ class LockWidget extends StatelessWidget {
                 value: _lockProvider.getIsLockedState,
               ),
               if (_lockProvider.getLockTrait()?.supportsIsJammed ?? false) ...[
+                SizedBox(height: 20),
                 buildIsJammedRow(context),
+                SizedBox(height: 10),
               ],
             ],
           );
@@ -86,13 +87,15 @@ class LockWidget extends StatelessWidget {
         ),
         Text(
           _lockProvider.getIsJammedState.toString(),
-          style: Theme.of(context)
-              .textTheme
-              .headline6
-              ?.copyWith(color: _textColor),
+          style: Theme.of(context).textTheme.headline6?.copyWith(
+              color: _getJammedStateColor(_lockProvider.getIsJammedState)),
         ),
       ],
     );
+  }
+
+  _getJammedStateColor(bool isJammed) {
+    return isJammed ? _warningTextColor : _textColor;
   }
 
   void _lockTap(LockProvider provider) {
