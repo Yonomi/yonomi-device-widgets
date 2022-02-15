@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
+import 'package:yonomi_device_widgets/ui/string_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'mixins/device_testing.dart';
@@ -82,5 +83,53 @@ void main() {
     verify(mockLockProvider.setLockUnlockAction(any, !currentLock));
     expect(find.byType(CircularProgressIndicator), findsNothing);
     // expect(find.byType(LockIcon), findsNothing);
+  });
+
+  testWidgets('IsJammed Row not shown if not supported',
+      (WidgetTester tester) async {
+    final mockLockProvider = test.mockLockProvider(
+      test.device([
+        LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
+      ]),
+    );
+    await tester.pumpWidget(createMaterialApp(mockLockProvider));
+
+    expect(find.text(StringConstants.IS_LOCK_JAMMED), findsNothing);
+  });
+
+  testWidgets('IsJammed Row is shown if supported',
+      (WidgetTester tester) async {
+    final expectedIsJammedState = true;
+    final mockLockProvider = test.mockLockProvider(
+        test.device([
+          LockTrait(
+            {IsLocked(true), IsJammed(expectedIsJammedState)},
+            {SupportsIsJammed(true)},
+          )
+        ]),
+        isJammed: expectedIsJammedState);
+
+    await tester.pumpWidget(createMaterialApp(mockLockProvider));
+
+    expect(find.text(StringConstants.IS_LOCK_JAMMED), findsOneWidget);
+    expect(find.text(expectedIsJammedState.toString()), findsOneWidget);
+  });
+
+  testWidgets('IsJammed Row is shown if supported',
+      (WidgetTester tester) async {
+    final expectedIsJammedState = false;
+    final mockLockProvider = test.mockLockProvider(
+        test.device([
+          LockTrait(
+            {IsLocked(true), IsJammed(expectedIsJammedState)},
+            {SupportsIsJammed(true)},
+          )
+        ]),
+        isJammed: expectedIsJammedState);
+
+    await tester.pumpWidget(createMaterialApp(mockLockProvider));
+
+    expect(find.text(StringConstants.IS_LOCK_JAMMED), findsOneWidget);
+    expect(find.text(expectedIsJammedState.toString()), findsOneWidget);
   });
 }

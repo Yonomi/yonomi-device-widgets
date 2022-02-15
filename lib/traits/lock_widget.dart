@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/ui/string_constants.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
 class LockWidget extends StatelessWidget {
@@ -65,8 +66,33 @@ class LockWidget extends StatelessWidget {
                 },
                 value: _lockProvider.getIsLockedState,
               ),
+              if (_lockProvider.getLockTrait()?.supportsIsJammed ?? false) ...[
+                buildIsJammedRow(context),
+              ],
             ],
           );
+  }
+
+  Row buildIsJammedRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          StringConstants.IS_LOCK_JAMMED,
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: _textColor),
+        ),
+        Text(
+          _lockProvider.getIsJammedState.toString(),
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: _textColor),
+        ),
+      ],
+    );
   }
 
   void _lockTap(LockProvider provider) {
