@@ -75,6 +75,15 @@ _override_
 
 
 
+##### [buildIsJammedRow](../traits_lock_widget/LockWidget/buildIsJammedRow.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Row](https://api.flutter.dev/flutter/widgets/Row-class.html)
+
+
+
+   
+
+
+
+
 ##### [createElement](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)() [StatelessElement](https://api.flutter.dev/flutter/widgets/StatelessElement-class.html)
 
 

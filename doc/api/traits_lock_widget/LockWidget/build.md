@@ -102,6 +102,9 @@ Widget build(BuildContext context) {
               },
               value: _lockProvider.getIsLockedState,
             ),
+            if (_lockProvider.getLockTrait()?.supportsIsJammed ?? false) ...[
+              buildIsJammedRow(context),
+            ],
           ],
         );
 }
