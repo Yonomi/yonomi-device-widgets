@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class DeviceControl extends StatelessWidget {
   final bool onOff;
-  const DeviceControl({
+
+  final ValueChanged<bool>? onChangedCallback;
+
+  DeviceControl({
     Key? key,
     required this.onOff,
+    this.onChangedCallback,
   }) : super(key: key);
 
   @override
@@ -37,7 +41,7 @@ class DeviceControl extends StatelessWidget {
             children: [
               Switch(
                 value: onOff,
-                onChanged: (bool value) => print(value),
+                onChanged: onChangedCallback,
               ),
               GestureDetector(child: Icon(Icons.more_vert))
             ],
