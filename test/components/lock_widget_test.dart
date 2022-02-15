@@ -12,16 +12,10 @@ import '../traits/mixins/lock_widget_testing.mocks.dart';
 
 void main() {
   final mockProvider = MockLockProvider();
-  final device = Device(
-      'id',
-      'name',
-      'description',
-      'manufacturerName',
-      'model',
-      null,
-      GDateTime('value'),
-      GDateTime('value'),
-      [LockTrait(IsLocked(true), supportsIsJammed: SupportsIsJammed(false))]);
+  final device = Device('id', 'name', 'description', 'manufacturerName',
+      'model', null, GDateTime('value'), GDateTime('value'), [
+    LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
+  ]);
 
   Widget getAppWithLockWidget() {
     return MaterialApp(
