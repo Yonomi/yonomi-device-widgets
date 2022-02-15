@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
@@ -65,7 +66,7 @@ class LockWidget extends StatelessWidget {
                 },
                 value: _lockProvider.getIsLockedState,
               ),
-              if (_lockProvider.getLockTrait()?.supportsIsJammed ?? false) ...[
+              if (shouldDisplayJammedState()) ...[
                 SizedBox(height: 20),
                 buildIsJammedRow(context),
                 SizedBox(height: 10),
@@ -74,19 +75,55 @@ class LockWidget extends StatelessWidget {
           );
   }
 
+  bool shouldDisplayJammedState() {
+    final bool supportsIsJammed =
+        _lockProvider.getLockTrait()?.supportsIsJammed ?? false;
+    return supportsIsJammed && _lockProvider.getIsJammedState;
+  }
+
   Row buildIsJammedRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          StringConstants.IS_LOCK_JAMMED,
-          style: Theme.of(context).textTheme.headline6?.copyWith(
-              color: _getJammedStateColor(_lockProvider.getIsJammedState)),
+        Container(
+          width: 250,
+          height: 50,
+          child: Card(
+            child: Row(children: [
+              SizedBox(width: 8),
+              Icon(BootstrapIcons.exclamation_diamond_fill),
+              SizedBox(width: 8),
+              Text(
+                StringConstants.DEVICE_IS_JAMMED,
+                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                    color: WidgetStyleConstants.jammedStateTextColor),
+              ),
+            ]),
+            color: _warningTextColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8),
+              bottomLeft: Radius.circular(8),
+            )),
+            elevation: 2,
+          ),
         ),
-        Text(
-          _lockProvider.getIsJammedState.toString(),
-          style: Theme.of(context).textTheme.headline6?.copyWith(
-              color: _getJammedStateColor(_lockProvider.getIsJammedState)),
+        Container(
+          width: 50,
+          height: 50,
+          child: Card(
+            child: Align(
+              alignment: Alignment.center,
+              child: Icon(BootstrapIcons.x),
+            ),
+            color: _warningTextColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+              topRight: Radius.circular(8),
+              bottomRight: Radius.circular(8),
+            )),
+            elevation: 2,
+          ),
         ),
       ],
     );

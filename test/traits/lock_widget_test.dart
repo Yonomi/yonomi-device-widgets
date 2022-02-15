@@ -94,7 +94,7 @@ void main() {
     );
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
-    expect(find.text(StringConstants.IS_LOCK_JAMMED), findsNothing);
+    expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsNothing);
   });
 
   testWidgets('IsJammed Row is shown if supported',
@@ -111,7 +111,7 @@ void main() {
 
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
-    expect(find.text(StringConstants.IS_LOCK_JAMMED), findsOneWidget);
+    expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsOneWidget);
     expect(find.text(expectedIsJammedState.toString()), findsOneWidget);
   });
 
@@ -129,7 +129,7 @@ void main() {
 
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
-    expect(find.text(StringConstants.IS_LOCK_JAMMED), findsOneWidget);
+    expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsOneWidget);
     expect(find.text(expectedIsJammedState.toString()), findsOneWidget);
   });
 }
