@@ -30,10 +30,8 @@ Row buildIsJammedRow(BuildContext context) {
     children: [
       Text(
         StringConstants.IS_LOCK_JAMMED,
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            ?.copyWith(color: _textColor),
+        style: Theme.of(context).textTheme.headline6?.copyWith(
+            color: _getJammedStateColor(_lockProvider.getIsJammedState)),
       ),
       Text(
         _lockProvider.getIsJammedState.toString(),
