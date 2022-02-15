@@ -37,10 +37,8 @@ Row buildIsJammedRow(BuildContext context) {
       ),
       Text(
         _lockProvider.getIsJammedState.toString(),
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            ?.copyWith(color: _textColor),
+        style: Theme.of(context).textTheme.headline6?.copyWith(
+            color: _getJammedStateColor(_lockProvider.getIsJammedState)),
       ),
     ],
   );
