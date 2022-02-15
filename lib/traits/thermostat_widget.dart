@@ -44,9 +44,88 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
             ],
           ),
           _fanMode(context),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: _setTemperature(),
+              )
+            ],
+          ),
         ],
       );
     }
+  }
+
+  Widget _setTemperature() {
+    final currentMode = _thermostatProvider.getModeState;
+    if (currentMode != AvailableThermostatMode.COOL ||
+        currentMode != AvailableThermostatMode.HEAT ||
+        currentMode != AvailableThermostatMode.AUTO) {
+      return Container();
+    }
+    final coolTemperatureRange = _thermostatProvider.getCoolTemperatureRange;
+    final heatTemperatureRange = _thermostatProvider.getHeatTemperatureRange;
+
+    final coolSlider = Slider(
+      value: _thermostatProvider.getTargetTemperatureState!,
+      min: coolTemperatureRange!.min,
+      max: coolTemperatureRange.max,
+      divisions: (coolTemperatureRange.max - coolTemperatureRange.min).toInt(),
+      onChanged: (value) => _thermostatProvider.setPointAction(
+          _thermostatProvider.deviceDetail!.id, value),
+    );
+
+    final heatSlider = Slider(
+      value: _thermostatProvider.getTargetTemperatureState!,
+      min: heatTemperatureRange!.min,
+      max: heatTemperatureRange.max,
+      divisions: (heatTemperatureRange.max - heatTemperatureRange.min).toInt(),
+      onChanged: (value) => _thermostatProvider.setPointAction(
+          _thermostatProvider.deviceDetail!.id, value),
+    );
+
+    final bothSliders = Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Cool',
+              style: TextStyle(color: _textColor),
+            ),
+            SizedBox(width: 8.0),
+            coolSlider,
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Heat',
+              style: TextStyle(color: _textColor),
+            ),
+            SizedBox(width: 8.0),
+            heatSlider,
+          ],
+        ),
+      ],
+    );
+
+    final temperatureRange = (currentMode == AvailableThermostatMode.COOL)
+        ? _thermostatProvider.getCoolTemperatureRange
+        : _thermostatProvider.getHeatTemperatureRange;
+    final maxRange = temperatureRange?.max;
+    final minRange = temperatureRange?.min;
+    if ((maxRange == null || minRange == null) || (maxRange == minRange)) {
+      return Container();
+    }
+    if (currentMode == AvailableThermostatMode.AUTO) {
+      return bothSliders;
+    }
+    return (currentMode == AvailableThermostatMode.COOL)
+        ? coolSlider
+        : heatSlider;
   }
 
   Widget _fanMode(BuildContext context) {
