@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[LockWidget](../traits_lock_widget/LockWidget/LockWidget.md) ([LockProvider](../providers_lock_provider/LockProvider-class.md) _lockProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) iconSize = 100, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[LockWidget](../traits_lock_widget/LockWidget/LockWidget.md) ([LockProvider](../providers_lock_provider/LockProvider-class.md) _lockProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) warningTextColor = WidgetStyleConstants.globalWarningColor, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) iconSize = 100, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
 
     
 
@@ -72,6 +72,15 @@ _read-only, inherited_
 
 Describes the part of the user interface represented by this widget. [...](../traits_lock_widget/LockWidget/build.md)  
 _override_
+
+
+
+##### [buildIsJammedRow](../traits_lock_widget/LockWidget/buildIsJammedRow.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Row](https://api.flutter.dev/flutter/widgets/Row-class.html)
+
+
+
+   
+
 
 
 

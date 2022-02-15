@@ -41,6 +41,7 @@ void main() {
   final defaultProperties = <Property>{defaultFanModes, defaultThermostatModes};
   final defaultStates = <State>{
     TargetTemperature(92.0),
+    AmbientTemperature(72.0),
     FanMode(AvailableFanMode.ECO),
     ThermostatMode(AvailableThermostatMode.AIRFLOW)
   };

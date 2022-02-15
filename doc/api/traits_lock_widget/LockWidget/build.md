@@ -76,9 +76,7 @@ Widget build(BuildContext context) {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Container(
               child: Center(
                 child: SizedBox(
@@ -93,15 +91,18 @@ Widget build(BuildContext context) {
                                 size: _iconSize, color: _iconColor)),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             CupertinoSwitch(
               onChanged: (bool value) {
                 _lockTap(_lockProvider);
               },
               value: _lockProvider.getIsLockedState,
             ),
+            if (_lockProvider.getLockTrait()?.supportsIsJammed ?? false) ...[
+              SizedBox(height: 20),
+              buildIsJammedRow(context),
+              SizedBox(height: 10),
+            ],
           ],
         );
 }

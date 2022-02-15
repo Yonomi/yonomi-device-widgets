@@ -16,8 +16,16 @@ void main() {
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
     final mockGetDetailsMethod = MockGetDetails();
-    final device = Device('test', 'name', 'description', 'manufacturerName',
-        'model', null, GDateTime('value'), GDateTime('value'), [
+    final device = Device(
+        'test',
+        'name',
+        'description',
+        'manufacturerName',
+        'model',
+        null,
+        GDateTime('value'),
+        GDateTime('value'),
+        [
       LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
     ]);
     when(mockGetDetailsMethod.call(request, 'test'))

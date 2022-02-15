@@ -43,10 +43,6 @@ class MockThermostatProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getModeState),
           returnValue: _FakeGThermostatMode_0()) as _i2.GThermostatMode);
   @override
-  double get getTargetTemperatureState =>
-      (super.noSuchMethod(Invocation.getter(#getTargetTemperatureState),
-          returnValue: 0.0) as double);
-  @override
   _i2.GFanMode get getFanModeState =>
       (super.noSuchMethod(Invocation.getter(#getFanModeState),
           returnValue: _FakeGFanMode_1()) as _i2.GFanMode);

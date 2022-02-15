@@ -15,6 +15,7 @@ mixin LockWidgetTesting {
       bool isJammed = false,
       bool isInErrorState = false}) {
     final mockLockProvider = MockLockProvider();
+    when(mockLockProvider.displayName).thenReturn(device.displayName);
     when(mockLockProvider.isLoading).thenReturn(isLoading);
     when(mockLockProvider.isPerformingAction).thenReturn(isPerformingAction);
     when(mockLockProvider.isBusy).thenReturn(isPerformingAction || isLoading);

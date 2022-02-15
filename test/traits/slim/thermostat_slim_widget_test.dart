@@ -41,13 +41,14 @@ void main() {
   final defaultProperties = <Property>{defaultFanModes, defaultThermostatModes};
   final defaultStates = <State>{
     TargetTemperature(90.0),
+    AmbientTemperature(72.0),
     FanMode(AvailableFanMode.ECO),
     ThermostatMode(AvailableThermostatMode.AIRFLOW)
   };
   final defaultDevice =
       test.device([ThermostatTrait(defaultStates, defaultProperties)]);
 
-  group("For ThermostatWidget, ", () {
+  group("For ThermostatSlimWidget, ", () {
     testWidgets('should display the current temperature',
         (WidgetTester tester) async {
       final mockThermostatProvider = test.mockThermostatProvider(defaultDevice);

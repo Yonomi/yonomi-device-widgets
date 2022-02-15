@@ -88,7 +88,7 @@ Widget build(BuildContext context) {
           children: [
             Switch(
               value: onOff,
-              onChanged: (bool value) => print(value),
+              onChanged: onChangedCallback,
             ),
             GestureDetector(child: Icon(Icons.more_vert))
           ],

@@ -16,20 +16,6 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
     this._textColor = textColor;
   }
 
-  Widget _centerText(TextStyle? style) {
-    return Row(children: [
-      Icon(
-        BootstrapIcons.thermometer,
-        size: style?.height,
-        color: style?.color,
-      ),
-      Text(
-        '${_thermostatProvider.getTargetTemperatureState.toInt()}\u{00B0}',
-        style: style,
-      )
-    ]);
-  }
-
   @override
   Widget build(BuildContext context) {
     if (_thermostatProvider.isBusy) {
@@ -42,26 +28,10 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
-            children: <Widget>[
-              Text(
-                _thermostatProvider.displayName,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(color: _textColor),
-                textAlign: TextAlign.center,
-              ),
-            ],
+            children: <Widget>[_displayName(context)],
           ),
           Row(
-            children: <Widget>[
-              Text(
-                _thermostatProvider.getModeState.name,
-                style:
-                    TextStyle(color: WidgetStyleConstants.globalSuccessColor),
-                textAlign: TextAlign.left,
-              ),
-            ],
+            children: <Widget>[_modeStateText(context)],
           ),
           SizedBox(height: 8.0),
           _modeBar(context),
@@ -69,10 +39,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: _centerText(Theme.of(context)
-                    .textTheme
-                    .headline2
-                    ?.copyWith(color: _textColor)),
+                child: _centerTempText(context),
               )
             ],
           ),
@@ -84,7 +51,6 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
 
   Widget _fanMode(BuildContext context) {
     final selectedFanMode = _thermostatProvider.getFanModeState;
-    final availableFanModes = _thermostatProvider.getAvailableFanModes.toList();
     return Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -111,47 +77,109 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                     ?.copyWith(color: _textColor),
               ),
               tilePadding: EdgeInsets.all(0.0),
-              children: [
-                Wrap(
-                  spacing: 5.0,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                      "Modes: ",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          ?.copyWith(color: _textColor),
-                        )),
-                    ...List<ChoiceChip>.generate(
-                      availableFanModes.length,
-                      (int index) {
-                        return ChoiceChip(
-                            labelPadding:
-                                EdgeInsets.only(right: 5.0, left: 5.0),
-                            label: Text('${availableFanModes[index].name}'),
-                            selected:
-                                selectedFanMode == availableFanModes[index],
-                            onSelected: (bool selected) {
-                              if (selected) {
-                                _thermostatProvider.setFanMode(
-                                    _thermostatProvider.deviceDetail?.id ?? '',
-                                    availableFanModes[index]);
-                              }
-                            },
-                            key: Key(
-                                'fanModeChip-${availableFanModes[index].name}'));
-                      },
-                    ).toList(),
-                  ],
-                )
-              ],
+              children: [_fanModes(context)],
               collapsedIconColor: WidgetStyleConstants.globalSuccessColor,
               iconColor: WidgetStyleConstants.deviceIconColor,
               key: key,
             )));
+  }
+
+  Widget _fanModes(BuildContext context) {
+    final availableFanModes = _thermostatProvider.getAvailableFanModes.toList();
+
+    return Wrap(
+      spacing: 5.0,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Modes: ",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: _textColor),
+            )),
+        ...List<ChoiceChip>.generate(
+          availableFanModes.length,
+          (int index) {
+            return ChoiceChip(
+                labelPadding: EdgeInsets.only(right: 5.0, left: 5.0),
+                label: Text('${availableFanModes[index].name}'),
+                selected: _thermostatProvider.getFanModeState ==
+                    availableFanModes[index],
+                onSelected: (bool selected) {
+                  if (selected) {
+                    _thermostatProvider.setFanMode(
+                        _thermostatProvider.deviceDetail?.id ?? '',
+                        availableFanModes[index]);
+                  }
+                },
+                key: Key('fanModeChip-${availableFanModes[index].name}'));
+          },
+        ).toList(),
+      ],
+    );
+  }
+
+  Widget _modeStateText(BuildContext context) {
+    return Text(
+      _thermostatProvider.getModeState.name,
+      style: TextStyle(color: WidgetStyleConstants.globalSuccessColor),
+      textAlign: TextAlign.left,
+    );
+  }
+
+  Widget _centerTempText(BuildContext context) {
+    final TextStyle? targetTextStyle =
+        Theme.of(context).textTheme.headline2?.copyWith(color: _textColor);
+
+    final TextStyle? ambientTextStyle =
+        Theme.of(context).textTheme.headline4?.copyWith(color: _textColor);
+
+    final TextStyle? subtitleTextStyle =
+        Theme.of(context).textTheme.headline6?.copyWith(color: _textColor);
+
+    return Column(children: [
+      Row(children: [
+        Icon(
+          BootstrapIcons.thermometer,
+          size: targetTextStyle?.height,
+          color: targetTextStyle?.color,
+        ),
+        Text(
+          '${_thermostatProvider.getTargetTemperatureState?.toInt() ?? "--"}\u{00B0}',
+          style: targetTextStyle,
+        )
+      ]),
+      Text(
+        'TARGET',
+        style: subtitleTextStyle,
+      ),
+      Row(children: [
+        Icon(
+          BootstrapIcons.thermometer,
+          size: ambientTextStyle?.height,
+          color: ambientTextStyle?.color,
+        ),
+        Text(
+          '${_thermostatProvider.getAmbientTemperatureState?.toInt() ?? "--"}\u{00B0}',
+          style: ambientTextStyle,
+        )
+      ]),
+      Text(
+        'AMBIENT',
+        style: subtitleTextStyle,
+      ),
+    ]);
+  }
+
+  Widget _displayName(BuildContext context) {
+    return Text(
+      _thermostatProvider.displayName,
+      style: Theme.of(context).textTheme.headline6?.copyWith(color: _textColor),
+      textAlign: TextAlign.center,
+    );
   }
 
   Widget _modeBar(BuildContext context) {
