@@ -98,7 +98,7 @@ Widget build(BuildContext context) {
               },
               value: _lockProvider.getIsLockedState,
             ),
-            if (_lockProvider.getLockTrait()?.supportsIsJammed ?? false) ...[
+            if (shouldDisplayJammedState()) ...[
               SizedBox(height: 20),
               buildIsJammedRow(context),
               SizedBox(height: 10),

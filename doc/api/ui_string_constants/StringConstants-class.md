@@ -89,7 +89,7 @@ _inherited_
 
 
 
-##### [IS_LOCK_JAMMED](../ui_string_constants/StringConstants/IS_LOCK_JAMMED-constant.md) const [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [DEVICE_IS_JAMMED](../ui_string_constants/StringConstants/DEVICE_IS_JAMMED-constant.md) const [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 

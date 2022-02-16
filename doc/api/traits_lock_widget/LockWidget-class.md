@@ -75,7 +75,7 @@ _override_
 
 
 
-##### [buildIsJammedRow](../traits_lock_widget/LockWidget/buildIsJammedRow.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Row](https://api.flutter.dev/flutter/widgets/Row-class.html)
+##### [buildIsJammedRow](../traits_lock_widget/LockWidget/buildIsJammedRow.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -118,6 +118,15 @@ _inherited_
 
 Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
 _inherited_
+
+
+
+##### [shouldDisplayJammedState](../traits_lock_widget/LockWidget/shouldDisplayJammedState.md)() [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+
 
 
 
