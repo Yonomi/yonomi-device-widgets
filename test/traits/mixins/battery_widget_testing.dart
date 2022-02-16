@@ -23,3 +23,25 @@ mixin BatteryWidgetTesting {
     return mockBatteryLevelProvider;
   }
 }
+
+class TestBattery extends Device {
+  final int batteryLevel;
+
+  TestBattery(Device device, {this.batteryLevel = 90})
+      : super(
+            device.id,
+            device.displayName,
+            device.description,
+            device.manufacturerName,
+            device.model,
+            device.serialNumber,
+            device.createdAt,
+            device.updatedAt, [
+          BatteryLevelTrait(BatteryLevel(batteryLevel)),
+          ...device.traits.where((t) => t.runtimeType != BatteryLevelTrait)
+        ]);
+
+  TestBattery withBatteryLevel(int batteryLevel) {
+    return TestBattery(this, batteryLevel: batteryLevel);
+  }
+}

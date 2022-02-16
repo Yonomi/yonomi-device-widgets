@@ -71,11 +71,13 @@ class DetailScreenTest
     LockProvider mockLockProvider =
         this.mockLockProvider(TestLock(lock, isLocked: false));
 
-    final powerDevice = TestPower(device(traits: traits),
-        isOn: false, supportsDiscreteOnOff: true);
-
+    final powerDevice = device(traits: [
+      traits.firstWhere((trait) => trait is PowerTrait,
+          orElse: () => PowerTrait(IsOnOff(false),
+              supportsDiscreteOnOff: SupportsDiscreteOnOff(true)))
+    ]);
     PowerTraitProvider mockPowerTraitProvider =
-        this.mockPowerTraitProvider(powerDevice);
+        this.mockPowerTraitProvider(TestPower(powerDevice, isOn: false));
 
     final batteryLevelTrait = traits.firstWhere(
         (trait) => trait is BatteryLevelTrait,
@@ -90,7 +92,7 @@ class DetailScreenTest
     final thermostatDevice =
         device(traits: thermostatTraits, name: 'THERMOSTAT');
     ThermostatProvider mockThermostatProvider =
-        this.mockThermostatProvider(thermostatDevice);
+        this.mockThermostatProvider(TestThermostat(thermostatDevice));
     return createMaterialApp(
         req,
         deviceId,

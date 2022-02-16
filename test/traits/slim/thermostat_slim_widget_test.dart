@@ -22,31 +22,7 @@ class ThermostatWidgetTest with DeviceTesting, ThermostatWidgetTesting {}
 
 void main() {
   final test = ThermostatWidgetTest();
-  final defaultThermostatModes =
-      AvailableThermostatModes(<AvailableThermostatMode>{
-    AvailableThermostatMode.COOL,
-    AvailableThermostatMode.HEAT,
-    AvailableThermostatMode.OFF,
-    AvailableThermostatMode.FANONLY,
-    AvailableThermostatMode.AIRFLOW,
-    AvailableThermostatMode.DEHUMIDIFY,
-    AvailableThermostatMode.AUTO,
-  });
-  final defaultFanModes = AvailableFanModes(<AvailableFanMode>{
-    AvailableFanMode.AUTO,
-    AvailableFanMode.ON,
-    AvailableFanMode.ECO,
-    AvailableFanMode.HUMIDITY
-  });
-  final defaultProperties = <Property>{defaultFanModes, defaultThermostatModes};
-  final defaultStates = <State>{
-    TargetTemperature(90.0),
-    AmbientTemperature(72.0),
-    FanMode(AvailableFanMode.ECO),
-    ThermostatMode(AvailableThermostatMode.AIRFLOW)
-  };
-  final defaultDevice =
-      test.device(traits: [ThermostatTrait(defaultStates, defaultProperties)]);
+  final defaultDevice = TestThermostat(test.device());
 
   group("For ThermostatSlimWidget, ", () {
     testWidgets('should display the current temperature',
@@ -59,10 +35,10 @@ void main() {
 
     testWidgets('Tapping on fan mode icon should run setFanMode',
         (WidgetTester tester) async {
-      final mockThermostatProvider = test.mockThermostatProvider(defaultDevice,
-          isBusy: false,
-          fanMode: AvailableFanMode.ECO,
-          availableFanModes: defaultFanModes.value);
+      final mockThermostatProvider = test.mockThermostatProvider(
+        defaultDevice.withFanMode(AvailableFanMode.ECO),
+        isBusy: false,
+      );
       await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
 
       await tester.tap(find.byType(material.ExpansionTile));
@@ -76,10 +52,9 @@ void main() {
 
     testWidgets('Tapping on mode icon should run setThermostatMode',
         (WidgetTester tester) async {
-      final mockThermostatProvider = test.mockThermostatProvider(defaultDevice,
-          isBusy: false,
-          mode: AvailableThermostatMode.DEHUMIDIFY,
-          availableThermostatModes: defaultThermostatModes.value);
+      final mockThermostatProvider = test.mockThermostatProvider(
+          defaultDevice.withThermostatMode(AvailableThermostatMode.DEHUMIDIFY),
+          isBusy: false);
       await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
 
       await tester.tap(find.byType(material.ExpansionTile));
