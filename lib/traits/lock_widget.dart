@@ -81,51 +81,36 @@ class LockWidget extends StatelessWidget {
     return supportsIsJammed && _lockProvider.getIsJammedState;
   }
 
-  Row buildIsJammedRow(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 250,
-          height: 50,
-          child: Card(
-            child: Row(children: [
-              SizedBox(width: 8),
-              Icon(BootstrapIcons.exclamation_diamond_fill),
-              SizedBox(width: 8),
-              Text(
-                StringConstants.DEVICE_IS_JAMMED,
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: WidgetStyleConstants.jammedStateTextColor),
-              ),
-            ]),
-            color: _warningTextColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              bottomLeft: Radius.circular(8),
-            )),
-            elevation: 2,
-          ),
-        ),
-        Container(
-          width: 50,
-          height: 50,
-          child: Card(
-            child: Align(
+  Widget buildIsJammedRow(BuildContext context) {
+    return Container(
+      height: 48,
+      margin: const EdgeInsets.only(left: 8.0, right: 8.0),
+      child: Card(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                SizedBox(width: 16),
+                Icon(BootstrapIcons.exclamation_diamond_fill),
+                SizedBox(width: 8),
+                Text(StringConstants.DEVICE_IS_JAMMED),
+              ],
+            ),
+            Container(
+              width: 50,
               alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  border: Border(
+                      left: BorderSide(width: 1.0, color: Colors.white))),
               child: Icon(BootstrapIcons.x),
             ),
-            color: _warningTextColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-              topRight: Radius.circular(8),
-              bottomRight: Radius.circular(8),
-            )),
-            elevation: 2,
-          ),
+          ],
         ),
-      ],
+        color: _warningTextColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        elevation: 2,
+      ),
     );
   }
 
