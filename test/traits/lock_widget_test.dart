@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -5,6 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
+import 'package:yonomi_device_widgets/ui/notification_bar.dart';
 import 'package:yonomi_device_widgets/ui/string_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -85,7 +87,7 @@ void main() {
     // expect(find.byType(LockIcon), findsNothing);
   });
 
-  testWidgets('IsJammed Row not shown if not supported',
+  testWidgets('IsJammed notification bar not shown if not supported',
       (WidgetTester tester) async {
     final mockLockProvider = test.mockLockProvider(
       test.device([
@@ -97,7 +99,8 @@ void main() {
     expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsNothing);
   });
 
-  testWidgets('IsJammed Row is not shown if supported but state is not jammed',
+  testWidgets(
+      'IsJammed notification bar is not shown if supported but state is not jammed',
       (WidgetTester tester) async {
     final expectedIsJammedState = false;
     final mockLockProvider = test.mockLockProvider(
@@ -114,7 +117,8 @@ void main() {
     expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsNothing);
   });
 
-  testWidgets('IsJammed Row is shown if supported and state is jammed',
+  testWidgets(
+      'IsJammed notification bar is shown if supported and state is jammed',
       (WidgetTester tester) async {
     final expectedIsJammedState = true;
     final mockLockProvider = test.mockLockProvider(
@@ -129,5 +133,30 @@ void main() {
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsOneWidget);
+  });
+
+  testWidgets(
+      'IsJammed notification bar is shown and hides when x button is pressed.',
+      (WidgetTester tester) async {
+    final expectedIsJammedState = true;
+
+    final mockLockProvider = test.mockLockProvider(
+        test.device([
+          LockTrait(
+            {IsLocked(true), IsJammed(expectedIsJammedState)},
+            {SupportsIsJammed(true)},
+          )
+        ]),
+        isJammed: expectedIsJammedState);
+
+    await tester.pumpWidget(createMaterialApp(mockLockProvider));
+
+    expect(find.byType(NotificationBar), findsOneWidget);
+
+    await tester.press(find.byIcon(BootstrapIcons.x));
+
+    await tester.pumpAndSettle();
+
+    expect(find.byType(NotificationBar), findsOneWidget);
   });
 }
