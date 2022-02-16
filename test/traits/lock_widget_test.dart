@@ -97,7 +97,24 @@ void main() {
     expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsNothing);
   });
 
-  testWidgets('IsJammed Row is shown if supported',
+  testWidgets('IsJammed Row is not shown if supported but state is not jammed',
+      (WidgetTester tester) async {
+    final expectedIsJammedState = false;
+    final mockLockProvider = test.mockLockProvider(
+        test.device([
+          LockTrait(
+            {IsLocked(true), IsJammed(expectedIsJammedState)},
+            {SupportsIsJammed(true)},
+          )
+        ]),
+        isJammed: expectedIsJammedState);
+
+    await tester.pumpWidget(createMaterialApp(mockLockProvider));
+
+    expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsNothing);
+  });
+
+  testWidgets('IsJammed Row is shown if supported and state is jammed',
       (WidgetTester tester) async {
     final expectedIsJammedState = true;
     final mockLockProvider = test.mockLockProvider(
@@ -112,24 +129,5 @@ void main() {
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsOneWidget);
-    expect(find.text(expectedIsJammedState.toString()), findsOneWidget);
-  });
-
-  testWidgets('IsJammed Row is shown if supported',
-      (WidgetTester tester) async {
-    final expectedIsJammedState = false;
-    final mockLockProvider = test.mockLockProvider(
-        test.device([
-          LockTrait(
-            {IsLocked(true), IsJammed(expectedIsJammedState)},
-            {SupportsIsJammed(true)},
-          )
-        ]),
-        isJammed: expectedIsJammedState);
-
-    await tester.pumpWidget(createMaterialApp(mockLockProvider));
-
-    expect(find.text(StringConstants.DEVICE_IS_JAMMED), findsOneWidget);
-    expect(find.text(expectedIsJammedState.toString()), findsOneWidget);
   });
 }
