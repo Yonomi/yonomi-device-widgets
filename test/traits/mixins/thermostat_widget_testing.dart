@@ -109,4 +109,12 @@ class TestThermostat extends Device {
   TestThermostat withThermostatMode(AvailableThermostatMode mode) {
     return TestThermostat(this, mode: mode);
   }
+
+  TestThermostat withTargetTemperature(double targetTemperature) {
+    return TestThermostat(this, targetTemperature: targetTemperature);
+  }
+
+  TestThermostat withAmbientTemperature(double ambientTemperature) {
+    return TestThermostat(this, ambientTemperature: ambientTemperature);
+  }
 }

@@ -27,7 +27,8 @@ void main() {
   group("For ThermostatSlimWidget, ", () {
     testWidgets('should display the current temperature',
         (WidgetTester tester) async {
-      final mockThermostatProvider = test.mockThermostatProvider(defaultDevice);
+      final mockThermostatProvider = test
+          .mockThermostatProvider(defaultDevice.withTargetTemperature(90.0));
       await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
       await tester.pumpAndSettle();
       expect(find.textContaining('90°'), findsOneWidget);
