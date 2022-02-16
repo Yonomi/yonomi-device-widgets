@@ -1,8 +1,8 @@
-import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/ui/notification_bar.dart';
 import 'package:yonomi_device_widgets/ui/string_constants.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
@@ -68,7 +68,10 @@ class LockWidget extends StatelessWidget {
               ),
               if (shouldDisplayJammedState()) ...[
                 SizedBox(height: 20),
-                buildIsJammedRow(context),
+                NotificationBar(
+                  messageText: StringConstants.DEVICE_IS_JAMMED,
+                  backgroundColor: _warningTextColor,
+                ),
                 SizedBox(height: 10),
               ],
             ],
@@ -79,39 +82,6 @@ class LockWidget extends StatelessWidget {
     final bool supportsIsJammed =
         _lockProvider.getLockTrait()?.supportsIsJammed ?? false;
     return supportsIsJammed && _lockProvider.getIsJammedState;
-  }
-
-  Widget buildIsJammedRow(BuildContext context) {
-    return Container(
-      height: 48,
-      margin: const EdgeInsets.only(left: 8.0, right: 8.0),
-      child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SizedBox(width: 16),
-                Icon(BootstrapIcons.exclamation_diamond_fill),
-                SizedBox(width: 8),
-                Text(StringConstants.DEVICE_IS_JAMMED),
-              ],
-            ),
-            Container(
-              width: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  border: Border(
-                      left: BorderSide(width: 1.0, color: Colors.white))),
-              child: Icon(BootstrapIcons.x),
-            ),
-          ],
-        ),
-        color: _warningTextColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        elevation: 2,
-      ),
-    );
   }
 
   void _lockTap(LockProvider provider) {
