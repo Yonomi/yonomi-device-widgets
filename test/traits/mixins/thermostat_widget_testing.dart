@@ -23,7 +23,7 @@ mixin ThermostatWidgetTesting {
     when(mockThermostatProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockThermostatProvider.isPerformingAction).thenReturn(false);
     when(mockThermostatProvider.deviceDetail).thenReturn(device);
-    when(mockThermostatProvider.displayName).thenReturn('THERMOSTAT');
+    when(mockThermostatProvider.displayName).thenReturn(device.displayName);
 
     when(mockThermostatProvider.setThermostatMode(device.id, any))
         .thenAnswer((_) => Future.value());

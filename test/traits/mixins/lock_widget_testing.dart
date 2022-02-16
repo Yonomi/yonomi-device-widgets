@@ -8,14 +8,17 @@ import 'lock_widget_testing.mocks.dart';
 @GenerateMocks([LockProvider])
 mixin LockWidgetTesting {
   MockLockProvider mockLockProvider(TestLockDevice device,
-      {bool isLoading = false,
-      bool isPerformingAction = false,
-      bool isInErrorState = false}) {
+      {bool isBusy = false,
+      bool isLoading = false,
+      bool isInErrorState = false,
+      String errorMessage = 'Some mock error occurred',
+      bool isPerformingAction = false}) {
     final mockLockProvider = MockLockProvider();
     when(mockLockProvider.isLoading).thenReturn(isLoading);
     when(mockLockProvider.isPerformingAction).thenReturn(isPerformingAction);
     when(mockLockProvider.isBusy).thenReturn(isPerformingAction || isLoading);
     when(mockLockProvider.isInErrorState).thenReturn(isInErrorState);
+    when(mockLockProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockLockProvider.deviceDetail).thenReturn(device);
     when(mockLockProvider.getIsLockedState).thenReturn(device.isLocked);
 

@@ -74,8 +74,7 @@ class DetailScreenTest
         (device) => device is TestBatteryDevice,
         orElse: () => TestBatteryDevice(device)) as TestBatteryDevice;
     BatteryLevelProvider mockBatteryTraitProvider = this
-        .mockBatteryLevelProvider(batteryDevice,
-            batteryLevel: batteryDevice.batteryLevel);
+        .mockBatteryLevelProvider(batteryDevice);
 
     final lock = devices.firstWhere((device) => device is TestLockDevice,
             orElse: () =>
