@@ -114,10 +114,6 @@ class LockWidget extends StatelessWidget {
     );
   }
 
-  _getJammedStateColor(bool isJammed) {
-    return isJammed ? _warningTextColor : _textColor;
-  }
-
   void _lockTap(LockProvider provider) {
     bool setLock = !provider.getIsLockedState;
     provider.setLockUnlockAction(provider.deviceDetail?.id ?? '', setLock);
