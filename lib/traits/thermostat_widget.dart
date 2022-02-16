@@ -4,6 +4,7 @@ import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
+import 'package:flutter/src/widgets/framework.dart' as framework;
 
 class ThermostatWidget extends StatelessWidget with ToastNotifications {
   final ThermostatProvider _thermostatProvider;
@@ -43,7 +44,6 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               )
             ],
           ),
-          _fanMode(context),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -52,6 +52,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               )
             ],
           ),
+          _fanMode(context),
         ],
       );
     }
@@ -59,73 +60,37 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
 
   Widget _setTemperature() {
     final currentMode = _thermostatProvider.getModeState;
-    if (currentMode != AvailableThermostatMode.COOL ||
-        currentMode != AvailableThermostatMode.HEAT ||
-        currentMode != AvailableThermostatMode.AUTO) {
+    if (!(currentMode == AvailableThermostatMode.COOL ||
+        currentMode == AvailableThermostatMode.HEAT)) {
       return Container();
     }
-    final coolTemperatureRange = _thermostatProvider.getCoolTemperatureRange;
-    final heatTemperatureRange = _thermostatProvider.getHeatTemperatureRange;
+    final isCool = currentMode == AvailableThermostatMode.COOL;
+    final temperatureRange = isCool
+        ? _thermostatProvider.getCoolTemperatureRange!
+        : _thermostatProvider.getHeatTemperatureRange!;
+    double value = _thermostatProvider.getTargetTemperatureState!;
 
-    final coolSlider = Slider(
-      value: _thermostatProvider.getTargetTemperatureState!,
-      min: coolTemperatureRange!.min,
-      max: coolTemperatureRange.max,
-      divisions: (coolTemperatureRange.max - coolTemperatureRange.min).toInt(),
-      onChanged: (value) => _thermostatProvider.setPointAction(
-          _thermostatProvider.deviceDetail!.id, value),
-    );
-
-    final heatSlider = Slider(
-      value: _thermostatProvider.getTargetTemperatureState!,
-      min: heatTemperatureRange!.min,
-      max: heatTemperatureRange.max,
-      divisions: (heatTemperatureRange.max - heatTemperatureRange.min).toInt(),
-      onChanged: (value) => _thermostatProvider.setPointAction(
-          _thermostatProvider.deviceDetail!.id, value),
-    );
-
-    final bothSliders = Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Cool',
-              style: TextStyle(color: _textColor),
-            ),
-            SizedBox(width: 8.0),
-            coolSlider,
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Heat',
-              style: TextStyle(color: _textColor),
-            ),
-            SizedBox(width: 8.0),
-            heatSlider,
-          ],
-        ),
-      ],
-    );
-
-    final temperatureRange = (currentMode == AvailableThermostatMode.COOL)
-        ? _thermostatProvider.getCoolTemperatureRange
-        : _thermostatProvider.getHeatTemperatureRange;
-    final maxRange = temperatureRange?.max;
-    final minRange = temperatureRange?.min;
-    if ((maxRange == null || minRange == null) || (maxRange == minRange)) {
-      return Container();
+    if ((value < temperatureRange.min)) {
+      value = temperatureRange.min;
     }
-    if (currentMode == AvailableThermostatMode.AUTO) {
-      return bothSliders;
+
+    if ((value > temperatureRange.max)) {
+      value = temperatureRange.max;
     }
-    return (currentMode == AvailableThermostatMode.COOL)
-        ? coolSlider
-        : heatSlider;
+
+    return TemperatureRangeSlider(
+      value,
+      temperatureRange.min,
+      temperatureRange.max,
+      isCool,
+      (value) {
+        // Add 1s delay
+        Future.delayed(Duration(seconds: 1), () {
+          _thermostatProvider.setPointAction(
+              _thermostatProvider.deviceDetail!.id, value);
+        });
+      },
+    );
   }
 
   Widget _fanMode(BuildContext context) {
@@ -333,5 +298,63 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
             width: iconSize,
             key: Key('defaultModeIcon-${mode.name}'));
     }
+  }
+}
+
+class TemperatureRangeSlider extends StatefulWidget {
+  late final sliderValue;
+  late final min;
+  late final max;
+  late final isCool;
+  late final onChangeEnd;
+
+  TemperatureRangeSlider(double sliderValue, double min, double max,
+      bool isCool, void Function(double)? onChangeEnd,
+      {Key? key})
+      : super(key: key) {
+    this.sliderValue = sliderValue;
+    this.min = min;
+    this.max = max;
+    this.isCool = isCool;
+    this.onChangeEnd = onChangeEnd;
+  }
+
+  @override
+  framework.State<TemperatureRangeSlider> createState() =>
+      _TemperatureRangeSlider(sliderValue, min, max, isCool, onChangeEnd);
+}
+
+class _TemperatureRangeSlider extends framework.State<TemperatureRangeSlider> {
+  late double _currentSliderValue;
+  late final min;
+  late final max;
+  late final isCool;
+  late final onChangeEnd;
+
+  _TemperatureRangeSlider(double sliderValue, double min, double max,
+      bool isCool, void Function(double)? onChangeEnd) {
+    this._currentSliderValue = sliderValue;
+    this.min = min;
+    this.max = max;
+    this.isCool = isCool;
+    this.onChangeEnd = onChangeEnd;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: _currentSliderValue,
+      label: _currentSliderValue.round().toString(),
+      min: min,
+      max: max,
+      divisions: 100,
+      thumbColor: isCool ? Colors.blue : Colors.red,
+      onChangeEnd: onChangeEnd,
+      onChanged: (value) {
+        setState(() {
+          _currentSliderValue = value;
+        });
+      },
+    );
   }
 }
