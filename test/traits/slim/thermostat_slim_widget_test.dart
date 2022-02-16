@@ -22,7 +22,7 @@ class ThermostatWidgetTest with DeviceTesting, ThermostatWidgetTesting {}
 
 void main() {
   final test = ThermostatWidgetTest();
-  final defaultDevice = TestThermostat(test.device());
+  final defaultDevice = TestThermostatDevice(test.device());
 
   group("For ThermostatSlimWidget, ", () {
     testWidgets('should display the current temperature',

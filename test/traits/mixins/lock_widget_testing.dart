@@ -7,7 +7,7 @@ import 'lock_widget_testing.mocks.dart';
 
 @GenerateMocks([LockProvider])
 mixin LockWidgetTesting {
-  MockLockProvider mockLockProvider(TestLock device,
+  MockLockProvider mockLockProvider(TestLockDevice device,
       {bool isLoading = false,
       bool isPerformingAction = false,
       bool isInErrorState = false}) {
@@ -23,12 +23,12 @@ mixin LockWidgetTesting {
   }
 }
 
-class TestLock extends Device {
+class TestLockDevice extends Device {
   final bool isLocked;
   final bool isJammed;
   final bool supportsIsJammed;
 
-  TestLock(Device device,
+  TestLockDevice(Device device,
       {this.isLocked = false,
       this.isJammed = false,
       this.supportsIsJammed = false})
@@ -50,8 +50,8 @@ class TestLock extends Device {
           ...device.traits.where((t) => t.runtimeType != LockTrait)
         ]);
 
-  TestLock withIsLocked(bool isLocked) {
-    return TestLock(this,
+  TestLockDevice withIsLocked(bool isLocked) {
+    return TestLockDevice(this,
         isLocked: isLocked,
         isJammed: this.isJammed,
         supportsIsJammed: this.supportsIsJammed);

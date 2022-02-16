@@ -22,7 +22,7 @@ material.MaterialApp createMaterialApp(
 
 void main() {
   final test = ThermostatWidgetTest();
-  final defaultDevice = TestThermostat(test.device());
+  final defaultDevice = TestThermostatDevice(test.device());
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {

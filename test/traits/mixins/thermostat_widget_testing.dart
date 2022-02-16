@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'thermostat_widget_testing.mocks.dart';
@@ -10,7 +9,7 @@ import 'thermostat_widget_testing.mocks.dart';
 @GenerateMocks([ThermostatProvider])
 mixin ThermostatWidgetTesting {
   MockThermostatProvider mockThermostatProvider(
-    TestThermostat device, {
+    TestThermostatDevice device, {
     bool isBusy = false,
     bool isLoading = false,
     bool isInErrorState = false,
@@ -52,7 +51,7 @@ mixin ThermostatWidgetTesting {
   }
 }
 
-class TestThermostat extends Device {
+class TestThermostatDevice extends Device {
   final double targetTemperature;
   final double ambientTemperature;
   final AvailableFanMode fanMode;
@@ -60,7 +59,7 @@ class TestThermostat extends Device {
   final Set<AvailableFanMode> availableFanModes;
   final Set<AvailableThermostatMode> availableThermostatModes;
 
-  TestThermostat(
+  TestThermostatDevice(
     Device device, {
     this.targetTemperature = 70.0,
     this.ambientTemperature = 68.8,
@@ -102,19 +101,19 @@ class TestThermostat extends Device {
           ...device.traits.where((t) => t.runtimeType != ThermostatTrait)
         ]);
 
-  TestThermostat withFanMode(AvailableFanMode fanMode) {
-    return TestThermostat(this, fanMode: fanMode);
+  TestThermostatDevice withFanMode(AvailableFanMode fanMode) {
+    return TestThermostatDevice(this, fanMode: fanMode);
   }
 
-  TestThermostat withThermostatMode(AvailableThermostatMode mode) {
-    return TestThermostat(this, mode: mode);
+  TestThermostatDevice withThermostatMode(AvailableThermostatMode mode) {
+    return TestThermostatDevice(this, mode: mode);
   }
 
-  TestThermostat withTargetTemperature(double targetTemperature) {
-    return TestThermostat(this, targetTemperature: targetTemperature);
+  TestThermostatDevice withTargetTemperature(double targetTemperature) {
+    return TestThermostatDevice(this, targetTemperature: targetTemperature);
   }
 
-  TestThermostat withAmbientTemperature(double ambientTemperature) {
-    return TestThermostat(this, ambientTemperature: ambientTemperature);
+  TestThermostatDevice withAmbientTemperature(double ambientTemperature) {
+    return TestThermostatDevice(this, ambientTemperature: ambientTemperature);
   }
 }

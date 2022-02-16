@@ -19,7 +19,7 @@ MaterialApp createMaterialApp(LockProvider mockLockProvider) {
 
 void main() {
   final test = LockWidgetTest();
-  final defaultLock = TestLock(test.device());
+  final defaultLock = TestLockDevice(test.device());
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {

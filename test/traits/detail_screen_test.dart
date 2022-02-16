@@ -70,32 +70,34 @@ class DetailScreenTest
     when(mockTraitDetailProvider.isLoading).thenReturn(false);
     when(mockTraitDetailProvider.deviceDetail).thenReturn(device);
 
-    final batteryDevice = devices.firstWhere((device) => device is TestBattery,
-        orElse: () => TestBattery(device)) as TestBattery;
+    final batteryDevice = devices.firstWhere(
+        (device) => device is TestBatteryDevice,
+        orElse: () => TestBatteryDevice(device)) as TestBatteryDevice;
     BatteryLevelProvider mockBatteryTraitProvider = this
         .mockBatteryLevelProvider(batteryDevice,
             batteryLevel: batteryDevice.batteryLevel);
 
-    final lock = devices.firstWhere((device) => device is TestLock,
+    final lock = devices.firstWhere((device) => device is TestLockDevice,
             orElse: () =>
-                TestLock(device, isLocked: false, supportsIsJammed: false))
-        as TestLock;
+                TestLockDevice(device,
+            isLocked: false, supportsIsJammed: false)) as TestLockDevice;
     LockProvider mockLockProvider = this.mockLockProvider(lock);
 
-    final powerDevice = devices.firstWhere((device) => device is TestPower,
+    final powerDevice = devices.firstWhere(
+        (device) => device is TestPowerDevice,
             orElse: () =>
-                TestPower(device, isOn: false, supportsDiscreteOnOff: true))
-        as TestPower;
+                TestPowerDevice(device,
+            isOn: false, supportsDiscreteOnOff: true)) as TestPowerDevice;
     PowerTraitProvider mockPowerTraitProvider =
         this.mockPowerTraitProvider(powerDevice);
 
     final thermostatDevice = devices.firstWhere(
-        (device) => device is TestThermostat,
-        orElse: () => TestThermostat(device,
+        (device) => device is TestThermostatDevice,
+        orElse: () => TestThermostatDevice(device,
             targetTemperature: 90.0,
             ambientTemperature: 89.0,
             fanMode: AvailableFanMode.AUTO,
-            mode: AvailableThermostatMode.AUTO)) as TestThermostat;
+            mode: AvailableThermostatMode.AUTO)) as TestThermostatDevice;
     ThermostatProvider mockThermostatProvider =
         this.mockThermostatProvider(thermostatDevice);
 
@@ -162,7 +164,9 @@ void main() {
       (WidgetTester tester) async {
     Request request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [TestLock(test.device(), isLocked: false, supportsIsJammed: false)],
+        [
+      TestLockDevice(test.device(), isLocked: false, supportsIsJammed: false)
+    ],
         request,
         testedDeviceId));
 
@@ -174,7 +178,9 @@ void main() {
       (WidgetTester tester) async {
     Request request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [TestPower(test.device(), isOn: true, supportsDiscreteOnOff: true)],
+        [
+      TestPowerDevice(test.device(), isOn: true, supportsDiscreteOnOff: true)
+    ],
         request,
         testedDeviceId));
 
@@ -186,7 +192,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [TestBattery(test.device(), batteryLevel: 90)],
+        [TestBatteryDevice(test.device(), batteryLevel: 90)],
         request,
         testedDeviceId));
 
@@ -198,7 +204,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [TestBattery(test.device(), batteryLevel: 1)],
+        [TestBatteryDevice(test.device(), batteryLevel: 1)],
         request,
         testedDeviceId));
 
@@ -210,7 +216,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [TestBattery(test.device(), batteryLevel: 50)],
+        [TestBatteryDevice(test.device(), batteryLevel: 50)],
         request,
         testedDeviceId));
 
@@ -222,7 +228,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      TestThermostat(test.device(),
+      TestThermostatDevice(test.device(),
           targetTemperature: 100.0, ambientTemperature: 80.0)
     ], request, testedDeviceId));
 
@@ -237,7 +243,7 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      TestThermostat(test.device(),
+      TestThermostatDevice(test.device(),
           targetTemperature: 100.0, ambientTemperature: 80.0)
     ], request, testedDeviceId));
 
@@ -262,12 +268,13 @@ void main() {
     final request = Request('', {});
     final device = test.device();
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      TestLock(device, isLocked: false, supportsIsJammed: false),
+      TestLockDevice(device, isLocked: false, supportsIsJammed: false),
       test.device(traits: [UnknownTrait('unknown')]),
-      TestBattery(device, batteryLevel: 100),
-      TestPower(device, isOn: true, supportsDiscreteOnOff: true),
-      TestLock(device, isLocked: false, supportsIsJammed: false),
-      TestThermostat(device, targetTemperature: 99.0, ambientTemperature: 89.0),
+      TestBatteryDevice(device, batteryLevel: 100),
+      TestPowerDevice(device, isOn: true, supportsDiscreteOnOff: true),
+      TestLockDevice(device, isLocked: false, supportsIsJammed: false),
+      TestThermostatDevice(device,
+          targetTemperature: 99.0, ambientTemperature: 89.0),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -297,9 +304,9 @@ void main() {
     final request = Request('', {});
     final device = test.device();
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      TestLock(device, isLocked: false, supportsIsJammed: false),
+      TestLockDevice(device, isLocked: false, supportsIsJammed: false),
       test.device(traits: [UnknownTrait('unknown')]),
-      TestBattery(device, batteryLevel: 50),
+      TestBatteryDevice(device, batteryLevel: 50),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -319,9 +326,9 @@ void main() {
     final request = Request('', {});
     final device = test.device();
     await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
-      TestLock(device, isLocked: false, supportsIsJammed: false),
+      TestLockDevice(device, isLocked: false, supportsIsJammed: false),
       test.device(traits: [UnknownTrait('unknown')]),
-      TestBattery(device, batteryLevel: 1),
+      TestBatteryDevice(device, batteryLevel: 1),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);

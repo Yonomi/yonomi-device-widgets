@@ -7,7 +7,7 @@ import 'power_widget_testing.mocks.dart';
 
 @GenerateMocks([PowerTraitProvider])
 mixin PowerWidgetTesting {
-  MockPowerTraitProvider mockPowerTraitProvider(TestPower device,
+  MockPowerTraitProvider mockPowerTraitProvider(TestPowerDevice device,
       {bool isBusy = false,
       bool isLoading = false,
       bool isInErrorState = false,
@@ -29,11 +29,11 @@ mixin PowerWidgetTesting {
   }
 }
 
-class TestPower extends Device {
+class TestPowerDevice extends Device {
   final bool isOn;
   final bool supportsDiscreteOnOff;
 
-  TestPower(Device device,
+  TestPowerDevice(Device device,
       {this.isOn = true, this.supportsDiscreteOnOff = true})
       : super(
             device.id,
@@ -50,11 +50,11 @@ class TestPower extends Device {
           ...device.traits.where((t) => t.runtimeType != PowerTrait)
         ]);
 
-  TestPower withIsOn(bool isOn) {
-    return TestPower(this, isOn: isOn);
+  TestPowerDevice withIsOn(bool isOn) {
+    return TestPowerDevice(this, isOn: isOn);
   }
 
-  TestPower withSupportsDiscreteOnOff(bool supportsDiscreteOnOff) {
-    return TestPower(this, supportsDiscreteOnOff: supportsDiscreteOnOff);
+  TestPowerDevice withSupportsDiscreteOnOff(bool supportsDiscreteOnOff) {
+    return TestPowerDevice(this, supportsDiscreteOnOff: supportsDiscreteOnOff);
   }
 }

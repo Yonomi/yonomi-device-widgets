@@ -18,7 +18,7 @@ MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
 
 void main() {
   final test = PowerWidgetTest();
-  final defaultDevice = TestPower(test.device());
+  final defaultDevice = TestPowerDevice(test.device());
 
   group("For PowerWidget, ", () {
     testWidgets('When loading, should show CircularProgressIndicator ',
