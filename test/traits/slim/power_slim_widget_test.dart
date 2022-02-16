@@ -6,6 +6,7 @@ import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
+import '../mixins/power_widget_testing.dart';
 import '../power_widget_test.dart';
 
 MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
@@ -17,10 +18,8 @@ MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
 
 void main() {
   final test = PowerWidgetTest();
-  final defaultDevice = test.device(traits: [
-    PowerTrait(IsOnOff(true),
-        supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
-  ]);
+
+  final defaultDevice = TestPower(test.device());
 
   group("For PowerWidget, ", () {
     testWidgets('When loading, should show CircularProgressIndicator ',
@@ -54,7 +53,7 @@ void main() {
     testWidgets('Should show a Switch widget with On state if device is On',
         (WidgetTester tester) async {
       final mockPowerTraitProvider =
-          test.mockPowerTraitProvider(defaultDevice, onOffState: false);
+          test.mockPowerTraitProvider(defaultDevice.withIsOn(false));
       await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
 
       expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -86,8 +85,7 @@ void main() {
     testWidgets(
         "Should run PowerTraitProvider's sendPowerOnOffAction method when Switch is pressed",
         (WidgetTester tester) async {
-      final mockPowerTraitProvider =
-          test.mockPowerTraitProvider(defaultDevice, onOffState: true);
+      final mockPowerTraitProvider = test.mockPowerTraitProvider(defaultDevice);
 
       await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
 
@@ -102,8 +100,8 @@ void main() {
     testWidgets(
         "Should run PowerTraitProvider's sendPowerOnOffAction method when button is pressed",
         (WidgetTester tester) async {
-      final mockPowerTraitProvider = test.mockPowerTraitProvider(defaultDevice,
-          onOffState: true, supportsDiscreteOnOff: false);
+      final mockPowerTraitProvider = test.mockPowerTraitProvider(
+          defaultDevice.withSupportsDiscreteOnOff(false));
 
       await tester.pumpWidget(createMaterialApp(mockPowerTraitProvider));
 

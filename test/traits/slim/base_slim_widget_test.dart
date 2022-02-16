@@ -8,6 +8,7 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/battery_widget_testing.dart';
 import '../mixins/device_testing.dart';
+import '../mixins/lock_widget_testing.dart';
 import '../mixins/power_widget_testing.dart';
 
 typedef CreateWidget = Widget Function(BuildContext context);
@@ -39,10 +40,7 @@ void main() {
   testWidgets(
       'When a content widget is performing an action a circular progress indicator is displayed',
       (WidgetTester tester) async {
-    final device = test.device(traits: [
-      PowerTrait(IsOnOff(false),
-          supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
-    ]);
+    final device = TestPower(test.device(), isOn: false);
     final provider = test.mockPowerTraitProvider(device);
 
     when(provider.isLoading).thenReturn(false);

@@ -24,9 +24,9 @@ mixin LockWidgetTesting {
 }
 
 class TestLock extends Device {
-  bool isLocked;
-  bool isJammed;
-  bool supportsIsJammed;
+  final bool isLocked;
+  final bool isJammed;
+  final bool supportsIsJammed;
 
   TestLock(Device device,
       {this.isLocked = false,

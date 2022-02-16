@@ -71,13 +71,11 @@ class DetailScreenTest
     LockProvider mockLockProvider =
         this.mockLockProvider(TestLock(lock, isLocked: false));
 
-    final powerDevice = device(traits: [
-      traits.firstWhere((trait) => trait is PowerTrait,
-          orElse: () => PowerTrait(IsOnOff(false),
-              supportsDiscreteOnOff: SupportsDiscreteOnOff(true)))
-    ]);
+    final powerDevice = TestPower(device(traits: traits),
+        isOn: false, supportsDiscreteOnOff: true);
+
     PowerTraitProvider mockPowerTraitProvider =
-        this.mockPowerTraitProvider(powerDevice, onOffState: false);
+        this.mockPowerTraitProvider(powerDevice);
 
     final batteryLevelTrait = traits.firstWhere(
         (trait) => trait is BatteryLevelTrait,
@@ -155,12 +153,9 @@ void main() {
   testWidgets('For the Lock Trait, Detail screen should show the LockWidget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
-    ],
-        request,
-        testedDeviceId));
+    ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
   });
