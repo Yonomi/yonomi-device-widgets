@@ -24,7 +24,7 @@ void main() {
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final device = test.device([BatteryLevelTrait(BatteryLevel(100))]);
+    final device = test.device(traits: [BatteryLevelTrait(BatteryLevel(100))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
     when(mockBatteryLevelProvider.isLoading).thenReturn(true);
 
@@ -35,7 +35,7 @@ void main() {
 
   testWidgets('When battery level is low, should show low battery icon',
       (WidgetTester tester) async {
-    final device = test.device(
+    final device = test.device(traits:
         [BatteryLevelTrait(BatteryLevel(WidgetStyleConstants.batteryLowMax))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
     when(mockBatteryLevelProvider.getBatteryLevelState)
@@ -54,7 +54,7 @@ void main() {
   testWidgets(
       'When battery level is not low or high, should show half battery icon',
       (WidgetTester tester) async {
-    final device = test.device([BatteryLevelTrait(BatteryLevel(50))]);
+    final device = test.device(traits: [BatteryLevelTrait(BatteryLevel(50))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
     when(mockBatteryLevelProvider.getBatteryLevelState).thenReturn(50);
 
@@ -70,7 +70,7 @@ void main() {
 
   testWidgets('When battery level is high, should show full battery icon',
       (WidgetTester tester) async {
-    final device = test.device(
+    final device = test.device(traits:
         [BatteryLevelTrait(BatteryLevel(WidgetStyleConstants.batteryFullMin))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
     when(mockBatteryLevelProvider.getBatteryLevelState)
@@ -88,7 +88,7 @@ void main() {
 
   testWidgets('When battery widget is in error, should show error icon',
       (WidgetTester tester) async {
-    final device = test.device([BatteryLevelTrait(BatteryLevel(100))]);
+    final device = test.device(traits: [BatteryLevelTrait(BatteryLevel(100))]);
     final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
     when(mockBatteryLevelProvider.isInErrorState).thenReturn(true);
 

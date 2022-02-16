@@ -46,7 +46,7 @@ void main() {
     ThermostatMode(AvailableThermostatMode.AIRFLOW)
   };
   final defaultDevice =
-      test.device([ThermostatTrait(defaultStates, defaultProperties)]);
+      test.device(traits: [ThermostatTrait(defaultStates, defaultProperties)]);
 
   group("For ThermostatSlimWidget, ", () {
     testWidgets('should display the current temperature',

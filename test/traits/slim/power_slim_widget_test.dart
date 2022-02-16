@@ -17,7 +17,7 @@ MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
 
 void main() {
   final test = PowerWidgetTest();
-  final defaultDevice = test.device([
+  final defaultDevice = test.device(traits: [
     PowerTrait(IsOnOff(true),
         supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
   ]);

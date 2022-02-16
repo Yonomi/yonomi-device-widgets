@@ -34,12 +34,12 @@ MaterialApp createMaterialApp(TestWidget testWidget) {
 
 void main() {
   final test = BaseSlimWidgetTest();
-  final device = test.device([UnknownTrait('name')]);
+  final device = test.device(traits: [UnknownTrait('name')]);
 
   testWidgets(
       'When a content widget is performing an action a circular progress indicator is displayed',
       (WidgetTester tester) async {
-    final device = test.device([
+    final device = test.device(traits: [
       PowerTrait(IsOnOff(false),
           supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
     ]);
