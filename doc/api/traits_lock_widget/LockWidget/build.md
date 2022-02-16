@@ -100,7 +100,10 @@ Widget build(BuildContext context) {
             ),
             if (shouldDisplayJammedState()) ...[
               SizedBox(height: 20),
-              buildIsJammedRow(context),
+              NotificationBar(
+                messageText: StringConstants.DEVICE_IS_JAMMED,
+                backgroundColor: _warningTextColor,
+              ),
               SizedBox(height: 10),
             ],
           ],

@@ -112,15 +112,19 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
- 
-
-
 ##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+ 
+
+
 ##### [modes_toolbar](components_modes_toolbar/components_modes_toolbar-library.md)
+ 
+
+
+##### [notification_bar](ui_notification_bar/ui_notification_bar-library.md)
  
 
 
