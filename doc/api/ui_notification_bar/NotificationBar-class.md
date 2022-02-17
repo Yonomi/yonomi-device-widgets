@@ -176,6 +176,17 @@ _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant
 
 
 
+## Constants
+
+##### [NOTIFICATION_BAR_KEY](../ui_notification_bar/NotificationBar/NOTIFICATION_BAR_KEY-constant.md) const [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+
+
+
+
 
 
 
