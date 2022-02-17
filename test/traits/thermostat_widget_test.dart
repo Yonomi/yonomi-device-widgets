@@ -38,15 +38,45 @@ void main() {
     AvailableFanMode.ECO,
     AvailableFanMode.HUMIDITY
   });
-  final defaultProperties = <Property>{defaultFanModes, defaultThermostatModes};
+  final coolTemperatureRange = TemperatureRange(max: 100, min: 5);
+  final heatTemperatureRange = TemperatureRange(max: 50, min: 10);
+  final coolRange = CoolSetPointRange(coolTemperatureRange);
+  final heatRange = HeatSetPointRange(heatTemperatureRange);
+  final defaultProperties = <Property>{
+    defaultFanModes,
+    defaultThermostatModes,
+    coolRange,
+    heatRange
+  };
   final defaultStates = <State>{
     TargetTemperature(92.0),
     AmbientTemperature(72.0),
     FanMode(AvailableFanMode.ECO),
-    ThermostatMode(AvailableThermostatMode.AIRFLOW)
+    ThermostatMode(AvailableThermostatMode.AIRFLOW),
   };
+
+  final stateWithHeatMode = <State>{
+    TargetTemperature(92.0),
+    AmbientTemperature(72.0),
+    FanMode(AvailableFanMode.ECO),
+    ThermostatMode(AvailableThermostatMode.HEAT),
+  };
+
+  final stateWithCoolMode = <State>{
+    TargetTemperature(92.0),
+    AmbientTemperature(72.0),
+    FanMode(AvailableFanMode.ECO),
+    ThermostatMode(AvailableThermostatMode.COOL),
+  };
+
   final defaultDevice =
       test.device([ThermostatTrait(defaultStates, defaultProperties)]);
+
+  final defaultDeviceWithHeatMode =
+      test.device([ThermostatTrait(stateWithHeatMode, defaultProperties)]);
+
+  final defaultDeviceWithCoolMode =
+      test.device([ThermostatTrait(stateWithCoolMode, defaultProperties)]);
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {

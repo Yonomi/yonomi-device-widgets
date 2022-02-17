@@ -170,11 +170,11 @@ workflows:
     jobs:
       - test:
           <<: *feature-branch-filter
-      - generate_documentation:
-          context:
-            - org-global
-          requires:
-            - test
+      # - generate_documentation: TODO: Need to decide what to do for document generation
+      #     context:
+      #       - org-global
+      #     requires:
+      #       - test
   main:
     jobs:
       - test:
