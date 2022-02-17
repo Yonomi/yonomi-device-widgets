@@ -17,7 +17,7 @@ import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart'
     as _i4;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i5;
-import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
+import 'package:yonomi_platform_sdk/src/repository/devices_repository.dart'
     as _i8;
 import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
     as _i11;
