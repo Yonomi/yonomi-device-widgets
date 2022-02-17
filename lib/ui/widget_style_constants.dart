@@ -42,4 +42,6 @@ class WidgetStyleConstants {
   static const int batteryLowMax = 15;
 
   static const int batteryFullMin = 75;
+
+  static const Color jammedStateTextColor = Colors.white;
 }

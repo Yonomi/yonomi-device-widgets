@@ -1,7 +1,7 @@
 
 
 
-# LockWidget class
+# NotificationBar class
 
 
 
@@ -12,6 +12,9 @@
 
 
 
+<p>Creates a widget to represent a horizontal and wide notification.
+Includes an 'X' icon that hides the notification when pressed.</p>
+<p>Pass a <code>messageText</code> as the text for the notification widget</p>
 
 
 **Inheritance**
@@ -19,8 +22,8 @@
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-- [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
-- LockWidget
+- [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)
+- NotificationBar
 
 
 
@@ -29,9 +32,9 @@
 
 ## Constructors
 
-[LockWidget](../traits_lock_widget/LockWidget/LockWidget.md) ([LockProvider](../providers_lock_provider/LockProvider-class.md) _lockProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) warningTextColor = WidgetStyleConstants.globalWarningColor, [double](https://api.flutter.dev/flutter/dart-core/double-class.html) iconSize = 100, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[NotificationBar](../ui_notification_bar/NotificationBar/NotificationBar.md) ({[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, required [String](https://api.flutter.dev/flutter/dart-core/String-class.html) messageText, required [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) backgroundColor, [IconData](https://api.flutter.dev/flutter/widgets/IconData-class.html) messageIcon = BootstrapIcons.exclamation_diamond_fill})
 
-    
+   _const_ 
 
 
 ## Properties
@@ -66,21 +69,21 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_lock_widget/LockWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [createElement](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)() [StatefulElement](https://api.flutter.dev/flutter/widgets/StatefulElement-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_lock_widget/LockWidget/build.md)  
-_override_
-
-
-
-##### [createElement](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)() [StatelessElement](https://api.flutter.dev/flutter/widgets/StatelessElement-class.html)
-
-
-
-Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)  
 _inherited_
+
+
+
+##### [createState](../ui_notification_bar/NotificationBar/createState.md)() [State](https://api.flutter.dev/flutter/widgets/State-class.html)&lt;[NotificationBar](../ui_notification_bar/NotificationBar-class.md)>
+
+
+
+Creates the mutable state for this widget at a given location in the tree. [...](../ui_notification_bar/NotificationBar/createState.md)  
+_override_
 
 
 
@@ -109,15 +112,6 @@ _inherited_
 
 Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
 _inherited_
-
-
-
-##### [shouldDisplayJammedState](../traits_lock_widget/LockWidget/shouldDisplayJammedState.md)() [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
-
-
-
-   
-
 
 
 
@@ -178,6 +172,17 @@ The equality operator. [...](https://api.flutter.dev/flutter/widgets/Widget/oper
 _@[nonVirtual](https://pub.dev/documentation/meta/1.7.0/meta/nonVirtual-constant.html), inherited_
 
 
+
+
+
+
+## Constants
+
+##### [NOTIFICATION_BAR_KEY](../ui_notification_bar/NotificationBar/NOTIFICATION_BAR_KEY-constant.md) const [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
 
 
 

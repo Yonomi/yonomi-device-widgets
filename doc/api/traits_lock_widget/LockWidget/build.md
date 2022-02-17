@@ -76,9 +76,7 @@ Widget build(BuildContext context) {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Container(
               child: Center(
                 child: SizedBox(
@@ -93,15 +91,21 @@ Widget build(BuildContext context) {
                                 size: _iconSize, color: _iconColor)),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             CupertinoSwitch(
               onChanged: (bool value) {
                 _lockTap(_lockProvider);
               },
               value: _lockProvider.getIsLockedState,
             ),
+            if (shouldDisplayJammedState()) ...[
+              SizedBox(height: 20),
+              NotificationBar(
+                messageText: StringConstants.DEVICE_IS_JAMMED,
+                backgroundColor: _warningTextColor,
+              ),
+              SizedBox(height: 10),
+            ],
           ],
         );
 }
