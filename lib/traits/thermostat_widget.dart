@@ -78,18 +78,25 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
       value = temperatureRange.max;
     }
 
-    return TemperatureRangeSlider(
-      value,
-      temperatureRange.min,
-      temperatureRange.max,
-      isCool,
-      (value) {
-        // Add 1s delay
-        Future.delayed(Duration(seconds: 1), () {
-          _thermostatProvider.setPointAction(
-              _thermostatProvider.deviceDetail!.id, value);
-        });
-      },
+    return Row(
+      children: [
+        Icon(
+          isCool ? Icons.ac_unit : Icons.whatshot,
+          color: _textColor,
+        ),
+        TemperatureRangeSlider(
+          value,
+          temperatureRange.min,
+          temperatureRange.max,
+          (value) {
+            // Add 1s delay
+            Future.delayed(Duration(seconds: 1), () {
+              _thermostatProvider.setPointAction(
+                  _thermostatProvider.deviceDetail!.id, value);
+            });
+          },
+        ),
+      ],
     );
   }
 
@@ -305,38 +312,34 @@ class TemperatureRangeSlider extends StatefulWidget {
   late final sliderValue;
   late final min;
   late final max;
-  late final isCool;
   late final onChangeEnd;
 
   TemperatureRangeSlider(double sliderValue, double min, double max,
-      bool isCool, void Function(double)? onChangeEnd,
+      void Function(double)? onChangeEnd,
       {Key? key})
       : super(key: key) {
     this.sliderValue = sliderValue;
     this.min = min;
     this.max = max;
-    this.isCool = isCool;
     this.onChangeEnd = onChangeEnd;
   }
 
   @override
   framework.State<TemperatureRangeSlider> createState() =>
-      _TemperatureRangeSlider(sliderValue, min, max, isCool, onChangeEnd);
+      _TemperatureRangeSlider(sliderValue, min, max, onChangeEnd);
 }
 
 class _TemperatureRangeSlider extends framework.State<TemperatureRangeSlider> {
   late double _currentSliderValue;
   late final min;
   late final max;
-  late final isCool;
   late final onChangeEnd;
 
   _TemperatureRangeSlider(double sliderValue, double min, double max,
-      bool isCool, void Function(double)? onChangeEnd) {
+      void Function(double)? onChangeEnd) {
     this._currentSliderValue = sliderValue;
     this.min = min;
     this.max = max;
-    this.isCool = isCool;
     this.onChangeEnd = onChangeEnd;
   }
 
@@ -348,7 +351,6 @@ class _TemperatureRangeSlider extends framework.State<TemperatureRangeSlider> {
       min: min,
       max: max,
       divisions: 100,
-      thumbColor: isCool ? Colors.blue : Colors.red,
       onChangeEnd: onChangeEnd,
       onChanged: (value) {
         setState(() {
