@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.6.0...v2.7.0) (2022-02-17)
+
+
+### Features
+
+* **DX-353:** display IsJammed State if device supports it ([#37](https://github.com/Yonomi/yonomi-device-widgets/issues/37)) ([e82f8d4](https://github.com/Yonomi/yonomi-device-widgets/commit/e82f8d41c4c140b14f5dcebc814707fccf3cf2ff))
+
 # [2.6.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.5.1...v2.6.0) (2022-01-25)
 
 

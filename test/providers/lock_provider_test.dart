@@ -70,6 +70,7 @@ void main() {
     expect(lockProvider.isBusy, equals(false));
     expect(lockProvider.isPerformingAction, equals(false));
     expect(lockProvider.getIsLockedState, true);
+    expect(lockProvider.getIsJammedState, false);
     expect(lockProvider.getLockTrait(), isA<LockTrait>());
   });
 
@@ -128,6 +129,6 @@ void main() {
 Device _getDevice(bool isLocked) {
   return Device('id', 'name', 'description', 'manufacturerName', 'model', null,
       GDateTime('value'), GDateTime('value'), [
-    LockTrait({IsLocked(isLocked)}, {SupportsIsJammed(false)})
+    LockTrait({IsLocked(isLocked), IsJammed(false)}, {SupportsIsJammed(false)})
   ]);
 }

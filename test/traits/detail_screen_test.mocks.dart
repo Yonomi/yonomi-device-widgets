@@ -147,6 +147,10 @@ class MockLockProvider extends _i1.Mock implements _i10.LockProvider {
       (super.noSuchMethod(Invocation.getter(#getIsLockedState),
           returnValue: false) as bool);
   @override
+  bool get getIsJammedState =>
+      (super.noSuchMethod(Invocation.getter(#getIsJammedState),
+          returnValue: false) as bool);
+  @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);

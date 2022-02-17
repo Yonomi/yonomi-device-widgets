@@ -124,6 +124,10 @@ open coverage/html/index.html
  
 
 
+##### [notification_bar](ui_notification_bar/ui_notification_bar-library.md)
+ 
+
+
 ##### [power_item_icon](assets_traits_power_item_icon/assets_traits_power_item_icon-library.md)
  
 
@@ -141,6 +145,10 @@ open coverage/html/index.html
 
 
 ##### [ring_border](ui_ring_border/ui_ring_border-library.md)
+ 
+
+
+##### [string_constants](ui_string_constants/ui_string_constants-library.md)
  
 
 

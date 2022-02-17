@@ -63,6 +63,15 @@ _read-only, inherited_
 
 
 
+##### [getIsJammedState](../providers_lock_provider/LockProvider/getIsJammedState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+
+
+
+   
+_read-only_
+
+
+
 ##### [getIsLockedState](../providers_lock_provider/LockProvider/getIsLockedState.md) &#8594; [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
 
 

@@ -14,6 +14,7 @@ mixin LockWidgetTesting {
       String errorMessage = 'Some mock error occurred',
       bool isPerformingAction = false}) {
     final mockLockProvider = MockLockProvider();
+    when(mockLockProvider.displayName).thenReturn(device.displayName);
     when(mockLockProvider.isLoading).thenReturn(isLoading);
     when(mockLockProvider.isPerformingAction).thenReturn(isPerformingAction);
     when(mockLockProvider.isBusy).thenReturn(isPerformingAction || isLoading);
@@ -21,6 +22,10 @@ mixin LockWidgetTesting {
     when(mockLockProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockLockProvider.deviceDetail).thenReturn(device);
     when(mockLockProvider.getIsLockedState).thenReturn(device.isLocked);
+    when(mockLockProvider.getIsJammedState).thenReturn(device.isJammed);
+
+    when(mockLockProvider.getLockTrait()).thenReturn(device.traits
+        .firstWhere((trait) => trait is LockTrait, orElse: null) as LockTrait?);
 
     return mockLockProvider;
   }
@@ -58,5 +63,19 @@ class TestLockDevice extends Device {
         isLocked: isLocked,
         isJammed: this.isJammed,
         supportsIsJammed: this.supportsIsJammed);
+  }
+
+  TestLockDevice withJammed(bool isJammed) {
+    return TestLockDevice(this,
+        isLocked: this.isLocked,
+        isJammed: isJammed,
+        supportsIsJammed: this.supportsIsJammed);
+  }
+
+  TestLockDevice withSupportsIsJammed(bool supportsIsJammed) {
+    return TestLockDevice(this,
+        isLocked: this.isLocked,
+        isJammed: this.isJammed,
+        supportsIsJammed: supportsIsJammed);
   }
 }

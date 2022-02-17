@@ -217,6 +217,15 @@ _read / write_
 
 
 
+##### [jammedStateTextColor](../ui_widget_style_constants/WidgetStyleConstants/jammedStateTextColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+
+
+
+
 ##### [modesButtonPressedColor](../ui_widget_style_constants/WidgetStyleConstants/modesButtonPressedColor-constant.md) const [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
 
 
