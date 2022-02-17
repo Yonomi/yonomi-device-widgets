@@ -1,4 +1,5 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Creates a widget to represent a horizontal and wide notification.
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 /// Pass a [messageText] as the text for the notification widget
 ///
 class NotificationBar extends StatefulWidget {
+  static const String NOTIFICATION_BAR_KEY = "NotificationBar";
+
   const NotificationBar({
     Key? key,
     required String messageText,
@@ -48,6 +51,7 @@ class _NotificationBarState extends State<NotificationBar> {
                 ],
               ),
               GestureDetector(
+                key: const Key(NotificationBar.NOTIFICATION_BAR_KEY),
                 onTap: () => _hideNotification(),
                 child: Container(
                   width: 50,

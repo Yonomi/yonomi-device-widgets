@@ -153,10 +153,15 @@ void main() {
 
     expect(find.byType(NotificationBar), findsOneWidget);
 
-    await tester.press(find.byIcon(BootstrapIcons.x));
+    expect(
+        find.byKey(Key(NotificationBar.NOTIFICATION_BAR_KEY)), findsOneWidget);
+
+    expect(find.byIcon(BootstrapIcons.x), findsOneWidget);
+
+    await tester.tap(find.byKey(Key(NotificationBar.NOTIFICATION_BAR_KEY)));
 
     await tester.pumpAndSettle();
 
-    expect(find.byType(NotificationBar), findsOneWidget);
+    expect(find.byKey(Key(NotificationBar.NOTIFICATION_BAR_KEY)), findsNothing);
   });
 }
