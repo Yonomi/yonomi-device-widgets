@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/widget_state.dart';
+import 'package:yonomi_device_widgets/ui/string_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as sdk;
 
 typedef GetDeviceDetailsMethod = Future<sdk.Device> Function(
@@ -11,9 +12,10 @@ abstract class DeviceProvider extends ChangeNotifier {
 
   late String _deviceId;
   late sdk.Request _request;
+
   WidgetState _state = WidgetState.idle;
   sdk.Device? _deviceDetail;
-  String _latestErrorMsg = "An error occurred.";
+  String _latestErrorMsg = StringConstants.AN_ERROR_OCCURRED;
 
   DeviceProvider(sdk.Request request, String deviceId,
       {GetDeviceDetailsMethod getDetails =

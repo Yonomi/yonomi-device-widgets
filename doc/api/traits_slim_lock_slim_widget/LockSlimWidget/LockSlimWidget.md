@@ -31,7 +31,7 @@ LockSlimWidget(LockProvider lockProvider, {Color? backgroundColor, Key? key})
             },
             value: lockProvider.getIsLockedState,
           ),
-          headerText: Text(lockProvider.deviceDetail?.displayName ?? 'LOCK',
+          headerText: Text(lockProvider.displayName,
               style: TextStyle(
                   fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
           backgroundColor: backgroundColor,
