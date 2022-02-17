@@ -85,6 +85,14 @@ Widget build(BuildContext context) {
             )
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: _setTemperature(),
+            )
+          ],
+        ),
         _fanMode(context),
       ],
     );
