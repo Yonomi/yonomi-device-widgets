@@ -117,4 +117,14 @@ void main() {
 
     expect(find.byType(TemperatureRangeSlider), findsOneWidget);
   });
+
+  testWidgets('Heat Mode should display slider', (WidgetTester tester) async {
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice.withThermostatMode(AvailableThermostatMode.HEAT),
+      isBusy: false,
+    );
+    await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+
+    expect(find.byType(TemperatureRangeSlider), findsOneWidget);
+  });
 }
