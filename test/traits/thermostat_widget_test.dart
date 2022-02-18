@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'mixins/device_testing.dart';
@@ -167,5 +166,35 @@ void main() {
         (slider.first.evaluate().first.widget as TemperatureRangeSlider)
             .sliderValue,
         equals(expectedMin));
+  });
+
+  testWidgets('temperature slider should slide value',
+      (WidgetTester tester) async {
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice.withThermostatMode(AvailableThermostatMode.HEAT),
+      isBusy: false,
+    );
+    final expectedMin = 20.0;
+    final expectedMax = 30.0;
+    final targetTemperature = 21.0;
+    when(mockThermostatProvider.getHeatTemperatureRange)
+        .thenReturn(TemperatureRange(min: expectedMin, max: expectedMax));
+
+    when(mockThermostatProvider.getTargetTemperatureState)
+        .thenReturn(targetTemperature);
+
+    await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+    final temperatureSlider = find.byType(TemperatureRangeSlider);
+    final slider = find.byType(material.Slider);
+    expect((slider.first.evaluate().first.widget as material.Slider).value,
+        equals(targetTemperature));
+    final sliderWidget = temperatureSlider.first.evaluate().first.widget
+        as TemperatureRangeSlider;
+    expect(sliderWidget.onChangeEnd, isA<Function>());
+    expect(slider, findsOneWidget);
+    await tester.tap(slider);
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    expect((slider.first.evaluate().first.widget as material.Slider).value,
+        equals((expectedMax + expectedMin) / 2));
   });
 }
