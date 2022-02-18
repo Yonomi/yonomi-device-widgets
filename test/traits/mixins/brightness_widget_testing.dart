@@ -22,8 +22,9 @@ mixin BrightnessWidgetTesting {
     when(mockBrightnessProvider.isInErrorState).thenReturn(isInErrorState);
     when(mockBrightnessProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockBrightnessProvider.deviceDetail).thenReturn(device);
-    when(mockBrightnessProvider.isPerformingAction)
-        .thenReturn(isPerformingAction);
+
+    when(mockBrightnessProvider.getBrightnessState)
+        .thenReturn(device.brightness);
 
     return mockBrightnessProvider;
   }

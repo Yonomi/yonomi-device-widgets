@@ -12,7 +12,11 @@ class GetDeviceDetailsMethod extends Mock {
   Future<Device> call(Request request, String id);
 }
 
-@GenerateMocks([GetDeviceDetailsMethod])
+class SendBrightnessMethod extends Mock {
+  Future<void> call(Request request, String id, int brightness);
+}
+
+@GenerateMocks([GetDeviceDetailsMethod, SendBrightnessMethod])
 void main() {
   final brightnessTest = BrightnessProviderTest();
 
@@ -38,7 +42,29 @@ void main() {
       expect(brightnessProvider.displayName, equals('name'));
       expect(brightnessProvider.deviceDetail?.id, equals(deviceId));
       expect(brightnessProvider.getBrightnessTrait(), isA<BrightnessTrait>());
-      expect(brightnessProvider.getBrightness(), equals(80));
+      expect(brightnessProvider.getBrightnessState, equals(80));
+    });
+
+    test('Calling setBrightnessLevelAction calls repository method', () async {
+      Request request = Request("", {});
+      String deviceId = 'aDeviceId';
+
+      final GetDeviceDetailsMethod mockDeviceDetailsMethod =
+          brightnessTest.getMockDeviceDetailsMethod(request, deviceId);
+
+      final mockBrightnessMethod = MockSendBrightnessMethod();
+
+      BrightnessProvider brightnessProvider = BrightnessProvider(
+          request, deviceId,
+          getDetails: mockDeviceDetailsMethod);
+
+      await brightnessProvider.setBrightnessLevelAction(10,
+          getDetails: mockDeviceDetailsMethod,
+          sendBrightnessLevel: mockBrightnessMethod);
+
+      verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
+      verify(mockBrightnessMethod(request, deviceId, 10))
+          .called(greaterThan(0));
     });
   });
 }

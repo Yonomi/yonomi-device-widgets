@@ -1,6 +1,9 @@
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
+typedef SendBrightnessFunction = Future<void> Function(
+    Request request, String id, int brightnessLevel);
+
 class BrightnessProvider extends DeviceProvider {
   static const _DEFAULT_DISPLAY_NAME = 'BRIGHTNESS';
 
@@ -18,8 +21,16 @@ class BrightnessProvider extends DeviceProvider {
     return trait<BrightnessTrait>() as BrightnessTrait?;
   }
 
-  int? getBrightness() {
-    return getBrightnessTrait()?.stateWhereType<Brightness>().value;
+  int? get getBrightnessState =>
+      getBrightnessTrait()?.stateWhereType<Brightness>().value as int?;
+
+  Future<void> setBrightnessLevelAction(int brightnessLevel,
+      {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
+      SendBrightnessFunction sendBrightnessLevel =
+          BrightnessRepository.setBrightnessAction}) {
+    return performAction<int>(brightnessLevel, () => getBrightnessState,
+        () => sendBrightnessLevel(_request, _deviceId, brightnessLevel),
+        getDetails: getDetails);
   }
 
   @override
