@@ -17,7 +17,7 @@ mixin LockWidgetTesting {
     when(mockLockProvider.displayName).thenReturn(device.displayName);
     when(mockLockProvider.isLoading).thenReturn(isLoading);
     when(mockLockProvider.isPerformingAction).thenReturn(isPerformingAction);
-    when(mockLockProvider.isBusy).thenReturn(isPerformingAction || isLoading);
+    when(mockLockProvider.isBusy).thenReturn(isBusy);
     when(mockLockProvider.isInErrorState).thenReturn(isInErrorState);
     when(mockLockProvider.getErrorMessage).thenReturn(errorMessage);
     when(mockLockProvider.deviceDetail).thenReturn(device);

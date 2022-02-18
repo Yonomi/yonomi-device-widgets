@@ -35,7 +35,6 @@ void main() {
           sendPowerMethod: mockSendPowerMethod);
 
       verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
-
       verify(mockSendPowerMethod(request, deviceId, true))
           .called(greaterThan(0));
     });
