@@ -64,6 +64,9 @@ class DeviceWidgetBuilder {
       case ThermostatTrait:
         return DeviceWidgetFactory.produceWidget<ThermostatTrait>(
             iconColor: iconColor, textColor: textColor);
+      case BrightnessTrait:
+        return DeviceWidgetFactory.produceWidget<BrightnessTrait>(
+            iconColor: iconColor, textColor: textColor);
       default:
         return DeviceWidgetFactory.produceWidget<UnknownTrait>(
             iconColor: iconColor);
@@ -83,6 +86,9 @@ class DeviceWidgetBuilder {
             backgroundColor: backgroundColor);
       case ThermostatTrait:
         return DeviceWidgetFactory.produceSlimWidget<ThermostatTrait>(
+            backgroundColor: backgroundColor);
+      case BrightnessTrait:
+        return DeviceWidgetFactory.produceSlimWidget<BrightnessTrait>(
             backgroundColor: backgroundColor);
       default:
         return DeviceWidgetFactory.produceSlimWidget<UnknownTrait>(

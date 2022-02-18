@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
+import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
+import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -43,6 +46,12 @@ class DeviceWidgetFactory<T extends Trait> {
         return Consumer<ThermostatProvider>(
           builder: (_, thermostatProvider, __) {
             return ThermostatWidget(thermostatProvider, textColor: textColor);
+          },
+        );
+      case BrightnessTrait:
+        return Consumer<BrightnessProvider>(
+          builder: (_, brightnessProvider, __) {
+            return BrightnessWidget(brightnessProvider, textColor: textColor);
           },
         );
       default:
@@ -82,8 +91,17 @@ class DeviceWidgetFactory<T extends Trait> {
             backgroundColor: backgroundColor,
           );
         });
+      case BrightnessTrait:
+        return Consumer<BrightnessProvider>(
+            builder: (_, brightnessProvider, __) {
+          return BrightnessSlimWidget(
+            brightnessProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
       default:
-        return UnknownSlimWidget(name ?? '', backgroundColor: backgroundColor);
+        return UnknownSlimWidget(name ?? 'Unknown',
+            backgroundColor: backgroundColor);
     }
   }
 }
