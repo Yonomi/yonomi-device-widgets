@@ -124,7 +124,48 @@ void main() {
       isBusy: false,
     );
     await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+    final slider = find.byType(TemperatureRangeSlider);
 
-    expect(find.byType(TemperatureRangeSlider), findsOneWidget);
+    expect(slider, findsOneWidget);
+  });
+
+  testWidgets('Cool Mode slider value should be min if value is less than min',
+      (WidgetTester tester) async {
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice.withThermostatMode(AvailableThermostatMode.COOL),
+      isBusy: false,
+    );
+    final expectedMin = 20.0;
+    final expectedMax = 30.0;
+    when(mockThermostatProvider.getCoolTemperatureRange)
+        .thenReturn(TemperatureRange(min: expectedMin, max: expectedMax));
+    when(mockThermostatProvider.getTargetTemperatureState).thenReturn(10);
+    await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+    final slider = find.byType(TemperatureRangeSlider);
+    expect(slider, findsOneWidget);
+    expect(
+        (slider.first.evaluate().first.widget as TemperatureRangeSlider)
+            .sliderValue,
+        equals(expectedMin));
+  });
+
+  testWidgets('Heat Mode slider value should be min if value is less than min',
+      (WidgetTester tester) async {
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice.withThermostatMode(AvailableThermostatMode.HEAT),
+      isBusy: false,
+    );
+    final expectedMin = 20.0;
+    final expectedMax = 30.0;
+    when(mockThermostatProvider.getCoolTemperatureRange)
+        .thenReturn(TemperatureRange(min: expectedMin, max: expectedMax));
+    when(mockThermostatProvider.getTargetTemperatureState).thenReturn(10);
+    await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+    final slider = find.byType(TemperatureRangeSlider);
+    expect(slider, findsOneWidget);
+    expect(
+        (slider.first.evaluate().first.widget as TemperatureRangeSlider)
+            .sliderValue,
+        equals(expectedMin));
   });
 }
