@@ -23,6 +23,9 @@ class GetThermostatDetails extends Mock {
   Future<Device> call(Request request, String id);
 }
 
+final heatTemperatureRange = TemperatureRange(min: 0, max: 100);
+final coolTemperatureRange = TemperatureRange(min: 0, max: 100);
+
 @GenerateMocks([
   SetPoint,
   SetMode,
@@ -141,9 +144,9 @@ void main() {
     expect(thermostatProvider.getAvailableFanModes, hasLength(3));
     expect(thermostatProvider.getAvailableThermostatModes, hasLength(3));
     expect((thermostatProvider.getHeatTemperatureRange),
-        equals(TemperatureRange(min: 0, max: 100)));
+        equals(heatTemperatureRange));
     expect((thermostatProvider.getCoolTemperatureRange),
-        equals(TemperatureRange(min: 0, max: 100)));
+        equals(coolTemperatureRange));
   });
 }
 
@@ -170,8 +173,8 @@ Device _getThermostat(double temp) {
           AvailableThermostatMode.COOL,
           AvailableThermostatMode.HEAT
         }),
-        HeatSetPointRange(TemperatureRange(min: 0, max: 100)),
-        CoolSetPointRange(TemperatureRange(min: 0, max: 100)),
+        HeatSetPointRange(heatTemperatureRange),
+        CoolSetPointRange(coolTemperatureRange),
       })
     ],
   );

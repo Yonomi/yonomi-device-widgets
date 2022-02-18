@@ -95,6 +95,7 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
                   _thermostatProvider.deviceDetail!.id, value);
             });
           },
+          key: Key('thermostat_${isCool ? 'cool' : 'hot'}_slider'),
         ),
       ],
     );
