@@ -3,10 +3,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'brightness_widget_testing.mocks.dart';
+import 'brightness_testing.mocks.dart';
 
 @GenerateMocks([BrightnessProvider])
-mixin BrightnessWidgetTesting {
+mixin BrightnessTesting {
   MockBrightnessProvider mockBrightnessProvider(TestBrightnessDevice device,
       {bool isBusy = false,
       bool isLoading = false,

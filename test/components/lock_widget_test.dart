@@ -8,7 +8,7 @@ import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../traits/mixins/lock_widget_testing.mocks.dart';
+import '../traits/mixins/lock_testing.mocks.dart';
 
 void main() {
   final mockProvider = MockLockProvider();

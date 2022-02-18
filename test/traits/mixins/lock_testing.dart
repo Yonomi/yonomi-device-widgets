@@ -3,10 +3,11 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'lock_widget_testing.mocks.dart';
+import 'lock_testing.mocks.dart';
+
 
 @GenerateMocks([LockProvider])
-mixin LockWidgetTesting {
+mixin LockTesting {
   MockLockProvider mockLockProvider(TestLockDevice device,
       {bool isBusy = false,
       bool isLoading = false,

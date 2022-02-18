@@ -4,10 +4,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'thermostat_widget_testing.mocks.dart';
+import 'thermostat_testing.mocks.dart';
 
 @GenerateMocks([ThermostatProvider])
-mixin ThermostatWidgetTesting {
+mixin ThermostatTesting {
   MockThermostatProvider mockThermostatProvider(
     TestThermostatDevice device, {
     bool isBusy = false,

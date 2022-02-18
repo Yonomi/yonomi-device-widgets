@@ -24,19 +24,19 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../components/modes_toolbar_test.mocks.dart';
 import 'detail_screen_test.mocks.dart';
-import 'mixins/battery_widget_testing.dart';
+import 'mixins/battery_testing.dart';
 import 'mixins/device_testing.dart';
-import 'mixins/lock_widget_testing.dart';
-import 'mixins/power_widget_testing.dart';
-import 'mixins/thermostat_widget_testing.dart';
+import 'mixins/lock_testing.dart';
+import 'mixins/power_testing.dart';
+import 'mixins/thermostat_testing.dart';
 
 class DetailScreenTest
     with
         DeviceTesting,
-        PowerWidgetTesting,
-        LockWidgetTesting,
-        BatteryWidgetTesting,
-        ThermostatWidgetTesting {
+        PowerTesting,
+        LockTesting,
+        BatteryTesting,
+        ThermostatTesting {
   Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,

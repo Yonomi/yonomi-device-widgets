@@ -6,7 +6,7 @@ import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/device_testing.dart';
-import '../mixins/thermostat_widget_testing.dart';
+import '../mixins/thermostat_testing.dart';
 
 material.MaterialApp createMaterialApp(
     ThermostatProvider mockThermostatProvider) {
@@ -18,7 +18,7 @@ material.MaterialApp createMaterialApp(
   );
 }
 
-class ThermostatWidgetTest with DeviceTesting, ThermostatWidgetTesting {}
+class ThermostatWidgetTest with DeviceTesting, ThermostatTesting {}
 
 void main() {
   final test = ThermostatWidgetTest();

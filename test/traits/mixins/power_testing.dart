@@ -3,10 +3,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'power_widget_testing.mocks.dart';
+import 'power_testing.mocks.dart';
 
 @GenerateMocks([PowerTraitProvider])
-mixin PowerWidgetTesting {
+mixin PowerTesting {
   MockPowerTraitProvider mockPowerTraitProvider(TestPowerDevice device,
       {bool isBusy = false,
       bool isLoading = false,

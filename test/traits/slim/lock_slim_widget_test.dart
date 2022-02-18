@@ -7,9 +7,9 @@ import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 
 import '../mixins/device_testing.dart';
-import '../mixins/lock_widget_testing.dart';
+import '../mixins/lock_testing.dart';
 
-class LockWidgetTest with DeviceTesting, LockWidgetTesting {}
+class LockWidgetTest with DeviceTesting, LockTesting {}
 
 MaterialApp createMaterialApp(LockProvider mockLockProvider) {
   return MaterialApp(

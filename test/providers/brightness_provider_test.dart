@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../traits/mixins/brightness_widget_testing.dart';
+import '../traits/mixins/brightness_testing.dart';
 import '../traits/mixins/device_testing.dart';
 import 'brightness_provider_test.mocks.dart';
 
@@ -69,7 +69,7 @@ void main() {
   });
 }
 
-class BrightnessProviderTest with DeviceTesting, BrightnessWidgetTesting {
+class BrightnessProviderTest with DeviceTesting, BrightnessTesting {
   BrightnessProviderTest();
 
   MockGetDeviceDetailsMethod getMockDeviceDetailsMethod(
