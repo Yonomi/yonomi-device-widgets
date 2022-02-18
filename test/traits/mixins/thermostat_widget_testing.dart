@@ -46,7 +46,10 @@ mixin ThermostatWidgetTesting {
         .thenReturn(device.availableFanModes);
     when(mockThermostatProvider.getAvailableThermostatModes)
         .thenReturn(device.availableThermostatModes);
-
+    when(mockThermostatProvider.getCoolTemperatureRange)
+        .thenReturn(TemperatureRange(min: 10, max: 30));
+    when(mockThermostatProvider.getHeatTemperatureRange)
+        .thenReturn(TemperatureRange(min: 20, max: 50));
     return mockThermostatProvider;
   }
 }
@@ -58,6 +61,8 @@ class TestThermostatDevice extends Device {
   final AvailableThermostatMode mode;
   final Set<AvailableFanMode> availableFanModes;
   final Set<AvailableThermostatMode> availableThermostatModes;
+  late final TemperatureRange heatingRange;
+  late final TemperatureRange coolingRange;
 
   TestThermostatDevice(
     Device device, {
@@ -80,6 +85,8 @@ class TestThermostatDevice extends Device {
       AvailableThermostatMode.DEHUMIDIFY,
       AvailableThermostatMode.AUTO,
     },
+    TemperatureRange? heatingRange,
+    TemperatureRange? coolingRange,
   }) : super(
             device.id,
             device.displayName,
@@ -96,7 +103,11 @@ class TestThermostatDevice extends Device {
             ThermostatMode(mode),
           }, <Property>{
             AvailableFanModes(availableFanModes),
-            AvailableThermostatModes(availableThermostatModes)
+            AvailableThermostatModes(availableThermostatModes),
+            HeatSetPointRange(
+                heatingRange ?? TemperatureRange(min: 0.0, max: 100.0)),
+            CoolSetPointRange(
+                coolingRange ?? TemperatureRange(min: 0.0, max: 100.0)),
           }),
           ...device.traits.where((t) => t.runtimeType != ThermostatTrait)
         ]);

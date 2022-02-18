@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'mixins/device_testing.dart';
@@ -23,12 +24,6 @@ material.MaterialApp createMaterialApp(
 void main() {
   final test = ThermostatWidgetTest();
   final defaultDevice = TestThermostatDevice(test.device());
-
-  // final defaultDeviceWithHeatMode =
-  //     test.device([ThermostatTrait(stateWithHeatMode, defaultProperties)]);
-
-  // final defaultDeviceWithCoolMode =
-  //     test.device([ThermostatTrait(stateWithCoolMode, defaultProperties)]);
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -111,5 +106,15 @@ void main() {
         reason: 'AIRFLOW icon');
     expect(find.byIcon(material.Icons.whatshot), findsOneWidget,
         reason: 'HEAT icon');
+  });
+
+  testWidgets('Cool Mode should display slider', (WidgetTester tester) async {
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice.withThermostatMode(AvailableThermostatMode.COOL),
+      isBusy: false,
+    );
+    await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+
+    expect(find.byType(TemperatureRangeSlider), findsOneWidget);
   });
 }
