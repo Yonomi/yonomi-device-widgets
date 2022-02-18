@@ -4,11 +4,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../mixins/battery_testing.dart';
-import '../mixins/device_testing.dart';
-import '../mixins/power_testing.dart';
+import '../../mixins/battery_testing.dart';
+import '../../mixins/device_testing.dart';
+import '../../mixins/power_testing.dart';
 
 typedef CreateWidget = Widget Function(BuildContext context);
 

@@ -9,8 +9,8 @@ import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/ui/notification_bar.dart';
 import 'package:yonomi_device_widgets/ui/string_constants.dart';
 
-import 'mixins/device_testing.dart';
-import 'mixins/lock_testing.dart';
+import '../mixins/device_testing.dart';
+import '../mixins/lock_testing.dart';
 
 class LockWidgetTest with DeviceTesting, LockTesting {}
 

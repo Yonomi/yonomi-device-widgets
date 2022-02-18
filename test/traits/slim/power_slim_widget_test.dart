@@ -4,9 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../mixins/power_testing.dart';
+import '../../mixins/power_testing.dart';
 import '../power_widget_test.dart';
 
 MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {

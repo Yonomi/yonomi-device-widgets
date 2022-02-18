@@ -4,8 +4,8 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import '../traits/mixins/brightness_testing.dart';
-import '../traits/mixins/device_testing.dart';
+import '../mixins/brightness_testing.dart';
+import '../mixins/device_testing.dart';
 import 'brightness_provider_test.mocks.dart';
 
 class GetDeviceDetailsMethod extends Mock {
