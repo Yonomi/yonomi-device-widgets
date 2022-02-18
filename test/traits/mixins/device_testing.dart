@@ -3,7 +3,8 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 mixin DeviceTesting {
   Device device(
-    List<Trait> traits, {
+    {
+    List<Trait> traits = const <Trait>[],
     String id = 'id',
     String name = 'name',
     String description = 'description',

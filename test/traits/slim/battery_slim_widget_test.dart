@@ -6,7 +6,6 @@ import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/battery_widget_testing.dart';
 import '../mixins/device_testing.dart';
@@ -22,11 +21,12 @@ MaterialApp createMaterialApp(BatteryLevelProvider mockBatteryLevelProvider) {
 
 void main() {
   final test = BatterySlimWidgetTest();
+  final batteryDevice = TestBatteryDevice(test.device());
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final device = test.device([BatteryLevelTrait(BatteryLevel(90))]);
-    final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
+    final mockBatteryLevelProvider =
+        test.mockBatteryLevelProvider(batteryDevice);
     when(mockBatteryLevelProvider.isLoading).thenReturn(true);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));
@@ -36,9 +36,8 @@ void main() {
 
   testWidgets('When battery level is low, should show low battery icon',
       (WidgetTester tester) async {
-    final device = test.device(
-        [BatteryLevelTrait(BatteryLevel(WidgetStyleConstants.batteryLowMax))]);
-    final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
+    final mockBatteryLevelProvider = test.mockBatteryLevelProvider(
+        batteryDevice.withBatteryLevel(WidgetStyleConstants.batteryLowMax));
     when(mockBatteryLevelProvider.getBatteryLevelState)
         .thenReturn(WidgetStyleConstants.batteryLowMax);
 
@@ -59,9 +58,8 @@ void main() {
 
   testWidgets('When battery level is full, should show full battery icon',
       (WidgetTester tester) async {
-    final device = test.device(
-        [BatteryLevelTrait(BatteryLevel(WidgetStyleConstants.batteryFullMin))]);
-    final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
+    final mockBatteryLevelProvider = test.mockBatteryLevelProvider(
+        batteryDevice.withBatteryLevel(WidgetStyleConstants.batteryFullMin));
     when(mockBatteryLevelProvider.getBatteryLevelState)
         .thenReturn(WidgetStyleConstants.batteryFullMin);
 
@@ -83,8 +81,8 @@ void main() {
   testWidgets(
       'When battery level is not low or high, should show half battery icon',
       (WidgetTester tester) async {
-    final device = test.device([BatteryLevelTrait(BatteryLevel(50))]);
-    final mockBatteryLevelProvider = test.mockBatteryLevelProvider(device);
+    final mockBatteryLevelProvider =
+        test.mockBatteryLevelProvider(batteryDevice.withBatteryLevel(50));
     when(mockBatteryLevelProvider.getBatteryLevelState).thenReturn(50);
 
     await tester.pumpWidget(createMaterialApp(mockBatteryLevelProvider));

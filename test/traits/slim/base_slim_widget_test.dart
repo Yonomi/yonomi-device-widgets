@@ -34,16 +34,13 @@ MaterialApp createMaterialApp(TestWidget testWidget) {
 
 void main() {
   final test = BaseSlimWidgetTest();
-  final device = test.device([UnknownTrait('name')]);
+  final powerDevice = TestPowerDevice(test.device());
+  final batteryDevice = TestBatteryDevice(test.device());
 
   testWidgets(
       'When a content widget is performing an action a circular progress indicator is displayed',
       (WidgetTester tester) async {
-    final device = test.device([
-      PowerTrait(IsOnOff(false),
-          supportsDiscreteOnOff: SupportsDiscreteOnOff(true))
-    ]);
-    final provider = test.mockPowerTraitProvider(device);
+    final provider = test.mockPowerTraitProvider(powerDevice);
 
     when(provider.isLoading).thenReturn(false);
     when(provider.isPerformingAction).thenReturn(true);
@@ -58,7 +55,7 @@ void main() {
   testWidgets(
       'When a no content widget is loading a circular progress indicator is displayed',
       (WidgetTester tester) async {
-    final provider = test.mockBatteryLevelProvider(device);
+    final provider = test.mockBatteryLevelProvider(batteryDevice);
     when(provider.isLoading).thenReturn(true);
 
     final testWidget = TestWidget(provider);
@@ -71,7 +68,7 @@ void main() {
   testWidgets(
       'When a widget has detailed content an expandable widget is provided',
       (WidgetTester tester) async {
-    final provider = test.mockBatteryLevelProvider(device);
+    final provider = test.mockBatteryLevelProvider(batteryDevice);
     final testWidget = TestWidget(provider, (context) => Text('Content'));
     await tester.pumpWidget(createMaterialApp(testWidget));
 
@@ -81,7 +78,7 @@ void main() {
   testWidgets(
       "When a widget doesn't have detailed content an info widget is provided",
       (WidgetTester tester) async {
-    final provider = test.mockBatteryLevelProvider(device);
+    final provider = test.mockBatteryLevelProvider(batteryDevice);
     final testWidget = TestWidget(provider);
     await tester.pumpWidget(createMaterialApp(testWidget));
 

@@ -8,7 +8,6 @@ import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/ui/notification_bar.dart';
 import 'package:yonomi_device_widgets/ui/string_constants.dart';
-import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import 'mixins/device_testing.dart';
 import 'mixins/lock_widget_testing.dart';
@@ -23,9 +22,7 @@ MaterialApp createMaterialApp(LockProvider mockLockProvider) {
 
 void main() {
   final test = LockWidgetTest();
-  final defaultLock = test.device([
-    LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
-  ]);
+  final defaultLock = TestLockDevice(test.device());
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -39,7 +36,8 @@ void main() {
 
   testWidgets('When locked, should show lock icon ',
       (WidgetTester tester) async {
-    final mockLockProvider = test.mockLockProvider(defaultLock, isLocked: true);
+    final mockLockProvider =
+        test.mockLockProvider(defaultLock.withIsLocked(true));
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -73,11 +71,8 @@ void main() {
       'When tapped in locked icon, should call lockprovider with unlock',
       (WidgetTester tester) async {
     final currentLock = true;
-    final mockLockProvider = test.mockLockProvider(
-        test.device([
-          LockTrait({IsLocked(currentLock)}, {SupportsIsJammed(false)})
-        ]),
-        isLocked: currentLock);
+    final mockLockProvider =
+        test.mockLockProvider(defaultLock.withIsLocked(currentLock));
 
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
     expect(find.byType(CupertinoSwitch), findsOneWidget);
@@ -90,9 +85,7 @@ void main() {
   testWidgets('IsJammed notification bar not shown if not supported',
       (WidgetTester tester) async {
     final mockLockProvider = test.mockLockProvider(
-      test.device([
-        LockTrait({IsLocked(true)}, {SupportsIsJammed(false)})
-      ]),
+      defaultLock.withIsLocked(true),
     );
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
@@ -103,14 +96,10 @@ void main() {
       'IsJammed notification bar is not shown if supported but state is not jammed',
       (WidgetTester tester) async {
     final expectedIsJammedState = false;
-    final mockLockProvider = test.mockLockProvider(
-        test.device([
-          LockTrait(
-            {IsLocked(true), IsJammed(expectedIsJammedState)},
-            {SupportsIsJammed(true)},
-          )
-        ]),
-        isJammed: expectedIsJammedState);
+    final mockLockProvider = test.mockLockProvider(defaultLock
+        .withIsLocked(true)
+        .withSupportsIsJammed(true)
+        .withJammed(expectedIsJammedState));
 
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
@@ -121,14 +110,10 @@ void main() {
       'IsJammed notification bar is shown if supported and state is jammed',
       (WidgetTester tester) async {
     final expectedIsJammedState = true;
-    final mockLockProvider = test.mockLockProvider(
-        test.device([
-          LockTrait(
-            {IsLocked(true), IsJammed(expectedIsJammedState)},
-            {SupportsIsJammed(true)},
-          )
-        ]),
-        isJammed: expectedIsJammedState);
+    final mockLockProvider = test.mockLockProvider(defaultLock
+        .withIsLocked(true)
+        .withSupportsIsJammed(true)
+        .withJammed(expectedIsJammedState));
 
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
@@ -140,14 +125,10 @@ void main() {
       (WidgetTester tester) async {
     final expectedIsJammedState = true;
 
-    final mockLockProvider = test.mockLockProvider(
-        test.device([
-          LockTrait(
-            {IsLocked(true), IsJammed(expectedIsJammedState)},
-            {SupportsIsJammed(true)},
-          )
-        ]),
-        isJammed: expectedIsJammedState);
+    final mockLockProvider = test.mockLockProvider(defaultLock
+        .withIsLocked(true)
+        .withSupportsIsJammed(true)
+        .withJammed(expectedIsJammedState));
 
     await tester.pumpWidget(createMaterialApp(mockLockProvider));
 
