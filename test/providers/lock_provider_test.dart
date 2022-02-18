@@ -2,9 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
+import '../mixins/device_testing.dart';
+import '../mixins/lock_testing.dart';
 import 'lock_provider_test.mocks.dart';
 
 class GetDeviceDetailsMethod extends Mock {
@@ -15,14 +16,19 @@ class SendLockUnlock extends Mock {
   Future<void> call(Request request, String id, bool lockUnlock);
 }
 
+class LockProviderTest with DeviceTesting, LockTesting {}
+
 @GenerateMocks([GetDeviceDetailsMethod, SendLockUnlock])
 void main() {
+  final lockTest = LockProviderTest();
+  final defaultLock = TestLockDevice(lockTest.device(), isLocked: true);
+
   test(
       'setLockUnlockAction will retry calling repository method multiple times if state value has not yet changed',
       () async {
     Request request = Request("", {});
     final mockLockDetailsMethod = MockGetDeviceDetailsMethod();
-    final device = _getDevice(false);
+    final device = defaultLock.withIsLocked(false);
     when(mockLockDetailsMethod.call(request, "deviceId"))
         .thenAnswer((_) => Future.value(device));
     final mockSendLockUnlockMethod = MockSendLockUnlock();
@@ -40,9 +46,8 @@ void main() {
   test('Calling getDeviceDetail calls repository method', () async {
     Request request = Request("", {});
     final mockLockDetailsMethod = MockGetDeviceDetailsMethod();
-    final device = _getDevice(true);
     when(mockLockDetailsMethod.call(request, 'test'))
-        .thenAnswer((_) => Future.value(device));
+        .thenAnswer((_) => Future.value(defaultLock));
     LockProvider lockProvider =
         LockProvider(request, 'test', getDetails: mockLockDetailsMethod);
 
@@ -56,9 +61,7 @@ void main() {
 
     final mockLockDetailsMethod = MockGetDeviceDetailsMethod();
     when(mockLockDetailsMethod.call(request, 'deviceId'))
-        .thenAnswer((_) => Future.value(
-              _getDevice(true),
-            ));
+        .thenAnswer((_) => Future.value(defaultLock));
     LockProvider lockProvider =
         LockProvider(request, 'deviceId', getDetails: mockLockDetailsMethod);
 
@@ -77,13 +80,13 @@ void main() {
   test("""When loading device data, we are notified that it is loading
         through isLoading.""", () {
     Request request = Request("", {});
-    Device device = _getDevice(true);
 
     final mockLockDetailsMethod = MockGetDeviceDetailsMethod();
-    when(mockLockDetailsMethod.call(request, device.id))
-        .thenAnswer((_) => Future.value(device));
+    when(mockLockDetailsMethod.call(request, defaultLock.id))
+        .thenAnswer((_) => Future.value(defaultLock));
     LockProvider lockProvider =
-        LockProvider(request, device.id, getDetails: mockLockDetailsMethod);
+        LockProvider(request, defaultLock.id,
+        getDetails: mockLockDetailsMethod);
 
     expect(lockProvider.isLoading, equals(true), reason: 'isLoading');
     expect(lockProvider.displayName, 'LOCK');
@@ -98,7 +101,6 @@ void main() {
         an error occurred using isInErrorState and get
         an error message with getErrorMessage.""", () async {
     Request request = Request("", {});
-    String deviceId = 'aDeviceId';
 
     String exceptionMesssage = 'Throwing an exception';
 
@@ -106,13 +108,14 @@ void main() {
         MockGetDeviceDetailsMethod();
 
     MockSendLockUnlock mockSendLockUnlock = MockSendLockUnlock();
-    when(mockSendLockUnlock.call(request, deviceId, true))
+    when(mockSendLockUnlock.call(request, defaultLock.id, true))
         .thenAnswer((_) => throw (exceptionMesssage));
 
     final lockProvider =
-        LockProvider(request, deviceId, getDetails: mockDeviceDetailsMethod);
+        LockProvider(request, defaultLock.id,
+        getDetails: mockDeviceDetailsMethod);
 
-    lockProvider.setLockUnlockAction(deviceId, true,
+    lockProvider.setLockUnlockAction(defaultLock.id, true,
         getDetails: mockDeviceDetailsMethod,
         sendLockUnlock: mockSendLockUnlock);
 
@@ -124,11 +127,4 @@ void main() {
     await Future.delayed(Duration(seconds: 1));
     expect(lockProvider.isInErrorState, equals(false));
   });
-}
-
-Device _getDevice(bool isLocked) {
-  return Device('id', 'name', 'description', 'manufacturerName', 'model', null,
-      GDateTime('value'), GDateTime('value'), [
-    LockTrait({IsLocked(isLocked), IsJammed(false)}, {SupportsIsJammed(false)})
-  ]);
 }
