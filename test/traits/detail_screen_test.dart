@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
+import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
@@ -23,6 +24,8 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../components/modes_toolbar_test.mocks.dart';
+import '../mixins/brightness_testing.dart';
+import '../mixins/brightness_testing.mocks.dart';
 import 'detail_screen_test.mocks.dart';
 import '../mixins/battery_testing.dart';
 import '../mixins/device_testing.dart';
@@ -36,7 +39,8 @@ class DetailScreenTest
         PowerTesting,
         LockTesting,
         BatteryTesting,
-        ThermostatTesting {
+        ThermostatTesting,
+        BrightnessTesting {
   Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,
@@ -51,7 +55,8 @@ class DetailScreenTest
         MockLockProvider(),
         MockPowerTraitProvider(),
         MockBatteryLevelProvider(),
-        MockThermostatProvider());
+        MockThermostatProvider(),
+        MockBrightnessProvider());
   }
 
   Widget createDetailScreenWidgetForTraits(
@@ -73,19 +78,17 @@ class DetailScreenTest
     final batteryDevice = devices.firstWhere(
         (device) => device is TestBatteryDevice,
         orElse: () => TestBatteryDevice(device)) as TestBatteryDevice;
-    BatteryLevelProvider mockBatteryTraitProvider = this
-        .mockBatteryLevelProvider(batteryDevice);
+    BatteryLevelProvider mockBatteryTraitProvider =
+        this.mockBatteryLevelProvider(batteryDevice);
 
     final lock = devices.firstWhere((device) => device is TestLockDevice,
-            orElse: () =>
-                TestLockDevice(device,
+        orElse: () => TestLockDevice(device,
             isLocked: false, supportsIsJammed: false)) as TestLockDevice;
     LockProvider mockLockProvider = this.mockLockProvider(lock);
 
     final powerDevice = devices.firstWhere(
         (device) => device is TestPowerDevice,
-            orElse: () =>
-                TestPowerDevice(device,
+        orElse: () => TestPowerDevice(device,
             isOn: false, supportsDiscreteOnOff: true)) as TestPowerDevice;
     PowerTraitProvider mockPowerTraitProvider =
         this.mockPowerTraitProvider(powerDevice);
@@ -100,6 +103,13 @@ class DetailScreenTest
     ThermostatProvider mockThermostatProvider =
         this.mockThermostatProvider(thermostatDevice);
 
+    final brightnessDevice = devices.firstWhere(
+            (device) => device is TestBrightnessDevice,
+            orElse: () => TestBrightnessDevice(device, brightness: 100))
+        as TestBrightnessDevice;
+    MockBrightnessProvider mockBrightnessProvider =
+        this.mockBrightnessProvider(brightnessDevice);
+
     return createMaterialApp(
         req,
         deviceId,
@@ -107,7 +117,8 @@ class DetailScreenTest
         mockLockProvider,
         mockPowerTraitProvider,
         mockBatteryTraitProvider,
-        mockThermostatProvider);
+        mockThermostatProvider,
+        mockBrightnessProvider);
   }
 
   MaterialApp createMaterialApp(
@@ -117,7 +128,8 @@ class DetailScreenTest
       LockProvider mockLockProvider,
       PowerTraitProvider mockPowerTraitProvider,
       BatteryLevelProvider mockBatteryLevelProvider,
-      ThermostatProvider mockThermostatProvider) {
+      ThermostatProvider mockThermostatProvider,
+      MockBrightnessProvider mockBrightnessProvider) {
     return MaterialApp(
       home: SingleChildScrollView(
           child: Column(children: [
@@ -132,6 +144,8 @@ class DetailScreenTest
                 value: mockBatteryLevelProvider),
             ChangeNotifierProvider<ThermostatProvider>.value(
                 value: mockThermostatProvider),
+            ChangeNotifierProvider<BrightnessProvider>.value(
+                value: mockBrightnessProvider),
           ],
           child: DetailScreenWidget(req, deviceId),
         ),
@@ -162,12 +176,9 @@ void main() {
   testWidgets('For the Lock Trait, Detail screen should show the LockWidget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       TestLockDevice(test.device(), isLocked: false, supportsIsJammed: false)
-    ],
-        request,
-        testedDeviceId));
+    ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
   });
@@ -176,12 +187,9 @@ void main() {
       'For the Power Trait, Detail screen should show the Power Widget ',
       (WidgetTester tester) async {
     Request request = Request('', {});
-    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
-        [
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
       TestPowerDevice(test.device(), isOn: true, supportsDiscreteOnOff: true)
-    ],
-        request,
-        testedDeviceId));
+    ], request, testedDeviceId));
 
     expect(find.byType(PowerWidget), findsOneWidget);
   });
