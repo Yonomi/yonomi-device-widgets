@@ -140,6 +140,10 @@ void main() {
     expect(thermostatProvider.getFanModeState, equals(AvailableFanMode.AUTO));
     expect(thermostatProvider.getAvailableFanModes, hasLength(3));
     expect(thermostatProvider.getAvailableThermostatModes, hasLength(3));
+    expect((thermostatProvider.getHeatTemperatureRange),
+        equals(TemperatureRange(min: 0, max: 100)));
+    expect((thermostatProvider.getCoolTemperatureRange),
+        equals(TemperatureRange(min: 0, max: 100)));
   });
 }
 
@@ -165,7 +169,9 @@ Device _getThermostat(double temp) {
           AvailableThermostatMode.AUTO,
           AvailableThermostatMode.COOL,
           AvailableThermostatMode.HEAT
-        })
+        }),
+        HeatSetPointRange(TemperatureRange(min: 0, max: 100)),
+        CoolSetPointRange(TemperatureRange(min: 0, max: 100)),
       })
     ],
   );
