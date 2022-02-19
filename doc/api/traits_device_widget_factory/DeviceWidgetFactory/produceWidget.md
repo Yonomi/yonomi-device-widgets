@@ -51,6 +51,12 @@ static Widget produceWidget<T extends Trait>(
           return ThermostatWidget(thermostatProvider, textColor: textColor);
         },
       );
+    case BrightnessTrait:
+      return Consumer<BrightnessProvider>(
+        builder: (_, brightnessProvider, __) {
+          return BrightnessWidget(brightnessProvider, textColor: textColor);
+        },
+      );
     default:
       return UnknownWidget(name: name, iconColor: iconColor);
   }

@@ -1,7 +1,7 @@
 
 
 
-# DeviceProvider class
+# BrightnessProvider class
 
 
 
@@ -18,24 +18,17 @@
 
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html)
-- DeviceProvider
+- [DeviceProvider](../providers_device_provider/DeviceProvider-class.md)
+- BrightnessProvider
 
 
 
-**Implementers**
-
-- [BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md)
-- [BrightnessProvider](../providers_brightness_provider/BrightnessProvider-class.md)
-- [LockProvider](../providers_lock_provider/LockProvider-class.md)
-- [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md)
-- [ThermostatProvider](../providers_thermostat_provider/ThermostatProvider-class.md)
-- [TraitDetailProvider](../providers_trait_detail_provider/TraitDetailProvider-class.md)
 
 
 
 ## Constructors
 
-[DeviceProvider](../providers_device_provider/DeviceProvider/DeviceProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = sdk.DevicesRepository.getDeviceDetails})
+[BrightnessProvider](../providers_brightness_provider/BrightnessProvider/BrightnessProvider.md) ([Request](https://yonomi.co/yonomi-sdk/Request-class.html) request, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) deviceId, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails})
 
     
 
@@ -47,11 +40,20 @@
 
 
    
-_read-only_
+_read-only, inherited_
 
 
 
-##### [displayName](../providers_device_provider/DeviceProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [displayName](../providers_brightness_provider/BrightnessProvider/displayName.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+
+
+
+   
+_read-only, override_
+
+
+
+##### [getBrightnessState](../providers_brightness_provider/BrightnessProvider/getBrightnessState.md) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)?
 
 
 
@@ -66,7 +68,7 @@ _read-only_
 
 Get the error message whenever this ChangeNotifier had an error
 See also: <a href="../providers_device_provider/DeviceProvider/isInErrorState.md">isInErrorState</a>   
-_read-only_
+_read-only, inherited_
 
 
 
@@ -93,7 +95,7 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
 To know if this ChangeNotifier is busy from fetching data or running an action   
-_read-only_
+_read-only, inherited_
 
 
 
@@ -103,7 +105,7 @@ _read-only_
 
 To know if this ChangeNotifier had an error
 see <a href="../providers_device_provider/DeviceProvider/getErrorMessage.md">getErrorMessage</a> to get the accomponying error message   
-_read-only_
+_read-only, inherited_
 
 
 
@@ -112,7 +114,7 @@ _read-only_
 
 
 To know if this ChangeNotifier is fetching device data   
-_read-only_
+_read-only, inherited_
 
 
 
@@ -121,7 +123,7 @@ _read-only_
 
 
 To know if this ChangeNotifier is performing an action   
-_read-only_
+_read-only, inherited_
 
 
 
@@ -139,7 +141,7 @@ _read-only, inherited_
 
 
    
-_write-only_
+_write-only, inherited_
 
 
 
@@ -172,6 +174,15 @@ _@[mustCallSuper](https://pub.dev/documentation/meta/1.7.0/meta/mustCallSuper-co
 
 
    
+_inherited_
+
+
+
+##### [getBrightnessTrait](../providers_brightness_provider/BrightnessProvider/getBrightnessTrait.md)() [BrightnessTrait](https://yonomi.co/yonomi-sdk/BrightnessTrait-class.html)?
+
+
+
+   
 
 
 
@@ -199,7 +210,7 @@ _@[protected](https://pub.dev/documentation/meta/1.7.0/meta/protected-constant.h
 
 
    
-
+_inherited_
 
 
 
@@ -213,12 +224,21 @@ _inherited_
 
 
 
-##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
+##### [setBrightnessLevelAction](../providers_brightness_provider/BrightnessProvider/setBrightnessLevelAction.md)([int](https://api.flutter.dev/flutter/dart-core/int-class.html) brightnessLevel, {[GetDeviceDetailsMethod](../providers_device_provider/GetDeviceDetailsMethod.md) getDetails = DevicesRepository.getDeviceDetails, [SendBrightnessFunction](../providers_brightness_provider/SendBrightnessFunction.md) sendBrightnessLevel = BrightnessRepository.setBrightnessAction}) [Future](https://api.flutter.dev/flutter/dart-async/Future-class.html)&lt;void>
 
 
 
    
 
+
+
+
+##### [setErrorState](../providers_device_provider/DeviceProvider/setErrorState.md)([String](https://api.flutter.dev/flutter/dart-core/String-class.html) errorMsg) void
+
+
+
+   
+_inherited_
 
 
 
@@ -236,7 +256,7 @@ _inherited_
 
 
    
-
+_inherited_
 
 
 
@@ -251,26 +271,6 @@ The equality operator. [...](https://api.flutter.dev/flutter/dart-core/Object/op
 _inherited_
 
 
-
-
-
-
-## Constants
-
-##### [MAX_RETRIES](../providers_device_provider/DeviceProvider/MAX_RETRIES-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
-
-
-
-
-##### [RETRY_DELAY_MS](../providers_device_provider/DeviceProvider/RETRY_DELAY_MS-constant.md) const [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
-
-
-
-   
 
 
 

@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../traits_detail_screen/DetailScreen/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../traits_brightness_widget/BrightnessWidget/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,23 +60,64 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return MultiProvider(
-    providers: [
-      ChangeNotifierProvider<TraitDetailProvider>(
-          create: (context) => TraitDetailProvider(request, deviceId)),
-      ChangeNotifierProvider<LockProvider>(
-          create: (context) => LockProvider(request, deviceId)),
-      ChangeNotifierProvider<PowerTraitProvider>(
-          create: (context) => PowerTraitProvider(request, deviceId)),
-      ChangeNotifierProvider<BatteryLevelProvider>(
-          create: (context) => BatteryLevelProvider(request, deviceId)),
-      ChangeNotifierProvider<ThermostatProvider>(
-          create: (context) => ThermostatProvider(request, deviceId)),
-      ChangeNotifierProvider<BrightnessProvider>(
-          create: (context) => BrightnessProvider(request, deviceId)),
-    ],
-    child: DetailScreenWidget(request, deviceId),
-  );
+  if (_brightnessProvider.isLoading) {
+    return CircularProgressIndicator();
+  } else if (_brightnessProvider.isInErrorState) {
+    showToast(context, _brightnessProvider.getErrorMessage);
+    return Icon(
+      Icons.error,
+      color: WidgetStyleConstants.globalWarningColor,
+    );
+  } else {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                'BRIGHTNESS',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Container(
+            child: Center(
+                child: SizedBox(
+              width: _iconSize,
+              height: _iconSize,
+              child: _brightnessProvider.isPerformingAction
+                  ? CircularProgressIndicator()
+                  : Icon(BootstrapIcons.sun),
+            )),
+          ),
+          SizedBox(height: 10),
+          Row(children: [
+            Icon(
+              BootstrapIcons.sun,
+              color: _iconColor,
+            ),
+            Expanded(
+                child: Slider(
+              label: 'Brightness',
+              value:
+                  _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
+              max: 100.0,
+              divisions: 100,
+              activeColor: WidgetStyleConstants.globalSuccessColor,
+              onChanged: (double value) {}, // Required
+              onChangeEnd: (double value) {
+                // Only send the update when user releases slider
+                _brightnessProvider.setBrightnessLevelAction(value.round());
+              },
+            )),
+            Text('${_brightnessProvider.getBrightnessState?.round() ?? "--"}')
+          ])
+        ]);
+  }
 }
 ```
 

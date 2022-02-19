@@ -68,6 +68,18 @@ open coverage/html/index.html
  
 
 
+##### [brightness_provider](providers_brightness_provider/providers_brightness_provider-library.md)
+ 
+
+
+##### [brightness_slim_widget](traits_slim_brightness_slim_widget/traits_slim_brightness_slim_widget-library.md)
+ 
+
+
+##### [brightness_widget](traits_brightness_widget/traits_brightness_widget-library.md)
+ 
+
+
 ##### [color_constants](ui_color_constants/ui_color_constants-library.md)
  
 
@@ -112,11 +124,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
@@ -168,11 +180,11 @@ open coverage/html/index.html
  
 
 
-##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
+##### [thermostat_widget](traits_thermostat_widget/traits_thermostat_widget-library.md)
  
 
 
-##### [thermostat_widget](traits_thermostat_widget/traits_thermostat_widget-library.md)
+##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
  
 
 
