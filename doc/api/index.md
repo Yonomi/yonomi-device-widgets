@@ -180,11 +180,11 @@ open coverage/html/index.html
  
 
 
-##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
+##### [thermostat_widget](traits_thermostat_widget/traits_thermostat_widget-library.md)
  
 
 
-##### [thermostat_widget](traits_thermostat_widget/traits_thermostat_widget-library.md)
+##### [thermostat_widget](components_thermostat_widget/components_thermostat_widget-library.md)
  
 
 
