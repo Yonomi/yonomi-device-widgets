@@ -15,7 +15,9 @@ dependencies:
     sdk: flutter
   bootstrap_icons: ^1.7.2
   yonomi_platform_sdk:
-    path: ../yonomi-sdk-dart
+    git:
+      url: https://github.com/Yonomi/yonomi-sdk-dart
+      ref: DX-356_brightness
 
 dev_dependencies:
   mockito: ^5.0.15

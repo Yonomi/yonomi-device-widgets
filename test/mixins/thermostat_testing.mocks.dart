@@ -10,7 +10,7 @@ import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i7;
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart'
     as _i3;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i4;
-import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
+import 'package:yonomi_platform_sdk/src/repository/devices_repository.dart'
     as _i8;
 import 'package:yonomi_platform_sdk/src/repository/traits/thermostat_repository.dart'
     as _i6;

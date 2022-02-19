@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i5;
 import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i2;
 import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i3;
-import 'package:yonomi_platform_sdk/src/repository/devices/devices_repository.dart'
+import 'package:yonomi_platform_sdk/src/repository/devices_repository.dart'
     as _i6;
 import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
     as _i7;
