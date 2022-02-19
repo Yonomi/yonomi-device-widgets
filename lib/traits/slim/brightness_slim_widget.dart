@@ -21,13 +21,13 @@ class BrightnessSlimWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         tileColor: _backgroundColor,
-        leading: (_brightnessProvider.isPerformingAction)
+        leading: (_brightnessProvider.isPerformingAction ||
+                _brightnessProvider.isLoading)
             ? CircularProgressIndicator()
             : Icon(BootstrapIcons.sun, color: _iconColor),
-        title: Expanded(
-            child: Slider(
+        title: Slider(
           label: 'Brightness',
-          value: _brightnessProvider.getBrightnessState as double? ?? 50.0,
+          value: _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
           max: 100.0,
           divisions: 100,
           activeColor: WidgetStyleConstants.globalSuccessColor,
@@ -36,7 +36,7 @@ class BrightnessSlimWidget extends StatelessWidget {
             // Only send the update when user releases slider
             _brightnessProvider.setBrightnessLevelAction(value.round());
           },
-        )),
+        ),
         trailing:
             Text('${_brightnessProvider.getBrightnessState?.round() ?? "--"}'));
   }

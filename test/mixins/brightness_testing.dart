@@ -48,4 +48,8 @@ class TestBrightnessDevice extends Device {
           ),
           ...device.traits.where((t) => t.runtimeType != BrightnessTrait)
         ]);
+
+  TestBrightnessDevice withBrightness(int brightness) {
+    return TestBrightnessDevice(this, brightness: brightness);
+  }
 }

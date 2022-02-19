@@ -1,9 +1,10 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class BrightnessWidget extends StatelessWidget {
+class BrightnessWidget extends StatelessWidget with ToastNotifications {
   final BrightnessProvider _brightnessProvider;
   late final Color _iconColor;
   late final Color _textColor;
@@ -22,9 +23,18 @@ class BrightnessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _brightnessProvider.isBusy
-        ? Center(child: CircularProgressIndicator())
-        : Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+    if (_brightnessProvider.isLoading) {
+      return CircularProgressIndicator();
+    } else if (_brightnessProvider.isInErrorState) {
+      showToast(context, _brightnessProvider.getErrorMessage);
+      return Icon(
+        Icons.error,
+        color: WidgetStyleConstants.globalWarningColor,
+      );
+    } else {
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
             Row(
               children: <Widget>[
                 Text(
@@ -44,7 +54,7 @@ class BrightnessWidget extends StatelessWidget {
                 height: _iconSize,
                 child: _brightnessProvider.isPerformingAction
                     ? CircularProgressIndicator()
-                    : Icon(BootstrapIcons.sun_fill),
+                    : Icon(BootstrapIcons.sun),
               )),
             ),
             SizedBox(height: 10),
@@ -57,7 +67,7 @@ class BrightnessWidget extends StatelessWidget {
                   child: Slider(
                 label: 'Brightness',
                 value:
-                    _brightnessProvider.getBrightnessState as double? ?? 50.0,
+                    _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
                 max: 100.0,
                 divisions: 100,
                 activeColor: WidgetStyleConstants.globalSuccessColor,
@@ -70,5 +80,6 @@ class BrightnessWidget extends StatelessWidget {
               Text('${_brightnessProvider.getBrightnessState?.round() ?? "--"}')
             ])
           ]);
+    }
   }
 }
