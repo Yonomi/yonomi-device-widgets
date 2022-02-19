@@ -26,6 +26,9 @@ mixin BrightnessTesting {
     when(mockBrightnessProvider.getBrightnessState)
         .thenReturn(device.brightness);
 
+    when(mockBrightnessProvider.setBrightnessLevelAction(any))
+        .thenAnswer((_) => Future.value());
+
     return mockBrightnessProvider;
   }
 }

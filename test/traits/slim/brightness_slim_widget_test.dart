@@ -30,4 +30,27 @@ void main() {
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
+
+  testWidgets('When loading, should show CircularProgressIndicator ',
+      (WidgetTester tester) async {
+    final mockBrightnessProvider =
+        test.mockBrightnessProvider(brightnessDevice);
+    when(mockBrightnessProvider.isLoading).thenReturn(true);
+
+    await tester.pumpWidget(createMaterialApp(mockBrightnessProvider));
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('When slider moved, should execute call for brightness change ',
+      (WidgetTester tester) async {
+    final mockBrightnessProvider =
+        test.mockBrightnessProvider(brightnessDevice.withBrightness(10));
+
+    await tester.pumpWidget(createMaterialApp(mockBrightnessProvider));
+
+    await tester.drag(find.byType(Slider), Offset(100, 0));
+
+    verify(mockBrightnessProvider.setBrightnessLevelAction(any)).called(1);
+  });
 }
