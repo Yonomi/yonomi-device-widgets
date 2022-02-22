@@ -1,3 +1,19 @@
+# [2.8.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.7.0...v2.8.0) (2022-02-21)
+
+
+### Bug Fixes
+
+* document generation ([c53aa07](https://github.com/Yonomi/yonomi-device-widgets/commit/c53aa07d0b7d0412953a4de6a2d467ac4412f140))
+* fix a/c to mockups ([8e9ac05](https://github.com/Yonomi/yonomi-device-widgets/commit/8e9ac05948d92ad21b45280ef0aa33436dd017a4))
+* heat setpoint working ([be1113f](https://github.com/Yonomi/yonomi-device-widgets/commit/be1113fb64cd97e2baeb3ec8b10a326a22668ecd))
+* provider test ([7f6345e](https://github.com/Yonomi/yonomi-device-widgets/commit/7f6345e7b95cd6b82af24886e870d69d94b8693b))
+* regenerate mocks ([5b94a08](https://github.com/Yonomi/yonomi-device-widgets/commit/5b94a08f442d6f708c9f2129cc4cbb92b3682cc9))
+
+
+### Features
+
+* added settargettemperature ([31c5aba](https://github.com/Yonomi/yonomi-device-widgets/commit/31c5aba087e78501a469395526f1e9cf64509a33))
+
 # [2.7.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.6.0...v2.7.0) (2022-02-17)
 
 

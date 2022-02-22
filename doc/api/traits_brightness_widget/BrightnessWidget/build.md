@@ -91,7 +91,7 @@ Widget build(BuildContext context) {
               height: _iconSize,
               child: _brightnessProvider.isPerformingAction
                   ? CircularProgressIndicator()
-                  : Icon(BootstrapIcons.sun),
+              : Icon(BootstrapIcons.sun, color: _iconColor, size: _iconSize),
             )),
           ),
           SizedBox(height: 10),
@@ -114,7 +114,13 @@ Widget build(BuildContext context) {
                 _brightnessProvider.setBrightnessLevelAction(value.round());
               },
             )),
-            Text('${_brightnessProvider.getBrightnessState?.round() ?? "--"}')
+        Text(
+          '${_brightnessProvider.getBrightnessState?.round() ?? "--"}',
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: _textColor),
+        )
           ])
         ]);
   }

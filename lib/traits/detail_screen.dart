@@ -62,7 +62,7 @@ class DetailScreenWidget extends StatelessWidget {
   Widget buildContainer(List<Trait> traits) {
     final displayTraits = (traits.isEmpty) ? [UnknownTrait('UNKNOWN')] : traits;
     final deviceWidget = DeviceWidgetBuilder()
-        .withPrimaryTrait(displayTraits.reversed.first)
+        .withPrimaryTrait(displayTraits.first)
         .withTraits(displayTraits.skip(1).toList())
         .build();
 

@@ -80,6 +80,15 @@ _read-only_
 
 
 
+##### [getCoolTemperatureRange](../providers_thermostat_provider/ThermostatProvider/getCoolTemperatureRange.md) &#8594; [TemperatureRange](https://yonomi.co/yonomi-sdk/TemperatureRange-class.html)?
+
+
+
+   
+_read-only_
+
+
+
 ##### [getErrorMessage](../providers_device_provider/DeviceProvider/getErrorMessage.md) &#8594; [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
@@ -91,6 +100,15 @@ _read-only, inherited_
 
 
 ##### [getFanModeState](../providers_thermostat_provider/ThermostatProvider/getFanModeState.md) &#8594; [AvailableFanMode](https://yonomi.co/yonomi-sdk/AvailableFanMode.html)
+
+
+
+   
+_read-only_
+
+
+
+##### [getHeatTemperatureRange](../providers_thermostat_provider/ThermostatProvider/getHeatTemperatureRange.md) &#8594; [TemperatureRange](https://yonomi.co/yonomi-sdk/TemperatureRange-class.html)?
 
 
 

@@ -16,6 +16,13 @@
 
 ## Classes
 
+##### [TemperatureRangeSlider](../traits_thermostat_widget/TemperatureRangeSlider-class.md)
+
+
+
+ 
+
+
 ##### [ThermostatWidget](../traits_thermostat_widget/ThermostatWidget-class.md)
 
 

@@ -4,6 +4,7 @@ import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
+import 'package:flutter/src/widgets/framework.dart' as framework;
 
 class ThermostatWidget extends StatelessWidget with ToastNotifications {
   final ThermostatProvider _thermostatProvider;
@@ -43,10 +44,61 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
               )
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: _setTemperature(),
+              )
+            ],
+          ),
           _fanMode(context),
         ],
       );
     }
+  }
+
+  Widget _setTemperature() {
+    final currentMode = _thermostatProvider.getModeState;
+    if (!(currentMode == AvailableThermostatMode.COOL ||
+        currentMode == AvailableThermostatMode.HEAT)) {
+      return Container();
+    }
+    final isCool = currentMode == AvailableThermostatMode.COOL;
+    final temperatureRange = isCool
+        ? _thermostatProvider.getCoolTemperatureRange!
+        : _thermostatProvider.getHeatTemperatureRange!;
+    double value = _thermostatProvider.getTargetTemperatureState!;
+
+    if ((value < temperatureRange.min)) {
+      value = temperatureRange.min;
+    }
+
+    if ((value > temperatureRange.max)) {
+      value = temperatureRange.max;
+    }
+
+    return Row(
+      children: [
+        Icon(
+          isCool ? Icons.ac_unit : Icons.whatshot,
+          color: _textColor,
+        ),
+        TemperatureRangeSlider(
+          value,
+          temperatureRange.min,
+          temperatureRange.max,
+          (value) {
+            // Add 1s delay
+            Future.delayed(Duration(seconds: 1), () {
+              _thermostatProvider.setPointAction(
+                  _thermostatProvider.deviceDetail!.id, value);
+            });
+          },
+          key: Key('thermostat_${isCool ? 'cool' : 'hot'}_slider'),
+        ),
+      ],
+    );
   }
 
   Widget _fanMode(BuildContext context) {
@@ -254,5 +306,58 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
             width: iconSize,
             key: Key('defaultModeIcon-${mode.name}'));
     }
+  }
+}
+
+class TemperatureRangeSlider extends StatefulWidget {
+  late final sliderValue;
+  late final min;
+  late final max;
+  late final onChangeEnd;
+
+  TemperatureRangeSlider(double sliderValue, double min, double max,
+      void Function(double)? onChangeEnd,
+      {Key? key})
+      : super(key: key) {
+    this.sliderValue = sliderValue;
+    this.min = min;
+    this.max = max;
+    this.onChangeEnd = onChangeEnd;
+  }
+
+  @override
+  framework.State<TemperatureRangeSlider> createState() =>
+      _TemperatureRangeSlider(sliderValue, min, max, onChangeEnd);
+}
+
+class _TemperatureRangeSlider extends framework.State<TemperatureRangeSlider> {
+  late double _currentSliderValue;
+  late final min;
+  late final max;
+  late final onChangeEnd;
+
+  _TemperatureRangeSlider(double sliderValue, double min, double max,
+      void Function(double)? onChangeEnd) {
+    this._currentSliderValue = sliderValue;
+    this.min = min;
+    this.max = max;
+    this.onChangeEnd = onChangeEnd;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: _currentSliderValue,
+      label: _currentSliderValue.round().toString(),
+      min: min,
+      max: max,
+      divisions: 100,
+      onChangeEnd: onChangeEnd,
+      onChanged: (value) {
+        setState(() {
+          _currentSliderValue = value;
+        });
+      },
+    );
   }
 }

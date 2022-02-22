@@ -12,11 +12,6 @@
 
 
 
-**Inheritance**
-
-- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
-- [Enum](https://api.flutter.dev/flutter/dart-core/Enum-class.html)
-- WidgetState
 
 
 ## Constants
@@ -112,8 +107,8 @@ _inherited_
 
 
 
-   
-
+A string representation of this object. [...](../providers_widget_state/WidgetState/toString.md)  
+_override_
 
 
 

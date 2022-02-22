@@ -79,7 +79,12 @@ Widget build(BuildContext context) {
         },
       ),
       trailing:
-          Text('${_brightnessProvider.getBrightnessState?.round() ?? "--"}'));
+          Text(
+          '${_brightnessProvider.getBrightnessState?.round() ?? "--"}',
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: _iconColor)));
 }
 ```
 
