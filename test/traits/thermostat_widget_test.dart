@@ -1,5 +1,6 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
@@ -130,41 +131,43 @@ void main() {
 
   testWidgets('Cool Mode slider value should be min if value is less than min',
       (WidgetTester tester) async {
-    final mockThermostatProvider = test.mockThermostatProvider(
-      defaultDevice.withThermostatMode(AvailableThermostatMode.COOL),
-      isBusy: false,
-    );
     final expectedMin = 20.0;
     final expectedMax = 30.0;
-    when(mockThermostatProvider.getCoolTemperatureRange)
-        .thenReturn(TemperatureRange(min: expectedMin, max: expectedMax));
-    when(mockThermostatProvider.getTargetTemperatureState).thenReturn(10);
+
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice
+          .withThermostatMode(AvailableThermostatMode.COOL)
+          .withTargetTemperature(10)
+          .withCoolTempRange(
+              TemperatureRange(min: expectedMin, max: expectedMax)),
+    );
+
     await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
-    final slider = find.byType(TemperatureRangeSlider);
+    final slider = find.byKey(Key('thermostat_cool_slider'));
     expect(slider, findsOneWidget);
     expect(
-        (slider.first.evaluate().first.widget as TemperatureRangeSlider)
-            .sliderValue,
+        (slider.evaluate().first.widget as TemperatureRangeSlider).sliderValue,
         equals(expectedMin));
   });
 
   testWidgets('Heat Mode slider value should be min if value is less than min',
       (WidgetTester tester) async {
-    final mockThermostatProvider = test.mockThermostatProvider(
-      defaultDevice.withThermostatMode(AvailableThermostatMode.HEAT),
-      isBusy: false,
-    );
     final expectedMin = 20.0;
     final expectedMax = 30.0;
-    when(mockThermostatProvider.getCoolTemperatureRange)
-        .thenReturn(TemperatureRange(min: expectedMin, max: expectedMax));
-    when(mockThermostatProvider.getTargetTemperatureState).thenReturn(10);
+
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice
+          .withThermostatMode(AvailableThermostatMode.HEAT)
+          .withTargetTemperature(10)
+          .withHeatingTempRange(
+              TemperatureRange(min: expectedMin, max: expectedMax)),
+    );
+
     await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
-    final slider = find.byType(TemperatureRangeSlider);
+    final slider = find.byKey(Key('thermostat_hot_slider'));
     expect(slider, findsOneWidget);
     expect(
-        (slider.first.evaluate().first.widget as TemperatureRangeSlider)
-            .sliderValue,
+        (slider.evaluate().first.widget as TemperatureRangeSlider).sliderValue,
         equals(expectedMin));
   });
 
@@ -172,7 +175,6 @@ void main() {
       (WidgetTester tester) async {
     final mockThermostatProvider = test.mockThermostatProvider(
       defaultDevice.withThermostatMode(AvailableThermostatMode.HEAT),
-      isBusy: false,
     );
     final expectedMin = 20.0;
     final expectedMax = 30.0;
