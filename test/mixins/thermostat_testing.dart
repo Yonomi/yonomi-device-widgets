@@ -47,9 +47,9 @@ mixin ThermostatTesting {
     when(mockThermostatProvider.getAvailableThermostatModes)
         .thenReturn(device.availableThermostatModes);
     when(mockThermostatProvider.getCoolTemperatureRange)
-        .thenReturn(TemperatureRange(min: 10, max: 30));
+        .thenReturn(device.coolingRange);
     when(mockThermostatProvider.getHeatTemperatureRange)
-        .thenReturn(TemperatureRange(min: 20, max: 50));
+        .thenReturn(device.heatingRange);
     return mockThermostatProvider;
   }
 }
@@ -61,8 +61,8 @@ class TestThermostatDevice extends Device {
   final AvailableThermostatMode mode;
   final Set<AvailableFanMode> availableFanModes;
   final Set<AvailableThermostatMode> availableThermostatModes;
-  late final TemperatureRange heatingRange;
-  late final TemperatureRange coolingRange;
+  final TemperatureRange? heatingRange;
+  final TemperatureRange? coolingRange;
 
   TestThermostatDevice(
     Device device, {
@@ -85,8 +85,8 @@ class TestThermostatDevice extends Device {
       AvailableThermostatMode.DEHUMIDIFY,
       AvailableThermostatMode.AUTO,
     },
-    TemperatureRange? heatingRange,
-    TemperatureRange? coolingRange,
+    this.heatingRange,
+    this.coolingRange,
   }) : super(
             device.id,
             device.displayName,
@@ -104,27 +104,93 @@ class TestThermostatDevice extends Device {
           }, <Property>{
             AvailableFanModes(availableFanModes),
             AvailableThermostatModes(availableThermostatModes),
-            HeatSetPointRange(
-                heatingRange ?? TemperatureRange(min: 0.0, max: 100.0)),
-            CoolSetPointRange(
-                coolingRange ?? TemperatureRange(min: 0.0, max: 100.0)),
+            HeatSetPointRange(heatingRange),
+            CoolSetPointRange(coolingRange),
           }),
           ...device.traits.where((t) => t.runtimeType != ThermostatTrait)
         ]);
 
   TestThermostatDevice withFanMode(AvailableFanMode fanMode) {
-    return TestThermostatDevice(this, fanMode: fanMode);
+    return TestThermostatDevice(
+      this,
+      targetTemperature: this.targetTemperature,
+      ambientTemperature: this.ambientTemperature,
+      fanMode: fanMode,
+      mode: this.mode,
+      availableFanModes: this.availableFanModes,
+      availableThermostatModes: this.availableThermostatModes,
+      heatingRange: this.heatingRange,
+      coolingRange: this.coolingRange,
+    );
   }
 
   TestThermostatDevice withThermostatMode(AvailableThermostatMode mode) {
-    return TestThermostatDevice(this, mode: mode);
+    return TestThermostatDevice(
+      this,
+      targetTemperature: this.targetTemperature,
+      ambientTemperature: this.ambientTemperature,
+      fanMode: this.fanMode,
+      mode: mode,
+      availableFanModes: this.availableFanModes,
+      availableThermostatModes: this.availableThermostatModes,
+      heatingRange: this.heatingRange,
+      coolingRange: this.coolingRange,
+    );
   }
 
   TestThermostatDevice withTargetTemperature(double targetTemperature) {
-    return TestThermostatDevice(this, targetTemperature: targetTemperature);
+    return TestThermostatDevice(
+      this,
+      targetTemperature: targetTemperature,
+      ambientTemperature: this.ambientTemperature,
+      fanMode: this.fanMode,
+      mode: this.mode,
+      availableFanModes: this.availableFanModes,
+      availableThermostatModes: this.availableThermostatModes,
+      heatingRange: this.heatingRange,
+      coolingRange: this.coolingRange,
+    );
   }
 
   TestThermostatDevice withAmbientTemperature(double ambientTemperature) {
-    return TestThermostatDevice(this, ambientTemperature: ambientTemperature);
+    return TestThermostatDevice(
+      this,
+      targetTemperature: this.targetTemperature,
+      ambientTemperature: ambientTemperature,
+      fanMode: this.fanMode,
+      mode: this.mode,
+      availableFanModes: this.availableFanModes,
+      availableThermostatModes: this.availableThermostatModes,
+      heatingRange: this.heatingRange,
+      coolingRange: this.coolingRange,
+    );
+  }
+
+  TestThermostatDevice withCoolTempRange(TemperatureRange? range) {
+    return TestThermostatDevice(
+      this,
+      targetTemperature: this.targetTemperature,
+      ambientTemperature: this.ambientTemperature,
+      fanMode: this.fanMode,
+      mode: this.mode,
+      availableFanModes: this.availableFanModes,
+      availableThermostatModes: this.availableThermostatModes,
+      heatingRange: this.heatingRange,
+      coolingRange: range,
+    );
+  }
+
+  TestThermostatDevice withHeatingTempRange(TemperatureRange? range) {
+    return TestThermostatDevice(
+      this,
+      targetTemperature: this.targetTemperature,
+      ambientTemperature: this.ambientTemperature,
+      fanMode: this.fanMode,
+      mode: this.mode,
+      availableFanModes: this.availableFanModes,
+      availableThermostatModes: this.availableThermostatModes,
+      heatingRange: range,
+      coolingRange: this.coolingRange,
+    );
   }
 }
