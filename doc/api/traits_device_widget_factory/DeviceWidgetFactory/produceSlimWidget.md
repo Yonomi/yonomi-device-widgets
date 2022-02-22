@@ -56,8 +56,17 @@ static Widget produceSlimWidget<T extends Trait>(
           backgroundColor: backgroundColor,
         );
       });
+    case BrightnessTrait:
+      return Consumer<BrightnessProvider>(
+          builder: (_, brightnessProvider, __) {
+        return BrightnessSlimWidget(
+          brightnessProvider,
+          backgroundColor: backgroundColor,
+        );
+      });
     default:
-      return UnknownSlimWidget(name ?? '', backgroundColor: backgroundColor);
+      return UnknownSlimWidget(name ?? 'Unknown',
+          backgroundColor: backgroundColor);
   }
 }
 ```
