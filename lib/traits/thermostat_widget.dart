@@ -66,16 +66,18 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
     }
     final isCool = currentMode == AvailableThermostatMode.COOL;
     final temperatureRange = isCool
-        ? _thermostatProvider.getCoolTemperatureRange!
-        : _thermostatProvider.getHeatTemperatureRange!;
+        ? _thermostatProvider.getCoolTemperatureRange
+        : _thermostatProvider.getHeatTemperatureRange;
     double value = _thermostatProvider.getTargetTemperatureState!;
 
-    if ((value < temperatureRange.min)) {
-      value = temperatureRange.min;
-    }
+    if (temperatureRange != null) {
+      if (value < temperatureRange.min) {
+        value = temperatureRange.min;
+      }
 
-    if ((value > temperatureRange.max)) {
-      value = temperatureRange.max;
+      if ((value > temperatureRange.max)) {
+        value = temperatureRange.max;
+      }
     }
 
     return Row(
@@ -86,8 +88,8 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
         ),
         TemperatureRangeSlider(
           value,
-          temperatureRange.min,
-          temperatureRange.max,
+          temperatureRange?.min ?? 0,
+          temperatureRange?.max ?? 100,
           (value) {
             // Add 1s delay
             Future.delayed(Duration(seconds: 1), () {

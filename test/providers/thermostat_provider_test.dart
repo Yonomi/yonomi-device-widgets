@@ -25,8 +25,8 @@ class GetThermostatDetails extends Mock {
   Future<Device> call(Request request, String id);
 }
 
-final heatTemperatureRange = TemperatureRange(min: 0, max: 100);
-final coolTemperatureRange = TemperatureRange(min: 0, max: 100);
+final heatTemperatureRange = TemperatureRange(min: 10, max: 30);
+final coolTemperatureRange = TemperatureRange(min: 10, max: 30);
 
 @GenerateMocks([
   SetPoint,
@@ -165,5 +165,7 @@ TestThermostatDevice _getThermostat(double temp) {
         AvailableThermostatMode.HEAT
       },
       ambientTemperature: temp + 4.0,
-      targetTemperature: temp);
+      targetTemperature: temp,
+      heatingRange: heatTemperatureRange,
+      coolingRange: coolTemperatureRange);
 }
