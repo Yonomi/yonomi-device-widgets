@@ -171,6 +171,27 @@ void main() {
         equals(expectedMin));
   });
 
+  testWidgets('Heat Mode slider value should be max if value is more than max',
+      (WidgetTester tester) async {
+    final expectedMin = 20.0;
+    final expectedMax = 30.0;
+
+    final mockThermostatProvider = test.mockThermostatProvider(
+      defaultDevice
+          .withThermostatMode(AvailableThermostatMode.HEAT)
+          .withTargetTemperature(40)
+          .withHeatingTempRange(
+              TemperatureRange(min: expectedMin, max: expectedMax)),
+    );
+
+    await tester.pumpWidget(createMaterialApp(mockThermostatProvider));
+    final slider = find.byKey(Key('thermostat_hot_slider'));
+    expect(slider, findsOneWidget);
+    expect(
+        (slider.evaluate().first.widget as TemperatureRangeSlider).sliderValue,
+        equals(expectedMax));
+  });
+
   testWidgets('temperature slider should slide value',
       (WidgetTester tester) async {
     final mockThermostatProvider = test.mockThermostatProvider(
