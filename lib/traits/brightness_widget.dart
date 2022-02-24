@@ -32,51 +32,52 @@ class BrightnessWidget extends StatelessWidget with ToastNotifications {
         color: WidgetStyleConstants.globalWarningColor,
       );
     } else {
-      return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+      return Column(mainAxisAlignment: MainAxisAlignment.start, children: <
+          Widget>[
+        Row(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  'BRIGHTNESS',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      ?.copyWith(color: _textColor),
-                ),
-              ],
+            Text(
+              'BRIGHTNESS',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: _textColor),
             ),
-            SizedBox(height: 10),
-            Container(
-              child: Center(
-                  child: SizedBox(
-                width: _iconSize,
-                height: _iconSize,
-                child: _brightnessProvider.isPerformingAction
-                    ? CircularProgressIndicator()
+          ],
+        ),
+        SizedBox(height: 10),
+        Container(
+          child: Center(
+              child: SizedBox(
+            width: _iconSize,
+            height: _iconSize,
+            child: _brightnessProvider.isPerformingAction
+                ? CircularProgressIndicator()
                 : Icon(BootstrapIcons.sun, color: _iconColor, size: _iconSize),
-              )),
-            ),
-            SizedBox(height: 10),
-            Row(children: [
-              Icon(
-                BootstrapIcons.sun,
-                color: _iconColor,
-              ),
-              Expanded(
-                  child: Slider(
-                label: 'Brightness',
-                value:
-                    _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
-                max: 100.0,
-                divisions: 100,
-                activeColor: WidgetStyleConstants.globalSuccessColor,
-                onChanged: (double value) {}, // Required
-                onChangeEnd: (double value) {
-                  // Only send the update when user releases slider
-                  _brightnessProvider.setBrightnessLevelAction(value.round());
-                },
-              )),
+          )),
+        ),
+        SizedBox(height: 10),
+        Row(children: [
+          Icon(
+            BootstrapIcons.sun,
+            color: _iconColor,
+          ),
+          Expanded(
+              child: Slider(
+            label: 'Brightness',
+            value: _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
+            thumbColor: (_brightnessProvider.getBrightnessState == null)
+                ? Colors.transparent
+                : null,
+            max: 100.0,
+            divisions: 100,
+            activeColor: WidgetStyleConstants.globalSuccessColor,
+            onChanged: (double value) {}, // Required
+            onChangeEnd: (double value) {
+              // Only send the update when user releases slider
+              _brightnessProvider.setBrightnessLevelAction(value.round());
+            },
+          )),
           Text(
             '${_brightnessProvider.getBrightnessState?.round() ?? "--"}',
             style: Theme.of(context)
@@ -84,8 +85,8 @@ class BrightnessWidget extends StatelessWidget with ToastNotifications {
                 .headline6
                 ?.copyWith(color: _textColor),
           )
-            ])
-          ]);
+        ])
+      ]);
     }
   }
 }

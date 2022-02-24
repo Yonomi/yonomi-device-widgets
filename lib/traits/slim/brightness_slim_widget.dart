@@ -28,6 +28,9 @@ class BrightnessSlimWidget extends StatelessWidget {
         title: Slider(
           label: 'Brightness',
           value: _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
+          thumbColor: (_brightnessProvider.getBrightnessState == null)
+              ? Colors.transparent
+              : null,
           max: 100.0,
           divisions: 100,
           activeColor: WidgetStyleConstants.globalSuccessColor,
