@@ -4,7 +4,7 @@ import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-class BrightnessWidget extends StatelessWidget with ToastNotifications {
+class BrightnessWidget extends StatefulWidget {
   final BrightnessProvider _brightnessProvider;
   late final Color _iconColor;
   late final Color _textColor;
@@ -19,6 +19,24 @@ class BrightnessWidget extends StatelessWidget with ToastNotifications {
     this._iconColor = iconColor;
     this._textColor = textColor;
     this._iconSize = iconSize;
+  }
+
+  @override
+  State<StatefulWidget> createState() => _BrightnessWidgetState(
+      _brightnessProvider, _iconColor, _textColor, _iconSize);
+}
+
+class _BrightnessWidgetState extends State<BrightnessWidget>
+    with ToastNotifications {
+  final BrightnessProvider _brightnessProvider;
+  final Color _iconColor;
+  final double _iconSize;
+  final Color _textColor;
+  int? _value;
+
+  _BrightnessWidgetState(this._brightnessProvider, this._iconColor,
+      this._textColor, this._iconSize) {
+    _value = _brightnessProvider.getBrightnessState;
   }
 
   @override
@@ -66,13 +84,15 @@ class BrightnessWidget extends StatelessWidget with ToastNotifications {
               child: Slider(
             label: 'Brightness',
             value: _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
-            thumbColor: (_brightnessProvider.getBrightnessState == null)
-                ? Colors.transparent
-                : null,
             max: 100.0,
             divisions: 100,
             activeColor: WidgetStyleConstants.globalSuccessColor,
-            onChanged: (double value) {}, // Required
+            // When onChanged is null it makes the slider disabled
+            onChanged: (_value == null)
+                ? null
+                : (double value) {
+                    setState(() => _value = value.toInt());
+                  }, // Required
             onChangeEnd: (double value) {
               // Only send the update when user releases slider
               _brightnessProvider.setBrightnessLevelAction(value.round());
