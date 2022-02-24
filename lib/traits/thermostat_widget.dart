@@ -90,8 +90,8 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
         ),
         TemperatureRangeSlider(
           value,
-          temperatureRange?.min ?? 0,
-          temperatureRange?.max ?? 100,
+          temperatureRange?.min ?? value - 50,
+          temperatureRange?.max ?? value + 50,
           (value) {
             // Add 1s delay
             Future.delayed(Duration(seconds: 1), () {
