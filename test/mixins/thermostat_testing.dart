@@ -104,8 +104,10 @@ class TestThermostatDevice extends Device {
           }, <Property>{
             AvailableFanModes(availableFanModes),
             AvailableThermostatModes(availableThermostatModes),
-            HeatSetPointRange(heatingRange),
-            CoolSetPointRange(coolingRange),
+            HeatSetPointRange(
+                heatingRange ?? TemperatureRange(min: null, max: null)),
+            CoolSetPointRange(
+                coolingRange ?? TemperatureRange(min: null, max: null)),
           }),
           ...device.traits.where((t) => t.runtimeType != ThermostatTrait)
         ]);

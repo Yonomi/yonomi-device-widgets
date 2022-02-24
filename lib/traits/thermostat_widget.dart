@@ -70,13 +70,15 @@ class ThermostatWidget extends StatelessWidget with ToastNotifications {
         : _thermostatProvider.getHeatTemperatureRange;
     double value = _thermostatProvider.getTargetTemperatureState!;
 
+    double maxRangeValue = temperatureRange?.max ?? double.maxFinite;
+    double minRangeValue = temperatureRange?.min ?? -double.maxFinite;
     if (temperatureRange != null) {
-      if (value < temperatureRange.min) {
-        value = temperatureRange.min;
+      if (value >= maxRangeValue) {
+        value = maxRangeValue;
       }
 
-      if ((value > temperatureRange.max)) {
-        value = temperatureRange.max;
+      if (value <= minRangeValue) {
+        value = minRangeValue;
       }
     }
 
