@@ -8,27 +8,39 @@ class DeviceWidgetBuilder {
   final _traitWidgets = <Widget>[];
 
   DeviceWidgetBuilder withPrimaryTrait(Trait trait,
-      {padding = const EdgeInsets.all(8.0),
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      Color textColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      padding = const EdgeInsets.all(8.0),
       margins = const EdgeInsets.only(bottom: 8.0)}) {
-    _primaryTraitWidgets
-        .add(_card(_createTraitWidget(trait), padding, margins));
+    _primaryTraitWidgets.add(_card(
+        DeviceWidgetFactory.produceWidget(trait,
+            iconColor: iconColor, textColor: textColor),
+        padding,
+        margins));
 
     return this;
   }
 
   void _withTrait(trait,
-      {EdgeInsets padding = const EdgeInsets.all(8.0),
+      {required backgroundColor,
+      EdgeInsets padding = const EdgeInsets.all(8.0),
       EdgeInsets margins =
           const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
-    _traitWidgets.add(_card(_createTraitListWidget(trait), padding, margins));
+    _traitWidgets.add(_card(
+        DeviceWidgetFactory.produceSlimWidget(trait,
+            backgroundColor: backgroundColor),
+        padding,
+        margins));
   }
 
   DeviceWidgetBuilder withTraits(List<Trait> traits,
-      {EdgeInsets padding = const EdgeInsets.all(8.0),
+      {backgroundColor = Colors.white,
+      EdgeInsets padding = const EdgeInsets.all(8.0),
       EdgeInsets margins =
           const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) {
     traits.forEach((trait) {
-      _withTrait(trait, padding: padding, margins: margins);
+      _withTrait(trait,
+          backgroundColor: backgroundColor, padding: padding, margins: margins);
     });
 
     return this;
@@ -46,53 +58,5 @@ class DeviceWidgetBuilder {
         color: Colors.white,
         margin: margins,
         child: Padding(padding: padding, child: content));
-  }
-
-  Widget _createTraitWidget(Trait trait,
-      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
-      Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
-    switch (trait.runtimeType) {
-      case LockTrait:
-        return DeviceWidgetFactory.produceWidget<LockTrait>(
-            iconColor: iconColor, textColor: textColor);
-      case PowerTrait:
-        return DeviceWidgetFactory.produceWidget<PowerTrait>(
-            iconColor: iconColor, textColor: textColor);
-      case BatteryLevelTrait:
-        return DeviceWidgetFactory.produceWidget<BatteryLevelTrait>(
-            iconColor: iconColor, textColor: textColor);
-      case ThermostatTrait:
-        return DeviceWidgetFactory.produceWidget<ThermostatTrait>(
-            iconColor: iconColor, textColor: textColor);
-      case BrightnessTrait:
-        return DeviceWidgetFactory.produceWidget<BrightnessTrait>(
-            iconColor: iconColor, textColor: textColor);
-      default:
-        return DeviceWidgetFactory.produceWidget<UnknownTrait>(
-            iconColor: iconColor);
-    }
-  }
-
-  Widget _createTraitListWidget(Trait trait, {backgroundColor = Colors.white}) {
-    switch (trait.runtimeType) {
-      case LockTrait:
-        return DeviceWidgetFactory.produceSlimWidget<LockTrait>(
-            backgroundColor: backgroundColor);
-      case PowerTrait:
-        return DeviceWidgetFactory.produceSlimWidget<PowerTrait>(
-            backgroundColor: backgroundColor);
-      case BatteryLevelTrait:
-        return DeviceWidgetFactory.produceSlimWidget<BatteryLevelTrait>(
-            backgroundColor: backgroundColor);
-      case ThermostatTrait:
-        return DeviceWidgetFactory.produceSlimWidget<ThermostatTrait>(
-            backgroundColor: backgroundColor);
-      case BrightnessTrait:
-        return DeviceWidgetFactory.produceSlimWidget<BrightnessTrait>(
-            backgroundColor: backgroundColor);
-      default:
-        return DeviceWidgetFactory.produceSlimWidget<UnknownTrait>(
-            name: trait.name, backgroundColor: backgroundColor);
-    }
   }
 }

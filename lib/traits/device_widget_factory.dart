@@ -20,12 +20,11 @@ import 'package:yonomi_device_widgets/traits/unknown_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-class DeviceWidgetFactory<T extends Trait> {
-  static Widget produceWidget<T extends Trait>(
-      {String? name,
-      Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+class DeviceWidgetFactory {
+  static Widget produceWidget(Trait trait,
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
       Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
-    switch (T) {
+    switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, __) {
           return LockWidget(lockProvider,
@@ -55,13 +54,13 @@ class DeviceWidgetFactory<T extends Trait> {
           },
         );
       default:
-        return UnknownWidget(name: name, iconColor: iconColor);
+        return UnknownWidget(name: trait.name, iconColor: iconColor);
     }
   }
 
-  static Widget produceSlimWidget<T extends Trait>(
-      {String? name, backgroundColor = Colors.white}) {
-    switch (T) {
+  static Widget produceSlimWidget(Trait trait,
+      {backgroundColor = Colors.white}) {
+    switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, __) {
           return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
@@ -100,8 +99,7 @@ class DeviceWidgetFactory<T extends Trait> {
           );
         });
       default:
-        return UnknownSlimWidget(name ?? 'Unknown',
-            backgroundColor: backgroundColor);
+        return UnknownSlimWidget(trait.name, backgroundColor: backgroundColor);
     }
   }
 }
