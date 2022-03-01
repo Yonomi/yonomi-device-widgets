@@ -43,25 +43,35 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
             : Icon(BootstrapIcons.sun, color: _iconColor),
         title: Slider(
           label: 'Brightness',
-          value: _brightnessProvider.getBrightnessState?.toDouble() ?? 50.0,
+          value: _brightnessValue()?.toDouble() ?? 50.0,
           max: 100.0,
           divisions: 100,
           activeColor: WidgetStyleConstants.globalSuccessColor,
-          onChanged: (_value == null)
+          onChanged: (_brightnessValue() == null)
               ? null
               : (double value) {
                   setState(() => _value = value.toInt());
                 }, // Required
           onChangeEnd: (double value) {
             // Only send the update when user releases slider
+            setState(() => _value = value.toInt());
             _brightnessProvider.setBrightnessLevelAction(value.round());
           },
         ),
-        trailing: Text(
-            '${_brightnessProvider.getBrightnessState?.round() ?? "--"}',
+        trailing: Text('${_brightnessValue() ?? "--"}',
             style: Theme.of(context)
                 .textTheme
                 .headline6
                 ?.copyWith(color: _iconColor)));
+  }
+
+  int? _brightnessValue() {
+    if (_value == null) {
+      setState(() {
+        _value = _brightnessProvider.getBrightnessState;
+        super.reassemble();
+      });
+    }
+    return _value;
   }
 }
