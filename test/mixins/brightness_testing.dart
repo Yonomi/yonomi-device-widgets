@@ -34,7 +34,7 @@ mixin BrightnessTesting {
 }
 
 class TestBrightnessDevice extends Device {
-  final int brightness;
+  final int? brightness;
 
   TestBrightnessDevice(Device device, {this.brightness = 80})
       : super(
@@ -52,7 +52,7 @@ class TestBrightnessDevice extends Device {
           ...device.traits.where((t) => t.runtimeType != BrightnessTrait)
         ]);
 
-  TestBrightnessDevice withBrightness(int brightness) {
+  TestBrightnessDevice withBrightness(int? brightness) {
     return TestBrightnessDevice(this, brightness: brightness);
   }
 }

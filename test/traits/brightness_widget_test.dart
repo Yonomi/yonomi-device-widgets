@@ -63,4 +63,15 @@ main() {
     await tester.drag(find.byType(Slider), Offset(100, 0));
     verify(mockBrightnessProvider.setBrightnessLevelAction(any)).called(1);
   });
+
+  testWidgets(
+      'When widget brightness state value is null, should call provider for brightness',
+      (WidgetTester tester) async {
+    final mockBrightnessProvider =
+        test.mockBrightnessProvider(brightnessDevice.withBrightness(null));
+
+    await tester.pumpWidget(createMaterialApp(mockBrightnessProvider));
+
+    verify(mockBrightnessProvider.getBrightnessState).called(2);
+  });
 }

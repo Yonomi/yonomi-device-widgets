@@ -50,64 +50,67 @@ class _BrightnessWidgetState extends State<BrightnessWidget>
         color: WidgetStyleConstants.globalWarningColor,
       );
     } else {
-      return Column(mainAxisAlignment: MainAxisAlignment.start, children: <
-          Widget>[
-        Row(
+      final brightness = _brightnessValue();
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'BRIGHTNESS',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: _textColor),
+            Row(
+              children: <Widget>[
+                Text(
+                  'BRIGHTNESS',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(color: _textColor),
+                ),
+              ],
             ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Container(
-          child: Center(
-              child: SizedBox(
-            width: _iconSize,
-            height: _iconSize,
-            child: _brightnessProvider.isPerformingAction
-                ? CircularProgressIndicator()
-                : Icon(BootstrapIcons.sun, color: _iconColor, size: _iconSize),
-          )),
-        ),
-        SizedBox(height: 10),
-        Row(children: [
-          Icon(
-            BootstrapIcons.sun,
-            color: _iconColor,
-          ),
-          Expanded(
-              child: Slider(
-            label: 'Brightness',
-                value: _brightnessValue()?.toDouble() ?? 50.0,
-            max: 100.0,
-            divisions: 100,
-            activeColor: WidgetStyleConstants.globalSuccessColor,
-            // When onChanged is null it makes the slider disabled
-                onChanged: (_brightnessValue() == null)
-                ? null
-                : (double value) {
-                    setState(() => _value = value.toInt());
-                  }, // Required
-            onChangeEnd: (double value) {
-              // Only send the update when user releases slider
+            SizedBox(height: 10),
+            Container(
+              child: Center(
+                  child: SizedBox(
+                width: _iconSize,
+                height: _iconSize,
+                child: _brightnessProvider.isPerformingAction
+                    ? CircularProgressIndicator()
+                    : Icon(BootstrapIcons.sun,
+                        color: _iconColor, size: _iconSize),
+              )),
+            ),
+            SizedBox(height: 10),
+            Row(children: [
+              Icon(
+                BootstrapIcons.sun,
+                color: _iconColor,
+              ),
+              Expanded(
+                  child: Slider(
+                label: 'Brightness',
+                value: brightness?.toDouble() ?? 50.0,
+                max: 100.0,
+                divisions: 100,
+                activeColor: WidgetStyleConstants.globalSuccessColor,
+                // When onChanged is null it makes the slider disabled
+                onChanged: (brightness == null)
+                    ? null
+                    : (double value) {
+                        setState(() => _value = value.toInt());
+                      }, // Required
+                onChangeEnd: (double value) {
+                  // Only send the update when user releases slider
                   setState(() => _value = value.toInt());
-              _brightnessProvider.setBrightnessLevelAction(value.round());
-            },
-          )),
-          Text(
-                '${_brightnessValue() ?? "--"}',
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                ?.copyWith(color: _textColor),
-          )
-        ])
-      ]);
+                  _brightnessProvider.setBrightnessLevelAction(value.round());
+                },
+              )),
+              Text(
+                '${brightness ?? "--"}',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
+              )
+            ])
+          ]);
     }
   }
 

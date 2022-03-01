@@ -35,6 +35,7 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = _brightnessValue();
     return ListTile(
         tileColor: _backgroundColor,
         leading: (_brightnessProvider.isPerformingAction ||
@@ -43,11 +44,11 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
             : Icon(BootstrapIcons.sun, color: _iconColor),
         title: Slider(
           label: 'Brightness',
-          value: _brightnessValue()?.toDouble() ?? 50.0,
+          value: brightness?.toDouble() ?? 50.0,
           max: 100.0,
           divisions: 100,
           activeColor: WidgetStyleConstants.globalSuccessColor,
-          onChanged: (_brightnessValue() == null)
+          onChanged: (brightness == null)
               ? null
               : (double value) {
                   setState(() => _value = value.toInt());
@@ -58,7 +59,7 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
             _brightnessProvider.setBrightnessLevelAction(value.round());
           },
         ),
-        trailing: Text('${_brightnessValue() ?? "--"}',
+        trailing: Text('${brightness ?? "--"}',
             style: Theme.of(context)
                 .textTheme
                 .headline6
