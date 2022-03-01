@@ -3,10 +3,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'battery_widget_testing.mocks.dart';
+import 'battery_testing.mocks.dart';
 
 @GenerateMocks([BatteryLevelProvider])
-mixin BatteryWidgetTesting {
+mixin BatteryTesting {
   MockBatteryLevelProvider mockBatteryLevelProvider(TestBatteryDevice device,
       {bool isBusy = false,
       bool isLoading = false,

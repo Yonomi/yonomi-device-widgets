@@ -93,8 +93,8 @@ class ThermostatSlimWidget extends BaseSlimWidget {
         ]);
   }
 
-  static Future<void>? _doTap<T>(
-      ThermostatProvider thermostatProvider, T value) {
+  static Future<void> _doTap<T>(
+      ThermostatProvider thermostatProvider, T value) async {
     final deviceId = thermostatProvider.deviceDetail?.id ?? '';
     switch (T) {
       case AvailableThermostatMode:

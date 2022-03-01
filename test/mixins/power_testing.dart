@@ -3,10 +3,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-import 'power_widget_testing.mocks.dart';
+import 'power_testing.mocks.dart';
 
 @GenerateMocks([PowerTraitProvider])
-mixin PowerWidgetTesting {
+mixin PowerTesting {
   MockPowerTraitProvider mockPowerTraitProvider(TestPowerDevice device,
       {bool isBusy = false,
       bool isLoading = false,
@@ -51,10 +51,12 @@ class TestPowerDevice extends Device {
         ]);
 
   TestPowerDevice withIsOn(bool isOn) {
-    return TestPowerDevice(this, isOn: isOn);
+    return TestPowerDevice(this,
+        isOn: isOn, supportsDiscreteOnOff: this.supportsDiscreteOnOff);
   }
 
   TestPowerDevice withSupportsDiscreteOnOff(bool supportsDiscreteOnOff) {
-    return TestPowerDevice(this, supportsDiscreteOnOff: supportsDiscreteOnOff);
+    return TestPowerDevice(this,
+        supportsDiscreteOnOff: supportsDiscreteOnOff, isOn: this.isOn);
   }
 }

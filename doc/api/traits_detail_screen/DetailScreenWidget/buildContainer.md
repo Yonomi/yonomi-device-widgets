@@ -27,7 +27,7 @@
 Widget buildContainer(List<Trait> traits) {
   final displayTraits = (traits.isEmpty) ? [UnknownTrait('UNKNOWN')] : traits;
   final deviceWidget = DeviceWidgetBuilder()
-      .withPrimaryTrait(displayTraits.first)
+      .withPrimaryTrait(displayTraits.reversed.first)
       .withTraits(displayTraits.skip(1).toList())
       .build();
 

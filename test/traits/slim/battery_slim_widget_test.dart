@@ -7,10 +7,10 @@ import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
-import '../mixins/battery_widget_testing.dart';
-import '../mixins/device_testing.dart';
+import '../../mixins/battery_testing.dart';
+import '../../mixins/device_testing.dart';
 
-class BatterySlimWidgetTest with DeviceTesting, BatteryWidgetTesting {}
+class BatterySlimWidgetTest with DeviceTesting, BatteryTesting {}
 
 MaterialApp createMaterialApp(BatteryLevelProvider mockBatteryLevelProvider) {
   return MaterialApp(

@@ -5,10 +5,10 @@ import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 
-import 'mixins/device_testing.dart';
-import 'mixins/power_widget_testing.dart';
+import '../mixins/device_testing.dart';
+import '../mixins/power_testing.dart';
 
-class PowerWidgetTest with DeviceTesting, PowerWidgetTesting {}
+class PowerWidgetTest with DeviceTesting, PowerTesting {}
 
 MaterialApp createMaterialApp(PowerTraitProvider mockPowerProvider) {
   return MaterialApp(

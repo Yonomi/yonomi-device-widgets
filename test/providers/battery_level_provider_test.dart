@@ -2,17 +2,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
+import '../mixins/battery_testing.dart';
+import '../mixins/device_testing.dart';
 import 'battery_level_provider_test.mocks.dart';
 
 class GetDeviceDetailsMethod extends Mock {
   Future<Device> call(Request request, String id);
 }
 
+class BatteryLevelProviderTest with DeviceTesting, BatteryTesting {}
+
 @GenerateMocks([GetDeviceDetailsMethod])
 void main() {
+  final batteryTest = BatteryLevelProviderTest();
+  final testBattery =
+      TestBatteryDevice(batteryTest.device(), batteryLevel: 100);
   group('For BatteryLevelProvider', () {
     test("""When loading device data, we are notified that it is loading
         through isLoading.""", () async {
@@ -20,7 +26,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          _getMockDeviceDetailsMethod(request, deviceId, _getDevice(100));
+          _getMockDeviceDetailsMethod(request, deviceId, testBattery);
 
       BatteryLevelProvider batteryLevelProvider = BatteryLevelProvider(
           request, deviceId,
@@ -39,7 +45,7 @@ void main() {
       String deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          _getMockDeviceDetailsMethod(request, deviceId, _getDevice(100));
+          _getMockDeviceDetailsMethod(request, deviceId, testBattery);
 
       BatteryLevelProvider batteryLevelProvider = await BatteryLevelProvider(
           request, deviceId,
@@ -64,7 +70,7 @@ void main() {
       String exceptionMesssage = 'Throwing an exception';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
-          _getMockDeviceDetailsMethod(request, deviceId, _getDevice(100));
+          _getMockDeviceDetailsMethod(request, deviceId, testBattery);
 
       when(mockDeviceDetailsMethod.call(request, deviceId))
           .thenAnswer((_) async {
@@ -90,17 +96,4 @@ MockGetDeviceDetailsMethod _getMockDeviceDetailsMethod(
       .thenAnswer((_) => Future.value(device));
 
   return mockDeviceDetailsMethod;
-}
-
-Device _getDevice(int batteryLevel) {
-  return Device(
-      'id',
-      'name',
-      'description',
-      'manufacturerName',
-      'model',
-      null,
-      GDateTime('value'),
-      GDateTime('value'),
-      [BatteryLevelTrait(BatteryLevel(batteryLevel))]);
 }

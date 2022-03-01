@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
+import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
+import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -17,12 +20,11 @@ import 'package:yonomi_device_widgets/traits/unknown_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-class DeviceWidgetFactory<T extends Trait> {
-  static Widget produceWidget<T extends Trait>(
-      {String? name,
-      Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+class DeviceWidgetFactory {
+  static Widget produceWidget(Trait trait,
+      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
       Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
-    switch (T) {
+    switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, __) {
           return LockWidget(lockProvider,
@@ -45,14 +47,20 @@ class DeviceWidgetFactory<T extends Trait> {
             return ThermostatWidget(thermostatProvider, textColor: textColor);
           },
         );
+      case BrightnessTrait:
+        return Consumer<BrightnessProvider>(
+          builder: (_, brightnessProvider, __) {
+            return BrightnessWidget(brightnessProvider, textColor: textColor);
+          },
+        );
       default:
-        return UnknownWidget(name: name, iconColor: iconColor);
+        return UnknownWidget(name: trait.name, iconColor: iconColor);
     }
   }
 
-  static Widget produceSlimWidget<T extends Trait>(
-      {String? name, backgroundColor = Colors.white}) {
-    switch (T) {
+  static Widget produceSlimWidget(Trait trait,
+      {backgroundColor = Colors.white}) {
+    switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, __) {
           return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
@@ -82,8 +90,16 @@ class DeviceWidgetFactory<T extends Trait> {
             backgroundColor: backgroundColor,
           );
         });
+      case BrightnessTrait:
+        return Consumer<BrightnessProvider>(
+            builder: (_, brightnessProvider, __) {
+          return BrightnessSlimWidget(
+            brightnessProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
       default:
-        return UnknownSlimWidget(name ?? '', backgroundColor: backgroundColor);
+        return UnknownSlimWidget(trait.name, backgroundColor: backgroundColor);
     }
   }
 }
