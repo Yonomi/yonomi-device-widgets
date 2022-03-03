@@ -1,3 +1,12 @@
+## [2.8.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.8.0...v2.8.1) (2022-03-03)
+
+
+### Bug Fixes
+
+* cleanup circleci ([aadfa0c](https://github.com/Yonomi/yonomi-device-widgets/commit/aadfa0c9c307f20e9a30ffac81a89c9f103e7391))
+* removed token and cleanup documentation to regenerate ([ffab8b4](https://github.com/Yonomi/yonomi-device-widgets/commit/ffab8b4c77d959719f2c2e235f928f039bca0db3))
+* uncommented documentation generation step to test ([a27c4d9](https://github.com/Yonomi/yonomi-device-widgets/commit/a27c4d9df63259962f00852318ea7386f9be6b25))
+
 # [2.8.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.7.0...v2.8.0) (2022-02-21)
 
 
