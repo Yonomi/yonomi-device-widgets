@@ -19,7 +19,7 @@
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-- [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
+- [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)
 - BrightnessSlimWidget
 
 
@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[BrightnessSlimWidget](../traits_slim_brightness_slim_widget/BrightnessSlimWidget/BrightnessSlimWidget.md) ([BrightnessProvider](../providers_brightness_provider/BrightnessProvider-class.md) _brightnessProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)? backgroundColor})
+[BrightnessSlimWidget](../traits_slim_brightness_slim_widget/BrightnessSlimWidget/BrightnessSlimWidget.md) ([BrightnessProvider](../providers_brightness_provider/BrightnessProvider-class.md) _brightnessProvider, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) backgroundColor = Colors.white70})
 
     
 
@@ -66,21 +66,21 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_slim_brightness_slim_widget/BrightnessSlimWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [createElement](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)() [StatefulElement](https://api.flutter.dev/flutter/widgets/StatefulElement-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_slim_brightness_slim_widget/BrightnessSlimWidget/build.md)  
-_override_
-
-
-
-##### [createElement](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)() [StatelessElement](https://api.flutter.dev/flutter/widgets/StatelessElement-class.html)
-
-
-
-Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)  
 _inherited_
+
+
+
+##### [createState](../traits_slim_brightness_slim_widget/BrightnessSlimWidget/createState.md)() [State](https://api.flutter.dev/flutter/widgets/State-class.html)&lt;[StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)>
+
+
+
+Creates the mutable state for this widget at a given location in the tree. [...](../traits_slim_brightness_slim_widget/BrightnessSlimWidget/createState.md)  
+_override_
 
 
 

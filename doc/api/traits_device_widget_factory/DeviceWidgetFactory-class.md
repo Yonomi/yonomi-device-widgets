@@ -1,7 +1,7 @@
 
 
 
-# DeviceWidgetFactory&lt;T extends Trait> class
+# DeviceWidgetFactory class
 
 
 
@@ -79,7 +79,7 @@ _inherited_
 
 ## Static Methods
 
-##### [produceSlimWidget](../traits_device_widget_factory/DeviceWidgetFactory/produceSlimWidget.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)>({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, dynamic backgroundColor = Colors.white}) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [produceSlimWidget](../traits_device_widget_factory/DeviceWidgetFactory/produceSlimWidget.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait, {dynamic backgroundColor = Colors.white}) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 
@@ -88,7 +88,7 @@ _inherited_
 
 
 
-##### [produceWidget](../traits_device_widget_factory/DeviceWidgetFactory/produceWidget.md)&lt;T extends [Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)>({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive}) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [produceWidget](../traits_device_widget_factory/DeviceWidgetFactory/produceWidget.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive}) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
 
 
 

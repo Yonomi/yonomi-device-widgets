@@ -1,7 +1,7 @@
 
 
 
-# produceWidget&lt;T extends Trait> method
+# produceWidget method
 
 
 
@@ -12,7 +12,7 @@
 
 
 [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) produceWidget
-&lt;T extends Trait>({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive})
+([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive})
 
 
 
@@ -24,11 +24,10 @@
 ## Implementation
 
 ```dart
-static Widget produceWidget<T extends Trait>(
-    {String? name,
-    Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+static Widget produceWidget(Trait trait,
+    {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
     Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
-  switch (T) {
+  switch (trait.runtimeType) {
     case LockTrait:
       return Consumer<LockProvider>(builder: (_, lockProvider, __) {
         return LockWidget(lockProvider,
@@ -58,7 +57,7 @@ static Widget produceWidget<T extends Trait>(
         },
       );
     default:
-      return UnknownWidget(name: name, iconColor: iconColor);
+      return UnknownWidget(name: trait.name, iconColor: iconColor);
   }
 }
 ```

@@ -1,7 +1,7 @@
 
 
 
-# produceSlimWidget&lt;T extends Trait> method
+# produceSlimWidget method
 
 
 
@@ -12,7 +12,7 @@
 
 
 [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html) produceSlimWidget
-&lt;T extends Trait>({[String](https://api.flutter.dev/flutter/dart-core/String-class.html)? name, dynamic backgroundColor = Colors.white})
+([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait, {dynamic backgroundColor = Colors.white})
 
 
 
@@ -24,9 +24,9 @@
 ## Implementation
 
 ```dart
-static Widget produceSlimWidget<T extends Trait>(
-    {String? name, backgroundColor = Colors.white}) {
-  switch (T) {
+static Widget produceSlimWidget(Trait trait,
+    {backgroundColor = Colors.white}) {
+  switch (trait.runtimeType) {
     case LockTrait:
       return Consumer<LockProvider>(builder: (_, lockProvider, __) {
         return LockSlimWidget(lockProvider, backgroundColor: backgroundColor);
@@ -65,8 +65,7 @@ static Widget produceSlimWidget<T extends Trait>(
         );
       });
     default:
-      return UnknownSlimWidget(name ?? 'Unknown',
-          backgroundColor: backgroundColor);
+      return UnknownSlimWidget(trait.name, backgroundColor: backgroundColor);
   }
 }
 ```

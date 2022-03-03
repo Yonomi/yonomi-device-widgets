@@ -72,7 +72,7 @@ _inherited_
 
 
 
-##### [withPrimaryTrait](../traits_device_widget_builder/DeviceWidgetBuilder/withPrimaryTrait.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait, {dynamic padding = const EdgeInsets.all(8.0), dynamic margins = const EdgeInsets.only(bottom: 8.0)}) [DeviceWidgetBuilder](../traits_device_widget_builder/DeviceWidgetBuilder-class.md)
+##### [withPrimaryTrait](../traits_device_widget_builder/DeviceWidgetBuilder/withPrimaryTrait.md)([Trait](https://yonomi.co/yonomi-sdk/Trait-class.html) trait, {[Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) iconColor = WidgetStyleConstants.deviceDetailIconColorActive, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.deviceDetailIconColorActive, dynamic padding = const EdgeInsets.all(8.0), dynamic margins = const EdgeInsets.only(bottom: 8.0)}) [DeviceWidgetBuilder](../traits_device_widget_builder/DeviceWidgetBuilder-class.md)
 
 
 
@@ -81,7 +81,7 @@ _inherited_
 
 
 
-##### [withTraits](../traits_device_widget_builder/DeviceWidgetBuilder/withTraits.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits, {[EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) padding = const EdgeInsets.all(8.0), [EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) margins = const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) [DeviceWidgetBuilder](../traits_device_widget_builder/DeviceWidgetBuilder-class.md)
+##### [withTraits](../traits_device_widget_builder/DeviceWidgetBuilder/withTraits.md)([List](https://api.flutter.dev/flutter/dart-core/List-class.html)&lt;[Trait](https://yonomi.co/yonomi-sdk/Trait-class.html)> traits, {dynamic backgroundColor = Colors.white, [EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) padding = const EdgeInsets.all(8.0), [EdgeInsets](https://api.flutter.dev/flutter/painting/EdgeInsets-class.html) margins = const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0)}) [DeviceWidgetBuilder](../traits_device_widget_builder/DeviceWidgetBuilder-class.md)
 
 
 

@@ -19,13 +19,10 @@
 - [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
 - [DiagnosticableTree](https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html)
 - [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
-- [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
+- [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)
 - BrightnessWidget
 
 
-**Mixed in types**
-
-- [ToastNotifications](../mixins_toast_notifications/ToastNotifications-mixin.md)
 
 
 
@@ -69,21 +66,21 @@ _read-only, inherited_
 
 ## Methods
 
-##### [build](../traits_brightness_widget/BrightnessWidget/build.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context) [Widget](https://api.flutter.dev/flutter/widgets/Widget-class.html)
+##### [createElement](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)() [StatefulElement](https://api.flutter.dev/flutter/widgets/StatefulElement-class.html)
 
 
 
-Describes the part of the user interface represented by this widget. [...](../traits_brightness_widget/BrightnessWidget/build.md)  
-_override_
-
-
-
-##### [createElement](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)() [StatelessElement](https://api.flutter.dev/flutter/widgets/StatelessElement-class.html)
-
-
-
-Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html)  
+Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree. [...](https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html)  
 _inherited_
+
+
+
+##### [createState](../traits_brightness_widget/BrightnessWidget/createState.md)() [State](https://api.flutter.dev/flutter/widgets/State-class.html)&lt;[StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)>
+
+
+
+Creates the mutable state for this widget at a given location in the tree. [...](../traits_brightness_widget/BrightnessWidget/createState.md)  
+_override_
 
 
 
@@ -111,15 +108,6 @@ _inherited_
 
 
 Invoked when a non-existent method or property is accessed. [...](https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html)  
-_inherited_
-
-
-
-##### [showToast](../mixins_toast_notifications/ToastNotifications/showToast.md)([BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html) context, [String](https://api.flutter.dev/flutter/dart-core/String-class.html) message) void
-
-
-
-   
 _inherited_
 
 

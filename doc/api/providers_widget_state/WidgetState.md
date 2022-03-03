@@ -12,6 +12,11 @@
 
 
 
+**Inheritance**
+
+- [Object](https://api.flutter.dev/flutter/dart-core/Object-class.html)
+- [Enum](https://api.flutter.dev/flutter/dart-core/Enum-class.html)
+- WidgetState
 
 
 ## Constants
@@ -73,12 +78,12 @@ _read-only, inherited_
 
 
 
-##### index &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+##### [index](https://api.flutter.dev/flutter/dart-core/Enum/index.html) &#8594; [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 
 
 
-<p>The integer index of this enum.</p>   
-_final_
+A numeric identifier for the enumerated value. [...](https://api.flutter.dev/flutter/dart-core/Enum/index.html)  
+_read-only, inherited_
 
 
 
@@ -103,12 +108,12 @@ _inherited_
 
 
 
-##### [toString](../providers_widget_state/WidgetState/toString.md)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+##### [toString](https://api.flutter.dev/flutter/dart-core/Object/toString.html)() [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 
 
 
-A string representation of this object. [...](../providers_widget_state/WidgetState/toString.md)  
-_override_
+A string representation of this object. [...](https://api.flutter.dev/flutter/dart-core/Object/toString.html)  
+_inherited_
 
 
 
