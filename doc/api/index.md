@@ -124,11 +124,11 @@ open coverage/html/index.html
  
 
 
-##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
+##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
  
 
 
-##### [lock_widget](traits_lock_widget/traits_lock_widget-library.md)
+##### [lock_widget](components_lock_widget/components_lock_widget-library.md)
  
 
 
