@@ -46,7 +46,7 @@ and</li>
 <li>any ambient state obtained from the <code>context</code> using
 <a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
 </ul>
-<p>If a widget's <a href="../../traits_detail_screen/DetailScreen/build.md">build</a> method is to depend on anything else, use a
+<p>If a widget's <a href="../../traits_color_widget/ColorWidget/build.md">build</a> method is to depend on anything else, use a
 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
 <p>See also:</p>
 <ul>
@@ -60,25 +60,29 @@ and</li>
 ```dart
 @override
 Widget build(BuildContext context) {
-  return MultiProvider(
-    providers: [
-      ChangeNotifierProvider<TraitDetailProvider>(
-          create: (context) => TraitDetailProvider(request, deviceId)),
-      ChangeNotifierProvider<LockProvider>(
-          create: (context) => LockProvider(request, deviceId)),
-      ChangeNotifierProvider<PowerTraitProvider>(
-          create: (context) => PowerTraitProvider(request, deviceId)),
-      ChangeNotifierProvider<BatteryLevelProvider>(
-          create: (context) => BatteryLevelProvider(request, deviceId)),
-      ChangeNotifierProvider<ThermostatProvider>(
-          create: (context) => ThermostatProvider(request, deviceId)),
-      ChangeNotifierProvider<BrightnessProvider>(
-          create: (context) => BrightnessProvider(request, deviceId)),
-      ChangeNotifierProvider<ColorProvider>(
-          create: (context) => ColorProvider(request, deviceId)),
-    ],
-    child: DetailScreenWidget(request, deviceId),
-  );
+  return _colorProvider.isBusy
+      ? Center(child: CircularProgressIndicator())
+      : Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                'COLOR',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: _textColor),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Center(
+              child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: _mainIcon())),
+          SizedBox(height: 10),
+          _stateRow(context),
+        ]);
 }
 ```
 
