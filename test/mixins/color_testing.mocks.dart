@@ -2,15 +2,16 @@
 // in yonomi_device_widgets/test/mixins/color_testing.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
-import 'dart:ui' as _i7;
+import 'dart:async' as _i6;
+import 'dart:ui' as _i8;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yonomi_device_widgets/providers/color_provider.dart' as _i2;
-import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i5;
-import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i3;
+import 'package:yonomi_device_widgets/providers/color_provider.dart' as _i3;
+import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i4;
+import 'package:yonomi_device_widgets/providers/widget_state.dart' as _i5;
 import 'package:yonomi_platform_sdk/src/repository/devices_repository.dart'
-    as _i6;
+    as _i7;
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -20,22 +21,33 @@ import 'package:yonomi_platform_sdk/src/repository/devices_repository.dart'
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
+class _FakeDevice_0 extends _i1.Fake implements _i2.Device {}
+
 /// A class which mocks [ColorProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockColorProvider extends _i1.Mock implements _i2.ColorProvider {
+class MockColorProvider extends _i1.Mock implements _i3.ColorProvider {
   MockColorProvider() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
+  _i4.GetDeviceDetailsMethod get getDetails =>
+      (super.noSuchMethod(Invocation.getter(#getDetails),
+              returnValue: (_i2.Request request, String id) =>
+                  Future<_i2.Device>.value(_FakeDevice_0()))
+          as _i4.GetDeviceDetailsMethod);
+  @override
+  _i3.SendSetColorActionFunction get sendSetColorAction => (super.noSuchMethod(
+      Invocation.getter(#sendSetColorAction),
+      returnValue: (_i2.Request request, String id, _i2.HSBColor hsbColor) =>
+          Future<void>.value()) as _i3.SendSetColorActionFunction);
+  @override
   String get displayName =>
       (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
           as String);
-
-  get getColorState => null;
   @override
-  set setState(_i3.WidgetState? newState) =>
+  set setState(_i5.WidgetState? newState) =>
       super.noSuchMethod(Invocation.setter(#setState, newState),
           returnValueForMissingStub: null);
   @override
@@ -63,33 +75,38 @@ class MockColorProvider extends _i1.Mock implements _i2.ColorProvider {
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i4.Future<void> fetchData(
-          {_i5.GetDeviceDetailsMethod? getDetails =
-              _i6.DevicesRepository.getDeviceDetails}) =>
+  _i6.Future<void> setColorAction(_i2.HSBColor? color) =>
+      (super.noSuchMethod(Invocation.method(#setColorAction, [color]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  @override
+  _i6.Future<void> fetchData(
+          {_i4.GetDeviceDetailsMethod? getDetails =
+              _i7.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#fetchData, [], {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
   void setErrorState(String? errorMsg) =>
       super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
           returnValueForMissingStub: null);
   @override
-  _i4.Future<void> performAction<T>(
+  _i6.Future<void> performAction<T>(
           T? desiredState, Function? getState, Function? action,
-          {_i5.GetDeviceDetailsMethod? getDetails =
-              _i6.DevicesRepository.getDeviceDetails}) =>
+          {_i4.GetDeviceDetailsMethod? getDetails =
+              _i7.DevicesRepository.getDeviceDetails}) =>
       (super.noSuchMethod(
           Invocation.method(#performAction, [desiredState, getState, action],
               {#getDetails: getDetails}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  void addListener(_i7.VoidCallback? listener) =>
+  void addListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
   @override
-  void removeListener(_i7.VoidCallback? listener) =>
+  void removeListener(_i8.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#removeListener, [listener]),
           returnValueForMissingStub: null);
   @override
