@@ -22,18 +22,19 @@ mixin ColorTesting {
     when(mockColorProvider.isPerformingAction).thenReturn(isPerformingAction);
 
     when(mockColorProvider.deviceDetail).thenReturn(device);
-    when(mockColorProvider.getColorState).thenReturn(device.colorState?.value);
+    when(mockColorProvider.getColorState).thenReturn(device.colorState.value);
     when(mockColorProvider.setColorAction(any))
         .thenAnswer((_) => Future.value(null));
+
     return mockColorProvider;
   }
 }
 
 class TestColorDevice extends Device {
-  final HSBColor? colorState;
-
-  TestColorDevice(Device device, {this.colorState})
-      : super(
+  late final HSBColor colorState;
+  TestColorDevice(Device device, {HSBColor? colorState})
+      : this.colorState = colorState ?? HSBColor(130, 50, 50),
+        super(
             device.id,
             device.displayName,
             device.description,
@@ -46,7 +47,7 @@ class TestColorDevice extends Device {
           ...device.traits.where((t) => t.runtimeType != ColorTrait)
         ]);
 
-  TestColorDevice withColor(HSBColor? colorState) {
+  TestColorDevice withColor(HSBColor colorState) {
     return TestColorDevice(this, colorState: colorState);
   }
 }

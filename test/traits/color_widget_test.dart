@@ -1,8 +1,10 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/color_testing.dart';
 import '../mixins/device_testing.dart';
@@ -17,7 +19,8 @@ class ColorWidgetTest with DeviceTesting, ColorTesting {
 
 main() {
   final test = ColorWidgetTest();
-  final colorDevice = TestColorDevice(test.device());
+  final colorDevice =
+      TestColorDevice(test.device(), colorState: HSBColor(130, 50, 50));
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -41,5 +44,13 @@ main() {
         test.mockColorProvider(colorDevice, isInErrorState: true);
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
     expect(find.byIcon(Icons.error), findsOneWidget);
+  });
+
+  testWidgets('When color widget is valid, should show color device',
+      (WidgetTester tester) async {
+    final mockColorProvider = test.mockColorProvider(colorDevice);
+    await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
+
+    expect(find.byIcon(BootstrapIcons.box), findsOneWidget);
   });
 }
