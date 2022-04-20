@@ -1,9 +1,39 @@
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
-import 'package:yonomi_platform_sdk/src/request/request.dart';
+import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
+import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
+
+typedef SendSetColorActionFunction = Future<void> Function(
+    Request request, String id, HSBColor hsbColor);
 
 class ColorProvider extends DeviceProvider {
-  ColorProvider(Request request, String deviceId) : super(request, deviceId);
+  static const _DEFAULT_DISPLAY_NAME = 'COLOR';
+  late final String _deviceId;
+  late final Request _request;
+
+  final GetDeviceDetailsMethod getDetails;
+  final SendSetColorActionFunction sendSetColorAction;
+
+  ColorProvider(
+    Request request,
+    String deviceId, {
+    this.getDetails = DevicesRepository.getDeviceDetails,
+    this.sendSetColorAction = ColorRepository.sendSetColorAction,
+  }) : super(request, deviceId, getDetails: getDetails) {
+    this._deviceId = deviceId;
+    this._request = request;
+  }
 
   @override
-  String get displayName => 'COLOR';
+  String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
+
+  ColorTrait? get colorTrait => trait<ColorTrait>() as ColorTrait?;
+
+  GHSBColorValueInput? get getColorState =>
+      colorTrait?.stateWhereType<HSBColor>().value as GHSBColorValueInput?;
+
+  Future<void> setColorAction(HSBColor color) {
+    return performAction<HSBColor>(color, () => getColorState,
+        () => sendSetColorAction(_request, _deviceId, color),
+        getDetails: getDetails);
+  }
 }
