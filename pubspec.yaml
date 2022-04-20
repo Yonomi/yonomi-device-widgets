@@ -14,7 +14,10 @@ dependencies:
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.7.2
-  yonomi_platform_sdk: ^3.0.0
+  yonomi_platform_sdk:
+    git:
+      url: https://github.com/Yonomi/yonomi-sdk-dart
+      ref: DX-361_color_trait
   built_value: ^8.1.4
 
 dev_dependencies:
