@@ -11,7 +11,7 @@ class ColorSlimWidgetTest with DeviceTesting, ColorTesting {
   MaterialApp createMaterialApp(ColorProvider mockColorProvider) {
     return MaterialApp(
       home: new Scaffold(
-          body: Scaffold(body: ColorSlimWidget(mockColorProvider))),
+            body: Column(children: [ColorSlimWidget(mockColorProvider)]))
     );
   }
 }
@@ -22,11 +22,9 @@ void main() {
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final mockColorProvider = test.mockColorProvider(colorDevice);
-    when(mockColorProvider.isLoading).thenReturn(true);
-
+    final mockColorProvider =
+        test.mockColorProvider(colorDevice, isLoading: true);
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
-
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
@@ -35,9 +33,7 @@ void main() {
       (WidgetTester tester) async {
     final mockColorProvider =
         test.mockColorProvider(colorDevice.withColor(null));
-
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
-
-    verify(mockColorProvider.getColorState).called(2);
+    verify(mockColorProvider.getColorState).called(1);
   });
 }

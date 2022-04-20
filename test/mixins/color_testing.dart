@@ -7,16 +7,32 @@ import 'color_testing.mocks.dart';
 
 @GenerateMocks([ColorProvider])
 mixin ColorTesting {
-  MockColorProvider mockColorProvider(TestColorDevice device) {
+  MockColorProvider mockColorProvider(TestColorDevice device,
+      {bool isBusy = false,
+      bool isLoading = false,
+      bool isInErrorState = false,
+      bool isPerformingAction = false,
+      String errorMessage = ''}) {
     final mockColorProvider = MockColorProvider();
     when(mockColorProvider.displayName).thenReturn(device.displayName);
+    when(mockColorProvider.isLoading).thenReturn(isLoading);
+    when(mockColorProvider.isBusy).thenReturn(isBusy);
+    when(mockColorProvider.isInErrorState).thenReturn(isInErrorState);
+    when(mockColorProvider.getErrorMessage).thenReturn(errorMessage);
+    when(mockColorProvider.isPerformingAction).thenReturn(isPerformingAction);
+
     when(mockColorProvider.deviceDetail).thenReturn(device);
+    when(mockColorProvider.getColorState).thenReturn(device.colorState?.value);
+    when(mockColorProvider.setColorAction(any))
+        .thenAnswer((_) => Future.value(null));
     return mockColorProvider;
   }
 }
 
 class TestColorDevice extends Device {
-  TestColorDevice(Device device)
+  final HSBColor? colorState;
+
+  TestColorDevice(Device device, {this.colorState})
       : super(
             device.id,
             device.displayName,
@@ -26,10 +42,11 @@ class TestColorDevice extends Device {
             device.serialNumber,
             device.createdAt,
             device.updatedAt, [
-          ...device.traits // .where((t) => t.runtimeType != ColorTrait)
+          ColorTrait(colorState ?? HSBColor(130, 50, 50)),
+          ...device.traits.where((t) => t.runtimeType != ColorTrait)
         ]);
 
-  TestColorDevice withColor(param0) {
-    return this;
+  TestColorDevice withColor(HSBColor? colorState) {
+    return TestColorDevice(this, colorState: colorState);
   }
 }

@@ -21,31 +21,25 @@ main() {
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final mockColorProvider = test.mockColorProvider(colorDevice);
-    when(mockColorProvider.isLoading).thenReturn(true);
-
+    final mockColorProvider =
+        test.mockColorProvider(colorDevice, isLoading: true, isBusy: true);
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
-
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
   testWidgets('When performing action, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    final mockColorProvider = test.mockColorProvider(colorDevice);
-    when(mockColorProvider.isPerformingAction).thenReturn(true);
-
+    final mockColorProvider =
+        test.mockColorProvider(colorDevice, isPerformingAction: true);
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
-
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
   testWidgets('When color widget is in error, should show error icon',
       (WidgetTester tester) async {
-    final mockColorProvider = test.mockColorProvider(colorDevice);
-    when(mockColorProvider.isInErrorState).thenReturn(true);
-
+    final mockColorProvider =
+        test.mockColorProvider(colorDevice, isInErrorState: true);
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
-
     expect(find.byIcon(Icons.error), findsOneWidget);
   });
 }

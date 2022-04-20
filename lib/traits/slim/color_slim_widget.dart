@@ -29,20 +29,26 @@ class ColorSlimWidget extends BaseSlimWidget {
                     colorModel: ColorModel.hsv,
                   );
                 },
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor:
-                          _hsbToColor(_colorTraitProvider.getColorState),
-                      radius: 14,
+                child: SizedBox(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor:
+                                _hsbToColor(_colorTraitProvider.getColorState),
+                            radius: 14,
+                          ),
+                          Icon(
+                            BootstrapIcons.pencil,
+                            color: WidgetStyleConstants.globalSuccessColor,
+                            size: 14.0,
+                          )
+                        ],
+                      ),
                     ),
-                    Icon(
-                      BootstrapIcons.pencil,
-                      color: WidgetStyleConstants.globalSuccessColor,
-                      size: 14.0,
-                    )
-                  ],
-                )));
+                    width: 28,
+                    height: 28)));
 
   static Color _hsbToColor(GHSBColorValueInput? hsbColor) {
     if (hsbColor == null) {

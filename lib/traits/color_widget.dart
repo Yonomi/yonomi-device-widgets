@@ -34,15 +34,24 @@ class ColorWidget extends StatelessWidget {
                 child: SizedBox(
                     width: 100,
                     height: 100,
-                    child: _colorProvider.isPerformingAction
-                        ? CircularProgressIndicator()
-                        : UnknownItemIcon(
-                            size: 100,
-                            color: _iconColor,
-                          ))),
+                    child: _mainIcon())),
             SizedBox(height: 10),
             _stateRow(context),
           ]);
+  }
+
+  Widget _mainIcon() {
+    if (_colorProvider.isInErrorState) {
+      return Icon(
+        Icons.error,
+        size: 100.0,
+        color: _iconColor,
+      );
+    } else if (_colorProvider.isPerformingAction) {
+      return CircularProgressIndicator();
+    } else {
+      return UnknownItemIcon(size: 100, color: _iconColor);
+    }
   }
 
   Widget _stateRow(BuildContext context) {
