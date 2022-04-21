@@ -23,8 +23,14 @@
 ## Implementation
 
 ```dart
-GHSBColorValueInput? get getColorState =>
-    colorTrait?.stateWhereType<HSBColor>().value as GHSBColorValueInput?;
+GHSBColorValueInput? get getColorState {
+  final color = getColorTrait?.stateWhereType<HSBColor>();
+  if (color is HSBColor) {
+    return color.value;
+  } else {
+    return null;
+  }
+}
 ```
 
 

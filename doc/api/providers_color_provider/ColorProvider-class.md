@@ -35,15 +35,6 @@
 
 ## Properties
 
-##### [colorTrait](../providers_color_provider/ColorProvider/colorTrait.md) &#8594; [ColorTrait](https://yonomi.co/yonomi-sdk/ColorTrait-class.html)?
-
-
-
-   
-_read-only_
-
-
-
 ##### [deviceDetail](../providers_device_provider/DeviceProvider/deviceDetail.md) &#8594; [Device](https://yonomi.co/yonomi-sdk/Device-class.html)?
 
 
@@ -63,6 +54,15 @@ _read-only, override_
 
 
 ##### [getColorState](../providers_color_provider/ColorProvider/getColorState.md) &#8594; [GHSBColorValueInput](https://yonomi.co/third_party_yonomi_graphql_schema_schema.docs.schema.gql/GHSBColorValueInput-class.html)?
+
+
+
+   
+_read-only_
+
+
+
+##### [getColorTrait](../providers_color_provider/ColorProvider/getColorTrait.md) &#8594; [ColorTrait](https://yonomi.co/yonomi-sdk/ColorTrait-class.html)?
 
 
 

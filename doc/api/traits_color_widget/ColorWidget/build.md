@@ -76,10 +76,7 @@ Widget build(BuildContext context) {
           ),
           SizedBox(height: 10),
           Center(
-              child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: _mainIcon())),
+              child: SizedBox(width: 100, height: 100, child: _mainIcon())),
           SizedBox(height: 10),
           _stateRow(context),
         ]);
