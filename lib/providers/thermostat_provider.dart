@@ -46,15 +46,15 @@ class ThermostatProvider extends DeviceProvider {
   }
 
   AvailableThermostatMode get getModeState {
-    return getThermostatTrait()?.stateWhereType<ThermostatMode>().value ??
+    return getThermostatTrait()?.stateWhereType<ThermostatMode>()?.value ??
         AvailableThermostatMode.OFF;
   }
 
   double? get getTargetTemperatureState =>
-      getThermostatTrait()?.stateWhereType<TargetTemperature>().value;
+      getThermostatTrait()?.stateWhereType<TargetTemperature>()?.value;
 
   double? get getAmbientTemperatureState =>
-      getThermostatTrait()?.stateWhereType<AmbientTemperature>().value;
+      getThermostatTrait()?.stateWhereType<AmbientTemperature>()?.value;
 
   TemperatureRange? get getCoolTemperatureRange =>
       getThermostatTrait()?.propertyWhereType<CoolSetPointRange>().value;
@@ -63,7 +63,7 @@ class ThermostatProvider extends DeviceProvider {
       getThermostatTrait()?.propertyWhereType<HeatSetPointRange>().value;
 
   AvailableFanMode get getFanModeState {
-    return getThermostatTrait()?.stateWhereType<FanMode>().value;
+    return getThermostatTrait()?.stateWhereType<FanMode>()?.value;
   }
 
   Set<AvailableFanMode> get getAvailableFanModes {
