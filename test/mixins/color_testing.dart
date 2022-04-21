@@ -22,19 +22,28 @@ mixin ColorTesting {
     when(mockColorProvider.isPerformingAction).thenReturn(isPerformingAction);
 
     when(mockColorProvider.deviceDetail).thenReturn(device);
-    when(mockColorProvider.getColorState).thenReturn(device.colorState.value);
+    when(mockColorProvider.getColorState)
+        .thenReturn(device.colorTrait?.color.value);
     when(mockColorProvider.setColorAction(any))
         .thenAnswer((_) => Future.value(null));
+
+    final colorTrait = device.traits.firstWhere((trait) => trait is ColorTrait,
+        orElse: () => UnknownTrait(device.displayName));
+    if (colorTrait is UnknownTrait) {
+      when(mockColorProvider.getColorTrait).thenReturn(null);
+    } else {
+      when(mockColorProvider.getColorTrait)
+          .thenReturn(colorTrait as ColorTrait);
+    }
 
     return mockColorProvider;
   }
 }
 
 class TestColorDevice extends Device {
-  late final HSBColor colorState;
-  TestColorDevice(Device device, {HSBColor? colorState})
-      : this.colorState = colorState ?? HSBColor(130, 50, 50),
-        super(
+  late final ColorTrait? colorTrait;
+  TestColorDevice(Device device, {this.colorTrait})
+      : super(
             device.id,
             device.displayName,
             device.description,
@@ -42,12 +51,17 @@ class TestColorDevice extends Device {
             device.model,
             device.serialNumber,
             device.createdAt,
-            device.updatedAt, [
-          ColorTrait(colorState ?? HSBColor(130, 50, 50)),
-          ...device.traits.where((t) => t.runtimeType != ColorTrait)
-        ]);
+            device.updatedAt,
+            [
+              colorTrait,
+              ...device.traits.where((t) => t.runtimeType != ColorTrait)
+            ].whereType<Trait>().toList());
 
-  TestColorDevice withColor(HSBColor colorState) {
-    return TestColorDevice(this, colorState: colorState);
+  TestColorDevice withColor(HSBColor? colorState) {
+    if (colorState == null) {
+      return TestColorDevice(this, colorTrait: null);
+    } else {
+      return TestColorDevice(this, colorTrait: ColorTrait(colorState));
+    }
   }
 }

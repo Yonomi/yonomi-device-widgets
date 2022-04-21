@@ -31,10 +31,7 @@ class ColorWidget extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Center(
-                child: SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: _mainIcon())),
+                child: SizedBox(width: 100, height: 100, child: _mainIcon())),
             SizedBox(height: 10),
             _stateRow(context),
           ]);
@@ -77,17 +74,19 @@ class ColorWidget extends StatelessWidget {
           ),
           IconButton(
               onPressed: () {
-                SlidePicker(
-                  pickerColor: pickedColor.toColor(),
-                  onColorChanged: (color) {
-                    final calculatedColor = HSVColor.fromColor(color);
-                    _colorProvider.setColorAction(HSBColor(
-                        calculatedColor.hue.toInt(),
-                        (calculatedColor.saturation * 100).toInt(),
-                        (calculatedColor.value * 100).toInt()));
-                  },
-                  colorModel: ColorModel.hsv,
-                );
+                showDialog(
+                    context: context,
+                    builder: (context) => SlidePicker(
+                          pickerColor: pickedColor.toColor(),
+                          onColorChanged: (color) {
+                            final calculatedColor = HSVColor.fromColor(color);
+                            _colorProvider.setColorAction(HSBColor(
+                                calculatedColor.hue.toInt(),
+                                (calculatedColor.saturation * 100).toInt(),
+                                (calculatedColor.value * 100).toInt()));
+                          },
+                          colorModel: ColorModel.hsv,
+                        ));
               },
               icon: Icon(
                 BootstrapIcons.pencil,

@@ -19,7 +19,7 @@ class ColorSlimWidgetTest with DeviceTesting, ColorTesting {
 void main() {
   final test = ColorSlimWidgetTest();
   final colorDevice =
-      TestColorDevice(test.device(), colorState: HSBColor(130, 50, 50));
+      TestColorDevice(test.device(), colorTrait: ColorTrait(HSBColor(130, 50, 50)));
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {

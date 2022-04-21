@@ -170,9 +170,8 @@ void main() {
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    await tester
-        .pumpWidget(test.createDetailScreenWhenLoading(Request('', {}), ""));
-
+    final materialApp = test.createDetailScreenWhenLoading(Request('', {}), "");
+    await tester.pumpWidget(materialApp);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
@@ -383,9 +382,14 @@ void main() {
 
   testWidgets('Detail screen returns a multiprovider',
       (WidgetTester tester) async {
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+        [], Request('', {}), testedDeviceId));
+
     final detailScreen =
         DetailScreen(request: Request('', {}), deviceId: 'deviceId');
-    expect(
-        detailScreen.build(MockBuildContext()), isInstanceOf<MultiProvider>());
+    final multiProvider =
+        detailScreen.build(MockBuildContext()) as MultiProvider;
+
+    expect(multiProvider, isInstanceOf<MultiProvider>());
   });
 }

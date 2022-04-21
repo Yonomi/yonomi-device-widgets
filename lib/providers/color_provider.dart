@@ -26,10 +26,24 @@ class ColorProvider extends DeviceProvider {
   @override
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 
-  ColorTrait? get colorTrait => trait<ColorTrait>() as ColorTrait?;
+  ColorTrait? get getColorTrait {
+    final color = trait<ColorTrait>();
+    if (color is ColorTrait) {
+      return color;
+    } else {
+      return null;
+    }
+  }
 
-  GHSBColorValueInput? get getColorState =>
-      colorTrait?.stateWhereType<HSBColor>().value as GHSBColorValueInput?;
+  GHSBColorValueInput? get getColorState {
+    final color = getColorTrait?.stateWhereType<HSBColor>();
+    if (color is HSBColor) {
+      return color.value;
+    } else {
+      return null;
+    }
+  }
+
 
   Future<void> setColorAction(HSBColor color) {
     return performAction<HSBColor>(color, () => getColorState,

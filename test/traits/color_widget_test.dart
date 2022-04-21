@@ -1,7 +1,8 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
+import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -20,7 +21,8 @@ class ColorWidgetTest with DeviceTesting, ColorTesting {
 main() {
   final test = ColorWidgetTest();
   final colorDevice =
-      TestColorDevice(test.device(), colorState: HSBColor(130, 50, 50));
+      TestColorDevice(test.device(),
+      colorTrait: ColorTrait(HSBColor(130, 50, 50)));
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
@@ -52,5 +54,32 @@ main() {
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
 
     expect(find.byIcon(BootstrapIcons.box), findsOneWidget);
+    expect(mockColorProvider.displayName, colorDevice.displayName);
+    expect(mockColorProvider.getColorTrait,
+        colorDevice.traits.firstWhere((t) => t is ColorTrait));
+  });
+
+  testWidgets(
+      'When widget color state value is null, should call provider for color',
+      (WidgetTester tester) async {
+    final mockColorProvider =
+        test.mockColorProvider(colorDevice.withColor(null));
+    await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
+    verify(mockColorProvider.getColorState).called(1);
+  });
+
+  testWidgets('When edit clicked, should show color picker',
+      (WidgetTester tester) async {
+    final mockColorProvider = test.mockColorProvider(colorDevice);
+    await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
+
+    await tester.tap(find.byIcon(BootstrapIcons.pencil));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.byType(SlidePicker), findsOneWidget);
+
+    await tester.drag(find.byType(ColorPickerSlider).first, Offset(100, 0));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+
+    verify(mockColorProvider.setColorAction(any)).called(3);
   });
 }

@@ -29,7 +29,7 @@ void main() {
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
           brightnessTest.getMockDeviceDetailsMethod(request, deviceId);
 
-      BrightnessProvider brightnessProvider = await BrightnessProvider(
+      final brightnessProvider = await BrightnessProvider(
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
