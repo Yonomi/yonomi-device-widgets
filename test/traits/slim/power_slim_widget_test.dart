@@ -20,7 +20,7 @@ void main() {
 
   final defaultDevice = TestPowerDevice(test.device());
 
-  group("For PowerWidget, ", () {
+  group("For PowerSlimWidget, ", () {
     testWidgets('When loading, should show CircularProgressIndicator ',
         (WidgetTester tester) async {
       final mockPowerTraitProvider =
