@@ -24,7 +24,6 @@ void main() {
       colorTest
           .device(id: 'aDeviceId', traits: [ColorTrait(HSBColor(130, 50, 50))]),
       colorTrait: ColorTrait(HSBColor(130, 50, 50)));
-  ;
 
   group('For ColorProvider', () {
     test("""After successfully loading device data, should be in idle state
@@ -45,8 +44,6 @@ void main() {
           reason: 'is in error state');
       expect(colorProvider.displayName, defaultColorDevice.displayName);
       expect(colorProvider.deviceDetail?.id, equals(deviceId));
-      expect(colorProvider.getColorTrait, isA<ColorTrait>());
-      expect(colorProvider.getColorState, isA<GHSBColorValueInput>());
     });
 
     test('Calling setColorAction calls repository method', () async {
