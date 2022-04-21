@@ -24,7 +24,7 @@
 
 ```dart
 AvailableThermostatMode get getModeState {
-  return getThermostatTrait()?.stateWhereType<ThermostatMode>().value ??
+  return getThermostatTrait()?.stateWhereType<ThermostatMode>()?.value ??
       AvailableThermostatMode.OFF;
 }
 ```

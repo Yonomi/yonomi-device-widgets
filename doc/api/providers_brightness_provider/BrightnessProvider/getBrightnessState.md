@@ -24,7 +24,7 @@
 
 ```dart
 int? get getBrightnessState =>
-    getBrightnessTrait()?.stateWhereType<Brightness>().value as int?;
+    getBrightnessTrait()?.stateWhereType<Brightness>()?.value as int?;
 ```
 
 

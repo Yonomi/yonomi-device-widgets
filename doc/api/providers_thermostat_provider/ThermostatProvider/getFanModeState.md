@@ -24,7 +24,7 @@
 
 ```dart
 AvailableFanMode get getFanModeState {
-  return getThermostatTrait()?.stateWhereType<FanMode>().value;
+  return getThermostatTrait()?.stateWhereType<FanMode>()?.value;
 }
 ```
 
