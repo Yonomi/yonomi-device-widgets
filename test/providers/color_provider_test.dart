@@ -49,18 +49,41 @@ void main() {
       expect(colorProvider.getColorState, isA<GHSBColorValueInput>());
     });
 
+    test('Calling setColorAction calls repository method', () async {
+      final request = Request("", {});
+      final deviceId = 'aDeviceId';
+      final newColor = HSBColor(100, 25, 25);
+
+      final GetDeviceDetailsMethod mockDeviceDetailsMethod =
+          colorTest.getMockDeviceDetailsMethod(request, deviceId);
+
+      final mockSetColorActionMethod = MockSendSetColorActionMethod();
+
+      final colorProvider = await ColorProvider(request, deviceId,
+          getDetails: mockDeviceDetailsMethod,
+          sendSetColorAction: mockSetColorActionMethod);
+
+      await colorProvider.setColorAction(newColor);
+
+      verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
+      verify(mockSetColorActionMethod(request, deviceId, newColor))
+          .called(greaterThan(0));
+    });
   });
 }
 
 class ColorProviderTest with DeviceTesting, ColorTesting {
   MockGetDeviceDetailsMethod getMockDeviceDetailsMethod(
-      Request request, String deviceId) {
+      Request request, String deviceId,
+      {HSBColor? color}) {
+    color ??= HSBColor(130, 50, 50);
+
     MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
         MockGetDeviceDetailsMethod();
 
     final device = TestColorDevice(
-        this.device(id: deviceId, traits: [ColorTrait(HSBColor(130, 50, 50))]),
-        colorTrait: ColorTrait(HSBColor(130, 50, 50)));
+        this.device(id: deviceId, traits: [ColorTrait(color)]),
+        colorTrait: ColorTrait(color));
 
     when(mockDeviceDetailsMethod.call(request, deviceId))
         .thenAnswer((_) => Future.value(device));
