@@ -30,7 +30,7 @@
 
 ## Constructors
 
-[ColorSlimWidget](../traits_slim_color_slim_widget/ColorSlimWidget/ColorSlimWidget.md) ([ColorProvider](../providers_color_provider/ColorProvider-class.md) _colorTraitProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) backgroundColor = Colors.white70})
+[ColorSlimWidget](../traits_slim_color_slim_widget/ColorSlimWidget/ColorSlimWidget.md) ([ColorProvider](../providers_color_provider/ColorProvider-class.md) _colorTraitProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) backgroundColor = Colors.white70, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor})
 
     
 
