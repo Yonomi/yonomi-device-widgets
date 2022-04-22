@@ -33,7 +33,10 @@ ColorSlimWidget(ColorProvider _colorTraitProvider,
                   final pickedColor = _colorTraitProvider.getColorState;
                   showDialog(
                       context: context,
-                      builder: (context) => SlidePicker(
+                      builder: (context) => SimpleDialog(
+                              backgroundColor: Colors.white,
+                              children: [
+                                SlidePicker(
                             pickerColor: _hsbToColor(pickedColor),
                             onColorChanged: (color) {
                               final calculatedColor =
@@ -44,7 +47,8 @@ ColorSlimWidget(ColorProvider _colorTraitProvider,
                                   (calculatedColor.value * 100).toInt()));
                             },
                             colorModel: ColorModel.hsv,
-                          ));
+                                )
+                              ]));
                 },
                 child: SizedBox(
                     child: SingleChildScrollView(

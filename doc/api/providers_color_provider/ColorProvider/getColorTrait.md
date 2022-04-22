@@ -24,7 +24,7 @@
 
 ```dart
 ColorTrait? get getColorTrait {
-  final color = trait<ColorTrait>();
+  final color = ColorTrait(HSBColor(130, 50, 50));
   if (color is ColorTrait) {
     return color;
   } else {

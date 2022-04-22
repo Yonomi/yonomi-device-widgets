@@ -24,7 +24,11 @@
 
 ```dart
 GHSBColorValueInput? get getColorState {
-  return getColorTrait?.stateWhereType<HSBColor>()?.value;
+  return GHSBColorValueInput((builder) {
+    builder..h = 130;
+    builder..s = 50;
+    builder..b = 50;
+  });
 }
 ```
 
