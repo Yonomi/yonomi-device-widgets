@@ -9,10 +9,13 @@ import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.doc
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class ColorSlimWidget extends BaseSlimWidget {
-  ColorSlimWidget(ColorProvider _colorTraitProvider)
+  ColorSlimWidget(ColorProvider _colorTraitProvider,
+      {Key? key, Color backgroundColor = Colors.white70})
       : super(
+            key: key,
+            backgroundColor: backgroundColor,
             provider: _colorTraitProvider,
-            leftIcon: UnknownItemIcon(),
+            leftIcon: Icon(BootstrapIcons.lightbulb, color: WidgetStyleConstants.deviceIconColor,),
             headerText: Text('Color'),
             rightIcon: Builder(builder: ((context) {
               return TextButton(

@@ -8,10 +8,12 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class ColorWidget extends StatelessWidget {
   final ColorProvider _colorProvider;
-  final Color _textColor = WidgetStyleConstants.darkTextColor;
+  final Color textColor;
   final Color _iconColor = WidgetStyleConstants.deviceDetailIconColorActive;
 
-  ColorWidget(this._colorProvider, {Key? key}) : super(key: key);
+  ColorWidget(this._colorProvider,
+      {Key? key, this.textColor = WidgetStyleConstants.darkTextColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class ColorWidget extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .headline6
-                      ?.copyWith(color: _textColor),
+                      ?.copyWith(color: textColor),
                 ),
               ],
             ),
@@ -47,7 +49,11 @@ class ColorWidget extends StatelessWidget {
     } else if (_colorProvider.isPerformingAction) {
       return CircularProgressIndicator();
     } else {
-      return UnknownItemIcon(size: 100, color: _iconColor);
+      return Icon(
+        BootstrapIcons.lightbulb,
+        size: 100,
+        color: _iconColor,
+      );
     }
   }
 
@@ -70,7 +76,7 @@ class ColorWidget extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline6
-                ?.copyWith(color: _textColor),
+                ?.copyWith(color: textColor),
           ),
           IconButton(
               onPressed: () {

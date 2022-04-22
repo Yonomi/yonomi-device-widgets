@@ -53,7 +53,7 @@ main() {
     final mockColorProvider = test.mockColorProvider(colorDevice);
     await tester.pumpWidget(test.createMaterialApp(mockColorProvider));
 
-    expect(find.byIcon(BootstrapIcons.box), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.lightbulb), findsOneWidget);
     expect(mockColorProvider.displayName, colorDevice.displayName);
     expect(mockColorProvider.getColorTrait,
         colorDevice.traits.firstWhere((t) => t is ColorTrait));
