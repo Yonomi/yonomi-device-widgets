@@ -74,7 +74,7 @@ Widget build(BuildContext context) {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 16),
           Center(
               child: SizedBox(width: 100, height: 100, child: _mainIcon())),
           SizedBox(height: 10),
