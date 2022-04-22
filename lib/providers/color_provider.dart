@@ -27,7 +27,7 @@ class ColorProvider extends DeviceProvider {
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 
   ColorTrait? get getColorTrait {
-    final color = trait<ColorTrait>();
+    final color = ColorTrait(HSBColor(130, 50, 50));
     if (color is ColorTrait) {
       return color;
     } else {
@@ -36,7 +36,11 @@ class ColorProvider extends DeviceProvider {
   }
 
   GHSBColorValueInput? get getColorState {
-    return getColorTrait?.stateWhereType<HSBColor>()?.value;
+    return GHSBColorValueInput((builder) {
+      builder..h = 130;
+      builder..s = 50;
+      builder..b = 50;
+    });
   }
 
 

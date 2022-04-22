@@ -1,7 +1,6 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
@@ -31,7 +30,7 @@ class ColorWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 16),
             Center(
                 child: SizedBox(width: 100, height: 100, child: _mainIcon())),
             SizedBox(height: 10),
@@ -60,17 +59,18 @@ class ColorWidget extends StatelessWidget {
   Widget _stateRow(BuildContext context) {
     final state = _colorProvider.getColorState;
     if (state == null) {
-      return Container();
+      return Center(child: CircularProgressIndicator());
     } else {
       final pickedColor = HSVColor.fromAHSV(
           1.0, state.h.toDouble(), state.s / 100.0, state.b / 100.0);
       return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(
-              child: CircleAvatar(
+          CircleAvatar(
             backgroundColor: pickedColor.toColor(),
-            radius: 46,
-          )),
+            radius: 16,
+          ),
+          Padding(padding: EdgeInsets.all(4)),
           Text(
             'HSB(${state.h}, ${state.s}, ${state.b})',
             style: Theme.of(context)
@@ -82,17 +82,22 @@ class ColorWidget extends StatelessWidget {
               onPressed: () {
                 showDialog(
                     context: context,
-                    builder: (context) => SlidePicker(
-                          pickerColor: pickedColor.toColor(),
-                          onColorChanged: (color) {
-                            final calculatedColor = HSVColor.fromColor(color);
-                            _colorProvider.setColorAction(HSBColor(
-                                calculatedColor.hue.toInt(),
-                                (calculatedColor.saturation * 100).toInt(),
-                                (calculatedColor.value * 100).toInt()));
-                          },
-                          colorModel: ColorModel.hsv,
-                        ));
+                    builder: (context) =>
+                        SimpleDialog(backgroundColor: Colors.white, children: [
+                          SlidePicker(
+                            showParams: false,
+                            pickerColor: pickedColor.toColor(),
+                            enableAlpha: false,
+                            onColorChanged: (color) {
+                              final calculatedColor = HSVColor.fromColor(color);
+                              _colorProvider.setColorAction(HSBColor(
+                                  calculatedColor.hue.toInt(),
+                                  (calculatedColor.saturation * 100).toInt(),
+                                  (calculatedColor.value * 100).toInt()));
+                            },
+                            colorModel: ColorModel.hsv,
+                          )
+                        ]));
               },
               icon: Icon(
                 BootstrapIcons.pencil,
