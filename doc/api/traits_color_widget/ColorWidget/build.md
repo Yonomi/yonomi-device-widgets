@@ -70,7 +70,7 @@ Widget build(BuildContext context) {
                 style: Theme.of(context)
                     .textTheme
                     .headline6
-                    ?.copyWith(color: _textColor),
+                    ?.copyWith(color: textColor),
               ),
             ],
           ),

@@ -10,7 +10,7 @@
 
 
 
-ColorWidget([ColorProvider](../../providers_color_provider/ColorProvider-class.md) _colorProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+ColorWidget([ColorProvider](../../providers_color_provider/ColorProvider-class.md) _colorProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor})
 
 
 
@@ -19,7 +19,9 @@ ColorWidget([ColorProvider](../../providers_color_provider/ColorProvider-class.m
 ## Implementation
 
 ```dart
-ColorWidget(this._colorProvider, {Key? key}) : super(key: key);
+ColorWidget(this._colorProvider,
+    {Key? key, this.textColor = WidgetStyleConstants.darkTextColor})
+    : super(key: key);
 ```
 
 
