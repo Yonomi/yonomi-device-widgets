@@ -64,7 +64,7 @@ main() {
     await tester.pumpWidget(createMaterialApp(mockColorTemperatureProvider));
 
     await tester.drag(find.byType(Slider), Offset(100, 0));
-    verify(mockColorTemperatureProvider.setColxorTemperatureAction(any))
+    verify(mockColorTemperatureProvider.setColorTemperatureAction(any))
         .called(1);
   });
 
