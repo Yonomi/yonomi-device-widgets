@@ -29,7 +29,7 @@
 
 ## Constructors
 
-[ColorWidget](../traits_color_widget/ColorWidget/ColorWidget.md) ([ColorProvider](../providers_color_provider/ColorProvider-class.md) _colorProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key})
+[ColorWidget](../traits_color_widget/ColorWidget/ColorWidget.md) ([ColorProvider](../providers_color_provider/ColorProvider-class.md) _colorProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) textColor = WidgetStyleConstants.darkTextColor})
 
     
 
@@ -60,6 +60,15 @@ _final, inherited_
 
 A representation of the runtime type of the object.   
 _read-only, inherited_
+
+
+
+##### [textColor](../traits_color_widget/ColorWidget/textColor.md) &#8594; [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html)
+
+
+
+   
+_final_
 
 
 

@@ -10,7 +10,7 @@
 
 
 
-ColorSlimWidget([ColorProvider](../../providers_color_provider/ColorProvider-class.md) _colorTraitProvider)
+ColorSlimWidget([ColorProvider](../../providers_color_provider/ColorProvider-class.md) _colorTraitProvider, {[Key](https://api.flutter.dev/flutter/foundation/Key-class.html)? key, [Color](https://api.flutter.dev/flutter/dart-ui/Color-class.html) backgroundColor = Colors.white70})
 
 
 
@@ -19,10 +19,13 @@ ColorSlimWidget([ColorProvider](../../providers_color_provider/ColorProvider-cla
 ## Implementation
 
 ```dart
-ColorSlimWidget(ColorProvider _colorTraitProvider)
+ColorSlimWidget(ColorProvider _colorTraitProvider,
+    {Key? key, Color backgroundColor = Colors.white70})
     : super(
+          key: key,
+          backgroundColor: backgroundColor,
           provider: _colorTraitProvider,
-          leftIcon: UnknownItemIcon(),
+          leftIcon: Icon(BootstrapIcons.lightbulb, color: WidgetStyleConstants.deviceIconColor,),
           headerText: Text('Color'),
           rightIcon: Builder(builder: ((context) {
             return TextButton(

@@ -64,6 +64,13 @@ static Widget produceSlimWidget(Trait trait,
           backgroundColor: backgroundColor,
         );
       });
+    case ColorTrait:
+      return Consumer<ColorProvider>(builder: (_, colorTraitProvider, __) {
+        return ColorSlimWidget(
+          colorTraitProvider,
+          backgroundColor: backgroundColor,
+        );
+      });
     default:
       return UnknownSlimWidget(trait.name, backgroundColor: backgroundColor);
   }
