@@ -26,6 +26,10 @@ class ColorTemperatureSlimWidget extends StatefulWidget {
 
 class _ColorTemperatureSlimWidgetState
     extends State<ColorTemperatureSlimWidget> {
+  static const double DEFAULT_COLOR_TEMP = 2500;
+  static const double DEFAULT_MIN_COLOR_TEMP = 1000;
+  static const double DEFAULT_MAX_COLOR_TEMP = 7000;
+
   int? _value;
 
   @override
@@ -45,8 +49,13 @@ class _ColorTemperatureSlimWidgetState
             : Icon(BootstrapIcons.sun, color: widget._iconColor),
         title: Slider(
           label: ColorTemperatureSlimWidget.label,
-          value: colorTemperature?.toDouble() ?? 50.0,
-          max: 100.0,
+          value: colorTemperature?.toDouble() ?? DEFAULT_COLOR_TEMP,
+          min: widget._colorTemperatureProvider.getMinColorTemperature
+                  ?.toDouble() ??
+              DEFAULT_MIN_COLOR_TEMP,
+          max: widget._colorTemperatureProvider.getMaxColorTemperature
+                  ?.toDouble() ??
+              DEFAULT_MAX_COLOR_TEMP,
           divisions: 100,
           activeColor: WidgetStyleConstants.globalSuccessColor,
           onChanged: (colorTemperature == null)

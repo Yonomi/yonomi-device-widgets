@@ -59,7 +59,7 @@ main() {
       'When slider moved, should execute call for color temperature change ',
       (WidgetTester tester) async {
     final mockColorTemperatureProvider = test.mockColorTemperatureProvider(
-        colorTemperatureDevice.withColorTemperature(10));
+        colorTemperatureDevice.withColorTemperature(3500));
 
     await tester.pumpWidget(createMaterialApp(mockColorTemperatureProvider));
 
