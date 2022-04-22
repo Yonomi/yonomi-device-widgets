@@ -25,6 +25,16 @@ class ColorTemperatureProvider extends DeviceProvider {
       getColorTemperatureTrait()?.stateWhereType<ColorTemperature>().value
           as int?;
 
+  int? get getMinColorTemperature => getColorTemperatureTrait()
+      ?.propertyWhereType<SupportedColorTemperatureRange>()
+      .value
+      .min as int?;
+
+  int? get getMaxColorTemperature => getColorTemperatureTrait()
+      ?.propertyWhereType<SupportedColorTemperatureRange>()
+      .value
+      .max as int?;
+
   Future<void> setColorTemperatureAction(int colorTemperature,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SetColorTemperatureFunction setColorTemperatureFunction =

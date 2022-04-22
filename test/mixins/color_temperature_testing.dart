@@ -30,6 +30,12 @@ mixin ColorTemperatureTesting {
     when(mockColorTemperatureProvider.getColorTemperatureState)
         .thenReturn(device.colorTemperature);
 
+    when(mockColorTemperatureProvider.getMinColorTemperature)
+        .thenReturn(device.minColorTemperature);
+
+    when(mockColorTemperatureProvider.getMaxColorTemperature)
+        .thenReturn(device.maxColorTemperature);
+
     when(mockColorTemperatureProvider.setColorTemperatureAction(any))
         .thenAnswer((_) => Future.value());
 
@@ -39,9 +45,15 @@ mixin ColorTemperatureTesting {
 
 class TestColorTemperatureDevice extends Device {
   final int? colorTemperature;
+  final int? minColorTemperature;
+  final int? maxColorTemperature;
 
-  TestColorTemperatureDevice(Device device, {this.colorTemperature = 3500})
-      : super(
+  TestColorTemperatureDevice(
+    Device device, {
+    this.colorTemperature = 3500,
+    this.minColorTemperature = 1000,
+    this.maxColorTemperature = 7000,
+  }) : super(
             device.id,
             device.displayName,
             device.description,
@@ -52,7 +64,12 @@ class TestColorTemperatureDevice extends Device {
             device.updatedAt, [
           ColorTemperatureTrait(
             {ColorTemperature(colorTemperature)},
-            {SupportedColorTemperatureRange(IntRange(min: 2000, max: 7000))},
+            {
+              SupportedColorTemperatureRange(IntRange(
+                min: minColorTemperature,
+                max: maxColorTemperature,
+              ))
+            },
           ),
           ...device.traits.where((t) => t.runtimeType != ColorTemperatureTrait)
         ]);

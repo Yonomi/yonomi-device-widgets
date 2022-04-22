@@ -31,6 +31,10 @@ class _ColorTemperatureWidgetState extends State<ColorTemperatureWidget>
     with ToastNotifications {
   int? _value;
 
+  static const double DEFAULT_COLOR_TEMP = 2500;
+  static const double DEFAULT_MIN_COLOR_TEMP = 1000;
+  static const double DEFAULT_MAX_COLOR_TEMP = 7000;
+
   @override
   void initState() {
     super.initState();
@@ -82,25 +86,31 @@ class _ColorTemperatureWidgetState extends State<ColorTemperatureWidget>
             Row(children: [
               Icon(BootstrapIcons.sun, color: widget._iconColor),
               Expanded(
-                  child: Slider(
-                label: ColorTemperatureWidget.label,
-                value: colorTemperature?.toDouble() ?? 50.0,
-                max: 100.0,
-                divisions: 100,
-                activeColor: WidgetStyleConstants.globalSuccessColor,
-                // When onChanged is null it makes the slider disabled
-                onChanged: (colorTemperature == null)
-                    ? null
-                    : (double value) {
-                        setState(() => _value = value.toInt());
-                      }, // Required
-                onChangeEnd: (double value) {
-                  // Only send the update when user releases slider
-                  setState(() => _value = value.toInt());
-                  widget._colorTemperatureProvider
-                      .setColorTemperatureAction(value.round());
-                },
-              )),
+                child: Slider(
+                  label: ColorTemperatureWidget.label,
+                  value: colorTemperature?.toDouble() ?? DEFAULT_COLOR_TEMP,
+                  min: widget._colorTemperatureProvider.getMinColorTemperature
+                          ?.toDouble() ??
+                      DEFAULT_MIN_COLOR_TEMP,
+                  max: widget._colorTemperatureProvider.getMaxColorTemperature
+                          ?.toDouble() ??
+                      DEFAULT_MAX_COLOR_TEMP,
+                  divisions: 100,
+                  activeColor: WidgetStyleConstants.globalSuccessColor,
+                  // When onChanged is null it makes the slider disabled
+                  onChanged: (colorTemperature == null)
+                      ? null
+                      : (double value) {
+                          setState(() => _value = value.toInt());
+                        }, // Required
+                  onChangeEnd: (double value) {
+                    // Only send the update when user releases slider
+                    setState(() => _value = value.toInt());
+                    widget._colorTemperatureProvider
+                        .setColorTemperatureAction(value.round());
+                  },
+                ),
+              ),
               Text(
                 '${colorTemperature ?? "--"}',
                 style: Theme.of(context)
