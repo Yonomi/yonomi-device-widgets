@@ -67,6 +67,8 @@ class DetailScreenWidget extends StatelessWidget {
         .build();
 
     return Container(
-        alignment: Alignment.center, child: Center(child: deviceWidget));
+      alignment: Alignment.center,
+      child: Center(child: deviceWidget),
+    );
   }
 }

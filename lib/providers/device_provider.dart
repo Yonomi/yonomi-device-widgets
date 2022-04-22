@@ -89,18 +89,18 @@ abstract class DeviceProvider extends ChangeNotifier {
 
   String get displayName;
 
-  /// To know if this ChangeNotifier is fetching device data
+  /// ChangeNotifier is fetching device data
   bool get isLoading => _state == WidgetState.loading;
 
-  /// To know if this ChangeNotifier is performing an action
+  /// ChangeNotifier is performing an action
   bool get isPerformingAction => _state == WidgetState.performingAction;
 
-  /// To know if this ChangeNotifier is busy from fetching data or running an action
+  /// ChangeNotifier is busy from fetching data or running an action
   bool get isBusy =>
       (_state == WidgetState.loading || _state == WidgetState.performingAction);
 
-  /// To know if this ChangeNotifier had an error
-  /// see [getErrorMessage] to get the accomponying error message
+  /// ChangeNotifier had an error
+  /// see [getErrorMessage] to get the accompanying error message
   bool get isInErrorState => _state == WidgetState.error;
 
   /// Get the error message whenever this ChangeNotifier had an error

@@ -21,9 +21,11 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DeviceWidgetFactory {
-  static Widget produceWidget(Trait trait,
-      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
-      Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
+  static Widget produceWidget(
+    Trait trait, {
+    Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+    Color textColor = WidgetStyleConstants.deviceDetailIconColorActive,
+  }) {
     switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, __) {
@@ -44,7 +46,10 @@ class DeviceWidgetFactory {
       case ThermostatTrait:
         return Consumer<ThermostatProvider>(
           builder: (_, thermostatProvider, __) {
-            return ThermostatWidget(thermostatProvider, textColor: textColor);
+            return ThermostatWidget(
+              thermostatProvider,
+              textColor: textColor,
+            );
           },
         );
       case BrightnessTrait:
