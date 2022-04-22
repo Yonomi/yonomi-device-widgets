@@ -55,7 +55,8 @@ main() {
     expect(find.byIcon(Icons.error), findsOneWidget);
   });
 
-  testWidgets('When slider moved, should execute call for brightness change ',
+  testWidgets(
+      'When slider moved, should execute call for color temperature change ',
       (WidgetTester tester) async {
     final mockColorTemperatureProvider = test.mockColorTemperatureProvider(
         colorTemperatureDevice.withColorTemperature(10));
@@ -63,12 +64,12 @@ main() {
     await tester.pumpWidget(createMaterialApp(mockColorTemperatureProvider));
 
     await tester.drag(find.byType(Slider), Offset(100, 0));
-    verify(mockColorTemperatureProvider.setColorTemperatureAction(any))
+    verify(mockColorTemperatureProvider.setColxorTemperatureAction(any))
         .called(1);
   });
 
   testWidgets(
-      'When widget brightness state value is null, should call provider for brightness',
+      'When widget color temp state value is null, should call provider for color temperature',
       (WidgetTester tester) async {
     final mockColorTemperatureProvider = test.mockColorTemperatureProvider(
         colorTemperatureDevice.withColorTemperature(null));
