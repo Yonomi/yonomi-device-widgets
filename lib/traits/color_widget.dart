@@ -86,6 +86,7 @@ class ColorWidget extends StatelessWidget {
                         SimpleDialog(backgroundColor: Colors.white, children: [
                           SlidePicker(
                             showParams: false,
+                            showSliderText: false,
                             pickerColor: pickedColor.toColor(),
                             enableAlpha: false,
                             onColorChanged: (color) {

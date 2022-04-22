@@ -14,6 +14,7 @@ import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
+import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
@@ -31,10 +32,9 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 import '../components/modes_toolbar_test.mocks.dart';
 import '../mixins/brightness_testing.dart';
 import '../mixins/brightness_testing.mocks.dart';
-import '../mixins/color_testing.dart';
-import '../mixins/color_testing.mocks.dart';
 import 'detail_screen_test.mocks.dart';
 import '../mixins/battery_testing.dart';
+import '../mixins/color_testing.dart';
 import '../mixins/device_testing.dart';
 import '../mixins/lock_testing.dart';
 import '../mixins/power_testing.dart';
@@ -250,6 +250,19 @@ void main() {
 
     expect(find.byType(BatteryWidget), findsOneWidget);
   });
+
+
+  testWidgets('For the Color Trait, Detail screen should show the Color Widget',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
+      TestColorDevice(test.device(id: testedDeviceId),
+          colorTrait: ColorTrait(HSBColor(0, 0, 0)))
+    ], request, testedDeviceId));
+
+    expect(find.byType(ColorWidget), findsOneWidget);
+  });
+
 
   testWidgets(
       'For the Thermostat Trait, Detail screen should show the target temperature',
