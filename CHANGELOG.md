@@ -1,3 +1,23 @@
+# [2.9.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.8.1...v2.9.0) (2022-04-25)
+
+
+### Bug Fixes
+
+* **color_slim_widget.dart:** Implement color slim widget ([5509ded](https://github.com/Yonomi/yonomi-device-widgets/commit/5509ded736d302104c978d4ce7873a6a77d56914))
+* Add color to the trait builders ([cf07567](https://github.com/Yonomi/yonomi-device-widgets/commit/cf075677b13f505b3a45352b6a8b314b214df8bf))
+* Fix color picker dialog ([d3888d7](https://github.com/Yonomi/yonomi-device-widgets/commit/d3888d79dd833614d9ee6ecce3932fdb4a9be03a))
+* Fix defects by state finding helpers and improve code coverage ([692ee25](https://github.com/Yonomi/yonomi-device-widgets/commit/692ee254f1b94f42edb042883e68c43ceca7d255))
+* Fix presentation of color widgets ([0cdc1c2](https://github.com/Yonomi/yonomi-device-widgets/commit/0cdc1c2db46ee6d2803210c609c133472301ce1b))
+* Implement color provider ([709d910](https://github.com/Yonomi/yonomi-device-widgets/commit/709d910f7e840ecb1209161c8e9a9c14d2c27ba9))
+* Implement full size color widget ([23b0775](https://github.com/Yonomi/yonomi-device-widgets/commit/23b07754cc826b8e3bab0f7e5e4d3eef6b9e8631))
+* Make test provider properly reflect state and fix tests ([cc3c63c](https://github.com/Yonomi/yonomi-device-widgets/commit/cc3c63c1e99a85c1dcbcab4298fcd46c5e360af1))
+* Show a tile with progress and error indicators to keep look consistent ([b0c9b22](https://github.com/Yonomi/yonomi-device-widgets/commit/b0c9b22769b3916907a59eb2b8795c2014806462))
+
+
+### Features
+
+* Scaffold for new color trait ([361420d](https://github.com/Yonomi/yonomi-device-widgets/commit/361420db950fea3450229d96b243e629170bacdd))
+
 ## [2.8.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.8.0...v2.8.1) (2022-03-03)
 
 
