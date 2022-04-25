@@ -45,6 +45,8 @@ void main() {
       expect(colorTemperatureProvider.getColorTemperatureTrait(),
           isA<ColorTemperatureTrait>());
       expect(colorTemperatureProvider.getColorTemperatureState, equals(3500));
+      expect(colorTemperatureProvider.getMinColorTemperature, equals(1000));
+      expect(colorTemperatureProvider.getMaxColorTemperature, equals(7000));
     });
 
     test('Calling setBrightnessLevelAction calls repository method', () async {
@@ -61,12 +63,12 @@ void main() {
           ColorTemperatureProvider(request, deviceId,
               getDetails: mockDeviceDetailsMethod);
 
-      await colorTemperatureProvider.setColorTemperatureAction(10,
+      await colorTemperatureProvider.setColorTemperatureAction(3500,
           getDetails: mockDeviceDetailsMethod,
           setColorTemperatureFunction: mockSetColorTemperatureMethod);
 
       verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
-      verify(mockSetColorTemperatureMethod(request, deviceId, 10))
+      verify(mockSetColorTemperatureMethod(request, deviceId, 3500))
           .called(greaterThan(0));
     });
   });

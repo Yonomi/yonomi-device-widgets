@@ -20,6 +20,7 @@ import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -343,6 +344,7 @@ void main() {
       TestThermostatDevice(device,
           targetTemperature: 99.0, ambientTemperature: 89.0),
       TestBrightnessDevice(device, brightness: 50),
+      TestColorTemperatureDevice(device, colorTemperature: 3500),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -352,6 +354,7 @@ void main() {
     expect(find.byType(PowerSlimWidget), findsOneWidget);
     expect(find.byType(ThermostatSlimWidget), findsOneWidget);
     expect(find.byType(BrightnessSlimWidget), findsOneWidget);
+    expect(find.byType(ColorTemperatureSlimWidget), findsOneWidget);
 
     expect(find.byType(MultiProvider), findsOneWidget);
 
