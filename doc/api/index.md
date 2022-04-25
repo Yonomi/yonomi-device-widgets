@@ -84,6 +84,18 @@ open coverage/html/index.html
  
 
 
+##### [color_provider](providers_color_provider/providers_color_provider-library.md)
+ 
+
+
+##### [color_slim_widget](traits_slim_color_slim_widget/traits_slim_color_slim_widget-library.md)
+ 
+
+
+##### [color_widget](traits_color_widget/traits_color_widget-library.md)
+ 
+
+
 ##### [detail_screen](traits_detail_screen/traits_detail_screen-library.md)
  
 

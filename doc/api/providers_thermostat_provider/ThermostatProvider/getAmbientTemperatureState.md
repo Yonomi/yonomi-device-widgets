@@ -24,7 +24,7 @@
 
 ```dart
 double? get getAmbientTemperatureState =>
-    getThermostatTrait()?.stateWhereType<AmbientTemperature>().value;
+    getThermostatTrait()?.stateWhereType<AmbientTemperature>()?.value;
 ```
 
 

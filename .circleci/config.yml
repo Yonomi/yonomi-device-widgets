@@ -6,10 +6,10 @@ version: 2.1
 
 # Orb declarations
 orbs:
-  codecov: codecov/codecov@1.0.2
+  codecov: codecov/codecov@1.2.5
   gh: circleci/github-cli@2.1.0
   
-anchors: 
+anchors:
   - &main_only
     filters:
       branches:
@@ -28,7 +28,7 @@ anchors:
 executors:
   default-executor:
     docker:
-      - image: cirrusci/flutter
+      - image: cirrusci/flutter:latest
     shell: "/bin/bash -eo pipefail"
 
 commands:
@@ -63,11 +63,11 @@ commands:
     steps:
       - setup-github
       - run:
-          name: Install npm 
+          name: Install npm
           command: |
             sudo apt-get update
             sudo apt-get -y install npm
-      - run: 
+      - run:
           name: Download Semantic Release
           command: |
             npm init -y
@@ -81,7 +81,7 @@ commands:
       - run:
           name: Publishing to pub.dev
           command: dart pub publish
-  
+
   dependencies:
     description: "Download dependencies and setup global packages"
     parameters:

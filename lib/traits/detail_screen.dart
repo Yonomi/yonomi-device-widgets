@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
@@ -32,6 +34,10 @@ class DetailScreen extends StatelessWidget {
             create: (context) => ThermostatProvider(request, deviceId)),
         ChangeNotifierProvider<BrightnessProvider>(
             create: (context) => BrightnessProvider(request, deviceId)),
+        ChangeNotifierProvider<ColorProvider>(
+            create: (context) => ColorProvider(request, deviceId)),
+        ChangeNotifierProvider<ColorTemperatureProvider>(
+            create: (context) => ColorTemperatureProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );
@@ -66,9 +72,11 @@ class DetailScreenWidget extends StatelessWidget {
         .withTraits(displayTraits.skip(1).toList())
         .build();
 
-    return Container(
-      alignment: Alignment.center,
-      child: Center(child: deviceWidget),
+    return SingleChildScrollView(
+      child: Container(
+        alignment: Alignment.center,
+        child: Center(child: deviceWidget),
+      ),
     );
   }
 }

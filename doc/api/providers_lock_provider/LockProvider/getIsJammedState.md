@@ -24,7 +24,7 @@
 
 ```dart
 bool get getIsJammedState =>
-    getLockTrait()?.stateWhereType<IsJammed>().value ?? false;
+    getLockTrait()?.stateWhereType<IsJammed>()?.value ?? false;
 ```
 
 

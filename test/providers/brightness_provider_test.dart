@@ -23,13 +23,13 @@ void main() {
   group('For BrightnessProvider', () {
     test("""After successfully loading device data, should be in idle state
         when done.""", () async {
-      Request request = Request("", {});
-      String deviceId = 'aDeviceId';
+      final request = Request("", {});
+      final deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
           brightnessTest.getMockDeviceDetailsMethod(request, deviceId);
 
-      BrightnessProvider brightnessProvider = await BrightnessProvider(
+      final brightnessProvider = await BrightnessProvider(
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
@@ -46,15 +46,15 @@ void main() {
     });
 
     test('Calling setBrightnessLevelAction calls repository method', () async {
-      Request request = Request("", {});
-      String deviceId = 'aDeviceId';
+      final request = Request("", {});
+      final deviceId = 'aDeviceId';
 
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
           brightnessTest.getMockDeviceDetailsMethod(request, deviceId);
 
       final mockBrightnessMethod = MockSendBrightnessMethod();
 
-      BrightnessProvider brightnessProvider = BrightnessProvider(
+      final brightnessProvider = BrightnessProvider(
           request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 

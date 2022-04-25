@@ -56,6 +56,10 @@ static Widget produceWidget(Trait trait,
           return BrightnessWidget(brightnessProvider, textColor: textColor);
         },
       );
+    case ColorTrait:
+      return Consumer<ColorProvider>(builder: (_, colorProvider, __) {
+        return ColorWidget(colorProvider, textColor: textColor);
+      });
     default:
       return UnknownWidget(name: trait.name, iconColor: iconColor);
   }
