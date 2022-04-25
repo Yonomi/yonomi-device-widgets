@@ -16,10 +16,10 @@ class LockProvider extends DeviceProvider {
   late final Request _request;
 
   bool get getIsLockedState =>
-      getLockTrait()?.stateWhereType<IsLocked>().value ?? false;
+      getLockTrait()?.stateWhereType<IsLocked>()?.value ?? false;
 
   bool get getIsJammedState =>
-      getLockTrait()?.stateWhereType<IsJammed>().value ?? false;
+      getLockTrait()?.stateWhereType<IsJammed>()?.value ?? false;
 
   LockTrait? getLockTrait() {
     return trait<LockTrait>() as LockTrait?;

@@ -22,7 +22,7 @@ class ColorTemperatureProvider extends DeviceProvider {
   }
 
   int? get getColorTemperatureState =>
-      getColorTemperatureTrait()?.stateWhereType<ColorTemperature>().value
+      getColorTemperatureTrait()?.stateWhereType<ColorTemperature>()?.value
           as int?;
 
   int? get getMinColorTemperature => getColorTemperatureTrait()

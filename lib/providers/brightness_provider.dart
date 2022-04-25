@@ -22,7 +22,7 @@ class BrightnessProvider extends DeviceProvider {
   }
 
   int? get getBrightnessState =>
-      getBrightnessTrait()?.stateWhereType<Brightness>().value as int?;
+      getBrightnessTrait()?.stateWhereType<Brightness>()?.value as int?;
 
   Future<void> setBrightnessLevelAction(int brightnessLevel,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
