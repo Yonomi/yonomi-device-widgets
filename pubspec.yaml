@@ -4,7 +4,7 @@ version: 2.8.1
 homepage: https://www.yonomi.co
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.16.0 <3.0.0'
 
 flutter:
   uses-material-design: true
@@ -14,8 +14,12 @@ dependencies:
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.7.2
-  yonomi_platform_sdk: ^3.0.0
+  yonomi_platform_sdk:
+    git:
+      url: https://github.com/Yonomi/yonomi-sdk-dart
+      ref: DX-361_color_trait
   built_value: ^8.1.4
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   mockito: ^5.0.15

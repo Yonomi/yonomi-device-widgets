@@ -26,6 +26,7 @@
 
 - [BatteryLevelProvider](../providers_battery_level_provider/BatteryLevelProvider-class.md)
 - [BrightnessProvider](../providers_brightness_provider/BrightnessProvider-class.md)
+- [ColorProvider](../providers_color_provider/ColorProvider-class.md)
 - [LockProvider](../providers_lock_provider/LockProvider-class.md)
 - [PowerTraitProvider](../providers_power_trait_provider/PowerTraitProvider-class.md)
 - [ThermostatProvider](../providers_thermostat_provider/ThermostatProvider-class.md)

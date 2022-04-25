@@ -26,11 +26,22 @@ class BaseSlimWidget extends StatelessWidget with ToastNotifications {
   @override
   Widget build(BuildContext context) {
     if ((provider?.isLoading ?? false)) {
-      return CircularProgressIndicator();
+      return ListTile(
+        tileColor: backgroundColor,
+        title:
+            SizedBox(child: CircularProgressIndicator(), height: 20, width: 20),
+        horizontalTitleGap: 16.0,
+        key: key,
+      );
     } else if (provider?.isInErrorState ?? false) {
       showToast(
           context, provider?.getErrorMessage ?? 'An unknown error occurred');
-      return Icon(Icons.error);
+      return ListTile(
+        tileColor: backgroundColor,
+        title: Icon(Icons.error, size: 20),
+        horizontalTitleGap: 16.0,
+        key: key,
+      );
     } else {
       return Column(
           children: <Widget>[
@@ -43,7 +54,7 @@ class BaseSlimWidget extends StatelessWidget with ToastNotifications {
     return ExpansionTile(
       childrenPadding: EdgeInsets.all(8.0),
       leading: (provider?.isPerformingAction ?? false)
-          ? CircularProgressIndicator()
+          ? SizedBox(child: CircularProgressIndicator(), height: 20, width: 20)
           : leftIcon,
       trailing: rightIcon,
       backgroundColor: backgroundColor,
@@ -60,7 +71,7 @@ class BaseSlimWidget extends StatelessWidget with ToastNotifications {
     return ListTile(
       tileColor: backgroundColor,
       leading: (provider?.isPerformingAction ?? false)
-          ? CircularProgressIndicator()
+          ? SizedBox(child: CircularProgressIndicator(), height: 20, width: 20)
           : leftIcon,
       trailing: rightIcon,
       title: headerText,

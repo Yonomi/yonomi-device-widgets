@@ -7,17 +7,20 @@ import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
+import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -31,6 +34,7 @@ import '../mixins/brightness_testing.dart';
 import '../mixins/brightness_testing.mocks.dart';
 import 'detail_screen_test.mocks.dart';
 import '../mixins/battery_testing.dart';
+import '../mixins/color_testing.dart';
 import '../mixins/device_testing.dart';
 import '../mixins/lock_testing.dart';
 import '../mixins/power_testing.dart';
@@ -43,7 +47,8 @@ class DetailScreenTest
         LockTesting,
         BatteryTesting,
         ThermostatTesting,
-        BrightnessTesting {
+        BrightnessTesting,
+        ColorTesting {
   Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,
@@ -59,7 +64,8 @@ class DetailScreenTest
         MockPowerTraitProvider(),
         MockBatteryLevelProvider(),
         MockThermostatProvider(),
-        MockBrightnessProvider());
+        MockBrightnessProvider(),
+        MockColorProvider());
   }
 
   Widget createDetailScreenWidgetForTraits(
@@ -113,6 +119,12 @@ class DetailScreenTest
     MockBrightnessProvider mockBrightnessProvider =
         this.mockBrightnessProvider(brightnessDevice);
 
+    final colorDevice = devices.firstWhere(
+        (device) => device is TestColorDevice,
+        orElse: () => TestColorDevice(device,
+            colorTrait: ColorTrait(HSBColor(130, 50, 50)))) as TestColorDevice;
+    final mockColorProvider = this.mockColorProvider(colorDevice);
+
     return createMaterialApp(
         req,
         deviceId,
@@ -121,7 +133,8 @@ class DetailScreenTest
         mockPowerTraitProvider,
         mockBatteryTraitProvider,
         mockThermostatProvider,
-        mockBrightnessProvider);
+        mockBrightnessProvider,
+        mockColorProvider);
   }
 
   MaterialApp createMaterialApp(
@@ -132,7 +145,8 @@ class DetailScreenTest
       PowerTraitProvider mockPowerTraitProvider,
       BatteryLevelProvider mockBatteryLevelProvider,
       ThermostatProvider mockThermostatProvider,
-      MockBrightnessProvider mockBrightnessProvider) {
+      BrightnessProvider mockBrightnessProvider,
+      ColorProvider mockColorProvider) {
     return MaterialApp(
       home: SingleChildScrollView(
           child: Column(children: [
@@ -149,6 +163,8 @@ class DetailScreenTest
                 value: mockThermostatProvider),
             ChangeNotifierProvider<BrightnessProvider>.value(
                 value: mockBrightnessProvider),
+            ChangeNotifierProvider<ColorProvider>.value(
+                value: mockColorProvider),
           ],
           child: DetailScreenWidget(req, deviceId),
         ),
@@ -162,6 +178,7 @@ class DetailScreenTest
   LockProvider,
   PowerTraitProvider,
   BatteryLevelProvider,
+  ColorProvider,
   BuildContext
 ])
 void main() {
@@ -170,9 +187,8 @@ void main() {
 
   testWidgets('When loading, should show CircularProgressIndicator ',
       (WidgetTester tester) async {
-    await tester
-        .pumpWidget(test.createDetailScreenWhenLoading(Request('', {}), ""));
-
+    final materialApp = test.createDetailScreenWhenLoading(Request('', {}), "");
+    await tester.pumpWidget(materialApp);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
@@ -234,6 +250,19 @@ void main() {
 
     expect(find.byType(BatteryWidget), findsOneWidget);
   });
+
+
+  testWidgets('For the Color Trait, Detail screen should show the Color Widget',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits([
+      TestColorDevice(test.device(id: testedDeviceId),
+          colorTrait: ColorTrait(HSBColor(0, 0, 0)))
+    ], request, testedDeviceId));
+
+    expect(find.byType(ColorWidget), findsOneWidget);
+  });
+
 
   testWidgets(
       'For the Thermostat Trait, Detail screen should show the target temperature',
@@ -302,6 +331,7 @@ void main() {
       TestThermostatDevice(device,
           targetTemperature: 99.0, ambientTemperature: 89.0),
       TestBrightnessDevice(device, brightness: 50),
+      TestColorDevice(device, colorTrait: ColorTrait(HSBColor(150, 50, 50))),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -311,6 +341,7 @@ void main() {
     expect(find.byType(PowerSlimWidget), findsOneWidget);
     expect(find.byType(ThermostatSlimWidget), findsOneWidget);
     expect(find.byType(BrightnessSlimWidget), findsOneWidget);
+    expect(find.byType(ColorSlimWidget), findsOneWidget);
 
     expect(find.byType(MultiProvider), findsOneWidget);
 
@@ -383,9 +414,14 @@ void main() {
 
   testWidgets('Detail screen returns a multiprovider',
       (WidgetTester tester) async {
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+        [], Request('', {}), testedDeviceId));
+
     final detailScreen =
         DetailScreen(request: Request('', {}), deviceId: 'deviceId');
-    expect(
-        detailScreen.build(MockBuildContext()), isInstanceOf<MultiProvider>());
+    final multiProvider =
+        detailScreen.build(MockBuildContext()) as MultiProvider;
+
+    expect(multiProvider, isInstanceOf<MultiProvider>());
   });
 }

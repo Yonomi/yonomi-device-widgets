@@ -31,8 +31,9 @@ Widget buildContainer(List<Trait> traits) {
       .withTraits(displayTraits.skip(1).toList())
       .build();
 
-  return Container(
-      alignment: Alignment.center, child: Center(child: deviceWidget));
+  return SingleChildScrollView(
+      child: Container(
+          alignment: Alignment.center, child: Center(child: deviceWidget)));
 }
 ```
 

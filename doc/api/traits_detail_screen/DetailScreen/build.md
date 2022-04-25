@@ -74,6 +74,8 @@ Widget build(BuildContext context) {
           create: (context) => ThermostatProvider(request, deviceId)),
       ChangeNotifierProvider<BrightnessProvider>(
           create: (context) => BrightnessProvider(request, deviceId)),
+      ChangeNotifierProvider<ColorProvider>(
+          create: (context) => ColorProvider(request, deviceId)),
     ],
     child: DetailScreenWidget(request, deviceId),
   );

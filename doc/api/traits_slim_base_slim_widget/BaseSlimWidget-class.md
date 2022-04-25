@@ -30,6 +30,7 @@
 **Implementers**
 
 - [BatterySlimWidget](../traits_slim_battery_slim_widget/BatterySlimWidget-class.md)
+- [ColorSlimWidget](../traits_slim_color_slim_widget/ColorSlimWidget-class.md)
 - [LockSlimWidget](../traits_slim_lock_slim_widget/LockSlimWidget-class.md)
 - [PowerSlimWidget](../traits_slim_power_slim_widget/PowerSlimWidget-class.md)
 - [ThermostatSlimWidget](../traits_slim_thermostat_slim_widget/ThermostatSlimWidget-class.md)

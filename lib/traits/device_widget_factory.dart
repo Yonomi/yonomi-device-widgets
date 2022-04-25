@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
+import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -53,6 +56,10 @@ class DeviceWidgetFactory {
             return BrightnessWidget(brightnessProvider, textColor: textColor);
           },
         );
+      case ColorTrait:
+        return Consumer<ColorProvider>(builder: (_, colorProvider, __) {
+          return ColorWidget(colorProvider, textColor: textColor);
+        });
       default:
         return UnknownWidget(name: trait.name, iconColor: iconColor);
     }
@@ -95,6 +102,13 @@ class DeviceWidgetFactory {
             builder: (_, brightnessProvider, __) {
           return BrightnessSlimWidget(
             brightnessProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
+      case ColorTrait:
+        return Consumer<ColorProvider>(builder: (_, colorTraitProvider, __) {
+          return ColorSlimWidget(
+            colorTraitProvider,
             backgroundColor: backgroundColor,
           );
         });
