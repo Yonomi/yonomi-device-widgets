@@ -8,12 +8,14 @@ import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
+import 'package:yonomi_device_widgets/traits/color_temperature_widget.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
@@ -21,6 +23,7 @@ import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -30,15 +33,16 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../components/modes_toolbar_test.mocks.dart';
+import '../mixins/battery_testing.dart';
 import '../mixins/brightness_testing.dart';
 import '../mixins/brightness_testing.mocks.dart';
-import 'detail_screen_test.mocks.dart';
-import '../mixins/battery_testing.dart';
+import '../mixins/color_temperature_testing.dart';
 import '../mixins/color_testing.dart';
 import '../mixins/device_testing.dart';
 import '../mixins/lock_testing.dart';
 import '../mixins/power_testing.dart';
 import '../mixins/thermostat_testing.dart';
+import 'detail_screen_test.mocks.dart';
 
 class DetailScreenTest
     with
@@ -48,7 +52,8 @@ class DetailScreenTest
         BatteryTesting,
         ThermostatTesting,
         BrightnessTesting,
-        ColorTesting {
+        ColorTesting,
+        ColorTemperatureTesting {
   Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,
@@ -57,15 +62,17 @@ class DetailScreenTest
     when(mockTraitDetailProvider.isLoading).thenReturn(true);
 
     return createMaterialApp(
-        req,
-        deviceId,
-        mockTraitDetailProvider,
-        MockLockProvider(),
-        MockPowerTraitProvider(),
-        MockBatteryLevelProvider(),
-        MockThermostatProvider(),
-        MockBrightnessProvider(),
-        MockColorProvider());
+      req,
+      deviceId,
+      mockTraitDetailProvider,
+      MockLockProvider(),
+      MockPowerTraitProvider(),
+      MockBatteryLevelProvider(),
+      MockThermostatProvider(),
+      MockBrightnessProvider(),
+      MockColorProvider(),
+      MockColorTemperatureProvider(),
+    );
   }
 
   Widget createDetailScreenWidgetForTraits(
@@ -125,28 +132,40 @@ class DetailScreenTest
             colorTrait: ColorTrait(HSBColor(130, 50, 50)))) as TestColorDevice;
     final mockColorProvider = this.mockColorProvider(colorDevice);
 
+    final colorTemperatureDevice = devices.firstWhere(
+            (device) => device is TestColorTemperatureDevice,
+            orElse: () =>
+                TestColorTemperatureDevice(device, colorTemperature: 3500))
+        as TestColorTemperatureDevice;
+    final mockColorTemperatureProvider =
+        this.mockColorTemperatureProvider(colorTemperatureDevice);
+
     return createMaterialApp(
-        req,
-        deviceId,
-        mockTraitDetailProvider,
-        mockLockProvider,
-        mockPowerTraitProvider,
-        mockBatteryTraitProvider,
-        mockThermostatProvider,
-        mockBrightnessProvider,
-        mockColorProvider);
+      req,
+      deviceId,
+      mockTraitDetailProvider,
+      mockLockProvider,
+      mockPowerTraitProvider,
+      mockBatteryTraitProvider,
+      mockThermostatProvider,
+      mockBrightnessProvider,
+      mockColorProvider,
+      mockColorTemperatureProvider,
+    );
   }
 
   MaterialApp createMaterialApp(
-      Request req,
-      String deviceId,
-      TraitDetailProvider mockTraitBasedNotifier,
-      LockProvider mockLockProvider,
-      PowerTraitProvider mockPowerTraitProvider,
-      BatteryLevelProvider mockBatteryLevelProvider,
-      ThermostatProvider mockThermostatProvider,
-      BrightnessProvider mockBrightnessProvider,
-      ColorProvider mockColorProvider) {
+    Request req,
+    String deviceId,
+    TraitDetailProvider mockTraitBasedNotifier,
+    LockProvider mockLockProvider,
+    PowerTraitProvider mockPowerTraitProvider,
+    BatteryLevelProvider mockBatteryLevelProvider,
+    ThermostatProvider mockThermostatProvider,
+    BrightnessProvider mockBrightnessProvider,
+    ColorProvider mockColorProvider,
+    ColorTemperatureProvider mockColorTemperatureProvider,
+  ) {
     return MaterialApp(
       home: SingleChildScrollView(
           child: Column(children: [
@@ -165,6 +184,8 @@ class DetailScreenTest
                 value: mockBrightnessProvider),
             ChangeNotifierProvider<ColorProvider>.value(
                 value: mockColorProvider),
+            ChangeNotifierProvider<ColorTemperatureProvider>.value(
+                value: mockColorTemperatureProvider),
           ],
           child: DetailScreenWidget(req, deviceId),
         ),
@@ -179,6 +200,7 @@ class DetailScreenTest
   PowerTraitProvider,
   BatteryLevelProvider,
   ColorProvider,
+  ColorTemperatureProvider,
   BuildContext
 ])
 void main() {
@@ -251,7 +273,6 @@ void main() {
     expect(find.byType(BatteryWidget), findsOneWidget);
   });
 
-
   testWidgets('For the Color Trait, Detail screen should show the Color Widget',
       (WidgetTester tester) async {
     final request = Request('', {});
@@ -262,7 +283,6 @@ void main() {
 
     expect(find.byType(ColorWidget), findsOneWidget);
   });
-
 
   testWidgets(
       'For the Thermostat Trait, Detail screen should show the target temperature',
@@ -307,6 +327,25 @@ void main() {
   });
 
   testWidgets(
+      'For the Color Temperature Trait, Detail screen should show the color temp',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+      [
+        TestColorTemperatureDevice(
+          test.device(id: testedDeviceId),
+          colorTemperature: 3500,
+        )
+      ],
+      request,
+      testedDeviceId,
+    ));
+
+    expect(find.byIcon(BootstrapIcons.sun), findsNWidgets(2));
+    expect(find.byType(ColorTemperatureWidget), findsOneWidget);
+  });
+
+  testWidgets(
       'For any Unknown/Unsupported Trait, Detail screen should show the UnknownItemIcon widget',
       (WidgetTester tester) async {
     final request = Request('', {});
@@ -332,6 +371,7 @@ void main() {
           targetTemperature: 99.0, ambientTemperature: 89.0),
       TestBrightnessDevice(device, brightness: 50),
       TestColorDevice(device, colorTrait: ColorTrait(HSBColor(150, 50, 50))),
+      TestColorTemperatureDevice(device, colorTemperature: 3500),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -342,6 +382,7 @@ void main() {
     expect(find.byType(ThermostatSlimWidget), findsOneWidget);
     expect(find.byType(BrightnessSlimWidget), findsOneWidget);
     expect(find.byType(ColorSlimWidget), findsOneWidget);
+    expect(find.byType(ColorTemperatureSlimWidget), findsOneWidget);
 
     expect(find.byType(MultiProvider), findsOneWidget);
 

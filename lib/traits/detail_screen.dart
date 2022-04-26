@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
@@ -35,6 +36,8 @@ class DetailScreen extends StatelessWidget {
             create: (context) => BrightnessProvider(request, deviceId)),
         ChangeNotifierProvider<ColorProvider>(
             create: (context) => ColorProvider(request, deviceId)),
+        ChangeNotifierProvider<ColorTemperatureProvider>(
+            create: (context) => ColorTemperatureProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );
@@ -70,7 +73,10 @@ class DetailScreenWidget extends StatelessWidget {
         .build();
 
     return SingleChildScrollView(
-        child: Container(
-            alignment: Alignment.center, child: Center(child: deviceWidget)));
+      child: Container(
+        alignment: Alignment.center,
+        child: Center(child: deviceWidget),
+      ),
+    );
   }
 }

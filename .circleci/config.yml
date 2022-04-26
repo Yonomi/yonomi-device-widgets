@@ -7,7 +7,8 @@ version: 2.1
 # Orb declarations
 orbs:
   codecov: codecov/codecov@1.2.5
-
+  gh: circleci/github-cli@2.1.0
+  
 anchors:
   - &main_only
     filters:
@@ -95,7 +96,9 @@ commands:
             - v1.0-dependencies-{{ arch }}-
       - run:
           name: Download deps
-          command: pub get
+          command: |
+            flutter --version
+            flutter pub get
       - run:
           name: Get junitreporter
           command: |
@@ -140,11 +143,12 @@ jobs:
     steps:
       - dependencies
       - run-publish
-  generate_documentation:
+  generate-documentation:
     executor: default-executor
     steps:
       - dependencies
       - generate-dartdoc
+      - gh/setup
       - setup-github
       - run:
           name: Check if changes made to documentation were not checked in
@@ -152,11 +156,19 @@ jobs:
             if [[ `git status doc/ --porcelain` ]];
             then
               echo "New documents detected. Checking in new docs."
+              BRANCH_NAME="$(git branch --show-current)"
+              git checkout -b dartdoc_$BRANCHNAME
               git add doc/
               git commit -m "docs: updated dartdocs"
               REMOTE_URL="$( echo << pipeline.project.git_url >> | sed -e 's#^https://##; s#/score/$##' )"
               git remote set-url origin "https://$REMOTE_URL.git"
               git push -u origin HEAD
+              gh pr create -f <(echo "
+                title: Updated dartdocs
+                body: New generated dartdocs after merging `$BRANCH_NAME`
+                assignees:
+                  - Yonomi/dx
+                ")
             else
               echo "Nothing to check in. No new docs generated"
             fi
@@ -170,15 +182,15 @@ workflows:
     jobs:
       - test:
           <<: *feature-branch-filter
-      - generate_documentation:
-          context:
-            - org-global
-          requires:
-            - test
   main:
     jobs:
       - test:
           <<: *main_only
+      - generate-documentation:
+          context:
+            - org-global
+          requires:
+            - test
       - semantic-versioning:
           context:
             - org-global

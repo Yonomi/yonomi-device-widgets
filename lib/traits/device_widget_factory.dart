@@ -3,17 +3,20 @@ import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
+import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
 import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
+import 'package:yonomi_device_widgets/traits/color_temperature_widget.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
@@ -24,9 +27,11 @@ import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class DeviceWidgetFactory {
-  static Widget produceWidget(Trait trait,
-      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
-      Color textColor = WidgetStyleConstants.deviceDetailIconColorActive}) {
+  static Widget produceWidget(
+    Trait trait, {
+    Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+    Color textColor = WidgetStyleConstants.deviceDetailIconColorActive,
+  }) {
     switch (trait.runtimeType) {
       case LockTrait:
         return Consumer<LockProvider>(builder: (_, lockProvider, __) {
@@ -47,7 +52,10 @@ class DeviceWidgetFactory {
       case ThermostatTrait:
         return Consumer<ThermostatProvider>(
           builder: (_, thermostatProvider, __) {
-            return ThermostatWidget(thermostatProvider, textColor: textColor);
+            return ThermostatWidget(
+              thermostatProvider,
+              textColor: textColor,
+            );
           },
         );
       case BrightnessTrait:
@@ -60,6 +68,13 @@ class DeviceWidgetFactory {
         return Consumer<ColorProvider>(builder: (_, colorProvider, __) {
           return ColorWidget(colorProvider, textColor: textColor);
         });
+      case ColorTemperatureTrait:
+        return Consumer<ColorTemperatureProvider>(
+          builder: (_, ColorTemperatureProvider, __) {
+            return ColorTemperatureWidget(ColorTemperatureProvider,
+                textColor: textColor);
+          },
+        );
       default:
         return UnknownWidget(name: trait.name, iconColor: iconColor);
     }
@@ -109,6 +124,14 @@ class DeviceWidgetFactory {
         return Consumer<ColorProvider>(builder: (_, colorTraitProvider, __) {
           return ColorSlimWidget(
             colorTraitProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
+      case ColorTemperatureTrait:
+        return Consumer<ColorTemperatureProvider>(
+            builder: (_, ColorTemperatureProvider, __) {
+          return ColorTemperatureSlimWidget(
+            ColorTemperatureProvider,
             backgroundColor: backgroundColor,
           );
         });

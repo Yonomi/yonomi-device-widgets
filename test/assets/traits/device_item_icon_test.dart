@@ -1,6 +1,7 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yonomi_device_widgets/assets/traits/color_temperature_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
@@ -90,6 +91,15 @@ void main() {
     final batteryLevelDevice = [BatteryLevelTrait(BatteryLevel(0))];
     await tester.pumpWidget(createIconWidget(batteryLevelDevice));
     expect(find.byIcon(BootstrapIcons.battery), findsOneWidget);
+  });
+
+  testWidgets('should render correct ColorTemperature trait icon',
+      (WidgetTester tester) async {
+    final colorTemperatureDevice = [
+      ColorTemperatureTrait({ColorTemperature(3500)}, {})
+    ];
+    await tester.pumpWidget(createIconWidget(colorTemperatureDevice));
+    expect(find.byIcon(ColorTemperatureIcon.DEFAULT_ICON), findsOneWidget);
   });
 
   testWidgets('should render unknown icon if trait not found',
