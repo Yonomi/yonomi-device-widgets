@@ -76,7 +76,7 @@ class _ColorTemperatureWidgetState extends State<ColorTemperatureWidget>
                 child: widget._colorTemperatureProvider.isPerformingAction
                     ? CircularProgressIndicator()
                     : Icon(
-                        BootstrapIcons.sun,
+                        BootstrapIcons.box,
                         color: widget._iconColor,
                         size: widget._iconSize,
                       ),
@@ -84,7 +84,7 @@ class _ColorTemperatureWidgetState extends State<ColorTemperatureWidget>
             ),
             SizedBox(height: 10),
             Row(children: [
-              Icon(BootstrapIcons.sun, color: widget._iconColor),
+              Icon(BootstrapIcons.thermometer_sun, color: widget._iconColor),
               Expanded(
                 child: Slider(
                   label: ColorTemperatureWidget.label,
