@@ -1,6 +1,5 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
 
@@ -46,7 +45,7 @@ class _ColorTemperatureSlimWidgetState
         leading: (widget._colorTemperatureProvider.isPerformingAction ||
                 widget._colorTemperatureProvider.isLoading)
             ? CircularProgressIndicator()
-            : Icon(BootstrapIcons.sun, color: widget._iconColor),
+            : Icon(BootstrapIcons.box, color: widget._iconColor),
         title: Slider(
           label: ColorTemperatureSlimWidget.label,
           value: colorTemperature?.toDouble() ?? DEFAULT_COLOR_TEMP,

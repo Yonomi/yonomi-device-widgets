@@ -341,7 +341,8 @@ void main() {
       testedDeviceId,
     ));
 
-    expect(find.byIcon(BootstrapIcons.sun), findsNWidgets(2));
+    expect(find.byIcon(BootstrapIcons.box), findsOneWidget);
+    expect(find.byIcon(BootstrapIcons.thermometer_sun), findsOneWidget);
     expect(find.byType(ColorTemperatureWidget), findsOneWidget);
   });
 
