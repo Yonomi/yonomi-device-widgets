@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.9.0...v2.10.0) (2022-04-26)
+
+
+### Features
+
+* **ColorTemperature:** ColorTemperature dynamic widget (DX-362) ([#44](https://github.com/Yonomi/yonomi-device-widgets/issues/44)) ([ae07596](https://github.com/Yonomi/yonomi-device-widgets/commit/ae075962f10ebae5821c656395e1f1246eec6bd2))
+
 # [2.9.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.8.1...v2.9.0) (2022-04-25)
 
 
