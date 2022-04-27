@@ -1,5 +1,4 @@
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 typedef SendSetColorActionFunction = Future<void> Function(
@@ -35,14 +34,9 @@ class ColorProvider extends DeviceProvider {
     }
   }
 
-  GHSBColorValueInput? get getColorState {
-    return GHSBColorValueInput((builder) {
-      builder..h = 130;
-      builder..s = 50;
-      builder..b = 50;
-    });
+  HSBColor? get getColorState {
+    return getColorTrait?.color;
   }
-
 
   Future<void> setColorAction(HSBColor color) {
     return performAction<HSBColor>(color, () => getColorState,

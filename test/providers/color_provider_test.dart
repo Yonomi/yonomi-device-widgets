@@ -44,7 +44,7 @@ void main() {
           reason: 'is in error state');
       expect(colorProvider.displayName, defaultColorDevice.displayName);
       expect(colorProvider.deviceDetail?.id, equals(deviceId));
-      expect(colorProvider.getColorState, isA<GHSBColorValueInput>());
+      expect(colorProvider.getColorState, isA<HSBColor>());
       expect(colorProvider.getColorTrait, isA<ColorTrait>());
     });
 

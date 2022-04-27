@@ -4,7 +4,6 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/widget_style_constants.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 class ColorSlimWidget extends BaseSlimWidget {
@@ -76,12 +75,12 @@ class ColorSlimWidget extends BaseSlimWidget {
                       height: 28));
             })));
 
-  static Color _hsbToColor(GHSBColorValueInput? hsbColor) {
+  static Color _hsbToColor(HSBColor? hsbColor) {
     if (hsbColor == null) {
       return Colors.transparent;
     } else {
-      return HSVColor.fromAHSV(1.0, hsbColor.h.toDouble(), hsbColor.s / 100.0,
-              hsbColor.b / 100.0)
+      return HSVColor.fromAHSV(1.0, hsbColor.hue.toDouble(),
+              hsbColor.saturation / 100.0, hsbColor.brightness / 100.0)
           .toColor();
     }
   }

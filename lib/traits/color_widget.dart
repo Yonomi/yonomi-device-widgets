@@ -62,7 +62,8 @@ class ColorWidget extends StatelessWidget {
       return Center(child: CircularProgressIndicator());
     } else {
       final pickedColor = HSVColor.fromAHSV(
-          1.0, state.h.toDouble(), state.s / 100.0, state.b / 100.0);
+          1.0, state.hue.toDouble(),
+          state.saturation / 100.0, state.brightness / 100.0);
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -72,7 +73,7 @@ class ColorWidget extends StatelessWidget {
           ),
           Padding(padding: EdgeInsets.all(4)),
           Text(
-            'HSB(${state.h}, ${state.s}, ${state.b})',
+            'HSB(${state.hue}, ${state.saturation}, ${state.brightness})',
             style: Theme.of(context)
                 .textTheme
                 .headline6

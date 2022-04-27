@@ -23,7 +23,7 @@ mixin ColorTesting {
 
     when(mockColorProvider.deviceDetail).thenReturn(device);
     when(mockColorProvider.getColorState)
-        .thenReturn(device.colorTrait?.color.value);
+        .thenReturn(device.colorTrait?.color);
     when(mockColorProvider.setColorAction(any))
         .thenAnswer((_) => Future.value(null));
 
