@@ -1,3 +1,10 @@
+## [2.10.2](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.10.1...v2.10.2) (2022-04-27)
+
+
+### Bug Fixes
+
+* **color_temp_slim_widget:** use correct icons according to figma ([#47](https://github.com/Yonomi/yonomi-device-widgets/issues/47)) ([e8354d9](https://github.com/Yonomi/yonomi-device-widgets/commit/e8354d99f3d9c1ba4703393ca400b470954b1707))
+
 ## [2.10.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.10.0...v2.10.1) (2022-04-26)
 
 
