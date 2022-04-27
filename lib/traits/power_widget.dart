@@ -25,7 +25,8 @@ class PowerWidget extends StatelessWidget with ToastNotifications {
   @override
   Widget build(BuildContext context) {
     if (_powerTraitProvider.isBusy) {
-      return CircularProgressIndicator();
+      return SizedBox(
+          child: CircularProgressIndicator(), height: 20, width: 20);
     } else if (_powerTraitProvider.isInErrorState) {
       showToast(context, _powerTraitProvider.getErrorMessage);
       return Icon(Icons.error);
