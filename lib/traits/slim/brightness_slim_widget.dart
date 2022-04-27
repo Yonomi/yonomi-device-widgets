@@ -40,7 +40,8 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
         tileColor: _backgroundColor,
         leading: (_brightnessProvider.isPerformingAction ||
                 _brightnessProvider.isLoading)
-            ? CircularProgressIndicator()
+            ? SizedBox(
+                child: CircularProgressIndicator(), height: 20, width: 20)
             : Icon(BootstrapIcons.sun, color: _iconColor),
         title: Slider(
           label: 'Brightness',
@@ -59,6 +60,8 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
             _brightnessProvider.setBrightnessLevelAction(value.round());
           },
         ),
+        horizontalTitleGap: 16.0,
+        contentPadding: EdgeInsets.all(0),
         trailing: Text('${brightness ?? "--"}',
             style: Theme.of(context)
                 .textTheme

@@ -41,10 +41,20 @@ class _ColorTemperatureSlimWidgetState
   Widget build(BuildContext context) {
     final colorTemperature = _colorTemperatureValue();
     return ListTile(
+<<<<<<< Updated upstream
         tileColor: widget._backgroundColor,
         leading: (widget._colorTemperatureProvider.isPerformingAction ||
                 widget._colorTemperatureProvider.isLoading)
             ? CircularProgressIndicator()
+=======
+        horizontalTitleGap: 16.0,
+        contentPadding: EdgeInsets.all(0),
+        tileColor: widget._backgroundColor,
+        leading: (widget._colorTemperatureProvider.isPerformingAction ||
+                widget._colorTemperatureProvider.isLoading)
+            ? SizedBox(
+                child: CircularProgressIndicator(), height: 20, width: 20)
+>>>>>>> Stashed changes
             : Icon(BootstrapIcons.box, color: widget._iconColor),
         title: Slider(
           label: ColorTemperatureSlimWidget.label,
