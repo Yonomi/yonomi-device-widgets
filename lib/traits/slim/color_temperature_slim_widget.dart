@@ -45,7 +45,10 @@ class _ColorTemperatureSlimWidgetState
         leading: (widget._colorTemperatureProvider.isPerformingAction ||
                 widget._colorTemperatureProvider.isLoading)
             ? CircularProgressIndicator()
-            : Icon(BootstrapIcons.box, color: widget._iconColor),
+            : Icon(
+                BootstrapIcons.thermometer_sun,
+                color: widget._iconColor,
+              ),
         title: Slider(
           label: ColorTemperatureSlimWidget.label,
           value: colorTemperature?.toDouble() ?? DEFAULT_COLOR_TEMP,
