@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
-import 'package:yonomi_platform_sdk/third_party/yonomi_graphql_schema/schema.docs.schema.gql.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/color_testing.dart';
@@ -44,7 +43,7 @@ void main() {
           reason: 'is in error state');
       expect(colorProvider.displayName, defaultColorDevice.displayName);
       expect(colorProvider.deviceDetail?.id, equals(deviceId));
-      expect(colorProvider.getColorState, isA<GHSBColorValueInput>());
+      expect(colorProvider.getColorState, isA<HSBColor>());
       expect(colorProvider.getColorTrait, isA<ColorTrait>());
     });
 

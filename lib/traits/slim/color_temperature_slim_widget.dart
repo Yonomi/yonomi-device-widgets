@@ -42,13 +42,13 @@ class _ColorTemperatureSlimWidgetState
     final colorTemperature = _colorTemperatureValue();
     return ListTile(
         tileColor: widget._backgroundColor,
+        horizontalTitleGap: 16.0,
+        contentPadding: EdgeInsets.all(0),
         leading: (widget._colorTemperatureProvider.isPerformingAction ||
                 widget._colorTemperatureProvider.isLoading)
-            ? CircularProgressIndicator()
-            : Icon(
-                BootstrapIcons.thermometer_sun,
-                color: widget._iconColor,
-              ),
+            ? SizedBox(
+                child: CircularProgressIndicator(), height: 20, width: 20)
+            : Icon(BootstrapIcons.thermometer_sun, color: widget._iconColor),
         title: Slider(
           label: ColorTemperatureSlimWidget.label,
           value: colorTemperature?.toDouble() ?? DEFAULT_COLOR_TEMP,
