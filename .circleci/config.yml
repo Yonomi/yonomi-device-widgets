@@ -69,8 +69,8 @@ commands:
       - run:
           name: Install npm
           command: |
-            sudo apt-get update
-            sudo apt-get -y install npm
+            apt-get update
+            apt-get -y install npm
             npm version
       - run:
           name: Download Semantic Release
