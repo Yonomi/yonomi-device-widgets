@@ -47,6 +47,7 @@ commands:
   run-test-coverage:
     description: "Run all tests"
     steps:
+      - run: echo $REPO_TYPE
       - run:
           name: command to run all tests
           command: flutter test --coverage
@@ -107,7 +108,7 @@ commands:
           name: Get junitreporter
           command: |
             echo "export PATH="$PATH":"$HOME/.pub-cache/bin"" >> $BASH_ENV
-            pub global activate junitreport
+            flutter pub global activate junitreport
       - save_cache:
           key: v1.0-dependencies-{{ arch }}-{{ checksum "pubspec.yaml" }}
           paths:
@@ -119,7 +120,7 @@ commands:
       - run:
           name: Prepare Dartdoc
           command: |
-            pub global activate dartdoc
+            flutter pub global activate dartdoc
             flutter pub global run dartdoc:dartdoc --format md
 
 ##################
@@ -140,7 +141,7 @@ jobs:
   semantic-versioning:
     executor: node-executor
     steps:
-      - dependencies
+      - checkout
       - run-semantic-versioning
   publish:
     executor: default-executor
