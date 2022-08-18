@@ -8,7 +8,7 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.2.5
   gh: circleci/github-cli@2.1.0
-  
+
 anchors:
   - &main_only
     filters:
@@ -30,6 +30,9 @@ executors:
     docker:
       - image: cirrusci/flutter:latest
     shell: "/bin/bash -eo pipefail"
+  node-executor:
+    docker:
+      - image: node:16.13
 
 commands:
   run-tests:
@@ -67,6 +70,7 @@ commands:
           command: |
             sudo apt-get update
             sudo apt-get -y install npm
+            npm version
       - run:
           name: Download Semantic Release
           command: |
@@ -80,7 +84,7 @@ commands:
     steps:
       - run:
           name: Publishing to pub.dev
-          command: dart pub publish
+          command: dart pub publish -f
 
   dependencies:
     description: "Download dependencies and setup global packages"
@@ -134,7 +138,7 @@ jobs:
       - store_test_results:
           path: test-results
   semantic-versioning:
-    executor: default-executor
+    executor: node-executor
     steps:
       - dependencies
       - run-semantic-versioning
@@ -177,7 +181,6 @@ jobs:
 # Workflow Definition
 ######################
 workflows:
-  version: 2.1
   feature:
     jobs:
       - test:
@@ -195,11 +198,15 @@ workflows:
           context:
             - org-global
           requires:
-              - test
+            - test
   production:
     when:
       and:
-        - equal: [ https://github.com/Yonomi/yonomi-device-widgets, << pipeline.project.git_url >> ]
+        - equal:
+            [
+              https://github.com/Yonomi/yonomi-device-widgets,
+              << pipeline.project.git_url >>,
+            ]
     jobs:
       - test:
           <<: *release-tag-filter
