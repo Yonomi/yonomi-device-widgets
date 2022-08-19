@@ -190,11 +190,6 @@ workflows:
     jobs:
       - test:
           <<: *main_only
-      - generate-documentation:
-          context:
-            - org-global
-          requires:
-            - test
       - semantic-versioning:
           context:
             - org-global
