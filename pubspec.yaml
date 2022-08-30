@@ -13,8 +13,8 @@ dependencies:
   provider: ^6.0.1
   flutter:
     sdk: flutter
-  bootstrap_icons: ^1.7.2
   yonomi_platform_sdk: ^5.0.3
+  bootstrap_icons: ^1.9.1
   built_value: ^8.1.4
   flutter_colorpicker: ^1.0.3
 
