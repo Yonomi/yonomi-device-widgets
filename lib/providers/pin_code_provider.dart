@@ -19,7 +19,8 @@ class PinCodeProvider extends DeviceProvider {
 
   /// Run the "makePowerActionRequest" mutation on this device
   ///
-  /// @param desiredOnOffState use true to set power state to on, false otherwise
+  /// @param pinCode the pin code
+  /// @param pinCodeName the name for the pin code
   /// @throws ServerException for any errors returned by the platform
   Future<void> sendAddPinCode(String pinCode, String pinCodeName,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
@@ -39,16 +40,18 @@ class PinCodeProvider extends DeviceProvider {
 
   String get displayName => deviceDetail?.displayName ?? _DEFAULT_DISPLAY_NAME;
 
-  /// State(s)
+  /// Get pinCodeCredentials State
   List<PinCodeCredential>? get getPinCodeCredentials =>
       getPinCodeTrait()?.pinCodes;
 
-  /// Properties
+  /// Get max Number Of Credentials allowed for this device
   int? get maxNumberOfCredentials => getPinCodeTrait()?.maxNumberOfCredentials;
 
+  /// Get min and max Credentials length allowed for this device
   PinCodeLengthRange? get pinCodeLengthRange =>
       getPinCodeTrait()?.pinCodeLengthRange;
 
+  /// Get min and max pin code name length allowed for this device
   PinCodeNameLengthRange? get nameLengthRange =>
       getPinCodeTrait()?.nameLengthRange;
 }
