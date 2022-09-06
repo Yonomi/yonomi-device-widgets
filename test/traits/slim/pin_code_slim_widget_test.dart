@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
@@ -28,7 +27,6 @@ void main() {
     await tester.pumpWidget(createMaterialApp(mockPinCodeProvider));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    expect(find.byType(CupertinoSwitch), findsNothing);
   });
 
   testWidgets('When action pending, should show loading icon ',
