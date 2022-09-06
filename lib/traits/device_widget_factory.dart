@@ -20,6 +20,7 @@ import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/pin_code_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
@@ -140,6 +141,13 @@ class DeviceWidgetFactory {
             builder: (_, ColorTemperatureProvider, __) {
           return ColorTemperatureSlimWidget(
             ColorTemperatureProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
+      case PinCodeTrait:
+        return Consumer<PinCodeProvider>(builder: (_, pinCodeProvider, __) {
+          return PinCodeSlimWidget(
+            pinCodeProvider,
             backgroundColor: backgroundColor,
           );
         });

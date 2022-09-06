@@ -30,7 +30,11 @@ class PinCodeWidget extends StatelessWidget with ToastNotifications {
       showToast(context, _pinCodeProvider.getErrorMessage);
       return Icon(Icons.error);
     } else {
-      return Text("Pin Code Widget");
+      return Text("Placeholder: Pin Code Widget",
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: _textColor));
     }
   }
 }
