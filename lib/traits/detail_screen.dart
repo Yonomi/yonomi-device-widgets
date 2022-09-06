@@ -5,6 +5,7 @@ import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/providers/pin_code_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
@@ -38,6 +39,8 @@ class DetailScreen extends StatelessWidget {
             create: (context) => ColorProvider(request, deviceId)),
         ChangeNotifierProvider<ColorTemperatureProvider>(
             create: (context) => ColorTemperatureProvider(request, deviceId)),
+        ChangeNotifierProvider<PinCodeProvider>(
+            create: (context) => PinCodeProvider(request, deviceId)),
       ],
       child: DetailScreenWidget(request, deviceId),
     );
