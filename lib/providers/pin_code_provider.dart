@@ -44,14 +44,14 @@ class PinCodeProvider extends DeviceProvider {
   List<PinCodeCredential>? get getPinCodeCredentials =>
       getPinCodeTrait()?.pinCodes;
 
-  /// Get max Number Of Credentials allowed for this device
+  /// Get the Max Number Of Credentials allowed for this device
   int? get maxNumberOfCredentials => getPinCodeTrait()?.maxNumberOfCredentials;
 
-  /// Get min and max Credentials length allowed for this device
+  /// Get min and max Credential length allowed for this device
   PinCodeLengthRange? get pinCodeLengthRange =>
       getPinCodeTrait()?.pinCodeLengthRange;
 
-  /// Get min and max pin code name length allowed for this device
+  /// Get min and max pin code Name length allowed for this device
   PinCodeNameLengthRange? get nameLengthRange =>
       getPinCodeTrait()?.nameLengthRange;
 }
