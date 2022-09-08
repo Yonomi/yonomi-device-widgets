@@ -12,9 +12,9 @@ class PinCodeWidget extends StatelessWidget with ToastNotifications {
   late final double _iconSize;
 
   PinCodeWidget(this._pinCodeProvider,
-      {Color iconColor = WidgetStyleConstants.deviceDetailIconColorActive,
+      {Color iconColor = WidgetStyleConstants.deviceIconColor,
       Color textColor = WidgetStyleConstants.darkTextColor,
-      double iconSize = 100.0,
+      double iconSize = 60.0,
       Key? key})
       : super(key: key) {
     this._iconColor = iconColor;
