@@ -18,7 +18,7 @@ class PinCodeSlimWidget extends BaseSlimWidget {
                 ? SizedBox(
                     child: CircularProgressIndicator(), height: 20, width: 20)
                 : PinCodeIcon(size: 30.0),
-            headerText: const Text(StringConstants.MANAGE_PIN_CODES,
+            headerText: const Text(StringConstants.PIN_CODES_MANAGE_PIN_CODES,
                 style: TextStyle(
                     fontSize: 20, color: WidgetStyleConstants.darkTextColor)),
             rightIcon: Builder(builder: (context) {
@@ -32,13 +32,9 @@ class PinCodeSlimWidget extends BaseSlimWidget {
                     context: context,
                     expand: true,
                     enableDrag: true,
-                    builder: (context) => SingleChildScrollView(
-                      controller: ModalScrollController.of(context),
-                      child: Container(
-                        child:
-                            PinCodeList(pinCodeProvider.getPinCodeCredentials),
-                      ),
-                    ),
+                    //TODO: Uncomment when ready:
+                    // builder: (context) => PinCodeListView(pinCodeProvider.getPinCodeCredentials),
+                    builder: (context) => PinCodeListView([]),
                   )
                 },
               );
@@ -47,16 +43,82 @@ class PinCodeSlimWidget extends BaseSlimWidget {
             key: key);
 }
 
-class PinCodeList extends StatelessWidget {
+class PinCodeListView extends StatelessWidget {
   final List<PinCodeCredential>? pinCodeCredentials;
 
-  const PinCodeList(
+  const PinCodeListView(
     this.pinCodeCredentials, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text('Pin Code 1');
+    return Material(
+      child: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          leading: Container(),
+          middle: Text(StringConstants.PIN_CODES_PIN_CODE_LIST_SCREEN_TITLE),
+          trailing: IconButton(
+            icon: const Icon(BootstrapIcons.plus_circle),
+            color: Colors.cyan,
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => PinCodeDetailView(),
+            )),
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            controller: ModalScrollController.of(context),
+            child: Container(
+              child: (pinCodeCredentials != null && pinCodeCredentials!.isEmpty)
+                  ? Center(
+                      child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(StringConstants.PIN_CODES_NO_PIN_CODES),
+                    ))
+                  : ListView(
+                      shrinkWrap: true,
+                      controller: ModalScrollController.of(context),
+                      children: ListTile.divideTiles(
+                        context: context,
+                        tiles: _toListTiles(pinCodeCredentials!),
+                      ).toList(),
+                    ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<ListTile> _toListTiles(List<PinCodeCredential> pinCodeCredentials) {
+    return pinCodeCredentials
+        .map(
+          (pinCode) => ListTile(
+            title: Text(pinCode.name),
+            trailing: const Icon(
+              BootstrapIcons.chevron_right,
+              color: Colors.black,
+            ),
+          ),
+        )
+        .toList();
+  }
+}
+
+class PinCodeDetailView extends StatelessWidget {
+  const PinCodeDetailView({
+    Key? key,
+    pincode,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
+      ),
+      child: Container(),
+    );
   }
 }
