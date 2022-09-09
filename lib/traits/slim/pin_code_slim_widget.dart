@@ -69,8 +69,7 @@ class PinCodeListView extends StatelessWidget {
           child: SingleChildScrollView(
             controller: ModalScrollController.of(context),
             child: Container(
-              child: (provider.getPinCodeCredentials != null &&
-                      provider.getPinCodeCredentials!.isEmpty)
+              child: (provider.getPinCodeCredentials?.isEmpty ?? true)
                   ? Center(
                       child: Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -126,68 +125,73 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
-        trailing: IconButton(
-            icon: const Icon(BootstrapIcons.check),
-            color: Colors.green,
-            onPressed: () async {
-              await _savePinCode();
-              await Future.delayed(const Duration(milliseconds: 250),
-                  () => Navigator.of(context).pop());
-            }),
-      ),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            Text('PIN Code Settings'),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextFormField(
-                onChanged: (value) {
-                  this._pinCodeName = value;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    return Material(
+      child: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          leading: Container(),
+          middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
+          trailing: IconButton(
+              icon: const Icon(BootstrapIcons.check),
+              color: Colors.green,
+              onPressed: () async {
+                await _savePinCode();
+                await Future.delayed(const Duration(milliseconds: 250),
+                    () => Navigator.of(context).pop());
+              }),
+        ),
+        child: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Text('PIN Code Settings'),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    onChanged: (value) {
+                      this._pinCodeName = value;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      ),
+                      labelText: 'PIN Code Name',
+                      helperText:
+                          '{ x } character max (e.g. John Doe or babysitter)',
+                    ),
                   ),
-                  labelText: 'PIN Code Name',
-                  helperText:
-                      '{ x } character max (e.g. John Doe or babysitter)',
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextFormField(
-                onChanged: (value) {
-                  this._pinCode = value;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    onChanged: (value) {
+                      this._pinCode = value;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      ),
+                      labelText: 'PIN Code',
+                      helperText:
+                          '{ x } digit numeric code to use on the lock\'s keypad',
+                    ),
                   ),
-                  labelText: 'PIN Code',
-                  helperText:
-                      '{ x } digit numeric code to use on the lock\'s keypad',
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
