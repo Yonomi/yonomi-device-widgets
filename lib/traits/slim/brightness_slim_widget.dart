@@ -38,7 +38,7 @@ class _BrightnessSlimWidgetState extends State<BrightnessSlimWidget> {
     final brightness = _brightnessValue();
     return ListTile(
         tileColor: _backgroundColor,
-        leading: (_brightnessProvider.isBusy)
+        leading: (_brightnessProvider.isLoading)
             ? SizedBox(
                 child: CircularProgressIndicator(), height: 20, width: 20)
             : Icon(BootstrapIcons.sun, color: _iconColor),
