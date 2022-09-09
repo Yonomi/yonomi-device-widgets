@@ -34,7 +34,8 @@ class PinCodeSlimWidget extends BaseSlimWidget {
                     enableDrag: true,
                     //TODO: Uncomment when ready:
                     // builder: (context) => PinCodeListView(pinCodeProvider.getPinCodeCredentials),
-                    builder: (context) => PinCodeListView([]),
+                    builder: (context) =>
+                        PinCodeListView(provider: pinCodeProvider),
                   )
                 },
               );
@@ -44,11 +45,11 @@ class PinCodeSlimWidget extends BaseSlimWidget {
 }
 
 class PinCodeListView extends StatelessWidget {
-  final List<PinCodeCredential>? pinCodeCredentials;
+  final PinCodeProvider provider;
 
-  const PinCodeListView(
-    this.pinCodeCredentials, {
+  const PinCodeListView({
     Key? key,
+    required this.provider,
   }) : super(key: key);
 
   @override
@@ -62,7 +63,7 @@ class PinCodeListView extends StatelessWidget {
             icon: const Icon(BootstrapIcons.plus_circle),
             color: Colors.cyan,
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => PinCodeDetailView(),
+              builder: (BuildContext context) => PinCodeDetailView(provider),
             )),
           ),
         ),
@@ -70,7 +71,8 @@ class PinCodeListView extends StatelessWidget {
           child: SingleChildScrollView(
             controller: ModalScrollController.of(context),
             child: Container(
-              child: (pinCodeCredentials != null && pinCodeCredentials!.isEmpty)
+              child: (provider.getPinCodeCredentials != null &&
+                      provider.getPinCodeCredentials!.isEmpty)
                   ? Center(
                       child: Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -81,7 +83,8 @@ class PinCodeListView extends StatelessWidget {
                       controller: ModalScrollController.of(context),
                       children: ListTile.divideTiles(
                         context: context,
-                        tiles: _toListTiles(pinCodeCredentials!),
+                        tiles: _pinCodesToListTiles(
+                            provider.getPinCodeCredentials!),
                       ).toList(),
                     ),
             ),
@@ -91,10 +94,12 @@ class PinCodeListView extends StatelessWidget {
     );
   }
 
-  List<ListTile> _toListTiles(List<PinCodeCredential> pinCodeCredentials) {
+  List<ListTile> _pinCodesToListTiles(
+      List<PinCodeCredential> pinCodeCredentials) {
     return pinCodeCredentials
         .map(
           (pinCode) => ListTile(
+            onTap: () => {print('TODO: Go to detail view. ')},
             title: Text(pinCode.name),
             trailing: const Icon(
               BootstrapIcons.chevron_right,
@@ -106,19 +111,91 @@ class PinCodeListView extends StatelessWidget {
   }
 }
 
-class PinCodeDetailView extends StatelessWidget {
-  const PinCodeDetailView({
-    Key? key,
-    pincode,
-  }) : super(key: key);
+class PinCodeDetailView extends StatefulWidget {
+  final PinCodeProvider provider;
+
+  const PinCodeDetailView(this.provider, {Key? key}) : super(key: key);
+
+  @override
+  State<PinCodeDetailView> createState() => _PinCodeDetailViewState();
+}
+
+class _PinCodeDetailViewState extends State<PinCodeDetailView> {
+  final _formKey = GlobalKey<FormState>();
+
+  String _pinCode = '';
+  String _pinCodeName = '';
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
+        trailing: IconButton(
+            icon: const Icon(BootstrapIcons.plus_circle),
+            color: Colors.cyan,
+            onPressed: () {
+              _savePinCode();
+              Future.delayed(const Duration(milliseconds: 250),
+                  () => Navigator.of(context).pop());
+            }),
       ),
-      child: Container(),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Text('PIN Code Settings'),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              child: TextFormField(
+                onChanged: (value) {
+                  this._pinCodeName = value;
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  labelText: 'PIN Code Name',
+                  helperText:
+                      '{ x } character max (e.g. John Doe or babysitter)',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              child: TextFormField(
+                onChanged: (value) {
+                  this._pinCode = value;
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  labelText: 'PIN Code',
+                  helperText:
+                      '{ x } digit numeric code to use on the lock\'s keypad',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  Future<void> _savePinCode() async {
+    await widget.provider.sendAddPinCode(this._pinCode, this._pinCodeName);
   }
 }
