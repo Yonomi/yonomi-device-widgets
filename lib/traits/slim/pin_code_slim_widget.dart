@@ -32,8 +32,6 @@ class PinCodeSlimWidget extends BaseSlimWidget {
                     context: context,
                     expand: true,
                     enableDrag: true,
-                    //TODO: Uncomment when ready:
-                    // builder: (context) => PinCodeListView(pinCodeProvider.getPinCodeCredentials),
                     builder: (context) =>
                         PinCodeListView(provider: pinCodeProvider),
                   )
@@ -58,7 +56,7 @@ class PinCodeListView extends StatelessWidget {
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           leading: Container(),
-          middle: Text(StringConstants.PIN_CODES_PIN_CODE_LIST_SCREEN_TITLE),
+          middle: Text(StringConstants.PIN_CODES_LIST_SCREEN_TITLE),
           trailing: IconButton(
             icon: const Icon(BootstrapIcons.plus_circle),
             color: Colors.cyan,
@@ -132,11 +130,11 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView> {
       navigationBar: CupertinoNavigationBar(
         middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
         trailing: IconButton(
-            icon: const Icon(BootstrapIcons.plus_circle),
-            color: Colors.cyan,
-            onPressed: () {
-              _savePinCode();
-              Future.delayed(const Duration(milliseconds: 250),
+            icon: const Icon(BootstrapIcons.check),
+            color: Colors.green,
+            onPressed: () async {
+              await _savePinCode();
+              await Future.delayed(const Duration(milliseconds: 250),
                   () => Navigator.of(context).pop());
             }),
       ),
