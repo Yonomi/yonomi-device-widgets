@@ -15,9 +15,13 @@ class PinCodeSlimWidget extends BaseSlimWidget {
       {Color? backgroundColor, Key? key})
       : super(
             provider: pinCodeProvider,
-            leftIcon: (pinCodeProvider.isBusy)
-                ? SizedBox(
-                    child: CircularProgressIndicator(), height: 20, width: 20)
+            leftIcon: (pinCodeProvider.isLoading)
+                ? Center(
+                    child: SizedBox(
+                        child: CircularProgressIndicator(),
+                        height: 30,
+                        width: 30),
+                  )
                 : PinCodeIcon(size: 30.0),
             headerText: const Text(StringConstants.PIN_CODES_MANAGE_PIN_CODES,
                 style: TextStyle(
@@ -68,8 +72,9 @@ class PinCodeListView extends StatelessWidget {
                   onPressed: () => Navigator.of(builderCtx).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) => PinCodeDetailView(
-                          provider,
-                          backViewContext: listViewCtx),
+                        provider,
+                        backViewContext: builderCtx,
+                      ),
                     ),
                   ),
                 ),
@@ -120,12 +125,17 @@ class PinCodeListView extends StatelessWidget {
 }
 
 class PinCodeDetailView extends StatefulWidget {
-  final PinCodeProvider provider;
+  static const int DEFAULT_MAX_PIN_CODE_LENGTH = 50;
+  static const int DEFAULT_MAX_PIN_CODE_NAME_LENGTH = 20;
 
+  final PinCodeProvider provider;
   final BuildContext? backViewContext;
+
+  final PinCodeCredential? selectedPinCode;
 
   const PinCodeDetailView(
     this.provider, {
+    this.selectedPinCode,
     this.backViewContext,
     Key? key,
   }) : super(key: key);
@@ -162,44 +172,47 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
         child: SafeArea(
           child: Form(
             key: _formKey,
-            child: Column(
-              children: [
-                Text('PIN Code Settings'),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextFormField(
-                    onChanged: (value) {
-                      this._pinCodeName = value;
-                    },
-                    validator: textValidator,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              child: Column(
+                children: [
+                  Text(StringConstants.PIN_CODES_PIN_CODE_SETTINGS),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    child: TextFormField(
+                      onChanged: (value) {
+                        this._pinCodeName = value;
+                      },
+                      validator: textValidator,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        ),
+                        labelText: StringConstants.PIN_CODES_PIN_CODE_NAME,
+                        helperText:
+                            '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John Doe or babysitter)',
                       ),
-                      labelText: 'PIN Code Name',
-                      helperText:
-                          '{ x } character max (e.g. John Doe or babysitter)',
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextFormField(
-                    onChanged: (value) {
-                      this._pinCode = value;
-                    },
-                    validator: textValidator,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    child: TextFormField(
+                      onChanged: (value) {
+                        this._pinCode = value;
+                      },
+                      validator: textValidator,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        ),
+                        labelText: StringConstants.PIN_CODES_PIN_CODE,
+                        helperText:
+                            '${widget.provider.pinCodeLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_LENGTH} digit numeric code to use on the lock\'s keypad',
                       ),
-                      labelText: 'PIN Code',
-                      helperText:
-                          '{ x } digit numeric code to use on the lock\'s keypad',
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -209,17 +222,16 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
 
   String? textValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter some text';
+      return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
     }
     return null;
   }
 
   Future<void> _savePinCode(BuildContext ctx) async {
     print('saving pin code...');
-    // await widget.provider.sendAddPinCode(this._pinCode, this._pinCodeName);
-    await Future.delayed(Duration(milliseconds: 500));
-    ScaffoldMessenger.of(ctx).showSnackBar(
-      SnackBar(content: Text('Saved changes')),
+    await widget.provider.sendAddPinCode(this._pinCode, this._pinCodeName);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(StringConstants.PIN_CODES_SAVED_CHANGES)),
     );
   }
 }
