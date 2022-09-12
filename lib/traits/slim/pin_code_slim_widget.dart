@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
+import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/pin_code_provider.dart';
 import 'package:yonomi_device_widgets/traits/slim/base_slim_widget.dart';
 import 'package:yonomi_device_widgets/ui/string_constants.dart';
@@ -51,39 +52,49 @@ class PinCodeListView extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext rootContext) {
     return Material(
-      child: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          leading: Container(),
-          middle: Text(StringConstants.PIN_CODES_LIST_SCREEN_TITLE),
-          trailing: IconButton(
-            icon: const Icon(BootstrapIcons.plus_circle),
-            color: Colors.cyan,
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => PinCodeDetailView(provider),
-            )),
-          ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            controller: ModalScrollController.of(context),
-            child: Container(
-              child: (provider.getPinCodeCredentials?.isEmpty ?? true)
-                  ? Center(
-                      child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(StringConstants.PIN_CODES_NO_PIN_CODES),
-                    ))
-                  : ListView(
-                      shrinkWrap: true,
-                      controller: ModalScrollController.of(context),
-                      children: ListTile.divideTiles(
-                        context: context,
-                        tiles: _pinCodesToListTiles(
-                            provider.getPinCodeCredentials!),
-                      ).toList(),
+      child: Navigator(
+        onGenerateRoute: (_) => MaterialPageRoute(
+          builder: (listViewCtx) => Builder(
+            builder: (builderCtx) => CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(
+                backgroundColor: Colors.greenAccent,
+                leading: Container(),
+                middle: Text(StringConstants.PIN_CODES_LIST_SCREEN_TITLE),
+                trailing: IconButton(
+                  icon: const Icon(BootstrapIcons.plus_circle),
+                  color: Colors.cyan,
+                  onPressed: () => Navigator.of(builderCtx).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => PinCodeDetailView(
+                          provider,
+                          backViewContext: listViewCtx),
                     ),
+                  ),
+                ),
+              ),
+              child: SafeArea(
+                bottom: false,
+                child: Container(
+                  color: Colors.amber,
+                  child: (provider.getPinCodeCredentials?.isEmpty ?? true)
+                      ? Center(
+                          child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(StringConstants.PIN_CODES_NO_PIN_CODES),
+                        ))
+                      : ListView(
+                          shrinkWrap: true,
+                          controller: ModalScrollController.of(builderCtx),
+                          children: ListTile.divideTiles(
+                            context: builderCtx,
+                            tiles: _pinCodesToListTiles(
+                                provider.getPinCodeCredentials!),
+                          ).toList(),
+                        ),
+                ),
+              ),
             ),
           ),
         ),
@@ -111,13 +122,20 @@ class PinCodeListView extends StatelessWidget {
 class PinCodeDetailView extends StatefulWidget {
   final PinCodeProvider provider;
 
-  const PinCodeDetailView(this.provider, {Key? key}) : super(key: key);
+  final BuildContext? backViewContext;
+
+  const PinCodeDetailView(
+    this.provider, {
+    this.backViewContext,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PinCodeDetailView> createState() => _PinCodeDetailViewState();
 }
 
-class _PinCodeDetailViewState extends State<PinCodeDetailView> {
+class _PinCodeDetailViewState extends State<PinCodeDetailView>
+    with ToastNotifications {
   final _formKey = GlobalKey<FormState>();
 
   String _pinCode = '';
@@ -134,9 +152,11 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView> {
               icon: const Icon(BootstrapIcons.check),
               color: Colors.green,
               onPressed: () async {
-                await _savePinCode();
-                await Future.delayed(const Duration(milliseconds: 250),
-                    () => Navigator.of(context).pop());
+                await _savePinCode(widget.backViewContext ?? context);
+                await Future.delayed(
+                    const Duration(milliseconds: 250),
+                    () =>
+                        Navigator.of(widget.backViewContext ?? context).pop());
               }),
         ),
         child: SafeArea(
@@ -151,12 +171,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView> {
                     onChanged: (value) {
                       this._pinCodeName = value;
                     },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
+                    validator: textValidator,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -173,12 +188,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView> {
                     onChanged: (value) {
                       this._pinCode = value;
                     },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
+                    validator: textValidator,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -197,7 +207,19 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView> {
     );
   }
 
-  Future<void> _savePinCode() async {
-    await widget.provider.sendAddPinCode(this._pinCode, this._pinCodeName);
+  String? textValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter some text';
+    }
+    return null;
+  }
+
+  Future<void> _savePinCode(BuildContext ctx) async {
+    print('saving pin code...');
+    // await widget.provider.sendAddPinCode(this._pinCode, this._pinCodeName);
+    await Future.delayed(Duration(milliseconds: 500));
+    ScaffoldMessenger.of(ctx).showSnackBar(
+      SnackBar(content: Text('Saved changes')),
+    );
   }
 }
