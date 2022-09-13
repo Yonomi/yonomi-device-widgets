@@ -25,8 +25,10 @@ class PinCodeWidget extends StatelessWidget with ToastNotifications {
   @override
   Widget build(BuildContext context) {
     if (_pinCodeProvider.isLoading) {
-      return SizedBox(
-          child: CircularProgressIndicator(), height: 20, width: 20);
+      return Center(
+        child:
+            SizedBox(child: CircularProgressIndicator(), height: 30, width: 30),
+      );
     } else if (_pinCodeProvider.isInErrorState) {
       showToast(context, _pinCodeProvider.getErrorMessage);
       return Icon(Icons.error);
