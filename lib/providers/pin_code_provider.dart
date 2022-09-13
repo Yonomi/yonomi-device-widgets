@@ -1,7 +1,7 @@
 import 'package:yonomi_device_widgets/providers/device_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
-typedef SendAddPinCodeMethod = Future<void> Function(
+typedef SendCreatePinCodeMethod = Future<void> Function(
     Request request, String id, String pinCode, String pinCodeName);
 
 class PinCodeProvider extends DeviceProvider {
@@ -24,12 +24,12 @@ class PinCodeProvider extends DeviceProvider {
   /// @throws ServerException for any errors returned by the platform
   Future<void> sendAddPinCode(String pinCode, String pinCodeName,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
-      SendAddPinCodeMethod sendAddPinCodeMethod =
-          PinCodeRepository.sendAddPinCodeAction}) async {
+      SendCreatePinCodeMethod sendCreatePinCodeMethod =
+          PinCodeRepository.sendCreatePinCodeAction}) async {
     return performAction<List<PinCodeCredential>>(
         [...?getPinCodeCredentials, PinCodeCredential(pinCodeName, pinCode)],
         () => getPinCodeCredentials,
-        () => sendAddPinCodeMethod(
+        () => sendCreatePinCodeMethod(
             _request, this._deviceId, pinCode, pinCodeName),
         getDetails: getDetails);
   }
