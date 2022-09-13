@@ -16,4 +16,10 @@ class ColorConstants {
   static const Color pinCodeDetailCheckColor = Color(0xFF70C7C0);
 
   static const Color pinCodeDetailBodyBg = Color(0xFFE8EAEE);
+
+  static const Color pinCodeDetailTextFieldLabelText = Color(0xFF5A626C);
+
+  static const Color pinCodeDetailTextFieldHintText = Color(0xFF8E94A2);
+
+  static const Color pinCodeDetailTextFieldHelperText = Color(0xFF9A9EAA);
 }

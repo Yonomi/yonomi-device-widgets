@@ -198,55 +198,75 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
               key: _formKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: Theme(
-                  data:
-                      Theme.of(context).copyWith(primaryColor: Colors.black26),
-                  child: Column(
-                    children: [
-                      Text(
-                        StringConstants.PIN_CODES_PIN_CODE_SETTINGS,
-                        style: WidgetStyleConstants.pinCodeDetailTitleStyle,
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                        child: TextFormField(
-                          onChanged: (value) {
-                            this._pinCodeName = value;
-                          },
-                          validator: textValidator,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0)),
-                            ),
-                            labelText: StringConstants.PIN_CODES_PIN_CODE_NAME,
-                            helperText:
-                                '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John Doe or babysitter)',
+                child: Column(
+                  children: [
+                    Text(
+                      StringConstants.PIN_CODES_PIN_CODE_SETTINGS,
+                      style: WidgetStyleConstants.pinCodeDetailTitleStyle,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      child: TextFormField(
+                        onChanged: (value) {
+                          this._pinCodeName = value;
+                        },
+                        validator: textValidator,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          labelStyle: TextStyle(
+                              color: ColorConstants
+                                  .pinCodeDetailTextFieldLabelText),
+                          hintStyle: TextStyle(
+                              color: ColorConstants
+                                  .pinCodeDetailTextFieldHintText),
+                          helperStyle: TextStyle(
+                              color: ColorConstants
+                                  .pinCodeDetailTextFieldHelperText),
+                          labelText: StringConstants.PIN_CODES_PIN_CODE_NAME,
+                          helperText:
+                              '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John Doe or babysitter)',
                         ),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                        child: TextFormField(
-                          onChanged: (value) {
-                            this._pinCode = value;
-                          },
-                          validator: textValidator,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0)),
-                            ),
-                            labelText: StringConstants.PIN_CODES_PIN_CODE,
-                            helperText:
-                                '${widget.provider.pinCodeLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_LENGTH} digit numeric code to use on the lock\'s keypad',
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      child: TextFormField(
+                        onChanged: (value) {
+                          this._pinCode = value;
+                        },
+                        validator: textValidator,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          labelStyle: TextStyle(
+                              color: ColorConstants
+                                  .pinCodeDetailTextFieldLabelText),
+                          hintStyle: TextStyle(
+                              color: ColorConstants
+                                  .pinCodeDetailTextFieldHintText),
+                          helperStyle: TextStyle(
+                              color: ColorConstants
+                                  .pinCodeDetailTextFieldHelperText),
+                          labelText: StringConstants.PIN_CODES_PIN_CODE,
+                          helperText:
+                              '${widget.provider.pinCodeLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_LENGTH} digit numeric code to use on the lock\'s keypad',
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
