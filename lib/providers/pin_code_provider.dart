@@ -22,7 +22,7 @@ class PinCodeProvider extends DeviceProvider {
   /// @param pinCode the pin code
   /// @param pinCodeName the name for the pin code
   /// @throws ServerException for any errors returned by the platform
-  Future<void> sendAddPinCode(String pinCode, String pinCodeName,
+  Future<void> sendCreatePinCode(String pinCode, String pinCodeName,
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendCreatePinCodeMethod sendCreatePinCodeMethod =
           PinCodeRepository.sendCreatePinCodeAction}) async {

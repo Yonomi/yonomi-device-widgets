@@ -667,7 +667,7 @@ class MockPinCodeProvider extends _i1.Mock implements _i19.PinCodeProvider {
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i7.Future<void> sendAddPinCode(String? pinCode, String? pinCodeName,
+  _i7.Future<void> sendCreatePinCode(String? pinCode, String? pinCodeName,
           {_i8.GetDeviceDetailsMethod? getDetails =
               _i9.DevicesRepository.getDeviceDetails,
           _i19.SendCreatePinCodeMethod? sendCreatePinCodeMethod =

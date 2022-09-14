@@ -87,7 +87,7 @@ void main() {
       PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
-      await pinCodeProvider.sendAddPinCode('Admin', '5678',
+      await pinCodeProvider.sendCreatePinCode('Admin', '5678',
           getDetails: mockDeviceDetailsMethod,
           sendCreatePinCodeMethod: mockSendCreatePinCodeMethod);
 

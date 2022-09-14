@@ -284,10 +284,12 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
   }
 
   Future<void> _savePinCode(BuildContext ctx) async {
-    print('saving pin code...');
-    await widget.provider.sendAddPinCode(this._pinCode, this._pinCodeName);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(StringConstants.PIN_CODES_SAVED_CHANGES)),
+    print('Saving pin code...');
+    await widget.provider.sendCreatePinCode(this._pinCode, this._pinCodeName);
+    ScaffoldMessenger.of(ctx).showSnackBar(
+      SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text(StringConstants.PIN_CODES_SAVED_CHANGES)),
     );
   }
 }
