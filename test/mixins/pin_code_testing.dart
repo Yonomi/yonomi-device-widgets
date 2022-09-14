@@ -14,6 +14,7 @@ mixin PinCodeTesting {
       String errorMessage = '',
       bool isPerformingAction = false}) {
     final mockPinCodeTraitProvider = MockPinCodeProvider();
+    when(mockPinCodeTraitProvider.displayName).thenReturn(device.displayName);
     when(mockPinCodeTraitProvider.isLoading).thenReturn(isLoading);
     when(mockPinCodeTraitProvider.isBusy).thenReturn(isBusy);
     when(mockPinCodeTraitProvider.isInErrorState).thenReturn(isInErrorState);
