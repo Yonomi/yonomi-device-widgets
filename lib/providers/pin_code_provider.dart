@@ -17,7 +17,7 @@ class PinCodeProvider extends DeviceProvider {
     this._request = request;
   }
 
-  /// Run the "makeAddPinCodeActionRequest" mutation on this device
+  /// Run the "makeCreatePinCodeActionRequest" mutation on this device
   ///
   /// @param pinCode the pin code
   /// @param pinCodeName the name for the pin code
