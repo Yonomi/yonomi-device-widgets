@@ -45,17 +45,19 @@ class PinCodeWidget extends StatelessWidget with ToastNotifications {
                   ?.copyWith(color: _textColor),
             )
           ]),
-          SizedBox(height: 10),
-          Container(
-            child: Center(
-              child: SizedBox(
-                width: _iconSize,
-                height: _iconSize,
-                child: PinCodeIcon(size: _iconSize, color: _iconColor),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+            child: Container(
+              child: Center(
+                child: SizedBox(
+                  width: _iconSize,
+                  height: _iconSize,
+                  child: PinCodeIcon(size: _iconSize, color: _iconColor),
+                ),
               ),
             ),
           ),
-          SizedBox(height: 10),
         ],
       );
     }

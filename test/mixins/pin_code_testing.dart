@@ -39,17 +39,22 @@ mixin PinCodeTesting {
 
 class TestPinCodeDevice extends Device {
   final int maxNumberOfCredentials;
-  final PinCodeNameLengthRange? nameLengthRange;
-  final PinCodeLengthRange? pinCodeLengthRange;
-  final List<PinCodeCredential> pinCodes;
+  final PinCodeNameLengthRange nameLengthRange;
+  final PinCodeLengthRange pinCodeLengthRange;
+  List<PinCodeCredential> pinCodes;
 
   TestPinCodeDevice(
     Device device, {
     this.maxNumberOfCredentials = 100,
     this.nameLengthRange = const PinCodeNameLengthRange(min: 1, max: 10),
     this.pinCodeLengthRange = const PinCodeLengthRange(min: 4, max: 50),
-    this.pinCodes = const [],
-  }) : super(
+    List<PinCodeCredential>? pinCodes = const [],
+  })  : pinCodes = pinCodes ??
+            [
+              PinCodeCredential('Admin', '5678'),
+              PinCodeCredential('Plant Lady', '1234')
+            ],
+        super(
             device.id,
             device.displayName,
             device.description,
@@ -58,7 +63,13 @@ class TestPinCodeDevice extends Device {
             device.serialNumber,
             device.createdAt,
             device.updatedAt, [
-          PinCodeTrait({}, {}),
+          PinCodeTrait(<State>{
+            PinCodeCredentials.withCredentials(pinCodes),
+          }, <Property>{
+            MaxNumberOfPinCodeCredentials(maxNumberOfCredentials),
+            SupportedPinCodeNameLengthRange(nameLengthRange),
+            SupportedPinCodeRange(pinCodeLengthRange),
+          }),
           ...device.traits.where((t) => t.runtimeType != PinCodeTrait)
         ]);
 

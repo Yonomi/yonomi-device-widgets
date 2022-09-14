@@ -37,12 +37,12 @@ class MockGetDeviceDetailsMethod extends _i1.Mock
   String toString() => super.toString();
 }
 
-/// A class which mocks [SendAddPinCodeMethod].
+/// A class which mocks [SendCreatePinCodeMethod].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSendAddPinCodeMethod extends _i1.Mock
-    implements _i3.SendAddPinCodeMethod {
-  MockSendAddPinCodeMethod() {
+class MockSendCreatePinCodeMethod extends _i1.Mock
+    implements _i3.SendCreatePinCodeMethod {
+  MockSendCreatePinCodeMethod() {
     _i1.throwOnMissingStub(this);
   }
 

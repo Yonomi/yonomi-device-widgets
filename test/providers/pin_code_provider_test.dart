@@ -1,26 +1,99 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:yonomi_device_widgets/providers/pin_code_provider.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 import '../mixins/device_testing.dart';
 import '../mixins/pin_code_testing.dart';
+import 'pin_code_provider_test.mocks.dart';
 
 class GetDeviceDetailsMethod extends Mock {
   Future<Device> call(Request request, String id);
 }
 
-class SendAddPinCodeMethod extends Mock {
+class SendCreatePinCodeMethod extends Mock {
   Future<void> call(
       Request request, String id, String pinCode, String pinCodeName);
 }
 
-class PinCodeTraitProviderTest with DeviceTesting, PinCodeTesting {}
+class PinCodeTraitProviderTest with DeviceTesting, PinCodeTesting {
+  MockGetDeviceDetailsMethod getMockDeviceDetailsMethod(
+      Request request, String deviceId) {
+    MockGetDeviceDetailsMethod mockDeviceDetailsMethod =
+        MockGetDeviceDetailsMethod();
+    final device = TestPinCodeDevice(
+      this.device(id: deviceId),
+      pinCodes: [
+        PinCodeCredential('Admin', '5678'),
+        PinCodeCredential('Plant Lady', '1234')
+      ],
+    );
 
-@GenerateMocks([GetDeviceDetailsMethod, SendAddPinCodeMethod])
+    when(mockDeviceDetailsMethod.call(request, deviceId))
+        .thenAnswer((_) => Future.value(device));
+
+    return mockDeviceDetailsMethod;
+  }
+}
+
+@GenerateMocks([GetDeviceDetailsMethod, SendCreatePinCodeMethod])
 void main() {
-  final pinCodeTest = PinCodeTraitProviderTest();
-  final defaultPinCodeDevice = TestPinCodeDevice(pinCodeTest.device());
+  final pinCodeProviderTest = PinCodeTraitProviderTest();
 
-  group('For PinCodeTraitProvider', () {});
+  group('For PinCodeTraitProvider', () {
+    test('''After successfully loading device data, should be in idle state
+        when done.''', () async {
+      Request request = Request("", {});
+      String deviceId = 'aDeviceId';
+
+      final GetDeviceDetailsMethod mockDeviceDetailsMethod =
+          pinCodeProviderTest.getMockDeviceDetailsMethod(request, deviceId);
+
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
+          getDetails: mockDeviceDetailsMethod);
+
+      expect(pinCodeProvider.isLoading, equals(false),
+          reason: 'is in loading state');
+      expect(pinCodeProvider.isBusy, equals(false), reason: 'is in busy state');
+      expect(pinCodeProvider.isInErrorState, equals(false),
+          reason: 'is in error state');
+      expect(pinCodeProvider.displayName, equals('name'));
+      expect(pinCodeProvider.deviceDetail?.id, equals(deviceId));
+
+      expect(pinCodeProvider.getPinCodeTrait(), isA<PinCodeTrait>());
+      // Should have default values. See `pin_code_testing.dart`
+      expect(pinCodeProvider.maxNumberOfCredentials, equals(100));
+      expect(pinCodeProvider.nameLengthRange!.min, equals(1));
+      expect(pinCodeProvider.nameLengthRange!.max, equals(10));
+      expect(pinCodeProvider.pinCodeLengthRange!.min, equals(4));
+      expect(pinCodeProvider.pinCodeLengthRange!.max, equals(50));
+      expect(pinCodeProvider.getPinCodeCredentials![0].name, equals('Admin'));
+      expect(pinCodeProvider.getPinCodeCredentials![0].pinCode, equals('5678'));
+      expect(
+          pinCodeProvider.getPinCodeCredentials![1].name, equals('Plant Lady'));
+      expect(pinCodeProvider.getPinCodeCredentials![1].pinCode, equals('1234'));
+    });
+
+    test('Calling SendCreatePinCodeMethod calls repository method', () async {
+      Request request = Request("", {});
+      String deviceId = 'aDeviceId';
+
+      final GetDeviceDetailsMethod mockDeviceDetailsMethod =
+          pinCodeProviderTest.getMockDeviceDetailsMethod(request, deviceId);
+
+      final mockSendCreatePinCodeMethod = MockSendCreatePinCodeMethod();
+
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
+          getDetails: mockDeviceDetailsMethod);
+
+      await pinCodeProvider.sendAddPinCode('Admin', '5678',
+          getDetails: mockDeviceDetailsMethod,
+          sendCreatePinCodeMethod: mockSendCreatePinCodeMethod);
+
+      verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
+      verify(mockSendCreatePinCodeMethod(request, deviceId, 'Admin', '5678'))
+          .called(greaterThan(0));
+    });
+  });
 }
