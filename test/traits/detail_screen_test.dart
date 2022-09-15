@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
@@ -20,12 +21,14 @@ import 'package:yonomi_device_widgets/traits/color_temperature_widget.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
+import 'package:yonomi_device_widgets/traits/pin_code_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/pin_code_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
@@ -362,6 +365,20 @@ void main() {
   });
 
   testWidgets(
+      'For the PinCodeTrait Trait, Detail screen should show the PinCode Icon',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+      [TestPinCodeDevice(test.device(id: testedDeviceId))],
+      request,
+      testedDeviceId,
+    ));
+
+    expect(find.byType(PinCodeIcon), findsOneWidget);
+    expect(find.byType(PinCodeWidget), findsOneWidget);
+  });
+
+  testWidgets(
       'For any Unknown/Unsupported Trait, Detail screen should show the UnknownItemIcon widget',
       (WidgetTester tester) async {
     final request = Request('', {});
@@ -388,6 +405,7 @@ void main() {
       TestBrightnessDevice(device, brightness: 50),
       TestColorDevice(device, colorTrait: ColorTrait(HSBColor(150, 50, 50))),
       TestColorTemperatureDevice(device, colorTemperature: 3500),
+      TestPinCodeDevice(device),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -399,6 +417,7 @@ void main() {
     expect(find.byType(BrightnessSlimWidget), findsOneWidget);
     expect(find.byType(ColorSlimWidget), findsOneWidget);
     expect(find.byType(ColorTemperatureSlimWidget), findsOneWidget);
+    expect(find.byType(PinCodeSlimWidget), findsOneWidget);
 
     expect(find.byType(MultiProvider), findsOneWidget);
 
