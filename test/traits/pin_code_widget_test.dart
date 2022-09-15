@@ -35,4 +35,13 @@ void main() {
 
     expect(find.byType(PinCodeIcon), findsOneWidget);
   });
+
+  testWidgets('When an error occurs, should show an Error icon',
+      (WidgetTester tester) async {
+    final mockPinCodeProvider =
+        test.mockPinCodeProvider(defaultPinCode, isInErrorState: true);
+    await tester.pumpWidget(createMaterialApp(mockPinCodeProvider));
+
+    expect(find.byIcon(Icons.error), findsOneWidget);
+  });
 }
