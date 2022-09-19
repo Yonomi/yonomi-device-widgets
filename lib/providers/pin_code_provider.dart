@@ -4,6 +4,12 @@ import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 typedef SendCreatePinCodeMethod = Future<void> Function(
     Request request, String id, String pinCode, String pinCodeName);
 
+typedef SendUpdatePinCodeMethod = Future<void> Function(
+    Request request, String id, String pinCode, String pinCodeName);
+
+typedef SendDeletePinCodeMethod = Future<void> Function(
+    Request request, String id, String pinCode);
+
 class PinCodeProvider extends DeviceProvider {
   static const _DEFAULT_DISPLAY_NAME = 'PIN_CODE';
 
@@ -31,6 +37,39 @@ class PinCodeProvider extends DeviceProvider {
         () => getPinCodeCredentials,
         () => sendCreatePinCodeMethod(
             _request, this._deviceId, pinCode, pinCodeName),
+        getDetails: getDetails);
+  }
+
+  /// Run the "makeUpdatePinCodeActionRequest" mutation on this device
+  ///
+  /// @param pinCode the pin code
+  /// @param pinCodeName the name for the pin code
+  /// @throws ServerException for any errors returned by the platform
+  Future<void> sendUpdatePinCode(String pinCode, String pinCodeName,
+      {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
+      SendUpdatePinCodeMethod sendUpdatePinCodeMethod =
+          PinCodeRepository.sendUpdatePinCodeAction}) async {
+    return performAction<List<PinCodeCredential>>(
+        [...?getPinCodeCredentials, PinCodeCredential(pinCodeName, pinCode)],
+        () => getPinCodeCredentials,
+        () => sendUpdatePinCodeMethod(
+            _request, this._deviceId, pinCode, pinCodeName),
+        getDetails: getDetails);
+  }
+
+  /// Run the "makeDeletePinCodeActionRequest" mutation on this device
+  ///
+  /// @param pinCode the pin code
+  /// @param pinCodeName the name for the pin code
+  /// @throws ServerException for any errors returned by the platform
+  Future<void> sendDeletePinCode(String pinCode, String pinCodeName,
+      {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
+      SendDeletePinCodeMethod sendDeletePinCodeMethod =
+          PinCodeRepository.sendDeletePinCodeAction}) async {
+    return performAction<List<PinCodeCredential>>(
+        [...?getPinCodeCredentials, PinCodeCredential(pinCodeName, pinCode)],
+        () => getPinCodeCredentials,
+        () => sendDeletePinCodeMethod(_request, this._deviceId, pinCode),
         getDetails: getDetails);
   }
 

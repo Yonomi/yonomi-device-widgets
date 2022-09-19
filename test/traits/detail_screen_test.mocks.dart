@@ -673,12 +673,44 @@ class MockPinCodeProvider extends _i1.Mock implements _i19.PinCodeProvider {
           _i19.SendCreatePinCodeMethod? sendCreatePinCodeMethod =
               _i20.PinCodeRepository.sendCreatePinCodeAction}) =>
       (super.noSuchMethod(
-          Invocation.method(#sendAddPinCode, [
+          Invocation.method(#sendCreatePinCode, [
             pinCode,
             pinCodeName
           ], {
             #getDetails: getDetails,
             #sendCreatePinCodeMethod: sendCreatePinCodeMethod
+          }),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
+  @override
+  _i7.Future<void> sendUpdatePinCode(String? pinCode, String? pinCodeName,
+          {_i8.GetDeviceDetailsMethod? getDetails =
+              _i9.DevicesRepository.getDeviceDetails,
+          _i19.SendUpdatePinCodeMethod? sendUpdatePinCodeMethod =
+              _i20.PinCodeRepository.sendUpdatePinCodeAction}) =>
+      (super.noSuchMethod(
+          Invocation.method(#sendUpdatePinCode, [
+            pinCode,
+            pinCodeName
+          ], {
+            #getDetails: getDetails,
+            #sendUpdatePinCodeMethod: sendUpdatePinCodeMethod
+          }),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
+  @override
+  _i7.Future<void> sendDeletePinCode(String? pinCode, String? pinCodeName,
+          {_i8.GetDeviceDetailsMethod? getDetails =
+              _i9.DevicesRepository.getDeviceDetails,
+          _i19.SendDeletePinCodeMethod? sendDeletePinCodeMethod =
+              _i20.PinCodeRepository.sendDeletePinCodeAction}) =>
+      (super.noSuchMethod(
+          Invocation.method(#sendDeletePinCode, [
+            pinCode,
+            pinCodeName
+          ], {
+            #getDetails: getDetails,
+            #sendDeletePinCodeMethod: sendDeletePinCodeMethod
           }),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
