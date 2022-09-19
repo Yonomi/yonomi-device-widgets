@@ -28,10 +28,15 @@ MaterialApp createListView(PinCodeProvider mockPinCodeProvider) {
   );
 }
 
-MaterialApp createDetailView(PinCodeProvider mockPinCodeProvider) {
+MaterialApp createDetailView(PinCodeProvider mockPinCodeProvider,
+    {PinCodeCredential? selectedPinCode}) {
   return MaterialApp(
     home: new Scaffold(
-      body: Container(child: PinCodeDetailView(mockPinCodeProvider)),
+      body: Container(
+          child: PinCodeDetailView(
+        mockPinCodeProvider,
+        selectedPinCode: selectedPinCode,
+      )),
     ),
   );
 }
@@ -127,7 +132,7 @@ void main() {
     });
   });
   group('For PinCodeDetailView', () {
-    testWidgets('Should show default view', (WidgetTester tester) async {
+    testWidgets('Shows default view', (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
       await tester.pumpWidget(createDetailView(mockPinCodeProvider));
 
@@ -135,16 +140,46 @@ void main() {
     });
 
     testWidgets(
-        'Should call createPinCode method in PinCodeProvider after pressing save button',
+        'Calls createPinCode method in PinCodeProvider after pressing save button',
         (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
-      await tester.pumpWidget(createDetailView(mockPinCodeProvider));
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
 
       await tester.tap(find.byIcon(BootstrapIcons.check2));
 
       await tester.pumpAndSettle();
 
-      verify(mockPinCodeProvider.sendCreatePinCode('', '')).called(1);
+      verify(mockPinCodeProvider.sendCreatePinCode('1234', '1234')).called(1);
+    });
+
+    testWidgets('Show existing PIN Code details in Edit mode',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+
+      await tester.pumpWidget(createDetailView(
+        mockPinCodeProvider,
+        selectedPinCode: PinCodeCredential('someName', 'somePincode'),
+      ));
+
+      expect(find.text(StringConstants.PIN_CODES_NEW_PIN_CODE), findsNothing);
+      expect(find.text('someName'), findsOneWidget);
+      expect(find.text('somePincode'), findsOneWidget);
+    });
+
+    testWidgets('Saves pin code details with typed in values',
+        (WidgetTester tester) async {});
+
+    testWidgets('Invalid form if empty', (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('', '')));
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+
+      verifyNever(mockPinCodeProvider.sendCreatePinCode('', ''));
     });
   });
 }

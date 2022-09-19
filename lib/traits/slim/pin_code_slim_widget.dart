@@ -105,7 +105,7 @@ class PinCodeListView extends StatelessWidget {
                               controller: ModalScrollController.of(builderCtx),
                               children: ListTile.divideTiles(
                                 context: builderCtx,
-                                tiles: _pinCodesToListTiles(
+                                tiles: _pinCodesToListTiles(builderCtx,
                                     provider.getPinCodeCredentials!),
                               ).toList(),
                             ),
@@ -121,13 +121,23 @@ class PinCodeListView extends StatelessWidget {
   }
 
   List<Column> _pinCodesToListTiles(
-      List<PinCodeCredential> pinCodeCredentials) {
+      BuildContext context, List<PinCodeCredential> pinCodeCredentials) {
     return pinCodeCredentials
         .map(
           (pinCode) => Column(
             children: [
               ListTile(
-                onTap: () => {print('TODO: Go to detail view. ')},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => PinCodeDetailView(
+                        provider,
+                        selectedPinCode: pinCode,
+                        backViewContext: context,
+                      ),
+                    ),
+                  );
+                },
                 title: Text(
                   pinCode.name,
                   style: WidgetStyleConstants.pinCodeListItemStyle,
@@ -174,21 +184,24 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
 
   @override
   Widget build(BuildContext context) {
+    bool newPinCode = widget.selectedPinCode == null;
+    if (!newPinCode) {
+      _pinCode = widget.selectedPinCode!.pinCode;
+      _pinCodeName = widget.selectedPinCode!.name;
+    }
     return Material(
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           backgroundColor: ColorConstants.pinCodeBottomSheetDetailTitleBg,
           leading: Container(),
-          middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
+          middle: Text(newPinCode
+              ? StringConstants.PIN_CODES_NEW_PIN_CODE
+              : StringConstants.PIN_CODES_EDIT_PIN_CODE),
           trailing: IconButton(
               icon: const Icon(BootstrapIcons.check2),
               color: ColorConstants.pinCodeDetailCheckColor,
               onPressed: () async {
-                await _savePinCode(widget.backViewContext ?? context);
-                await Future.delayed(
-                    const Duration(milliseconds: 250),
-                    () =>
-                        Navigator.of(widget.backViewContext ?? context).pop());
+                await _savePinCode(context);
               }),
         ),
         child: SafeArea(
@@ -211,7 +224,8 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                         onChanged: (value) {
                           this._pinCodeName = value;
                         },
-                        validator: textValidator,
+                        initialValue: widget.selectedPinCode?.name ?? '',
+                        validator: nameValidator,
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -239,10 +253,11 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                       padding:
                           EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: TextFormField(
+                        initialValue: widget.selectedPinCode?.pinCode ?? '',
                         onChanged: (value) {
                           this._pinCode = value;
                         },
-                        validator: textValidator,
+                        validator: pinCodeValidator,
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -276,20 +291,54 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     );
   }
 
-  String? textValidator(String? value) {
+  String? nameValidator(String? value) {
     if (value == null || value.isEmpty) {
       return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
+    }
+    int? min = widget.provider.nameLengthRange?.min;
+    int? max = widget.provider.nameLengthRange?.max;
+    print('nameValidator min: ${min}, max: ${max}');
+    if ((min != null && max != null) &&
+        (value.length < min || value.length > max)) {
+      return StringConstants.PIN_CODES_INPUT_VALID_RANGE;
+    }
+    return null;
+  }
+
+  String? pinCodeValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
+    }
+    int? min = widget.provider.pinCodeLengthRange?.min;
+    int? max = widget.provider.pinCodeLengthRange?.max;
+    print('PinCodeValidator min: ${min}, max: ${max}');
+    if ((min != null && max != null) &&
+        (value.length < min || value.length > max)) {
+      return StringConstants.PIN_CODES_INPUT_VALID_RANGE;
     }
     return null;
   }
 
   Future<void> _savePinCode(BuildContext ctx) async {
-    print('Saving pin code...');
-    await widget.provider.sendCreatePinCode(this._pinCode, this._pinCodeName);
-    ScaffoldMessenger.of(ctx).showSnackBar(
-      SnackBar(
+    if (_formKey.currentState!.validate()) {
+      bool newPinCode = widget.selectedPinCode == null;
+      await widget.provider.sendCreatePinCode(this._pinCode, this._pinCodeName);
+      String toastMsg = (newPinCode) ? 'Creating new PIN' : 'Saving changes';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
           behavior: SnackBarBehavior.floating,
-          content: Text(StringConstants.PIN_CODES_SAVED_CHANGES)),
-    );
+          content: Text(toastMsg),
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 250),
+          () => Navigator.of(widget.backViewContext ?? context).pop());
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text('Invalid form'),
+        ),
+      );
+    }
   }
 }
