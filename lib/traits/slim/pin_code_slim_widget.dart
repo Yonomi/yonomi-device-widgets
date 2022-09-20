@@ -257,6 +257,9 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                         onChanged: (value) {
                           this._pinCode = value;
                         },
+                        obscureText: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
                         validator: pinCodeValidator,
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(

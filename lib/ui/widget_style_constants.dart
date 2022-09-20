@@ -49,7 +49,7 @@ class WidgetStyleConstants {
   static const Color jammedStateTextColor = Colors.white;
 
   static ButtonStyle pinCodeDeleteButtonStyle = OutlinedButton.styleFrom(
-    minimumSize: Size.fromHeight(40),
+    minimumSize: Size.fromHeight(60),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
     ),
