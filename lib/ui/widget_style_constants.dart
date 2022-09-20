@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/ui/color_constants.dart';
 
 class WidgetStyleConstants {
   WidgetStyleConstants._();
@@ -46,6 +47,19 @@ class WidgetStyleConstants {
   static const int batteryFullMin = 75;
 
   static const Color jammedStateTextColor = Colors.white;
+
+  static ButtonStyle pinCodeDeleteButtonStyle = OutlinedButton.styleFrom(
+    minimumSize: Size.fromHeight(40),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    side: BorderSide(color: ColorConstants.PIN_CODE_DELETE_BUTTON_RED),
+  );
+
+  static const TextStyle pinCodeDeleteButtonTextStyle = TextStyle(
+      color: ColorConstants.PIN_CODE_DELETE_BUTTON_TEXT_RED,
+      fontWeight: FontWeight.w400,
+      fontSize: 16.0);
 
   static const Color pinCodeListTitleColor = Color(0xFF5E6578);
 

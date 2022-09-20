@@ -281,6 +281,22 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                         ),
                       ),
                     ),
+                    if (!newPinCode)
+                      Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                          child: OutlinedButton(
+                            style:
+                                WidgetStyleConstants.pinCodeDeleteButtonStyle,
+                            onPressed: () {
+                              print('TODO: Delete Pin Code.');
+                            },
+                            child: Text(
+                              StringConstants.PIN_CODES_DELETE_BUTTON_TEXT,
+                              style: WidgetStyleConstants
+                                  .pinCodeDeleteButtonTextStyle,
+                            ),
+                          )),
                   ],
                 ),
               ),
