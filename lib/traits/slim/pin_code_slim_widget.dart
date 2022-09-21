@@ -306,6 +306,33 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                                 WidgetStyleConstants.pinCodeDeleteButtonStyle,
                             onPressed: () {
                               print('TODO: Delete Pin Code.');
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text(StringConstants
+                                      .PIN_CODE_DELETE_ALERT_TITLE),
+                                  content: Text(StringConstants
+                                      .PIN_CODE_DELETE_ALERT_MSG_TEXT),
+                                  actions: [
+                                    TextButton(
+                                      child: Text(StringConstants
+                                          .PIN_CODE_DELETE_ALERT_CANCEL),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                    TextButton(
+                                      child: Text(StringConstants
+                                          .PIN_CODE_DELETE_ALERT_OK),
+                                      onPressed: () {
+                                        widget.provider.sendDeletePinCode(
+                                          widget.selectedPinCode!.pinCode,
+                                          widget.selectedPinCode!.name,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                             child: Text(
                               StringConstants.PIN_CODES_DELETE_BUTTON_TEXT,
