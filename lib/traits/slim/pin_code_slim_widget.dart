@@ -203,11 +203,10 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
               ? StringConstants.PIN_CODES_NEW_PIN_CODE
               : StringConstants.PIN_CODES_EDIT_PIN_CODE),
           trailing: IconButton(
-              icon: const Icon(BootstrapIcons.check2),
-              color: ColorConstants.pinCodeDetailCheckColor,
-              onPressed: () async {
-                await _savePinCode(context);
-              }),
+            icon: const Icon(BootstrapIcons.check2),
+            color: ColorConstants.pinCodeDetailCheckColor,
+            onPressed: () async => await _savePinCode(context),
+          ),
         ),
         child: SafeArea(
           child: Container(
@@ -352,23 +351,29 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
   }
 
   String? _textInputValidator(String? value, int? min, int? max) {
+    String? errorMessage;
     if (value == null || value.isEmpty) {
-      return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
+      errorMessage = StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
+    } else {
+      if (widget.selectedPinCode != null &&
+          (this._pinCodeName == widget.selectedPinCode!.name &&
+              this._pinCode == widget.selectedPinCode!.pinCode)) {
+        errorMessage = StringConstants.PIN_CODES_NO_CHANGES_MADE;
+      }
+      if (min != null && value.length < min) {
+        errorMessage = StringConstants.PIN_CODES_INPUT_VALID_RANGE_MIN;
+      }
+      if (max != null && value.length > max) {
+        errorMessage = StringConstants.PIN_CODES_INPUT_VALID_RANGE_MAX;
+      }
     }
-    if (min != null && value.length < min) {
-      return StringConstants.PIN_CODES_INPUT_VALID_RANGE_MIN;
-    }
-    if (max != null && value.length > max) {
-      return StringConstants.PIN_CODES_INPUT_VALID_RANGE_MAX;
-    }
-    return null;
+    return errorMessage;
   }
 
   Future<void> _savePinCode(BuildContext ctx) async {
     String toastMsg = '';
     if (_formKey.currentState!.validate()) {
       bool newPinCode = widget.selectedPinCode == null;
-
       newPinCode
           ? await widget.provider
               .sendCreatePinCode(this._pinCode, this._pinCodeName)

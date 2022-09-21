@@ -188,7 +188,7 @@ void main() {
     });
 
     testWidgets(
-        'Calls updatePinCode method in PinCodeProvider after pressing save button',
+        'No calls made to updatePinCode method in PinCodeProvider if no changes made',
         (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
       await tester.pumpWidget(createDetailView(mockPinCodeProvider,
@@ -198,7 +198,29 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      verify(mockPinCodeProvider.sendUpdatePinCode('1234', '1234')).called(1);
+      verifyNever(mockPinCodeProvider.sendUpdatePinCode('1234', '1234'));
+    });
+
+    testWidgets(
+        'Calls updatePinCode method in PinCodeProvider after pressing save button',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD)),
+          'SomeName');
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD)), '4321');
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+
+      verify(mockPinCodeProvider.sendUpdatePinCode('4321', 'SomeName'))
+          .called(1);
     });
 
     testWidgets('Invalid form if empty', (WidgetTester tester) async {
