@@ -212,5 +212,42 @@ void main() {
 
       verifyNever(mockPinCodeProvider.sendCreatePinCode('', ''));
     });
+
+    testWidgets('Pressing on Delete button shows a confirmation Dialog',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+    });
+
+    testWidgets(
+        'Calls deletePinCode method in PinCodeProvider after pressing OK in Confirm Dialog',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+
+      await tester.tap(find.text(StringConstants.PIN_CODE_DELETE_ALERT_OK));
+
+      await tester.pumpAndSettle();
+
+      verify(mockPinCodeProvider.sendDeletePinCode('1234', '1234')).called(1);
+    });
   });
 }

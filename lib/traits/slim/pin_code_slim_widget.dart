@@ -88,9 +88,10 @@ class PinCodeListView extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(StringConstants.PIN_CODES_NO_PIN_CODES,
-                                style:
-                                    WidgetStyleConstants.pinCodeListTitleStyle),
+                            child: Text(
+                              StringConstants.PIN_CODES_NO_PIN_CODES,
+                              style: WidgetStyleConstants.pinCodeListTitleStyle,
+                            ),
                           ))
                       : Padding(
                           padding: const EdgeInsets.symmetric(
@@ -305,7 +306,6 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                             style:
                                 WidgetStyleConstants.pinCodeDeleteButtonStyle,
                             onPressed: () {
-                              print('TODO: Delete Pin Code.');
                               showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
