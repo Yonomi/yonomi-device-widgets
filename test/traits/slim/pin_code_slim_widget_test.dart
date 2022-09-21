@@ -247,6 +247,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
+      expect(find.byType(AlertDialog), findsNothing);
       verify(mockPinCodeProvider.sendDeletePinCode('1234', '1234')).called(1);
     });
 

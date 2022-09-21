@@ -323,11 +323,12 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                                     TextButton(
                                       child: Text(StringConstants
                                           .PIN_CODE_DELETE_ALERT_OK),
-                                      onPressed: () {
-                                        widget.provider.sendDeletePinCode(
+                                      onPressed: () async {
+                                        await widget.provider.sendDeletePinCode(
                                           widget.selectedPinCode!.pinCode,
                                           widget.selectedPinCode!.name,
                                         );
+                                        Navigator.of(context).pop();
                                       },
                                     ),
                                   ],
