@@ -130,6 +130,20 @@ void main() {
 
       expect(find.byType(PinCodeDetailView), findsOneWidget);
     });
+
+    testWidgets('Should open the Detail View when pressing > button,',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createListView(mockPinCodeProvider));
+
+      await tester.tap(find.byIcon(BootstrapIcons.chevron_right).first);
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PinCodeDetailView), findsOneWidget);
+      expect(find.text('Admin'), findsOneWidget);
+      expect(find.text('5678'), findsOneWidget);
+    });
   });
   group('For PinCodeDetailView', () {
     testWidgets('Shows default view', (WidgetTester tester) async {
@@ -143,8 +157,14 @@ void main() {
         'Calls createPinCode method in PinCodeProvider after pressing save button',
         (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
-      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
-          selectedPinCode: PinCodeCredential('1234', '1234')));
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider));
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD)),
+          '1234');
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD)), '1234');
 
       await tester.tap(find.byIcon(BootstrapIcons.check2));
 
@@ -167,8 +187,19 @@ void main() {
       expect(find.text('somePincode'), findsOneWidget);
     });
 
-    testWidgets('Saves pin code details with typed in values',
-        (WidgetTester tester) async {});
+    testWidgets(
+        'Calls updatePinCode method in PinCodeProvider after pressing save button',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+
+      verify(mockPinCodeProvider.sendUpdatePinCode('1234', '1234')).called(1);
+    });
 
     testWidgets('Invalid form if empty', (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);

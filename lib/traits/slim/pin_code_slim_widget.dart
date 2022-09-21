@@ -164,6 +164,10 @@ class PinCodeDetailView extends StatefulWidget {
 
   final PinCodeCredential? selectedPinCode;
 
+  static const String PIN_CODE_PIN_CODE_FIELD = 'pin_code_pin_code_field';
+  static const String PIN_CODE_PIN_CODE_NAME_FIELD =
+      'pin_code_pin_code_name_field';
+
   const PinCodeDetailView(
     this.provider, {
     this.selectedPinCode,
@@ -221,6 +225,8 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                       padding:
                           EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: TextFormField(
+                        key:
+                            Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD),
                         onChanged: (value) {
                           this._pinCodeName = value;
                         },
@@ -256,6 +262,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                       padding:
                           EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: TextFormField(
+                        key: Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD),
                         initialValue: widget.selectedPinCode?.pinCode ?? '',
                         onChanged: (value) {
                           this._pinCode = value;
@@ -330,10 +337,16 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
   }
 
   Future<void> _savePinCode(BuildContext ctx) async {
+    String toastMsg = '';
     if (_formKey.currentState!.validate()) {
       bool newPinCode = widget.selectedPinCode == null;
-      await widget.provider.sendCreatePinCode(this._pinCode, this._pinCodeName);
-      String toastMsg = (newPinCode) ? 'Creating new PIN' : 'Saving changes';
+
+      newPinCode
+          ? await widget.provider
+              .sendCreatePinCode(this._pinCode, this._pinCodeName)
+          : await widget.provider
+              .sendUpdatePinCode(this._pinCode, this._pinCodeName);
+      toastMsg = (newPinCode) ? 'Creating new PIN' : 'Saving changes';
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -343,10 +356,11 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
       await Future.delayed(const Duration(milliseconds: 250),
           () => Navigator.of(widget.backViewContext ?? context).pop());
     } else {
+      toastMsg = 'Invalid form';
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
-          content: Text('Invalid form'),
+          content: Text(toastMsg),
         ),
       );
     }
