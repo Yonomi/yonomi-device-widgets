@@ -225,7 +225,10 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                           this._pinCodeName = value;
                         },
                         initialValue: widget.selectedPinCode?.name ?? '',
-                        validator: nameValidator,
+                        validator: (value) => _textInputValidator(
+                            value,
+                            widget.provider.nameLengthRange?.min,
+                            widget.provider.nameLengthRange?.max),
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -260,7 +263,10 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                         obscureText: true,
                         enableSuggestions: false,
                         autocorrect: false,
-                        validator: pinCodeValidator,
+                        validator: (value) => _textInputValidator(
+                            value,
+                            widget.provider.pinCodeLengthRange?.min,
+                            widget.provider.pinCodeLengthRange?.max),
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -310,30 +316,15 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     );
   }
 
-  String? nameValidator(String? value) {
+  String? _textInputValidator(String? value, int? min, int? max) {
     if (value == null || value.isEmpty) {
       return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
     }
-    int? min = widget.provider.nameLengthRange?.min;
-    int? max = widget.provider.nameLengthRange?.max;
-    print('nameValidator min: ${min}, max: ${max}');
-    if ((min != null && max != null) &&
-        (value.length < min || value.length > max)) {
-      return StringConstants.PIN_CODES_INPUT_VALID_RANGE;
+    if (min != null && value.length < min) {
+      return StringConstants.PIN_CODES_INPUT_VALID_RANGE_MIN;
     }
-    return null;
-  }
-
-  String? pinCodeValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
-    }
-    int? min = widget.provider.pinCodeLengthRange?.min;
-    int? max = widget.provider.pinCodeLengthRange?.max;
-    print('PinCodeValidator min: ${min}, max: ${max}');
-    if ((min != null && max != null) &&
-        (value.length < min || value.length > max)) {
-      return StringConstants.PIN_CODES_INPUT_VALID_RANGE;
+    if (max != null && value.length > max) {
+      return StringConstants.PIN_CODES_INPUT_VALID_RANGE_MAX;
     }
     return null;
   }

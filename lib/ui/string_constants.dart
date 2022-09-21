@@ -5,7 +5,10 @@ class StringConstants {
 
   static const String PIN_CODES_DELETE_BUTTON_TEXT = 'Delete PIN Code';
   static const String PIN_CODES_EDIT_PIN_CODE = 'Edit PIN Code';
-  static const String PIN_CODES_INPUT_VALID_RANGE = 'Please input valid range';
+  static const String PIN_CODES_INPUT_VALID_RANGE_MIN =
+      'Please input a value more than the minimum valid range';
+  static const String PIN_CODES_INPUT_VALID_RANGE_MAX =
+      'Please input a value less than the maximum valid range';
   static const String PIN_CODES_LIST_SCREEN_TITLE = 'PIN Codes';
   static const String PIN_CODES_MANAGE_PIN_CODES = 'Manage PIN Codes';
   static const String PIN_CODES_NEW_PIN_CODE = 'New PIN Code';
