@@ -249,5 +249,28 @@ void main() {
 
       verify(mockPinCodeProvider.sendDeletePinCode('1234', '1234')).called(1);
     });
+
+    testWidgets(
+        'Pressing CANCEL on Confirm Dialog for Delete PIN Code Button dismisses Dialog',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+
+      await tester.tap(find.text(StringConstants.PIN_CODE_DELETE_ALERT_CANCEL));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsNothing);
+      verifyNever(mockPinCodeProvider.sendDeletePinCode('1234', '1234'));
+    });
   });
 }
