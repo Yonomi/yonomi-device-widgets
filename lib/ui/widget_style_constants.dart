@@ -65,8 +65,8 @@ class WidgetStyleConstants {
 
   static const Color pinCodeListItemColor = Color(0xFF4DA49F);
 
-  static const TextStyle pinCodeListItemStyle =
-      TextStyle(color: WidgetStyleConstants.pinCodeListItemColor);
+  static const TextStyle pinCodeListItemStyle = TextStyle(
+      color: WidgetStyleConstants.pinCodeListItemColor, fontSize: 16.0);
 
   static const TextStyle pinCodeListTitleStyle = TextStyle(
       color: WidgetStyleConstants.pinCodeListTitleColor,

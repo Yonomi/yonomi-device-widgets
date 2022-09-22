@@ -121,37 +121,41 @@ class PinCodeListView extends StatelessWidget {
     );
   }
 
-  List<Column> _pinCodesToListTiles(
+  List<Padding> _pinCodesToListTiles(
       BuildContext context, List<PinCodeCredential> pinCodeCredentials) {
     return pinCodeCredentials
-        .map(
-          (pinCode) => Column(
-            children: [
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => PinCodeDetailView(
-                        provider,
-                        selectedPinCode: pinCode,
-                        backViewContext: context,
-                      ),
-                    ),
-                  );
-                },
-                title: Text(
-                  pinCode.name,
-                  style: WidgetStyleConstants.pinCodeListItemStyle,
+        .map((pinCode) => Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  color: Colors.white,
                 ),
-                trailing: const Icon(
-                  BootstrapIcons.chevron_right,
-                  color: Colors.black,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => PinCodeDetailView(
+                          provider,
+                          selectedPinCode: pinCode,
+                          backViewContext: context,
+                        ),
+                      ),
+                    );
+                  },
+                  title: Text(
+                    pinCode.name,
+                    style: WidgetStyleConstants.pinCodeListItemStyle,
+                  ),
+                  trailing: const Icon(
+                    BootstrapIcons.chevron_right,
+                    size: 20.0,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              Container(height: 5, color: ColorConstants.pinCodeListBodyBg),
-            ],
-          ),
-        )
+            ))
         .toList();
   }
 }
