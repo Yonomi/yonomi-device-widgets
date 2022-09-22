@@ -188,6 +188,8 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     with ToastNotifications {
   final _formKey = GlobalKey<FormState>();
 
+  bool showPasswordField = false;
+
   String _pinCode = '';
   String _pinCodeName = '';
 
@@ -271,7 +273,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                         onChanged: (value) {
                           this._pinCode = value;
                         },
-                        obscureText: true,
+                        obscureText: !this.showPasswordField,
                         enableSuggestions: false,
                         autocorrect: false,
                         validator: (value) => _textInputValidator(
@@ -286,6 +288,18 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                           ),
                           filled: true,
                           fillColor: Colors.white,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              this.showPasswordField
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onPressed: () {
+                              setState(() => this.showPasswordField =
+                                  !this.showPasswordField);
+                            },
+                          ),
                           labelStyle: TextStyle(
                               color: ColorConstants
                                   .pinCodeDetailTextFieldLabelText),
