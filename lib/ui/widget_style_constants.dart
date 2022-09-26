@@ -53,13 +53,14 @@ class WidgetStyleConstants {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
     ),
-    side: BorderSide(color: ColorConstants.PIN_CODE_DELETE_BUTTON_RED),
+    side: BorderSide(
+        color: ColorConstants.PIN_CODE_DELETE_BUTTON_RED, width: 2.0),
   );
 
   static const TextStyle pinCodeDeleteButtonTextStyle = TextStyle(
       color: ColorConstants.PIN_CODE_DELETE_BUTTON_TEXT_RED,
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0);
+      fontWeight: FontWeight.w500,
+      fontSize: 18.0);
 
   static const Color pinCodeListTitleColor = Color(0xFF5E6578);
 
@@ -70,11 +71,11 @@ class WidgetStyleConstants {
 
   static const TextStyle pinCodeListTitleStyle = TextStyle(
       color: WidgetStyleConstants.pinCodeListTitleColor,
-      fontWeight: FontWeight.w900,
-      fontSize: 18.0);
+      fontWeight: FontWeight.w500,
+      fontSize: 22.0);
 
   static const TextStyle pinCodeDetailTitleStyle = TextStyle(
       color: WidgetStyleConstants.pinCodeListTitleColor,
-      fontWeight: FontWeight.w900,
-      fontSize: 16.0);
+      fontWeight: FontWeight.w500,
+      fontSize: 18.0);
 }

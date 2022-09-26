@@ -97,9 +97,16 @@ class PinCodeListView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 16.0),
                           child: Column(children: [
-                            Text(
-                              StringConstants.PIN_CODES_LIST_SCREEN_TITLE,
-                              style: WidgetStyleConstants.pinCodeListTitleStyle,
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  StringConstants.PIN_CODES_LIST_SCREEN_TITLE,
+                                  style: WidgetStyleConstants
+                                      .pinCodeListTitleStyle,
+                                ),
+                              ),
                             ),
                             ListView(
                               shrinkWrap: true,
@@ -207,7 +214,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
           leading: Container(),
           middle: Text(newPinCode
               ? StringConstants.PIN_CODES_NEW_PIN_CODE
-              : StringConstants.PIN_CODES_EDIT_PIN_CODE),
+              : widget.selectedPinCode!.name),
           trailing: IconButton(
             icon: const Icon(BootstrapIcons.check2),
             color: ColorConstants.pinCodeDetailCheckColor,
@@ -223,9 +230,15 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: Column(
                   children: [
-                    Text(
-                      StringConstants.PIN_CODES_PIN_CODE_SETTINGS,
-                      style: WidgetStyleConstants.pinCodeDetailTitleStyle,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          StringConstants.PIN_CODES_PIN_CODE_SETTINGS,
+                          style: WidgetStyleConstants.pinCodeDetailTitleStyle,
+                        ),
+                      ),
                     ),
                     Padding(
                       padding:
@@ -260,7 +273,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                                   .pinCodeDetailTextFieldHelperText),
                           labelText: StringConstants.PIN_CODES_PIN_CODE_NAME,
                           helperText:
-                              '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John Doe or babysitter)',
+                              '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John D or Babysitter)',
                         ),
                       ),
                     ),

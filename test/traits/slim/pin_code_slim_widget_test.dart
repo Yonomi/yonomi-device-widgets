@@ -163,6 +163,8 @@ void main() {
           find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD)),
           '1234');
 
+      await tester.tap(find.byIcon(Icons.visibility_off));
+
       await tester.enterText(
           find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD)), '1234');
 
