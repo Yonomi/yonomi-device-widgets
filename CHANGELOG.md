@@ -1,3 +1,10 @@
+# [2.11.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.10.2...v2.11.0) (2022-09-27)
+
+
+### Features
+
+* **PinCode_Widget:** introduce PinCode Trait Widget ([#54](https://github.com/Yonomi/yonomi-device-widgets/issues/54)) ([9eaf083](https://github.com/Yonomi/yonomi-device-widgets/commit/9eaf08305ed60d54d0c464526fcb4c86314681d4))
+
 ## [2.10.2](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.10.1...v2.10.2) (2022-04-27)
 
 
