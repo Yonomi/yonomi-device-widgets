@@ -23,6 +23,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // coverage:ignore-start
         ChangeNotifierProvider<TraitDetailProvider>(
             create: (context) => TraitDetailProvider(request, deviceId)),
         ChangeNotifierProvider<LockProvider>(
@@ -41,6 +42,7 @@ class DetailScreen extends StatelessWidget {
             create: (context) => ColorTemperatureProvider(request, deviceId)),
         ChangeNotifierProvider<PinCodeProvider>(
             create: (context) => PinCodeProvider(request, deviceId)),
+        // coverage:ignore-end
       ],
       child: DetailScreenWidget(request, deviceId),
     );
