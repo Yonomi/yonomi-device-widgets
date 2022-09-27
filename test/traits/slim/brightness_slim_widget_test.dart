@@ -7,7 +7,7 @@ import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import '../../mixins/brightness_testing.dart';
 import '../../mixins/device_testing.dart';
 
-class BatterySlimWidgetTest with DeviceTesting, BrightnessTesting {}
+class BrightnessSlimWidgetTest with DeviceTesting, BrightnessTesting {}
 
 MaterialApp createMaterialApp(BrightnessProvider mockBrightnessProvider) {
   return MaterialApp(
@@ -17,7 +17,7 @@ MaterialApp createMaterialApp(BrightnessProvider mockBrightnessProvider) {
 }
 
 void main() {
-  final test = BatterySlimWidgetTest();
+  final test = BrightnessSlimWidgetTest();
   final brightnessDevice = TestBrightnessDevice(test.device());
 
   testWidgets('When loading, should show CircularProgressIndicator ',

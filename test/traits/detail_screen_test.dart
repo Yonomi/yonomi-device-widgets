@@ -4,12 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart';
 import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/providers/pin_code_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart';
@@ -19,12 +21,14 @@ import 'package:yonomi_device_widgets/traits/color_temperature_widget.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/detail_screen.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
+import 'package:yonomi_device_widgets/traits/pin_code_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/pin_code_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/thermostat_widget.dart';
@@ -40,6 +44,7 @@ import '../mixins/color_temperature_testing.dart';
 import '../mixins/color_testing.dart';
 import '../mixins/device_testing.dart';
 import '../mixins/lock_testing.dart';
+import '../mixins/pin_code_testing.dart';
 import '../mixins/power_testing.dart';
 import '../mixins/thermostat_testing.dart';
 import 'detail_screen_test.mocks.dart';
@@ -53,7 +58,8 @@ class DetailScreenTest
         ThermostatTesting,
         BrightnessTesting,
         ColorTesting,
-        ColorTemperatureTesting {
+        ColorTemperatureTesting,
+        PinCodeTesting {
   Widget createDetailScreenWhenLoading(
     Request req,
     String deviceId,
@@ -72,6 +78,7 @@ class DetailScreenTest
       MockBrightnessProvider(),
       MockColorProvider(),
       MockColorTemperatureProvider(),
+      MockPinCodeProvider(),
     );
   }
 
@@ -140,6 +147,12 @@ class DetailScreenTest
     final mockColorTemperatureProvider =
         this.mockColorTemperatureProvider(colorTemperatureDevice);
 
+    final pinCodeDevice = devices.firstWhere(
+      (device) => device is TestPinCodeDevice,
+      orElse: () => TestPinCodeDevice(device),
+    ) as TestPinCodeDevice;
+    final mockPinCodeProvider = this.mockPinCodeProvider(pinCodeDevice);
+
     return createMaterialApp(
       req,
       deviceId,
@@ -151,6 +164,7 @@ class DetailScreenTest
       mockBrightnessProvider,
       mockColorProvider,
       mockColorTemperatureProvider,
+      mockPinCodeProvider,
     );
   }
 
@@ -165,6 +179,7 @@ class DetailScreenTest
     BrightnessProvider mockBrightnessProvider,
     ColorProvider mockColorProvider,
     ColorTemperatureProvider mockColorTemperatureProvider,
+    PinCodeProvider mockPinCodeProvider,
   ) {
     return MaterialApp(
       home: SingleChildScrollView(
@@ -186,6 +201,8 @@ class DetailScreenTest
                 value: mockColorProvider),
             ChangeNotifierProvider<ColorTemperatureProvider>.value(
                 value: mockColorTemperatureProvider),
+            ChangeNotifierProvider<PinCodeProvider>.value(
+                value: mockPinCodeProvider),
           ],
           child: DetailScreenWidget(req, deviceId),
         ),
@@ -201,6 +218,7 @@ class DetailScreenTest
   BatteryLevelProvider,
   ColorProvider,
   ColorTemperatureProvider,
+  PinCodeProvider,
   BuildContext
 ])
 void main() {
@@ -347,6 +365,20 @@ void main() {
   });
 
   testWidgets(
+      'For the PinCodeTrait Trait, Detail screen should show the PinCode Icon',
+      (WidgetTester tester) async {
+    final request = Request('', {});
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+      [TestPinCodeDevice(test.device(id: testedDeviceId))],
+      request,
+      testedDeviceId,
+    ));
+
+    expect(find.byType(PinCodeIcon), findsOneWidget);
+    expect(find.byType(PinCodeWidget), findsOneWidget);
+  });
+
+  testWidgets(
       'For any Unknown/Unsupported Trait, Detail screen should show the UnknownItemIcon widget',
       (WidgetTester tester) async {
     final request = Request('', {});
@@ -373,6 +405,7 @@ void main() {
       TestBrightnessDevice(device, brightness: 50),
       TestColorDevice(device, colorTrait: ColorTrait(HSBColor(150, 50, 50))),
       TestColorTemperatureDevice(device, colorTemperature: 3500),
+      TestPinCodeDevice(device),
     ], request, testedDeviceId));
 
     expect(find.byType(LockWidget), findsOneWidget);
@@ -384,6 +417,7 @@ void main() {
     expect(find.byType(BrightnessSlimWidget), findsOneWidget);
     expect(find.byType(ColorSlimWidget), findsOneWidget);
     expect(find.byType(ColorTemperatureSlimWidget), findsOneWidget);
+    expect(find.byType(PinCodeSlimWidget), findsOneWidget);
 
     expect(find.byType(MultiProvider), findsOneWidget);
 
@@ -448,10 +482,11 @@ void main() {
       (WidgetTester tester) async {
     final request = Request('', {});
 
-    await tester.pumpWidget(
-        test.createDetailScreenWidgetForTraits([], request, testedDeviceId));
+    await tester.pumpWidget(test.createDetailScreenWidgetForTraits(
+        [test.device()], request, testedDeviceId));
 
-    expect(find.byType(UnknownWidget), findsOneWidget);
+    expect(find.byType(UnknownWidget), findsOneWidget,
+        reason: 'Should we expect a device with no traits?', skip: true);
   });
 
   testWidgets('Detail screen returns a multiprovider',

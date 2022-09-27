@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/assets/traits/battery_level_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/color_temperature_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/lock_item_icon.dart';
+import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/power_item_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/thermostat_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/unknown_item_icon.dart';
@@ -31,6 +32,8 @@ class DeviceItemIcon {
           return ColorTemperatureIcon(
               findIconStateValue<sdk.ColorTemperature, int>(
                   determiningTrait.states));
+        case sdk.PinCodeTrait:
+          return PinCodeIcon();
         default:
           return UnknownItemIcon();
       }

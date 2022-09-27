@@ -5,6 +5,7 @@ import 'package:yonomi_device_widgets/providers/brightness_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_provider.dart';
 import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart';
 import 'package:yonomi_device_widgets/providers/lock_provider.dart';
+import 'package:yonomi_device_widgets/providers/pin_code_provider.dart';
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart';
 import 'package:yonomi_device_widgets/providers/thermostat_provider.dart';
 import 'package:yonomi_device_widgets/traits/battery_widget.dart';
@@ -12,12 +13,14 @@ import 'package:yonomi_device_widgets/traits/brightness_widget.dart';
 import 'package:yonomi_device_widgets/traits/color_temperature_widget.dart';
 import 'package:yonomi_device_widgets/traits/color_widget.dart';
 import 'package:yonomi_device_widgets/traits/lock_widget.dart';
+import 'package:yonomi_device_widgets/traits/pin_code_widget.dart';
 import 'package:yonomi_device_widgets/traits/power_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/battery_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/brightness_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/color_temperature_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/lock_slim_widget.dart';
+import 'package:yonomi_device_widgets/traits/slim/pin_code_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/power_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/thermostat_slim_widget.dart';
 import 'package:yonomi_device_widgets/traits/slim/unknown_slim_widget.dart';
@@ -73,6 +76,12 @@ class DeviceWidgetFactory {
           builder: (_, ColorTemperatureProvider, __) {
             return ColorTemperatureWidget(ColorTemperatureProvider,
                 textColor: textColor);
+          },
+        );
+      case PinCodeTrait:
+        return Consumer<PinCodeProvider>(
+          builder: (_, PinCodeProvider, __) {
+            return PinCodeWidget(PinCodeProvider, textColor: textColor);
           },
         );
       default:
@@ -132,6 +141,13 @@ class DeviceWidgetFactory {
             builder: (_, ColorTemperatureProvider, __) {
           return ColorTemperatureSlimWidget(
             ColorTemperatureProvider,
+            backgroundColor: backgroundColor,
+          );
+        });
+      case PinCodeTrait:
+        return Consumer<PinCodeProvider>(builder: (_, pinCodeProvider, __) {
+          return PinCodeSlimWidget(
+            pinCodeProvider,
             backgroundColor: backgroundColor,
           );
         });

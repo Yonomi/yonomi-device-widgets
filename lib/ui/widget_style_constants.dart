@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WidgetStyleConstants {
+  WidgetStyleConstants._(); // coverage:ignore-line
+
   static const Color globalWarningColor = Color(0xFFF19953);
 
   static const Color globalSuccessColor = Color(0xFF01A299);
@@ -44,4 +46,21 @@ class WidgetStyleConstants {
   static const int batteryFullMin = 75;
 
   static const Color jammedStateTextColor = Colors.white;
+
+  static const Color pinCodeListTitleColor = Color(0xFF5E6578);
+
+  static const Color pinCodeListItemColor = Color(0xFF4DA49F);
+
+  static const TextStyle pinCodeListItemStyle =
+      TextStyle(color: WidgetStyleConstants.pinCodeListItemColor);
+
+  static const TextStyle pinCodeListTitleStyle = TextStyle(
+      color: WidgetStyleConstants.pinCodeListTitleColor,
+      fontWeight: FontWeight.w900,
+      fontSize: 18.0);
+
+  static const TextStyle pinCodeDetailTitleStyle = TextStyle(
+      color: WidgetStyleConstants.pinCodeListTitleColor,
+      fontWeight: FontWeight.w900,
+      fontSize: 16.0);
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yonomi_device_widgets/assets/traits/color_temperature_icon.dart';
 import 'package:yonomi_device_widgets/assets/traits/device_item_icon.dart';
+import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart';
 
 Widget createIconWidget(List<Trait> traits) {
@@ -100,6 +101,13 @@ void main() {
     ];
     await tester.pumpWidget(createIconWidget(colorTemperatureDevice));
     expect(find.byIcon(ColorTemperatureIcon.DEFAULT_ICON), findsOneWidget);
+  });
+
+  testWidgets('should render correct PinCode trait icon',
+      (WidgetTester tester) async {
+    final pinCodeDevice = [PinCodeTrait({}, {})];
+    await tester.pumpWidget(createIconWidget(pinCodeDevice));
+    expect(find.byType(PinCodeIcon), findsOneWidget);
   });
 
   testWidgets('should render unknown icon if trait not found',

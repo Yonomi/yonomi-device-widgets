@@ -15,6 +15,7 @@ import 'package:yonomi_device_widgets/providers/color_temperature_provider.dart'
     as _i17;
 import 'package:yonomi_device_widgets/providers/device_provider.dart' as _i8;
 import 'package:yonomi_device_widgets/providers/lock_provider.dart' as _i11;
+import 'package:yonomi_device_widgets/providers/pin_code_provider.dart' as _i19;
 import 'package:yonomi_device_widgets/providers/power_trait_provider.dart'
     as _i13;
 import 'package:yonomi_device_widgets/providers/trait_detail_provider.dart'
@@ -26,6 +27,8 @@ import 'package:yonomi_platform_sdk/src/repository/traits/color_temperature_repo
     as _i18;
 import 'package:yonomi_platform_sdk/src/repository/traits/lock_repository.dart'
     as _i12;
+import 'package:yonomi_platform_sdk/src/repository/traits/pin_code_repository.dart'
+    as _i20;
 import 'package:yonomi_platform_sdk/src/repository/traits/power_repository.dart'
     as _i14;
 import 'package:yonomi_platform_sdk/yonomi-sdk.dart' as _i2;
@@ -579,6 +582,103 @@ class MockColorTemperatureProvider extends _i1.Mock
           ], {
             #getDetails: getDetails,
             #setColorTemperatureFunction: setColorTemperatureFunction
+          }),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
+  @override
+  _i7.Future<void> fetchData(
+          {_i8.GetDeviceDetailsMethod? getDetails =
+              _i9.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#fetchData, [], {#getDetails: getDetails}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
+  @override
+  void setErrorState(String? errorMsg) =>
+      super.noSuchMethod(Invocation.method(#setErrorState, [errorMsg]),
+          returnValueForMissingStub: null);
+  @override
+  _i7.Future<void> performAction<T>(
+          T? desiredState, Function? getState, Function? action,
+          {_i8.GetDeviceDetailsMethod? getDetails =
+              _i9.DevicesRepository.getDeviceDetails}) =>
+      (super.noSuchMethod(
+          Invocation.method(#performAction, [desiredState, getState, action],
+              {#getDetails: getDetails}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
+  @override
+  void addListener(_i10.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#addListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void removeListener(_i10.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#removeListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void notifyListeners() =>
+      super.noSuchMethod(Invocation.method(#notifyListeners, []),
+          returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [PinCodeProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPinCodeProvider extends _i1.Mock implements _i19.PinCodeProvider {
+  MockPinCodeProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get displayName =>
+      (super.noSuchMethod(Invocation.getter(#displayName), returnValue: '')
+          as String);
+  @override
+  set setState(_i6.WidgetState? newState) =>
+      super.noSuchMethod(Invocation.setter(#setState, newState),
+          returnValueForMissingStub: null);
+  @override
+  bool get isLoading =>
+      (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
+          as bool);
+  @override
+  bool get isPerformingAction =>
+      (super.noSuchMethod(Invocation.getter(#isPerformingAction),
+          returnValue: false) as bool);
+  @override
+  bool get isBusy =>
+      (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
+          as bool);
+  @override
+  bool get isInErrorState => (super
+          .noSuchMethod(Invocation.getter(#isInErrorState), returnValue: false)
+      as bool);
+  @override
+  String get getErrorMessage =>
+      (super.noSuchMethod(Invocation.getter(#getErrorMessage), returnValue: '')
+          as String);
+  @override
+  bool get hasListeners =>
+      (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
+          as bool);
+  @override
+  _i7.Future<void> sendCreatePinCode(String? pinCode, String? pinCodeName,
+          {_i8.GetDeviceDetailsMethod? getDetails =
+              _i9.DevicesRepository.getDeviceDetails,
+          _i19.SendCreatePinCodeMethod? sendCreatePinCodeMethod =
+              _i20.PinCodeRepository.sendCreatePinCodeAction}) =>
+      (super.noSuchMethod(
+          Invocation.method(#sendAddPinCode, [
+            pinCode,
+            pinCodeName
+          ], {
+            #getDetails: getDetails,
+            #sendCreatePinCodeMethod: sendCreatePinCodeMethod
           }),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
