@@ -14,7 +14,9 @@ class BatteryWidgetTest with DeviceTesting, BatteryTesting {}
 
 MaterialApp createMaterialApp(BatteryLevelProvider mockBatteryLevelProvider) {
   return MaterialApp(
-    home: Column(children: [BatteryWidget(mockBatteryLevelProvider)]),
+    home: Scaffold(
+      body: Column(children: [BatteryWidget(mockBatteryLevelProvider)]),
+    ),
   );
 }
 

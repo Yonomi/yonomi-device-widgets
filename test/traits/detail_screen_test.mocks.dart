@@ -6,6 +6,7 @@ import 'dart:async' as _i7;
 import 'dart:ui' as _i10;
 
 import 'package:flutter/material.dart' as _i3;
+import 'package:flutter/src/foundation/assertions.dart' as _i21;
 import 'package:flutter/src/foundation/diagnostics.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:yonomi_device_widgets/providers/battery_level_provider.dart'
@@ -786,16 +787,20 @@ class MockBuildContext extends _i1.Mock implements _i3.BuildContext {
       super.noSuchMethod(Invocation.method(#visitChildElements, [visitor]),
           returnValueForMissingStub: null);
   @override
+  void dispatchNotification(_i3.Notification? notification) => super
+      .noSuchMethod(Invocation.method(#dispatchNotification, [notification]),
+          returnValueForMissingStub: null);
+  @override
   _i3.DiagnosticsNode describeElement(String? name,
-          {_i4.DiagnosticsTreeStyle? style =
-              _i4.DiagnosticsTreeStyle.errorProperty}) =>
+          {_i21.DiagnosticsTreeStyle? style =
+              _i21.DiagnosticsTreeStyle.errorProperty}) =>
       (super.noSuchMethod(
           Invocation.method(#describeElement, [name], {#style: style}),
           returnValue: _FakeDiagnosticsNode_3()) as _i3.DiagnosticsNode);
   @override
   _i3.DiagnosticsNode describeWidget(String? name,
-          {_i4.DiagnosticsTreeStyle? style =
-              _i4.DiagnosticsTreeStyle.errorProperty}) =>
+          {_i21.DiagnosticsTreeStyle? style =
+              _i21.DiagnosticsTreeStyle.errorProperty}) =>
       (super.noSuchMethod(
           Invocation.method(#describeWidget, [name], {#style: style}),
           returnValue: _FakeDiagnosticsNode_3()) as _i3.DiagnosticsNode);

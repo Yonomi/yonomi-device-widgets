@@ -11,7 +11,9 @@ class PinCodeWidgetTest with DeviceTesting, PinCodeTesting {}
 
 MaterialApp createMaterialApp(PinCodeProvider mockPinCodeProvider) {
   return MaterialApp(
-    home: Column(children: [PinCodeWidget(mockPinCodeProvider)]),
+    home: Scaffold(
+      body: Column(children: [PinCodeWidget(mockPinCodeProvider)]),
+    ),
   );
 }
 

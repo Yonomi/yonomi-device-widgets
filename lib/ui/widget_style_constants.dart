@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/ui/color_constants.dart';
 
 class WidgetStyleConstants {
-  WidgetStyleConstants._();
+  WidgetStyleConstants._(); // coverage:ignore-line
 
   static const Color globalWarningColor = Color(0xFFF19953);
 
