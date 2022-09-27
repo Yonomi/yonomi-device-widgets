@@ -141,7 +141,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(PinCodeDetailView), findsOneWidget);
-      expect(find.text('Admin'), findsOneWidget);
+      expect(find.text('Admin'), findsNWidgets(2));
       expect(find.text('5678'), findsOneWidget);
     });
   });
@@ -185,7 +185,7 @@ void main() {
       ));
 
       expect(find.text(StringConstants.PIN_CODES_NEW_PIN_CODE), findsNothing);
-      expect(find.text('someName'), findsOneWidget);
+      expect(find.text('someName'), findsNWidgets(2));
       expect(find.text('somePincode'), findsOneWidget);
     });
 

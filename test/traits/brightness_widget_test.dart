@@ -42,7 +42,7 @@ main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
-  testWidgets('When battery widget is in error, should show error icon',
+  testWidgets('When brightness widget is in error, should show error icon',
       (WidgetTester tester) async {
     final mockBrightnessProvider =
         test.mockBrightnessProvider(brightnessDevice);

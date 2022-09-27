@@ -68,6 +68,7 @@ class PinCodeListView extends StatelessWidget {
                 middle: Text(provider.displayName),
                 trailing: IconButton(
                   icon: const Icon(BootstrapIcons.plus_circle),
+                  iconSize: 22.0,
                   color: Colors.cyan,
                   onPressed: () => Navigator.of(builderCtx).push(
                     MaterialPageRoute(
