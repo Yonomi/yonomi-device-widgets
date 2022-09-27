@@ -125,6 +125,15 @@ void main() {
 
       expect(find.byType(PinCodeDetailView), findsOneWidget);
     });
+
+    testWidgets('Temp: Tap on chevron,', (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createListView(mockPinCodeProvider));
+
+      await tester.tap(find.byIcon(BootstrapIcons.chevron_right).first);
+
+      await tester.pumpAndSettle();
+    });
   });
   group('For PinCodeDetailView', () {
     testWidgets('Should show default view', (WidgetTester tester) async {
@@ -145,6 +154,29 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(mockPinCodeProvider.sendCreatePinCode('', '')).called(1);
+    });
+
+    testWidgets('Temp: tap on textFormField', (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider));
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets('Temp2: tap on textFormField', (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider));
+
+      await tester.enterText(find.byType(TextFormField).first, '1234');
+      await tester.enterText(find.byType(TextFormField).last, '4321');
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
     });
   });
 }
