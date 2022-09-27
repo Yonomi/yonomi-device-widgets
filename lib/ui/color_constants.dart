@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class ColorConstants {
-  ColorConstants._();
+  ColorConstants._(); // coverage:ignore-line
 
   static const Color modesButtonUnpressedColor = Color(0xFFDFE0E4);
 
