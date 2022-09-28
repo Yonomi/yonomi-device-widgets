@@ -17,6 +17,15 @@ class SendCreatePinCodeMethod extends Mock {
       Request request, String id, String pinCode, String pinCodeName);
 }
 
+class SendUpdatePinCodeMethod extends Mock {
+  Future<void> call(
+      Request request, String id, String pinCode, String pinCodeName);
+}
+
+class SendDeletePinCodeMethod extends Mock {
+  Future<void> call(Request request, String id, String pinCode);
+}
+
 class PinCodeTraitProviderTest with DeviceTesting, PinCodeTesting {
   MockGetDeviceDetailsMethod getMockDeviceDetailsMethod(
       Request request, String deviceId) {
@@ -37,7 +46,12 @@ class PinCodeTraitProviderTest with DeviceTesting, PinCodeTesting {
   }
 }
 
-@GenerateMocks([GetDeviceDetailsMethod, SendCreatePinCodeMethod])
+@GenerateMocks([
+  GetDeviceDetailsMethod,
+  SendCreatePinCodeMethod,
+  SendUpdatePinCodeMethod,
+  SendDeletePinCodeMethod
+])
 void main() {
   final pinCodeProviderTest = PinCodeTraitProviderTest();
 
@@ -93,6 +107,48 @@ void main() {
 
       verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
       verify(mockSendCreatePinCodeMethod(request, deviceId, 'Admin', '5678'))
+          .called(greaterThan(0));
+    });
+
+    test('Calling SendUpdatePinCodeMethod calls repository method', () async {
+      Request request = Request("", {});
+      String deviceId = 'aDeviceId';
+
+      final GetDeviceDetailsMethod mockDeviceDetailsMethod =
+          pinCodeProviderTest.getMockDeviceDetailsMethod(request, deviceId);
+
+      final mockSendUpdatePinCodeMethod = MockSendUpdatePinCodeMethod();
+
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
+          getDetails: mockDeviceDetailsMethod);
+
+      await pinCodeProvider.sendUpdatePinCode('Admin', '5678',
+          getDetails: mockDeviceDetailsMethod,
+          sendUpdatePinCodeMethod: mockSendUpdatePinCodeMethod);
+
+      verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
+      verify(mockSendUpdatePinCodeMethod(request, deviceId, 'Admin', '5678'))
+          .called(greaterThan(0));
+    });
+
+    test('Calling SendDeletePinCodeMethod calls repository method', () async {
+      Request request = Request("", {});
+      String deviceId = 'aDeviceId';
+
+      final GetDeviceDetailsMethod mockDeviceDetailsMethod =
+          pinCodeProviderTest.getMockDeviceDetailsMethod(request, deviceId);
+
+      final mockSendDeletePinCodeMethod = MockSendDeletePinCodeMethod();
+
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
+          getDetails: mockDeviceDetailsMethod);
+
+      await pinCodeProvider.sendDeletePinCode('5678', 'Admin',
+          getDetails: mockDeviceDetailsMethod,
+          sendDeletePinCodeMethod: mockSendDeletePinCodeMethod);
+
+      verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
+      verify(mockSendDeletePinCodeMethod(request, deviceId, '5678'))
           .called(greaterThan(0));
     });
   });

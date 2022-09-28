@@ -28,10 +28,15 @@ MaterialApp createListView(PinCodeProvider mockPinCodeProvider) {
   );
 }
 
-MaterialApp createDetailView(PinCodeProvider mockPinCodeProvider) {
+MaterialApp createDetailView(PinCodeProvider mockPinCodeProvider,
+    {PinCodeCredential? selectedPinCode}) {
   return MaterialApp(
     home: new Scaffold(
-      body: Container(child: PinCodeDetailView(mockPinCodeProvider)),
+      body: Container(
+          child: PinCodeDetailView(
+        mockPinCodeProvider,
+        selectedPinCode: selectedPinCode,
+      )),
     ),
   );
 }
@@ -126,17 +131,22 @@ void main() {
       expect(find.byType(PinCodeDetailView), findsOneWidget);
     });
 
-    testWidgets('Temp: Tap on chevron,', (WidgetTester tester) async {
+    testWidgets('Should open the Detail View when pressing > button,',
+        (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
       await tester.pumpWidget(createListView(mockPinCodeProvider));
 
       await tester.tap(find.byIcon(BootstrapIcons.chevron_right).first);
 
       await tester.pumpAndSettle();
+
+      expect(find.byType(PinCodeDetailView), findsOneWidget);
+      expect(find.text('Admin'), findsNWidgets(2));
+      expect(find.text('5678'), findsOneWidget);
     });
   });
   group('For PinCodeDetailView', () {
-    testWidgets('Should show default view', (WidgetTester tester) async {
+    testWidgets('Shows default view', (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
       await tester.pumpWidget(createDetailView(mockPinCodeProvider));
 
@@ -144,39 +154,148 @@ void main() {
     });
 
     testWidgets(
-        'Should call createPinCode method in PinCodeProvider after pressing save button',
+        'Calls createPinCode method in PinCodeProvider after pressing save button',
         (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
       await tester.pumpWidget(createDetailView(mockPinCodeProvider));
 
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD)),
+          '1234');
+
+      await tester.tap(find.byIcon(Icons.visibility_off));
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD)), '1234');
+
       await tester.tap(find.byIcon(BootstrapIcons.check2));
 
       await tester.pumpAndSettle();
 
-      verify(mockPinCodeProvider.sendCreatePinCode('', '')).called(1);
+      verify(mockPinCodeProvider.sendCreatePinCode('1234', '1234')).called(1);
     });
 
-    testWidgets('Temp: tap on textFormField', (WidgetTester tester) async {
+    testWidgets('Show existing PIN Code details in Edit mode',
+        (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
-      await tester.pumpWidget(createDetailView(mockPinCodeProvider));
 
-      await tester.tap(find.byIcon(BootstrapIcons.check2));
+      await tester.pumpWidget(createDetailView(
+        mockPinCodeProvider,
+        selectedPinCode: PinCodeCredential('someName', 'somePincode'),
+      ));
 
-      await tester.pumpAndSettle();
+      expect(find.text(StringConstants.PIN_CODES_NEW_PIN_CODE), findsNothing);
+      expect(find.text('someName'), findsNWidgets(2));
+      expect(find.text('somePincode'), findsOneWidget);
     });
 
-    testWidgets('Temp2: tap on textFormField', (WidgetTester tester) async {
+    testWidgets(
+        'No calls made to updatePinCode method in PinCodeProvider if no changes made',
+        (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
-      await tester.pumpWidget(createDetailView(mockPinCodeProvider));
-
-      await tester.enterText(find.byType(TextFormField).first, '1234');
-      await tester.enterText(find.byType(TextFormField).last, '4321');
-
-      await tester.pumpAndSettle();
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
 
       await tester.tap(find.byIcon(BootstrapIcons.check2));
 
       await tester.pumpAndSettle();
+
+      verifyNever(mockPinCodeProvider.sendUpdatePinCode('1234', '1234'));
+    });
+
+    testWidgets(
+        'Calls updatePinCode method in PinCodeProvider after pressing save button',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD)),
+          'SomeName');
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD)), '4321');
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+
+      verify(mockPinCodeProvider.sendUpdatePinCode('4321', 'SomeName'))
+          .called(1);
+    });
+
+    testWidgets('Invalid form if empty', (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('', '')));
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+
+      verifyNever(mockPinCodeProvider.sendCreatePinCode('', ''));
+    });
+
+    testWidgets('Pressing on Delete button shows a confirmation Dialog',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+    });
+
+    testWidgets(
+        'Calls deletePinCode method in PinCodeProvider after pressing OK in Confirm Dialog',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+
+      await tester.tap(find.text(StringConstants.PIN_CODE_DELETE_ALERT_OK));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsNothing);
+      verify(mockPinCodeProvider.sendDeletePinCode('1234', '1234')).called(1);
+    });
+
+    testWidgets(
+        'Pressing CANCEL on Confirm Dialog for Delete PIN Code Button dismisses Dialog',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
+          selectedPinCode: PinCodeCredential('1234', '1234')));
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+
+      await tester.tap(find.text(StringConstants.PIN_CODE_DELETE_ALERT_CANCEL));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsNothing);
+      verifyNever(mockPinCodeProvider.sendDeletePinCode('1234', '1234'));
     });
   });
 }

@@ -69,12 +69,44 @@ class MockPinCodeProvider extends _i1.Mock implements _i2.PinCodeProvider {
           _i2.SendCreatePinCodeMethod? sendCreatePinCodeMethod =
               _i7.PinCodeRepository.sendCreatePinCodeAction}) =>
       (super.noSuchMethod(
-          Invocation.method(#sendAddPinCode, [
+          Invocation.method(#sendCreatePinCode, [
             pinCode,
             pinCodeName
           ], {
             #getDetails: getDetails,
             #sendCreatePinCodeMethod: sendCreatePinCodeMethod
+          }),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  _i4.Future<void> sendUpdatePinCode(String? pinCode, String? pinCodeName,
+          {_i5.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails,
+          _i2.SendUpdatePinCodeMethod? sendUpdatePinCodeMethod =
+              _i7.PinCodeRepository.sendUpdatePinCodeAction}) =>
+      (super.noSuchMethod(
+          Invocation.method(#sendUpdatePinCode, [
+            pinCode,
+            pinCodeName
+          ], {
+            #getDetails: getDetails,
+            #sendUpdatePinCodeMethod: sendUpdatePinCodeMethod
+          }),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  _i4.Future<void> sendDeletePinCode(String? pinCode, String? pinCodeName,
+          {_i5.GetDeviceDetailsMethod? getDetails =
+              _i6.DevicesRepository.getDeviceDetails,
+          _i2.SendDeletePinCodeMethod? sendDeletePinCodeMethod =
+              _i7.PinCodeRepository.sendDeletePinCodeAction}) =>
+      (super.noSuchMethod(
+          Invocation.method(#sendDeletePinCode, [
+            pinCode,
+            pinCodeName
+          ], {
+            #getDetails: getDetails,
+            #sendDeletePinCodeMethod: sendDeletePinCodeMethod
           }),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);

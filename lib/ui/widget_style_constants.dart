@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yonomi_device_widgets/ui/color_constants.dart';
 
 class WidgetStyleConstants {
   WidgetStyleConstants._(); // coverage:ignore-line
@@ -47,20 +48,34 @@ class WidgetStyleConstants {
 
   static const Color jammedStateTextColor = Colors.white;
 
+  static ButtonStyle pinCodeDeleteButtonStyle = OutlinedButton.styleFrom(
+    minimumSize: Size.fromHeight(60),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    side: BorderSide(
+        color: ColorConstants.PIN_CODE_DELETE_BUTTON_RED, width: 2.0),
+  );
+
+  static const TextStyle pinCodeDeleteButtonTextStyle = TextStyle(
+      color: ColorConstants.PIN_CODE_DELETE_BUTTON_TEXT_RED,
+      fontWeight: FontWeight.w500,
+      fontSize: 18.0);
+
   static const Color pinCodeListTitleColor = Color(0xFF5E6578);
 
   static const Color pinCodeListItemColor = Color(0xFF4DA49F);
 
-  static const TextStyle pinCodeListItemStyle =
-      TextStyle(color: WidgetStyleConstants.pinCodeListItemColor);
+  static const TextStyle pinCodeListItemStyle = TextStyle(
+      color: WidgetStyleConstants.pinCodeListItemColor, fontSize: 16.0);
 
   static const TextStyle pinCodeListTitleStyle = TextStyle(
       color: WidgetStyleConstants.pinCodeListTitleColor,
-      fontWeight: FontWeight.w900,
-      fontSize: 18.0);
+      fontWeight: FontWeight.w500,
+      fontSize: 22.0);
 
   static const TextStyle pinCodeDetailTitleStyle = TextStyle(
       color: WidgetStyleConstants.pinCodeListTitleColor,
-      fontWeight: FontWeight.w900,
-      fontSize: 16.0);
+      fontWeight: FontWeight.w500,
+      fontSize: 18.0);
 }

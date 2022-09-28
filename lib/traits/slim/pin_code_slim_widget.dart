@@ -68,6 +68,7 @@ class PinCodeListView extends StatelessWidget {
                 middle: Text(provider.displayName),
                 trailing: IconButton(
                   icon: const Icon(BootstrapIcons.plus_circle),
+                  iconSize: 22.0,
                   color: Colors.cyan,
                   onPressed: () => Navigator.of(builderCtx).push(
                     MaterialPageRoute(
@@ -88,24 +89,32 @@ class PinCodeListView extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(StringConstants.PIN_CODES_NO_PIN_CODES,
-                                style:
-                                    WidgetStyleConstants.pinCodeListTitleStyle),
+                            child: Text(
+                              StringConstants.PIN_CODES_NO_PIN_CODES,
+                              style: WidgetStyleConstants.pinCodeListTitleStyle,
+                            ),
                           ))
                       : Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 16.0),
                           child: Column(children: [
-                            Text(
-                              StringConstants.PIN_CODES_LIST_SCREEN_TITLE,
-                              style: WidgetStyleConstants.pinCodeListTitleStyle,
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  StringConstants.PIN_CODES_LIST_SCREEN_TITLE,
+                                  style: WidgetStyleConstants
+                                      .pinCodeListTitleStyle,
+                                ),
+                              ),
                             ),
                             ListView(
                               shrinkWrap: true,
                               controller: ModalScrollController.of(builderCtx),
                               children: ListTile.divideTiles(
                                 context: builderCtx,
-                                tiles: _pinCodesToListTiles(
+                                tiles: _pinCodesToListTiles(builderCtx,
                                     provider.getPinCodeCredentials!),
                               ).toList(),
                             ),
@@ -120,27 +129,41 @@ class PinCodeListView extends StatelessWidget {
     );
   }
 
-  List<Column> _pinCodesToListTiles(
-      List<PinCodeCredential> pinCodeCredentials) {
+  List<Padding> _pinCodesToListTiles(
+      BuildContext context, List<PinCodeCredential> pinCodeCredentials) {
     return pinCodeCredentials
-        .map(
-          (pinCode) => Column(
-            children: [
-              ListTile(
-                onTap: () => {print('TODO: Go to detail view. ')},
-                title: Text(
-                  pinCode.name,
-                  style: WidgetStyleConstants.pinCodeListItemStyle,
+        .map((pinCode) => Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  color: Colors.white,
                 ),
-                trailing: const Icon(
-                  BootstrapIcons.chevron_right,
-                  color: Colors.black,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => PinCodeDetailView(
+                          provider,
+                          selectedPinCode: pinCode,
+                          backViewContext: context,
+                        ),
+                      ),
+                    );
+                  },
+                  title: Text(
+                    pinCode.name,
+                    style: WidgetStyleConstants.pinCodeListItemStyle,
+                  ),
+                  trailing: const Icon(
+                    BootstrapIcons.chevron_right,
+                    size: 20.0,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              Container(height: 5, color: ColorConstants.pinCodeListBodyBg),
-            ],
-          ),
-        )
+            ))
         .toList();
   }
 }
@@ -153,6 +176,10 @@ class PinCodeDetailView extends StatefulWidget {
   final BuildContext? backViewContext;
 
   final PinCodeCredential? selectedPinCode;
+
+  static const String PIN_CODE_PIN_CODE_FIELD = 'pin_code_pin_code_field';
+  static const String PIN_CODE_PIN_CODE_NAME_FIELD =
+      'pin_code_pin_code_name_field';
 
   const PinCodeDetailView(
     this.provider, {
@@ -169,27 +196,31 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     with ToastNotifications {
   final _formKey = GlobalKey<FormState>();
 
+  bool showPasswordField = false;
+
   String _pinCode = '';
   String _pinCodeName = '';
 
   @override
   Widget build(BuildContext context) {
+    bool newPinCode = widget.selectedPinCode == null;
+    if (!newPinCode) {
+      _pinCode = widget.selectedPinCode!.pinCode;
+      _pinCodeName = widget.selectedPinCode!.name;
+    }
     return Material(
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           backgroundColor: ColorConstants.pinCodeBottomSheetDetailTitleBg,
           leading: Container(),
-          middle: Text(StringConstants.PIN_CODES_NEW_PIN_CODE),
+          middle: Text(newPinCode
+              ? StringConstants.PIN_CODES_NEW_PIN_CODE
+              : widget.selectedPinCode!.name),
           trailing: IconButton(
-              icon: const Icon(BootstrapIcons.check2),
-              color: ColorConstants.pinCodeDetailCheckColor,
-              onPressed: () async {
-                await _savePinCode(widget.backViewContext ?? context);
-                await Future.delayed(
-                    const Duration(milliseconds: 250),
-                    () =>
-                        Navigator.of(widget.backViewContext ?? context).pop());
-              }),
+            icon: const Icon(BootstrapIcons.check2),
+            color: ColorConstants.pinCodeDetailCheckColor,
+            onPressed: () async => await _savePinCode(context),
+          ),
         ),
         child: SafeArea(
           child: Container(
@@ -200,18 +231,30 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: Column(
                   children: [
-                    Text(
-                      StringConstants.PIN_CODES_PIN_CODE_SETTINGS,
-                      style: WidgetStyleConstants.pinCodeDetailTitleStyle,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          StringConstants.PIN_CODES_PIN_CODE_SETTINGS,
+                          style: WidgetStyleConstants.pinCodeDetailTitleStyle,
+                        ),
+                      ),
                     ),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: TextFormField(
+                        key:
+                            Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD),
                         onChanged: (value) {
                           this._pinCodeName = value;
                         },
-                        validator: textValidator,
+                        initialValue: widget.selectedPinCode?.name ?? '',
+                        validator: (value) => _textInputValidator(
+                            value,
+                            widget.provider.nameLengthRange?.min,
+                            widget.provider.nameLengthRange?.max),
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -231,7 +274,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                                   .pinCodeDetailTextFieldHelperText),
                           labelText: StringConstants.PIN_CODES_PIN_CODE_NAME,
                           helperText:
-                              '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John Doe or babysitter)',
+                              '${widget.provider.nameLengthRange?.max ?? PinCodeDetailView.DEFAULT_MAX_PIN_CODE_NAME_LENGTH} character max (e.g. John D or Babysitter)',
                         ),
                       ),
                     ),
@@ -239,10 +282,18 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                       padding:
                           EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: TextFormField(
+                        key: Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD),
+                        initialValue: widget.selectedPinCode?.pinCode ?? '',
                         onChanged: (value) {
                           this._pinCode = value;
                         },
-                        validator: textValidator,
+                        obscureText: !this.showPasswordField,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        validator: (value) => _textInputValidator(
+                            value,
+                            widget.provider.pinCodeLengthRange?.min,
+                            widget.provider.pinCodeLengthRange?.max),
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -251,6 +302,18 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                           ),
                           filled: true,
                           fillColor: Colors.white,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              this.showPasswordField
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onPressed: () {
+                              setState(() => this.showPasswordField =
+                                  !this.showPasswordField);
+                            },
+                          ),
                           labelStyle: TextStyle(
                               color: ColorConstants
                                   .pinCodeDetailTextFieldLabelText),
@@ -266,6 +329,49 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                         ),
                       ),
                     ),
+                    if (!newPinCode)
+                      Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                          child: OutlinedButton(
+                            style:
+                                WidgetStyleConstants.pinCodeDeleteButtonStyle,
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text(StringConstants
+                                      .PIN_CODE_DELETE_ALERT_TITLE),
+                                  content: Text(StringConstants
+                                      .PIN_CODE_DELETE_ALERT_MSG_TEXT),
+                                  actions: [
+                                    TextButton(
+                                      child: Text(StringConstants
+                                          .PIN_CODE_DELETE_ALERT_CANCEL),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                    TextButton(
+                                      child: Text(StringConstants
+                                          .PIN_CODE_DELETE_ALERT_OK),
+                                      onPressed: () async {
+                                        await widget.provider.sendDeletePinCode(
+                                          widget.selectedPinCode!.pinCode,
+                                          widget.selectedPinCode!.name,
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            child: Text(
+                              StringConstants.PIN_CODES_DELETE_BUTTON_TEXT,
+                              style: WidgetStyleConstants
+                                  .pinCodeDeleteButtonTextStyle,
+                            ),
+                          )),
                   ],
                 ),
               ),
@@ -276,20 +382,52 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     );
   }
 
-  String? textValidator(String? value) {
+  String? _textInputValidator(String? value, int? min, int? max) {
+    String? errorMessage;
     if (value == null || value.isEmpty) {
-      return StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
+      errorMessage = StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
+    } else {
+      if (widget.selectedPinCode != null &&
+          (this._pinCodeName == widget.selectedPinCode!.name &&
+              this._pinCode == widget.selectedPinCode!.pinCode)) {
+        errorMessage = StringConstants.PIN_CODES_NO_CHANGES_MADE;
+      }
+      if (min != null && value.length < min) {
+        errorMessage = StringConstants.PIN_CODES_INPUT_VALID_RANGE_MIN;
+      }
+      if (max != null && value.length > max) {
+        errorMessage = StringConstants.PIN_CODES_INPUT_VALID_RANGE_MAX;
+      }
     }
-    return null;
+    return errorMessage;
   }
 
   Future<void> _savePinCode(BuildContext ctx) async {
-    print('Saving pin code...');
-    await widget.provider.sendCreatePinCode(this._pinCode, this._pinCodeName);
-    ScaffoldMessenger.of(ctx).showSnackBar(
-      SnackBar(
+    String toastMsg = '';
+    if (_formKey.currentState!.validate()) {
+      bool newPinCode = widget.selectedPinCode == null;
+      newPinCode
+          ? await widget.provider
+              .sendCreatePinCode(this._pinCode, this._pinCodeName)
+          : await widget.provider
+              .sendUpdatePinCode(this._pinCode, this._pinCodeName);
+      toastMsg = (newPinCode) ? 'Creating new PIN' : 'Saving changes';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
           behavior: SnackBarBehavior.floating,
-          content: Text(StringConstants.PIN_CODES_SAVED_CHANGES)),
-    );
+          content: Text(toastMsg),
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 250),
+          () => Navigator.of(widget.backViewContext ?? context).pop());
+    } else {
+      toastMsg = 'Invalid form';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text(toastMsg),
+        ),
+      );
+    }
   }
 }
