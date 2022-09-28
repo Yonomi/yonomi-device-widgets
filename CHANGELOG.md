@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.11.0...v2.12.0) (2022-09-28)
+
+
+### Features
+
+* **pin_code_widget:** Detail view, Edit or Delete PIN Code(s) ([#55](https://github.com/Yonomi/yonomi-device-widgets/issues/55)) ([1c50e6a](https://github.com/Yonomi/yonomi-device-widgets/commit/1c50e6aed5c78edb0be0ee539d5a1f064758518e))
+
 # [2.11.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.10.2...v2.11.0) (2022-09-27)
 
 
