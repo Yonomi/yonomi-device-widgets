@@ -355,11 +355,12 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                                       child: Text(StringConstants
                                           .PIN_CODE_DELETE_ALERT_OK),
                                       onPressed: () async {
+                                        Navigator.of(context).pop();
+
                                         await widget.provider.sendDeletePinCode(
                                           widget.selectedPinCode!.pinCode,
                                           widget.selectedPinCode!.name,
                                         );
-                                        Navigator.of(context).pop();
                                       },
                                     ),
                                   ],
@@ -387,11 +388,6 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     if (value == null || value.isEmpty) {
       errorMessage = StringConstants.PIN_CODES_PLEASE_ENTER_TEXT;
     } else {
-      if (widget.selectedPinCode != null &&
-          (this._pinCodeName == widget.selectedPinCode!.name &&
-              this._pinCode == widget.selectedPinCode!.pinCode)) {
-        errorMessage = StringConstants.PIN_CODES_NO_CHANGES_MADE;
-      }
       if (min != null && value.length < min) {
         errorMessage = StringConstants.PIN_CODES_INPUT_VALID_RANGE_MIN;
       }
@@ -406,23 +402,28 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
     String toastMsg = '';
     if (_formKey.currentState!.validate()) {
       bool newPinCode = widget.selectedPinCode == null;
-      newPinCode
-          ? await widget.provider
-              .sendCreatePinCode(this._pinCode, this._pinCodeName)
-          : await widget.provider
-              .sendUpdatePinCode(this._pinCode, this._pinCodeName);
-      toastMsg = (newPinCode) ? 'Creating new PIN' : 'Saving changes';
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: Text(toastMsg),
-        ),
-      );
-      await Future.delayed(const Duration(milliseconds: 250),
-          () => Navigator.of(widget.backViewContext ?? context).pop());
+      try {
+        newPinCode
+            ? await widget.provider
+                .sendCreatePinCode(this._pinCode, this._pinCodeName)
+            : await widget.provider
+                .sendUpdatePinCode(this._pinCode, this._pinCodeName);
+        toastMsg = (newPinCode) ? 'Creating new PIN' : 'Saving changes';
+        ScaffoldMessenger.of(ctx).showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text(toastMsg),
+          ),
+        );
+        showToast(ctx, toastMsg);
+        await Future.delayed(const Duration(milliseconds: 250),
+            () => Navigator.of(widget.backViewContext ?? ctx).pop());
+      } catch (error, stacktrace) {
+        print('Caught an exception');
+      }
     } else {
       toastMsg = 'Invalid form';
-      ScaffoldMessenger.of(context).showSnackBar(
+      ScaffoldMessenger.of(ctx).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
           content: Text(toastMsg),
