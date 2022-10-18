@@ -2,6 +2,7 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:provider/provider.dart';
 import 'package:yonomi_device_widgets/assets/traits/pin_code_icon.dart';
 import 'package:yonomi_device_widgets/mixins/toast_notifications.dart';
 import 'package:yonomi_device_widgets/providers/pin_code_provider.dart';
@@ -62,76 +63,96 @@ class PinCodeListView extends StatelessWidget with ToastNotifications {
         body: Navigator(
           onGenerateRoute: (_) => MaterialPageRoute(
             builder: (listViewCtx) => Builder(
-              builder: (builderCtx) => CupertinoPageScaffold(
-                navigationBar: CupertinoNavigationBar(
-                  backgroundColor: ColorConstants.pinCodeBottomSheetListTitleBg,
-                  leading: Container(),
-                  middle: Text(provider.displayName),
-                  trailing: IconButton(
-                      icon: const Icon(BootstrapIcons.plus_circle),
-                      iconSize: 22.0,
-                      color: Colors.cyan,
-                      onPressed: () async {
-                        String? result = await Navigator.of(builderCtx).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                PinCodeDetailView(provider),
-                          ),
-                        );
+              builder: (builderCtx) =>
+                  ChangeNotifierProvider<PinCodeProvider>.value(
+                value: this.provider,
+                child: Consumer<PinCodeProvider>(
+                    builder: (builderCtx, provider, child) =>
+                        CupertinoPageScaffold(
+                          navigationBar: CupertinoNavigationBar(
+                            backgroundColor:
+                                ColorConstants.pinCodeBottomSheetListTitleBg,
+                            leading: Container(),
+                            middle: Text(provider.displayName),
+                            trailing: IconButton(
+                                icon: const Icon(BootstrapIcons.plus_circle),
+                                iconSize: 22.0,
+                                color: Colors.cyan,
+                                onPressed: () async {
+                                  String? result =
+                                      await Navigator.of(builderCtx).push(
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          PinCodeDetailView(provider),
+                                    ),
+                                  );
 
-                        if (result != null) showToast(builderCtx, result);
-                      }),
-                ),
-                child: SafeArea(
-                  bottom: false,
-                  child: Container(
-                    color: ColorConstants.pinCodeListBodyBg,
-                    child: (provider.getPinCodeCredentials?.isEmpty ?? true)
-                        ? Align(
-                            alignment: Alignment.topCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                StringConstants.PIN_CODES_NO_PIN_CODES,
-                                style:
-                                    WidgetStyleConstants.pinCodeListTitleStyle,
-                              ),
-                            ))
-                        : Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 16.0),
-                            child: Column(children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Text(
-                                    StringConstants.PIN_CODES_LIST_SCREEN_TITLE,
-                                    style: WidgetStyleConstants
-                                        .pinCodeListTitleStyle,
-                                  ),
-                                ),
-                              ),
-                              Stack(
-                                children: [
-                                  ListView(
-                                    shrinkWrap: true,
-                                    controller:
-                                        ModalScrollController.of(builderCtx),
-                                    children: ListTile.divideTiles(
-                                      context: builderCtx,
-                                      tiles: _pinCodesToListTiles(builderCtx,
-                                          provider.getPinCodeCredentials!),
-                                    ).toList(),
-                                  ),
-                                  if (provider.isBusy)
-                                    Center(child: CircularProgressIndicator()),
-                                ],
-                              ),
-                            ]),
+                                  if (result != null)
+                                    showToast(builderCtx, result);
+                                }),
                           ),
-                  ),
-                ),
+                          child: SafeArea(
+                            bottom: false,
+                            child: Container(
+                              color: ColorConstants.pinCodeListBodyBg,
+                              child: (provider.getPinCodeCredentials?.isEmpty ??
+                                      true)
+                                  ? Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Text(
+                                          StringConstants
+                                              .PIN_CODES_NO_PIN_CODES,
+                                          style: WidgetStyleConstants
+                                              .pinCodeListTitleStyle,
+                                        ),
+                                      ))
+                                  : Stack(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0, vertical: 16.0),
+                                          child: Column(children: [
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(16.0),
+                                                child: Text(
+                                                  StringConstants
+                                                      .PIN_CODES_LIST_SCREEN_TITLE,
+                                                  style: WidgetStyleConstants
+                                                      .pinCodeListTitleStyle,
+                                                ),
+                                              ),
+                                            ),
+                                            ListView(
+                                              shrinkWrap: true,
+                                              controller:
+                                                  ModalScrollController.of(
+                                                      builderCtx),
+                                              children: ListTile.divideTiles(
+                                                context: builderCtx,
+                                                tiles: _pinCodesToListTiles(
+                                                    builderCtx,
+                                                    provider
+                                                        .getPinCodeCredentials!),
+                                              ).toList(),
+                                            ),
+                                          ]),
+                                        ),
+                                        Visibility(
+                                          visible: provider.isBusy,
+                                          child: Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                        ),
+                                      ],
+                                    ),
+                            ),
+                          ),
+                        )),
               ),
             ),
           ),
