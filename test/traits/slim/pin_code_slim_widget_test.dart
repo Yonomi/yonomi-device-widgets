@@ -190,20 +190,6 @@ void main() {
     });
 
     testWidgets(
-        'No calls made to updatePinCode method in PinCodeProvider if no changes made',
-        (WidgetTester tester) async {
-      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
-      await tester.pumpWidget(createDetailView(mockPinCodeProvider,
-          selectedPinCode: PinCodeCredential('1234', '1234')));
-
-      await tester.tap(find.byIcon(BootstrapIcons.check2));
-
-      await tester.pumpAndSettle();
-
-      verifyNever(mockPinCodeProvider.sendUpdatePinCode('1234', '1234'));
-    });
-
-    testWidgets(
         'Calls updatePinCode method in PinCodeProvider after pressing save button',
         (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
