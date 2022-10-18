@@ -9,6 +9,8 @@ class ColorConstants {
 
   static const Color pinCodeBottomSheetListTitleBg = Color(0xFFFFFFFF);
 
+  static const Color pinCodeNewPinCodeButton = Color(0xFF4CACA2);
+
   static const Color pinCodeBottomSheetDetailTitleBg = Color(0xFF4FB0A6);
 
   static const Color pinCodeListBodyBg = Color(0xFFE8EAEE);
@@ -17,7 +19,7 @@ class ColorConstants {
 
   static const Color PIN_CODE_DELETE_BUTTON_TEXT_RED = Color(0xFFDC3646);
 
-  static const Color pinCodeDetailCheckColor = Color(0xFF70C7C0);
+  static const Color pinCodeDetailCheckColor = Color(0xFF9DE5DF);
 
   static const Color pinCodeDetailCheckDisabledColor = Color(0xFFD5D5D5);
 

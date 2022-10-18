@@ -76,8 +76,8 @@ class PinCodeListView extends StatelessWidget with ToastNotifications {
                             middle: Text(provider.displayName),
                             trailing: IconButton(
                                 icon: const Icon(BootstrapIcons.plus_circle),
-                                iconSize: 22.0,
-                                color: Colors.cyan,
+                                iconSize: 24.0,
+                                color: ColorConstants.pinCodeNewPinCodeButton,
                                 onPressed: () async {
                                   String? result =
                                       await Navigator.of(builderCtx).push(
@@ -253,6 +253,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                 : widget.selectedPinCode!.name),
             trailing: IconButton(
               icon: const Icon(BootstrapIcons.check2),
+              iconSize: 24.0,
               color: ColorConstants.pinCodeDetailCheckColor,
               onPressed: () async => await _savePinCode(rootContext),
             ),
@@ -437,28 +438,22 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
   Future<void> _savePinCode(BuildContext ctx) async {
     if (_formKey.currentState!.validate()) {
       bool newPinCode = widget.selectedPinCode == null;
-      try {
-        Navigator.of(ctx)
-            .pop((newPinCode) ? 'Creating new PIN' : 'Saving changes');
+      Navigator.of(ctx)
+          .pop((newPinCode) ? 'Creating new PIN' : 'Saving changes');
 
-        newPinCode
-            ? await widget.provider.sendCreatePinCode(
-                this._pinCode,
-                this._pinCodeName,
-              )
-            : await widget.provider.sendUpdatePinCode(
-                this._pinCode,
-                this._pinCodeName,
-              );
-      } catch (error, stacktrace) {
-        print(error);
-        print(stacktrace);
-        print('Caught an exception');
-      }
+      newPinCode
+          ? await widget.provider.sendCreatePinCode(
+              this._pinCode,
+              this._pinCodeName,
+            )
+          : await widget.provider.sendUpdatePinCode(
+              this._pinCode,
+              this._pinCodeName,
+            );
     } else {
       showToast(
         context,
-        'Invalid form',
+        StringConstants.PIN_CODE_FORM_ERROR,
         behavior: SnackBarBehavior.floating,
       );
     }

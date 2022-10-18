@@ -41,4 +41,7 @@ class StringConstants {
   static const String PIN_CODES_PLEASE_ENTER_TEXT = 'Please enter some text';
 
   static const String PIN_CODES_SAVED_CHANGES = 'Saved changes';
+
+  static const String PIN_CODE_FORM_ERROR =
+      'Please fix the errors shown to continue.';
 }
