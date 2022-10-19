@@ -64,7 +64,7 @@ void main() {
       final GetDeviceDetailsMethod mockDeviceDetailsMethod =
           pinCodeProviderTest.getMockDeviceDetailsMethod(request, deviceId);
 
-      PinCodeProvider pinCodeProvider = PinCodeProvider(request, deviceId,
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       expect(pinCodeProvider.isLoading, equals(false),
