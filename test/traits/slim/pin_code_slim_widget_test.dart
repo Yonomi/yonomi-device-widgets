@@ -144,6 +144,20 @@ void main() {
       expect(find.text('Admin'), findsNWidgets(2));
       expect(find.text('5678'), findsOneWidget);
     });
+
+    testWidgets('Should display toast notifying changes were saved.,',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createListView(mockPinCodeProvider));
+
+      await tester.tap(find.byIcon(BootstrapIcons.chevron_right).first);
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle(Duration(seconds: 4));
+    });
   });
   group('For PinCodeDetailView', () {
     testWidgets('Shows default view', (WidgetTester tester) async {
