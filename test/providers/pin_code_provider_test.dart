@@ -150,6 +150,8 @@ void main() {
       verify(mockDeviceDetailsMethod(request, deviceId)).called(greaterThan(0));
       verify(mockSendDeletePinCodeMethod(request, deviceId, '5678'))
           .called(greaterThan(0));
+
+      pinCodeProvider.dispose();
     });
   });
 }

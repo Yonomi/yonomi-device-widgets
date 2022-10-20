@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:yonomi_device_widgets/providers/widget_state.dart';
 import 'package:yonomi_device_widgets/ui/string_constants.dart';
@@ -13,6 +14,7 @@ abstract class DeviceProvider extends ChangeNotifier {
   late String _deviceId;
   late sdk.Request _request;
 
+  bool _isDisposed = false;
   WidgetState _state = WidgetState.idle;
   sdk.Device? _deviceDetail;
   String _latestErrorMsg = StringConstants.AN_ERROR_OCCURRED;
@@ -39,8 +41,15 @@ abstract class DeviceProvider extends ChangeNotifier {
   }
 
   set setState(WidgetState newState) {
-    _state = newState;
-    notifyListeners();
+    if (!this._isDisposed) {
+      _state = newState;
+      notifyListeners();
+    }
+  }
+
+  void dispose() {
+    this._isDisposed = true;
+    super.dispose();
   }
 
   sdk.Device? get deviceDetail => _deviceDetail;
@@ -65,10 +74,11 @@ abstract class DeviceProvider extends ChangeNotifier {
       try {
         await action();
         int numRetries = 0;
-        T state = getState();
-        while (state != desiredState && numRetries < MAX_RETRIES) {
+        T currentState = getState();
+        while (!_checkEquality(desiredState, currentState) &&
+            numRetries < MAX_RETRIES) {
           _deviceDetail = await getDetails(_request, _deviceId);
-          state = getState();
+          currentState = getState();
           await Future.delayed(Duration(milliseconds: RETRY_DELAY_MS));
           numRetries++;
         }
@@ -80,6 +90,14 @@ abstract class DeviceProvider extends ChangeNotifier {
             .then((_) => setState = WidgetState.idle);
       }
     }
+  }
+
+  bool _checkEquality(desiredState, state) {
+    if (desiredState is Iterable)
+      return const DeepCollectionEquality.unordered()
+          .equals(desiredState, state);
+    else
+      return state == desiredState;
   }
 
   sdk.Trait? trait<T extends sdk.Trait>() {

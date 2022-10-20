@@ -14,10 +14,11 @@ dependencies:
   flutter:
     sdk: flutter
   bootstrap_icons: ^1.9.1
-  yonomi_platform_sdk: ^5.2.0
+  yonomi_platform_sdk: ^5.2.1
   built_value: ^8.1.4
   flutter_colorpicker: ^1.0.3
   modal_bottom_sheet: ^2.0.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   mockito: ^5.0.15

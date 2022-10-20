@@ -66,8 +66,10 @@ class PinCodeProvider extends DeviceProvider {
       {GetDeviceDetailsMethod getDetails = DevicesRepository.getDeviceDetails,
       SendDeletePinCodeMethod sendDeletePinCodeMethod =
           PinCodeRepository.sendDeletePinCodeAction}) async {
-    return performAction<List<PinCodeCredential>>(
-        [...?getPinCodeCredentials, PinCodeCredential(pinCodeName, pinCode)],
+    return performAction<List<PinCodeCredential>?>(
+        getPinCodeCredentials
+            ?.where((item) => item.pinCode != pinCode)
+            .toList(),
         () => getPinCodeCredentials,
         () => sendDeletePinCodeMethod(_request, this._deviceId, pinCode),
         getDetails: getDetails);
