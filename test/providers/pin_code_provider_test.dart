@@ -98,7 +98,7 @@ void main() {
 
       final mockSendCreatePinCodeMethod = MockSendCreatePinCodeMethod();
 
-      PinCodeProvider pinCodeProvider = PinCodeProvider(request, deviceId,
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       await pinCodeProvider.sendCreatePinCode('Admin', '5678',
@@ -119,7 +119,7 @@ void main() {
 
       final mockSendUpdatePinCodeMethod = MockSendUpdatePinCodeMethod();
 
-      PinCodeProvider pinCodeProvider = PinCodeProvider(request, deviceId,
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       await pinCodeProvider.sendUpdatePinCode('Admin', '5678',
@@ -140,7 +140,7 @@ void main() {
 
       final mockSendDeletePinCodeMethod = MockSendDeletePinCodeMethod();
 
-      PinCodeProvider pinCodeProvider = PinCodeProvider(request, deviceId,
+      PinCodeProvider pinCodeProvider = await PinCodeProvider(request, deviceId,
           getDetails: mockDeviceDetailsMethod);
 
       await pinCodeProvider.sendDeletePinCode('5678', 'Admin',

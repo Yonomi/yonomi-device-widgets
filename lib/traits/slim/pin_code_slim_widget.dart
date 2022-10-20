@@ -245,6 +245,7 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
   Widget build(BuildContext rootContext) {
     return Material(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(
             backgroundColor: ColorConstants.pinCodeBottomSheetDetailTitleBg,
@@ -437,7 +438,6 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
 
   Future<void> _savePinCode(BuildContext ctx) async {
     if (_formKey.currentState!.validate()) {
-      bool newPinCode = widget.selectedPinCode == null;
       Navigator.of(ctx)
           .pop((newPinCode) ? 'Creating new PIN' : 'Saving changes');
 
