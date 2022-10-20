@@ -78,18 +78,8 @@ class PinCodeListView extends StatelessWidget with ToastNotifications {
                                 icon: const Icon(BootstrapIcons.plus_circle),
                                 iconSize: 24.0,
                                 color: ColorConstants.pinCodeNewPinCodeButton,
-                                onPressed: () async {
-                                  String? result =
-                                      await Navigator.of(builderCtx).push(
-                                    MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          PinCodeDetailView(provider),
-                                    ),
-                                  );
-
-                                  if (result != null)
-                                    showToast(builderCtx, result);
-                                }),
+                                onPressed: () async =>
+                                    _goToDetailView(builderCtx)),
                           ),
                           child: SafeArea(
                             bottom: false,
@@ -173,16 +163,8 @@ class PinCodeListView extends StatelessWidget with ToastNotifications {
                   color: Colors.white,
                 ),
                 child: ListTile(
-                  onTap: () {
-                    Navigator.of(topContext).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => PinCodeDetailView(
-                          provider,
-                          selectedPinCode: pinCode,
-                        ),
-                      ),
-                    );
-                  },
+                  onTap: () =>
+                      _goToDetailView(topContext, selectedPin: pinCode),
                   title: Text(
                     pinCode.name,
                     style: WidgetStyleConstants.pinCodeListItemStyle,
@@ -196,6 +178,20 @@ class PinCodeListView extends StatelessWidget with ToastNotifications {
               ),
             ))
         .toList();
+  }
+
+  _goToDetailView(BuildContext context,
+      {PinCodeCredential? selectedPin}) async {
+    String? result = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => PinCodeDetailView(
+          provider,
+          selectedPinCode: selectedPin,
+        ),
+      ),
+    );
+
+    if (result != null) showToast(context, result);
   }
 }
 
@@ -390,8 +386,9 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
                                         onPressed: () async {
                                           Navigator.of(context).pop();
 
-                                          Navigator.of(rootContext)
-                                              .pop('Deleting PIN Code');
+                                          Navigator.of(rootContext).pop(
+                                              StringConstants
+                                                  .PIN_CODES_DELETING_PIN_CODE);
 
                                           await widget.provider
                                               .sendDeletePinCode(
@@ -438,8 +435,9 @@ class _PinCodeDetailViewState extends State<PinCodeDetailView>
 
   Future<void> _savePinCode(BuildContext ctx) async {
     if (_formKey.currentState!.validate()) {
-      Navigator.of(ctx)
-          .pop((newPinCode) ? 'Creating new PIN' : 'Saving changes');
+      Navigator.of(ctx).pop((newPinCode)
+          ? StringConstants.PIN_CODES_CREATING_NEW_PIN
+          : StringConstants.PIN_CODES_SAVING_CHANGES);
 
       newPinCode
           ? await widget.provider.sendCreatePinCode(

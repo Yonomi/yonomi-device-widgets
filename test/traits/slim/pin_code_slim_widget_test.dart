@@ -145,7 +145,33 @@ void main() {
       expect(find.text('5678'), findsOneWidget);
     });
 
-    testWidgets('Should display toast notifying changes were saved.,',
+    testWidgets(
+        'New Pin Code, Should display toast notifying changes were saved',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createListView(mockPinCodeProvider));
+
+      await tester.tap(find.byIcon(BootstrapIcons.plus_circle));
+
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_NAME_FIELD)),
+          '1234');
+
+      await tester.enterText(
+          find.byKey(Key(PinCodeDetailView.PIN_CODE_PIN_CODE_FIELD)), '1234');
+
+      await tester.tap(find.byIcon(BootstrapIcons.check2));
+
+      await tester.pumpAndSettle();
+
+      expect(find.text(StringConstants.PIN_CODES_CREATING_NEW_PIN),
+          findsOneWidget);
+    });
+
+    testWidgets(
+        'Edit Pin Code, Should display toast notifying changes were saved',
         (WidgetTester tester) async {
       final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
       await tester.pumpWidget(createListView(mockPinCodeProvider));
@@ -156,7 +182,32 @@ void main() {
 
       await tester.tap(find.byIcon(BootstrapIcons.check2));
 
-      await tester.pumpAndSettle(Duration(seconds: 4));
+      await tester.pumpAndSettle();
+
+      expect(
+          find.text(StringConstants.PIN_CODES_SAVING_CHANGES), findsOneWidget);
+    });
+
+    testWidgets(
+        'Delete Pin Code, Should display toast notifying changes were saved',
+        (WidgetTester tester) async {
+      final mockPinCodeProvider = test.mockPinCodeProvider(defaultPinCode);
+      await tester.pumpWidget(createListView(mockPinCodeProvider));
+
+      await tester.tap(find.byIcon(BootstrapIcons.chevron_right).first);
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(OutlinedButton));
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(StringConstants.PIN_CODE_DELETE_ALERT_OK));
+
+      await tester.pumpAndSettle();
+
+      expect(find.text(StringConstants.PIN_CODES_DELETING_PIN_CODE),
+          findsOneWidget);
     });
   });
   group('For PinCodeDetailView', () {
