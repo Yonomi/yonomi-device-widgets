@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.12.0...v2.12.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* trigger new patch release ([#58](https://github.com/Yonomi/yonomi-device-widgets/issues/58)) ([5574a97](https://github.com/Yonomi/yonomi-device-widgets/commit/5574a97e29cfe781ce272d5de9da9b7445babeb7))
+
 # [2.12.0](https://github.com/Yonomi/yonomi-device-widgets/compare/v2.11.0...v2.12.0) (2022-09-28)
 
 
